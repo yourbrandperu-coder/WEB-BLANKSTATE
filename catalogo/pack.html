@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title id="page-title">Blankstate — Pack</title>
   <meta name="description" content="Blankstate — Ropa buena al precio que vale. Packs premium desde S/70." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" id="og-title" content="Blankstate — Pack" />
+  <meta property="og:description" content="Ropa de calidad real. Sin logo, sin markup. Lima, Perú." />
+  <meta property="og:image" content="../BRANDING/portada-blank.webp" />
+  <meta property="og:url" content="https://blankstate.pe" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -200,7 +207,7 @@
     }
     .visual-color-dots { display: flex; gap: 9px; pointer-events: auto; }
     .visual-color-dot {
-      width: 20px; height: 20px;
+      width: 28px; height: 28px;
       border-radius: 50%;
       border: 2px solid rgba(255,255,255,0.25);
       cursor: pointer;
@@ -208,6 +215,13 @@
       padding: 0;
     }
     .visual-color-dot.active { border-color: white; transform: scale(1.18); }
+    .visual-colors-count {
+      font-size: 9.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      font-weight: 300;
+    }
 
     /* Photo gallery */
     .visual-gallery {
@@ -462,6 +476,28 @@
     }
 
     @media (hover: none) { .cursor { display: none; } }
+
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 500;
+      width: 56px;
+      height: 56px;
+      background: var(--black);
+      color: var(--white);
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+      transition: transform 0.2s var(--ease), background 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.08); background: var(--g5); }
+    .wa-float svg { width: 26px; height: 26px; }
+    @media (max-width: 900px) { .wa-float { display: flex; } }
   </style>
 </head>
 <body>
@@ -509,13 +545,20 @@
   <span class="footer-copy">© 2026 Blankstate</span>
 </footer>
 
+<!-- ── WHATSAPP FLOAT BUTTON ── -->
+<a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." class="wa-float" id="wa-float" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 0C3.58 0 0 3.58 0 8c0 1.41.37 2.74 1.01 3.89L0 16l4.28-1.12A7.96 7.96 0 008 16c4.42 0 8-3.58 8-8s-3.58-8-8-8zm3.93 11.07c-.17.48-.98.93-1.36.99-.35.05-.79.07-1.27-.08a11.5 11.5 0 01-1.15-.43C6.64 10.8 5.5 9.4 5.41 9.29c-.09-.11-.73-.97-.73-1.85 0-.88.46-1.31.62-1.49.17-.18.37-.22.49-.22h.35c.11 0 .27-.04.42.32l.54 1.35c.05.11.08.24.02.38l-.2.39-.3.31c-.1.1-.2.21-.09.41.11.2.5.82 1.07 1.33.73.65 1.35.85 1.54.94.19.09.3.08.41-.05l.49-.58c.14-.18.28-.15.47-.09l1.33.63c.19.09.31.14.36.22.04.08.04.46-.13.93z"/>
+  </svg>
+</a>
+
 <script>
   const PACKS = {
     '01': {
       num: '01', badge: 'Más pedido',
       name: '5 Polos 20/1<br>Oversize y Boxy',
       price: 'S/ 100', qty: '5 polos',
-      desc: 'Oversize largo, Oversize corto, Boxy largo, Boxy corto y un básico. Los cortes que más rotan del catálogo, en un solo pack.',
+      desc: 'Jersey 20/1 — gramaje liviano y cómodo todo el año. Oversize largo, Oversize corto, Boxy largo, Boxy corto y un básico. Los cortes que más rotan del catálogo, en un solo pack.',
       colorsNote: 'Colores disponibles según stock de temporada — te los confirmamos al pedir.',
       colors: null,
       swatches: [
@@ -534,7 +577,7 @@
       num: '02', badge: null,
       name: '6 Polos 20/1<br>Regular y Dama',
       price: 'S/ 100', qty: '6 polos',
-      desc: 'El pack más completo en cantidad. Regular ancho, Regular estrecho, Corte Dama recto, Corte Dama entallado. Para llenar el armario de una vez.',
+      desc: 'Jersey 20/1 — gramaje liviano, versátil todo el año. Regular ancho, Regular estrecho, Corte Dama recto, Corte Dama entallado. Para llenar el armario de una vez.',
       colorsNote: 'Colores disponibles según stock de temporada.',
       colors: null,
       swatches: [
@@ -551,7 +594,7 @@
       num: '03', badge: 'Exclusivo',
       name: '5 Polos<br>Acid Wash 20/1',
       price: 'S/ 110', qty: '5 polos',
-      desc: 'Tratamiento Acid Wash exclusivo. Efecto vintage sin repetición de patrón — cada prenda sale distinta. Imposible encontrar dos iguales.',
+      desc: 'Base Jersey 20/1 con tratamiento Acid Wash exclusivo. Efecto vintage sin repetición de patrón — cada prenda sale distinta. Imposible encontrar dos iguales.',
       colorsNote: 'Cada polo es único por el proceso Acid Wash. Sin dos iguales.',
       colors: null,
       swatches: [
@@ -568,7 +611,7 @@
       num: '04', badge: null,
       name: '4 Polos<br>Focalizados 20/1',
       price: 'S/ 100', qty: '4 polos',
-      desc: 'Colores neutros que combinan con todo. Para el que quiere lo básico bien resuelto, sin complicar. Los 4 polos más usados de la temporada.',
+      desc: 'Jersey 20/1 — gramaje liviano, ideal para el día a día. Colores neutros que combinan con todo. Para el que quiere lo básico bien resuelto, sin complicar.',
       colorsNote: 'Selección de colores neutros según stock de temporada.',
       colors: null,
       swatches: [
@@ -582,7 +625,7 @@
       num: '05', badge: null,
       name: '3 Poleras Franela<br>Boxy Fit 24/1',
       price: 'S/ 130', qty: '3 poleras',
-      desc: 'Franela 24/1 en corte Boxy Fit. Gramaje premium, silueta contemporánea. La polera que no se ve en cualquier tienda.',
+      desc: 'Franela 24/1 — tela cepillada de gramaje pesado, más abrigo y textura diferente al jersey. Corte Boxy Fit, silueta contemporánea. La polera que no se ve en cualquier tienda.',
       colorsNote: 'Colores disponibles según stock.',
       colors: null,
       swatches: [
@@ -598,7 +641,7 @@
       num: '06', badge: null,
       name: '2 Poleras Franela<br>Oversize 24/1',
       price: 'S/ 99', qty: '2 poleras',
-      desc: 'Franela 24/1 en corte Oversize. Calidad premium en el precio de entrada. Para los que van directo al tier que se nota.',
+      desc: 'Franela 24/1 — gramaje pesado, tela cepillada, más abrigo que el jersey estándar. Corte Oversize. La calidad que se siente desde el primer uso.',
       colorsNote: 'Colores disponibles según stock.',
       colors: null,
       swatches: [
@@ -614,7 +657,7 @@
       num: '07', badge: 'Premium',
       name: '2 Polos Slim Fit<br>Pima',
       price: 'S/ 70', qty: '2 polos',
-      desc: 'Pima premium en corte Slim Fit. Lo mejor del algodón peruano al precio de quien lo fabrica. La tela que se nota al tacto.',
+      desc: 'Pima peruano — fibra larga, suavidad fina, no pica ni se encoge. Lo mejor del algodón local al precio de quien lo fabrica. Corte Slim Fit, silueta limpia.',
       colorsNote: null,
       swatches: null,
       colors: [
@@ -641,7 +684,7 @@
       num: '08', badge: null,
       name: '4 Polos 15/1<br>Oversize · Boxy · Regular',
       price: 'S/ 100', qty: '4 polos',
-      desc: '4 polos 15/1 en tres cortes — Oversize, Boxy y Regular. Un tier arriba del 20/1. Para quien quiere variedad y calidad en un solo pedido.',
+      desc: 'Jersey 15/1 — un tier arriba del 20/1. Tela más densa, mejor caída y mayor durabilidad. Tres cortes — Oversize, Boxy y Regular — en un solo pedido.',
       colorsNote: 'Colores disponibles según stock.',
       colors: null,
       swatches: [
@@ -658,7 +701,7 @@
       num: '09', badge: 'High Cotton',
       name: '4 Polos 11/1<br>Oversize · Boxy · Regular',
       price: 'S/ 110', qty: '4 polos',
-      desc: 'Cuatro polos 11/1 High Cotton en los tres cortes. El tier más pesado del catálogo. Para quien ya sabe lo que quiere y no negocia en calidad.',
+      desc: '11/1 High Cotton — el gramaje más pesado del catálogo. Se nota al tacto desde el primer día. Tres cortes — Oversize, Boxy y Regular. Para quien no negocia en calidad.',
       colorsNote: 'Colores premium disponibles según stock.',
       colors: null,
       swatches: [
@@ -810,11 +853,14 @@
         <span class="visual-pack-num">${pack.num}</span>
       </div>
       <div class="visual-color-bar">
-        <span class="visual-color-name" id="visual-color-name">${first.name}</span>
+        <div>
+          <span class="visual-color-name" id="visual-color-name">${first.name}</span><br>
+          <span class="visual-colors-count">${pack.swatches.length} colores disponibles</span>
+        </div>
         <div class="visual-color-dots">
           ${pack.swatches.map((s, i) =>
             `<button class="visual-color-dot${i===0?' active':''}"
-              style="background:${s.hex}" data-color="${i}" aria-label="${s.name}"></button>`
+              style="background:${s.hex}" data-color="${i}" aria-label="${s.name}" title="${s.name}"></button>`
           ).join('')}
         </div>
       </div>`;
@@ -899,6 +945,11 @@
     currentPack = pack;
     document.getElementById('page-title').textContent = `Blankstate — Pack ${pack.num}`;
     document.getElementById('breadcrumb-current').textContent = `Pack ${pack.num}`;
+    const ogTitle = document.getElementById('og-title');
+    if (ogTitle) ogTitle.content = `Blankstate — Pack ${pack.num}: ${pack.name.replace(/<br>/g, ' ')}`;
+
+    const waFloat = document.getElementById('wa-float');
+    if (waFloat) waFloat.href = pack.wsp;
 
     if (pack.colors) {
       renderVisualPhotos(pack);

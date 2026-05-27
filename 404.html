@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blankstate — Página no encontrada</title>
+  <link rel="icon" type="image/svg+xml" href="/catalogo/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #080808;
+      --white: #F6F6F6;
+      --g1:    #EBEBEB;
+      --g2:    #D0D0D0;
+      --g3:    #A0A0A0;
+      --g4:    #505050;
+      --g5:    #1E1E1E;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Space Grotesk', -apple-system, sans-serif;
+    }
+    body {
+      font-family: var(--sans);
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      -webkit-font-smoothing: antialiased;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .num {
+      font-family: var(--serif);
+      font-size: clamp(120px, 20vw, 200px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.06);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      user-select: none;
+    }
+    .title {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 300;
+      margin-top: -16px;
+      margin-bottom: 16px;
+    }
+    .sub {
+      font-size: 13px;
+      color: var(--g3);
+      font-weight: 300;
+      margin-bottom: 48px;
+    }
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      color: var(--black);
+      text-decoration: none;
+      padding: 14px 32px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .back:hover { background: var(--g1); transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <p class="num">404</p>
+  <h1 class="title">Página no encontrada.</h1>
+  <p class="sub">El pack que buscas no existe o el link cambió.</p>
+  <a href="/catalogo/index.html" class="back">← Ver catálogo</a>
+</body>
+</html>

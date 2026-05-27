@@ -4,6 +4,10 @@
     { "source": "/index.html", "destination": "/catalogo/index.html" },
     { "source": "/pack.html", "destination": "/catalogo/pack.html" }
   ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "status": 404, "dest": "/404.html" }
+  ],
   "headers": [
     {
       "source": "/PRODUCTOS/(.*)",

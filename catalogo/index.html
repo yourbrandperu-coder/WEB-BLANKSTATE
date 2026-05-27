@@ -4,6 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Blankstate — Ropa buena al precio que vale. Packs premium desde S/70. Lima, Perú." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Blankstate — Packs Premium" />
+  <meta property="og:description" content="Ropa de calidad real. Sin logo, sin markup. Packs desde S/70. Lima, Perú." />
+  <meta property="og:image" content="../BRANDING/portada-blank.webp" />
+  <meta property="og:url" content="https://blankstate.pe" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <title>Blankstate — Packs Premium</title>
   <link rel="preload" as="image" href="../BRANDING/portada-blank.webp" type="image/webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -883,21 +890,44 @@
     .pack-tap-hint {
       display: none;
       align-items: center;
-      gap: 5px;
-      font-size: 10px;
-      letter-spacing: 0.12em;
+      gap: 6px;
+      font-size: 11px;
+      letter-spacing: 0.10em;
       text-transform: uppercase;
-      color: var(--g3);
-      margin-top: 10px;
+      color: var(--g4);
+      margin-top: 12px;
+      padding: 6px 0;
       font-weight: 400;
     }
-    .pack-card.featured .pack-tap-hint { color: rgba(255,255,255,0.4); }
+    .pack-card.featured .pack-tap-hint { color: rgba(255,255,255,0.5); }
 
     @media (hover: none) {
       .cursor { display: none; }
       .pack-overlay { display: none !important; }
       .pack-tap-hint { display: flex; }
     }
+
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 500;
+      width: 56px;
+      height: 56px;
+      background: var(--black);
+      color: var(--white);
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+      transition: transform 0.2s var(--ease), background 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.08); background: var(--g5); }
+    .wa-float svg { width: 26px; height: 26px; }
+    @media (max-width: 900px) { .wa-float { display: flex; } }
   </style>
 </head>
 <body>
@@ -996,7 +1026,7 @@
   <div class="pack-grid">
 
     <!-- Pack 01 — FEATURED, fila completa -->
-    <div class="pack-card featured reveal">
+    <div class="pack-card featured">
       <div class="pack-card-top">
         <span class="pack-num">01</span>
         <span class="pack-badge">Más pedido</span>
@@ -1027,7 +1057,7 @@
     </div>
 
     <!-- Pack 02 -->
-    <div class="pack-card pack-card--photo reveal">
+    <div class="pack-card pack-card--photo">
       <div class="pack-photo-zone">
         <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
         <div class="pack-color-bar">
@@ -1061,7 +1091,7 @@
     </div>
 
     <!-- Pack 03 -->
-    <div class="pack-card pack-card--photo reveal reveal-delay-1">
+    <div class="pack-card pack-card--photo">
       <div class="pack-photo-zone">
         <div class="pack-photo-placeholder" style="background:#6b7280;"></div>
         <div class="pack-color-bar">
@@ -1096,7 +1126,7 @@
     </div>
 
     <!-- Pack 04 -->
-    <div class="pack-card pack-card--photo reveal">
+    <div class="pack-card pack-card--photo">
       <div class="pack-photo-zone">
         <div class="pack-photo-placeholder" style="background:#1a3a6e;"></div>
         <div class="pack-color-bar">
@@ -1127,7 +1157,7 @@
     </div>
 
     <!-- Pack 05 -->
-    <div class="pack-card pack-card--photo reveal reveal-delay-1">
+    <div class="pack-card pack-card--photo">
       <div class="pack-photo-zone">
         <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
         <div class="pack-color-bar">
@@ -1160,7 +1190,7 @@
     </div>
 
     <!-- Pack 06 -->
-    <div class="pack-card pack-card--photo reveal">
+    <div class="pack-card pack-card--photo">
       <div class="pack-photo-zone">
         <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
         <div class="pack-color-bar">
@@ -1193,7 +1223,7 @@
     </div>
 
     <!-- Pack 07 — FOTO (Slim Fit Pima) -->
-    <div class="pack-card pack-card--photo reveal reveal-delay-1">
+    <div class="pack-card pack-card--photo">
       <div class="pack-photo-zone">
         <img class="pack-photo active"
              src="../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/hf_20260524_002346_e00c7997-d085-4e54-8094-d9ff22f249e2.png"
@@ -1229,7 +1259,7 @@
     </div>
 
     <!-- Pack 08 -->
-    <div class="pack-card pack-card--photo reveal">
+    <div class="pack-card pack-card--photo">
       <div class="pack-photo-zone">
         <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
         <div class="pack-color-bar">
@@ -1263,7 +1293,7 @@
     </div>
 
     <!-- Pack 09 -->
-    <div class="pack-card pack-card--photo reveal reveal-delay-1">
+    <div class="pack-card pack-card--photo">
       <div class="pack-photo-zone">
         <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
         <div class="pack-color-bar">
@@ -1325,7 +1355,7 @@
       <span class="conv-n">03</span>
       <div class="conv-text">
         <strong>El precio que tiene sentido</strong>
-        <span>Pagás por la tela, el corte y el acabado. No por un nombre en una etiqueta que igual vas a cortar.</span>
+        <span>Pagas por la tela, el corte y el acabado. No por un nombre en una etiqueta que igual vas a cortar.</span>
       </div>
     </div>
   </div>
@@ -1337,17 +1367,17 @@
   <div class="steps-grid">
     <div class="step">
       <div class="step-n">01</div>
-      <h3 class="step-title">Explorá los packs</h3>
-      <p class="step-text">Navegás los packs desde el inicio de la página o bajás al catálogo completo. Cada uno tiene su detalle y precio.</p>
+      <h3 class="step-title">Explora los packs</h3>
+      <p class="step-text">Navega los packs desde el inicio de la página o baja al catálogo completo. Cada uno tiene su detalle y precio.</p>
     </div>
     <div class="step">
       <div class="step-n">02</div>
-      <h3 class="step-title">Escribinos</h3>
-      <p class="step-text">Tocás "Pedir este pack" y se abre WhatsApp con tu pedido ya cargado. Nada que escribir desde cero.</p>
+      <h3 class="step-title">Escríbenos</h3>
+      <p class="step-text">Toca "Pedir este pack" y se abre WhatsApp con tu pedido ya cargado. Nada que escribir desde cero.</p>
     </div>
     <div class="step">
       <div class="step-n">03</div>
-      <h3 class="step-title">Lo recibís</h3>
+      <h3 class="step-title">Lo recibes</h3>
       <p class="step-text">Coordinamos tallas, colores y envío. Sin cuentas, sin carrito, sin esperas.</p>
     </div>
   </div>
@@ -1357,7 +1387,7 @@
 <section class="cta-section">
   <div class="cta-bg">BS</div>
   <p class="cta-label">¿Listo?</p>
-  <h2 class="cta-title reveal">Elegí tu pack.<br>Escribinos ahora.</h2>
+  <h2 class="cta-title reveal">Elige tu pack.<br>Escríbenos ahora.</h2>
   <p class="cta-sub reveal">Respondemos en minutos.</p>
   <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate.+%C2%BFCu%C3%A1les+tienen+disponibles%3F" class="btn-cta-main reveal" target="_blank">
     Abrir WhatsApp
@@ -1379,6 +1409,13 @@
   </ul>
   <span class="footer-copy">© 2026 Blankstate</span>
 </footer>
+
+<!-- ── WHATSAPP FLOAT BUTTON ── -->
+<a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." class="wa-float" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 0C3.58 0 0 3.58 0 8c0 1.41.37 2.74 1.01 3.89L0 16l4.28-1.12A7.96 7.96 0 008 16c4.42 0 8-3.58 8-8s-3.58-8-8-8zm3.93 11.07c-.17.48-.98.93-1.36.99-.35.05-.79.07-1.27-.08a11.5 11.5 0 01-1.15-.43C6.64 10.8 5.5 9.4 5.41 9.29c-.09-.11-.73-.97-.73-1.85 0-.88.46-1.31.62-1.49.17-.18.37-.22.49-.22h.35c.11 0 .27-.04.42.32l.54 1.35c.05.11.08.24.02.38l-.2.39-.3.31c-.1.1-.2.21-.09.41.11.2.5.82 1.07 1.33.73.65 1.35.85 1.54.94.19.09.3.08.41-.05l.49-.58c.14-.18.28-.15.47-.09l1.33.63c.19.09.31.14.36.22.04.08.04.46-.13.93z"/>
+  </svg>
+</a>
 
 <script>
   // ── HERO SLIDER ──
@@ -1499,7 +1536,7 @@
     if (!meta) return;
     const hint = document.createElement('div');
     hint.className = 'pack-tap-hint';
-    hint.textContent = 'Ver →';
+    hint.textContent = 'Ver detalles →';
     meta.insertAdjacentElement('afterend', hint);
   });
 </script>
