@@ -1,0 +1,17 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/catalogo/index.html" },
+    { "source": "/index.html", "destination": "/catalogo/index.html" },
+    { "source": "/pack.html", "destination": "/catalogo/pack.html" }
+  ],
+  "headers": [
+    {
+      "source": "/PRODUCTOS/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/BRANDING/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    }
+  ]
+}

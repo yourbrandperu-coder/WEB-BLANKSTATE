@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Blankstate — Ropa buena al precio que vale. Packs premium desde S/70. Lima, Perú." />
+  <title>Blankstate — Packs Premium</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #080808;
+      --white:   #F6F6F6;
+      --g1:      #EBEBEB;
+      --g2:      #D0D0D0;
+      --g3:      #A0A0A0;
+      --g4:      #505050;
+      --g5:      #1E1E1E;
+      --serif:   'Cormorant Garamond', Georgia, serif;
+      --sans:    'Space Grotesk', -apple-system, sans-serif;
+      --ease:    cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--white);
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── CURSOR DOT ── */
+    .cursor {
+      width: 8px; height: 8px;
+      background: var(--black);
+      border-radius: 50%;
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s var(--ease), width 0.3s, height 0.3s, background 0.3s;
+      transform: translate(-50%, -50%);
+    }
+    .cursor.grow {
+      width: 36px; height: 36px;
+      background: transparent;
+      border: 1.5px solid var(--black);
+    }
+    body.dark-bg .cursor { background: var(--white); }
+    body.dark-bg .cursor.grow { border-color: var(--white); background: transparent; }
+
+    /* ── ANNOUNCEMENT ── */
+    .bar {
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+      padding: 9px 20px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky; top: 0; z-index: 200;
+      background: var(--white);
+      border-bottom: 1px solid var(--g2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      transition: background 0.3s;
+    }
+
+    .nav.scrolled { background: rgba(246,246,246,0.92); backdrop-filter: blur(12px); }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .nav-logo-wordmark {
+      font-family: var(--sans);
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--black);
+      line-height: 1;
+    }
+
+    .nav-logo-wordmark sup {
+      font-size: 9px;
+      vertical-align: super;
+      letter-spacing: 0;
+    }
+
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 400;
+      color: var(--g4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--black); }
+
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--black);
+      color: var(--white);
+      text-decoration: none;
+      padding: 10px 22px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { background: var(--g5); transform: translateY(-1px); }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      background: var(--black);
+      border-top: 1px solid var(--g5);
+      border-bottom: 1px solid var(--g5);
+      overflow: hidden;
+      padding: 14px 0;
+    }
+
+    .ticker {
+      display: flex;
+      gap: 0;
+      animation: ticker 28s linear infinite;
+      width: max-content;
+    }
+
+    .ticker-item {
+      display: flex; align-items: center; gap: 0;
+      white-space: nowrap;
+    }
+
+    .ticker-text {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--g3);
+      padding: 0 24px;
+      font-weight: 300;
+    }
+
+    .ticker-dot {
+      color: var(--g5);
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    /* ── PACKS SECTION ── */
+    .packs-section {
+      padding: 88px 48px;
+    }
+
+    .packs-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 60px;
+    }
+
+    .packs-title {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 300;
+      line-height: 1.1;
+    }
+
+    .packs-count {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--g3);
+    }
+
+    /* ── PACK GRID — 2 columnas ── */
+    .pack-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+
+    .pack-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--g1);
+      cursor: pointer;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 32px;
+      transition: background 0.35s var(--ease);
+    }
+
+    .pack-card:hover { background: var(--black); }
+
+    .pack-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .pack-num {
+      font-family: var(--serif);
+      font-size: 56px;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--g2);
+      transition: color 0.35s;
+    }
+    .pack-card:hover .pack-num { color: rgba(255,255,255,0.1); }
+
+    .pack-badge {
+      font-size: 9.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--black);
+      color: var(--white);
+      padding: 5px 11px;
+      font-weight: 500;
+      transition: background 0.35s;
+    }
+    .pack-card:hover .pack-badge { background: var(--white); color: var(--black); }
+
+    .pack-card-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-top: 24px;
+    }
+
+    .pack-name {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      color: var(--black);
+      transition: color 0.35s;
+    }
+    .pack-card:hover .pack-name { color: var(--white); }
+
+    .pack-meta {
+      display: flex;
+      align-items: center;
+    }
+
+    .pack-qty-price {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 0;
+      color: var(--g4);
+      transition: color 0.35s;
+      line-height: 1;
+    }
+    .pack-card:hover .pack-qty-price { color: var(--g3); }
+
+    /* Overlay slide-up on hover */
+    .pack-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--black);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 32px;
+      transform: translateY(100%);
+      transition: transform 0.4s var(--ease);
+    }
+    .pack-card:hover .pack-overlay { transform: translateY(0); }
+
+    .overlay-divider {
+      width: 32px;
+      height: 1px;
+      background: var(--g5);
+      margin-bottom: 24px;
+    }
+
+    .overlay-pack-info {
+      font-size: 12px;
+      color: var(--g3);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .overlay-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      color: var(--black);
+      text-decoration: none;
+      padding: 13px 24px;
+      font-size: 11.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: background 0.2s;
+      width: 100%;
+      justify-content: space-between;
+    }
+    .overlay-cta:hover { background: var(--g1); }
+
+    .overlay-colors {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .overlay-color-dot {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      flex-shrink: 0;
+    }
+
+    /* ── FEATURED PACK — fila completa ── */
+    .pack-card.featured {
+      grid-column: span 2;
+      min-height: 380px;
+      background: var(--g5);
+    }
+    .pack-card.featured .pack-num { color: rgba(255,255,255,0.08); }
+    .pack-card.featured .pack-name { color: var(--white); font-size: 28px; }
+    .pack-card.featured .pack-qty-price { color: var(--g3); }
+    .pack-card.featured:hover { background: var(--black); }
+
+    /* ── PACK FOTO — Pack 07 ── */
+    .pack-card--photo {
+      padding: 0;
+    }
+
+    .pack-photo-zone {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: #e4e4e4;
+      flex-shrink: 0;
+    }
+
+    .pack-photo-placeholder {
+      position: absolute;
+      inset: 0;
+      transition: background 0.4s ease;
+    }
+
+    .pack-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .pack-photo.active { opacity: 1; }
+
+    .pack-color-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 32px 16px 12px;
+      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+      z-index: 2;
+    }
+
+    .pack-color-name {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      font-weight: 400;
+    }
+
+    .pack-color-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .pack-color-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+      padding: 0;
+    }
+    .pack-color-dot.active {
+      border-color: white;
+      transform: scale(1.15);
+    }
+
+    .pack-card--photo .pack-card-top { padding: 20px 28px 0; }
+    .pack-card--photo .pack-card-main { padding: 8px 28px 28px; }
+
+    /* ── CONVERSION STRIP ── */
+    .conv-strip {
+      background: var(--black);
+      padding: 80px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .conv-heading {
+      font-family: var(--serif);
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.15;
+    }
+
+    .conv-heading em {
+      font-style: italic;
+      color: var(--g3);
+    }
+
+    .conv-item {
+      display: flex;
+      gap: 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--g5);
+    }
+    .conv-item:first-child { border-top: 1px solid var(--g5); }
+
+    .conv-n {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--g5);
+      min-width: 36px;
+      line-height: 1;
+      padding-top: 2px;
+    }
+
+    .conv-text strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .conv-text span {
+      font-size: 12px;
+      color: var(--g4);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* ── STEPS ── */
+    .steps-section {
+      padding: 88px 48px;
+      background: var(--white);
+      border-bottom: 1px solid var(--g2);
+    }
+
+    .steps-label {
+      font-size: 10.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--g3);
+      margin-bottom: 56px;
+      text-align: center;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .step {
+      padding: 40px 36px;
+      background: var(--g1);
+      position: relative;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+    }
+    .step.visible { opacity: 1; transform: translateY(0); }
+    .step:nth-child(2) { transition-delay: 0.1s; }
+    .step:nth-child(3) { transition-delay: 0.2s; }
+
+    .step-n {
+      font-family: var(--serif);
+      font-size: 64px;
+      font-weight: 300;
+      color: var(--g2);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .step-title {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    .step-text {
+      font-size: 13px;
+      color: var(--g4);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ── FINAL CTA ── */
+    .cta-section {
+      background: var(--black);
+      padding: 120px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-bg {
+      position: absolute;
+      font-family: var(--serif);
+      font-size: clamp(100px, 18vw, 260px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.02);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      user-select: none;
+      letter-spacing: -0.02em;
+    }
+
+    .cta-label {
+      font-size: 10.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--g4);
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .cta-title {
+      font-family: var(--serif);
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 20px;
+      line-height: 1.1;
+      position: relative;
+    }
+
+    .cta-sub {
+      font-size: 14px;
+      color: var(--g3);
+      margin-bottom: 52px;
+      font-weight: 300;
+      position: relative;
+    }
+
+    .btn-cta-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      color: var(--black);
+      text-decoration: none;
+      padding: 18px 40px;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.25s;
+      position: relative;
+    }
+    .btn-cta-main:hover { background: var(--g1); transform: translateY(-3px); }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--g5);
+      padding: 52px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .footer-logo-wordmark {
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--g3);
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .footer-logo:hover .footer-logo-wordmark { color: var(--white); }
+
+    .footer-logo-wordmark sup {
+      font-size: 8px;
+      vertical-align: super;
+      letter-spacing: 0;
+    }
+
+    .footer-links {
+      display: flex; gap: 28px; list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--g3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--g4);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── HERO SLIDER ── */
+    .hero-slider {
+      position: relative;
+      width: 100%;
+      height: 100svh;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.8s var(--ease);
+      pointer-events: none;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8,8,8,0.72) 0%, rgba(8,8,8,0.15) 55%, transparent 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 0 48px 80px;
+    }
+
+    .hero-content { max-width: 560px; }
+
+    .hero-label {
+      font-size: 10.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(246,246,246,0.55);
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(48px, 6.5vw, 96px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.04;
+      letter-spacing: -0.01em;
+      margin-bottom: 40px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      color: var(--black);
+      text-decoration: none;
+      padding: 14px 28px;
+      font-size: 11.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .hero-cta:hover { background: var(--g1); transform: translateY(-2px); }
+
+    .hero-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(246,246,246,0.08);
+      border: 1px solid rgba(246,246,246,0.18);
+      color: var(--white);
+      width: 52px; height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 22px;
+      z-index: 10;
+      transition: background 0.2s;
+      backdrop-filter: blur(4px);
+      line-height: 1;
+    }
+    .hero-arrow:hover { background: rgba(246,246,246,0.18); }
+    .hero-arrow--prev { left: 24px; }
+    .hero-arrow--next { right: 24px; }
+
+    .hero-slider[data-slides="1"] .hero-arrow,
+    .hero-slider[data-slides="1"] .hero-dots { display: none; }
+
+    .hero-dots {
+      position: absolute;
+      bottom: 36px;
+      right: 48px;
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .hero-dot {
+      width: 28px; height: 2px;
+      background: rgba(246,246,246,0.28);
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s, width 0.35s var(--ease);
+      padding: 0;
+    }
+    .hero-dot.active {
+      background: var(--white);
+      width: 48px;
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 48px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+    }
+    .hero-scroll-line {
+      width: 28px; height: 1px;
+      background: rgba(246,246,246,0.28);
+    }
+    .hero-scroll-text {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(246,246,246,0.38);
+    }
+
+    @media (max-width: 900px) {
+      .hero-overlay { padding: 0 20px 68px; }
+      .hero-arrow { display: none !important; }
+      .hero-dots { right: 20px; }
+      .hero-scroll-hint { left: 20px; }
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+
+    /* ── KEYFRAMES ── */
+    @keyframes slideUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(0.7); }
+    }
+
+    /* ── TABLET ── */
+    @media (max-width: 900px) {
+      .nav { padding: 0 20px; }
+      .nav-links { display: none; }
+
+.packs-section { padding: 64px 20px; }
+      .conv-strip { grid-template-columns: 1fr; gap: 48px; padding: 64px 20px; }
+      .steps-section { padding: 64px 20px; }
+      .steps-grid { grid-template-columns: 1fr; gap: 2px; }
+      .cta-section { padding: 80px 24px; }
+      .footer { padding: 40px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
+      .footer-links { flex-wrap: wrap; gap: 16px; }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 680px) {
+      .pack-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+      .pack-card.featured { grid-column: span 2; }
+      .packs-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .pack-card { padding: 20px; }
+      .pack-num { font-size: 40px; }
+      .pack-name { font-size: 17px; }
+      .pack-qty-price { font-size: 17px; }
+      .pack-card--photo .pack-card-top { padding: 14px 16px 0; }
+      .pack-card--photo .pack-card-main { padding: 6px 16px 16px; }
+    }
+
+    /* ── SMALL MOBILE ── */
+    @media (max-width: 480px) {
+      .pack-grid { grid-template-columns: 1fr; }
+      .pack-card.featured { grid-column: span 1; }
+      .bar { font-size: 10px; letter-spacing: 0.07em; padding: 9px 12px; }
+    }
+
+    /* ── TOUCH DEVICES ── */
+    .pack-tap-hint {
+      display: none;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--g3);
+      margin-top: 10px;
+      font-weight: 400;
+    }
+    .pack-card.featured .pack-tap-hint { color: rgba(255,255,255,0.4); }
+
+    @media (hover: none) {
+      .cursor { display: none; }
+      .pack-overlay { display: none !important; }
+      .pack-tap-hint { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- ── ANNOUNCEMENT BAR ── -->
+<div class="bar">
+  Ropa de calidad real &nbsp;·&nbsp; Sin logo, sin markup &nbsp;·&nbsp; Pedidos por WhatsApp
+</div>
+
+<!-- ── NAV ── -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-wordmark">blankstate<sup>©</sup></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#packs">Catálogo</a></li>
+    <li><a href="#por-que">Por qué</a></li>
+    <li><a href="#como-comprar">Cómo comprar</a></li>
+  </ul>
+  <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." class="nav-cta" target="_blank">
+    Pedir ahora →
+  </a>
+</nav>
+
+<!-- ── HERO SLIDER ── -->
+<section class="hero-slider" id="hero" data-slides="1">
+
+  <!-- Slide 1 — Portada -->
+  <div class="hero-slide active">
+    <img class="hero-img" src="../BRANDING/portada%20blank.png" alt="Blankstate — Packs Premium" />
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <p class="hero-label">Blanks premium · Lima</p>
+        <h1 class="hero-title">Comodidad,<br>calidad y<br>precio justo.</h1>
+        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." class="hero-cta" target="_blank">
+          Ver packs →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2 — pendiente -->
+  <!-- Slide 3 — pendiente -->
+
+  <button class="hero-arrow hero-arrow--prev" id="hero-prev" aria-label="Anterior">‹</button>
+  <button class="hero-arrow hero-arrow--next" id="hero-next" aria-label="Siguiente">›</button>
+
+  <div class="hero-dots" id="hero-dots">
+    <button class="hero-dot active" data-slide="0" aria-label="Slide 1"></button>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <span class="hero-scroll-line"></span>
+    <span class="hero-scroll-text">Scroll</span>
+  </div>
+
+</section>
+
+
+<!-- ── TICKER ── -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item"><span class="ticker-text">Pack Polos Oversize</span><span class="ticker-dot">·</span></div>
+    <div class="ticker-item"><span class="ticker-text">Acid Wash</span><span class="ticker-dot">·</span></div>
+    <div class="ticker-item"><span class="ticker-text">Polera Boxy</span><span class="ticker-dot">·</span></div>
+    <div class="ticker-item"><span class="ticker-text">Pima Premium</span><span class="ticker-dot">·</span></div>
+    <div class="ticker-item"><span class="ticker-text">French Terry</span><span class="ticker-dot">·</span></div>
+    <div class="ticker-item"><span class="ticker-text">Oversize Cotton</span><span class="ticker-dot">·</span></div>
+    <div class="ticker-item"><span class="ticker-text">Pack Unisex</span><span class="ticker-dot">·</span></div>
+    <div class="ticker-item"><span class="ticker-text">Corte Dama</span><span class="ticker-dot">·</span></div>
+    <div class="ticker-item"><span class="ticker-text">Franela Oversize</span><span class="ticker-dot">·</span></div>
+    <div class="ticker-item"><span class="ticker-text">Pack Polos Oversize</span><span class="ticker-dot">·</span></div>
+    <div class="ticker-item"><span class="ticker-text">Acid Wash</span><span class="ticker-dot">·</span></div>
+    <div class="ticker-item"><span class="ticker-text">Polera Boxy</span><span class="ticker-dot">·</span></div>
+    <div class="ticker-item"><span class="ticker-text">Pima Premium</span><span class="ticker-dot">·</span></div>
+    <div class="ticker-item"><span class="ticker-text">French Terry</span><span class="ticker-dot">·</span></div>
+    <div class="ticker-item"><span class="ticker-text">Oversize Cotton</span><span class="ticker-dot">·</span></div>
+    <div class="ticker-item"><span class="ticker-text">Pack Unisex</span><span class="ticker-dot">·</span></div>
+    <div class="ticker-item"><span class="ticker-text">Corte Dama</span><span class="ticker-dot">·</span></div>
+    <div class="ticker-item"><span class="ticker-text">Franela Oversize</span><span class="ticker-dot">·</span></div>
+  </div>
+</div>
+
+<!-- ── CATÁLOGO COMPLETO ── -->
+<section class="packs-section" id="packs">
+  <div class="packs-header reveal">
+    <h2 class="packs-title">Todos los packs</h2>
+    <span class="packs-count">9 disponibles</span>
+  </div>
+
+  <div class="pack-grid">
+
+    <!-- Pack 01 — FEATURED, fila completa -->
+    <div class="pack-card featured reveal">
+      <div class="pack-card-top">
+        <span class="pack-num">01</span>
+        <span class="pack-badge">Más pedido</span>
+      </div>
+      <div class="pack-card-main">
+        <h3 class="pack-name">5 Polos 20/1<br>Oversize y Boxy</h3>
+        <div class="pack-meta">
+          <span class="pack-qty-price">S/ 100</span>
+        </div>
+      </div>
+      <div class="pack-overlay">
+        <div class="overlay-divider"></div>
+        <div class="overlay-pack-info">Oversize o Boxy — largo y corto. Más de 10 colores.</div>
+        <div class="overlay-colors">
+          <div class="overlay-color-dot" style="background:#1a1a1a;" title="Negro"></div>
+          <div class="overlay-color-dot" style="background:#f5f5f5;" title="Blanco"></div>
+          <div class="overlay-color-dot" style="background:#d4c5a9;" title="Beige Claro"></div>
+          <div class="overlay-color-dot" style="background:#6b7280;" title="Acero"></div>
+          <div class="overlay-color-dot" style="background:#1e3a5f;" title="English Blue"></div>
+          <div class="overlay-color-dot" style="background:#7c1d2e;" title="Guinda"></div>
+          <div class="overlay-color-dot" style="background:#c4b5fd;" title="Lila"></div>
+          <div class="overlay-color-dot" style="background:#f9a8d4;" title="Rosado"></div>
+        </div>
+        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+01%3A+Polos+20%2F1+Oversize+y+Boxy+(5+prendas+x+S%2F100).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
+          Pedir este pack <span>→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Pack 02 -->
+    <div class="pack-card pack-card--photo reveal">
+      <div class="pack-photo-zone">
+        <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
+        <div class="pack-color-bar">
+          <span class="pack-color-name" id="pack02-color-label">Negro</span>
+          <div class="pack-color-dots">
+            <button class="pack-color-dot active" style="background:#1a1a1a;" data-img="0" data-name="Negro" data-bg="#1a1a1a" aria-label="Negro"></button>
+            <button class="pack-color-dot" style="background:#f5f5f5;" data-img="1" data-name="Blanco" data-bg="#f5f5f5" aria-label="Blanco"></button>
+            <button class="pack-color-dot" style="background:#d4c5a9;" data-img="2" data-name="Beige Claro" data-bg="#d4c5a9" aria-label="Beige Claro"></button>
+            <button class="pack-color-dot" style="background:#6b7280;" data-img="3" data-name="Acero" data-bg="#6b7280" aria-label="Acero"></button>
+            <button class="pack-color-dot" style="background:#1e3a5f;" data-img="4" data-name="English Blue" data-bg="#1e3a5f" aria-label="English Blue"></button>
+            <button class="pack-color-dot" style="background:#7c1d2e;" data-img="5" data-name="Guinda" data-bg="#7c1d2e" aria-label="Guinda"></button>
+          </div>
+        </div>
+      </div>
+      <div class="pack-card-top">
+        <span class="pack-num">02</span>
+      </div>
+      <div class="pack-card-main">
+        <h3 class="pack-name">6 Polos 20/1<br>Regular y Dama</h3>
+        <div class="pack-meta">
+          <span class="pack-qty-price">S/ 100</span>
+        </div>
+      </div>
+      <div class="pack-overlay">
+        <div class="overlay-divider"></div>
+        <div class="overlay-pack-info">Regular Fit y Corte Dama. Más de 10 colores disponibles.</div>
+        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+02%3A+Polos+20%2F1+Regular+y+Corte+Dama+(6+prendas+x+S%2F100).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
+          Pedir este pack <span>→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Pack 03 -->
+    <div class="pack-card pack-card--photo reveal reveal-delay-1">
+      <div class="pack-photo-zone">
+        <div class="pack-photo-placeholder" style="background:#6b7280;"></div>
+        <div class="pack-color-bar">
+          <span class="pack-color-name" id="pack03-color-label">Acero</span>
+          <div class="pack-color-dots">
+            <button class="pack-color-dot active" style="background:#6b7280;" data-img="0" data-name="Acero" data-bg="#6b7280" aria-label="Acero"></button>
+            <button class="pack-color-dot" style="background:#f48fb1;" data-img="1" data-name="Chicle" data-bg="#f48fb1" aria-label="Chicle"></button>
+            <button class="pack-color-dot" style="background:#9ca3af;" data-img="2" data-name="Gris" data-bg="#9ca3af" aria-label="Gris"></button>
+            <button class="pack-color-dot" style="background:#7c5c3e;" data-img="3" data-name="Marrón" data-bg="#7c5c3e" aria-label="Marrón"></button>
+            <button class="pack-color-dot" style="background:#7c3aed;" data-img="4" data-name="Morado" data-bg="#7c3aed" aria-label="Morado"></button>
+            <button class="pack-color-dot" style="background:#1a1a1a;" data-img="5" data-name="Negro" data-bg="#1a1a1a" aria-label="Negro"></button>
+          </div>
+        </div>
+      </div>
+      <div class="pack-card-top">
+        <span class="pack-num">03</span>
+        <span class="pack-badge" style="background:#505050;">Exclusivo</span>
+      </div>
+      <div class="pack-card-main">
+        <h3 class="pack-name">5 Polos Acid Wash 20/1</h3>
+        <div class="pack-meta">
+          <span class="pack-qty-price">S/ 110</span>
+        </div>
+      </div>
+      <div class="pack-overlay">
+        <div class="overlay-divider"></div>
+        <div class="overlay-pack-info">Efecto vintage único, sin repetición de patrón.</div>
+        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+03%3A+Polos+Acid+Wash+20%2F1+(5+prendas+x+S%2F110).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
+          Pedir este pack <span>→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Pack 04 -->
+    <div class="pack-card pack-card--photo reveal">
+      <div class="pack-photo-zone">
+        <div class="pack-photo-placeholder" style="background:#1a3a6e;"></div>
+        <div class="pack-color-bar">
+          <span class="pack-color-name" id="pack04-color-label">Azul</span>
+          <div class="pack-color-dots">
+            <button class="pack-color-dot active" style="background:#1a3a6e;" data-img="0" data-name="Azul" data-bg="#1a3a6e" aria-label="Azul"></button>
+            <button class="pack-color-dot" style="background:#1a1a1a;" data-img="1" data-name="Negro" data-bg="#1a1a1a" aria-label="Negro"></button>
+            <button class="pack-color-dot" style="background:#4a5c3c;" data-img="2" data-name="Verde Militar" data-bg="#4a5c3c" aria-label="Verde Militar"></button>
+          </div>
+        </div>
+      </div>
+      <div class="pack-card-top">
+        <span class="pack-num">04</span>
+      </div>
+      <div class="pack-card-main">
+        <h3 class="pack-name">4 Polos Focalizados 20/1</h3>
+        <div class="pack-meta">
+          <span class="pack-qty-price">S/ 100</span>
+        </div>
+      </div>
+      <div class="pack-overlay">
+        <div class="overlay-divider"></div>
+        <div class="overlay-pack-info">Colores que combinan con todo. Lo básico bien resuelto.</div>
+        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+04%3A+Polos+Focalizados+20%2F1+(4+prendas+x+S%2F100).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
+          Pedir este pack <span>→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Pack 05 -->
+    <div class="pack-card pack-card--photo reveal reveal-delay-1">
+      <div class="pack-photo-zone">
+        <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
+        <div class="pack-color-bar">
+          <span class="pack-color-name" id="pack05-color-label">Negro</span>
+          <div class="pack-color-dots">
+            <button class="pack-color-dot active" style="background:#1a1a1a;" data-img="0" data-name="Negro" data-bg="#1a1a1a" aria-label="Negro"></button>
+            <button class="pack-color-dot" style="background:#f5f5f5;" data-img="1" data-name="Blanco" data-bg="#f5f5f5" aria-label="Blanco"></button>
+            <button class="pack-color-dot" style="background:#6b7280;" data-img="2" data-name="Acero" data-bg="#6b7280" aria-label="Acero"></button>
+            <button class="pack-color-dot" style="background:#d4c5a9;" data-img="3" data-name="Beige Claro" data-bg="#d4c5a9" aria-label="Beige Claro"></button>
+            <button class="pack-color-dot" style="background:#6b4226;" data-img="4" data-name="Cocoa" data-bg="#6b4226" aria-label="Cocoa"></button>
+          </div>
+        </div>
+      </div>
+      <div class="pack-card-top">
+        <span class="pack-num">05</span>
+      </div>
+      <div class="pack-card-main">
+        <h3 class="pack-name">3 Poleras Franela<br>Boxy Fit 24/1</h3>
+        <div class="pack-meta">
+          <span class="pack-qty-price">S/ 130</span>
+        </div>
+      </div>
+      <div class="pack-overlay">
+        <div class="overlay-divider"></div>
+        <div class="overlay-pack-info">Franela Boxy Fit. Calidad premium, silueta contemporánea.</div>
+        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+05%3A+Polera+Franela+Boxy+Fit+24%2F1+(3+prendas+x+S%2F130).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
+          Pedir este pack <span>→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Pack 06 -->
+    <div class="pack-card pack-card--photo reveal">
+      <div class="pack-photo-zone">
+        <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
+        <div class="pack-color-bar">
+          <span class="pack-color-name" id="pack06-color-label">Negro</span>
+          <div class="pack-color-dots">
+            <button class="pack-color-dot active" style="background:#1a1a1a;" data-img="0" data-name="Negro" data-bg="#1a1a1a" aria-label="Negro"></button>
+            <button class="pack-color-dot" style="background:#f5f5f5;" data-img="1" data-name="Blanco" data-bg="#f5f5f5" aria-label="Blanco"></button>
+            <button class="pack-color-dot" style="background:#6b7280;" data-img="2" data-name="Acero" data-bg="#6b7280" aria-label="Acero"></button>
+            <button class="pack-color-dot" style="background:#9e8a6f;" data-img="3" data-name="Beige Oscuro" data-bg="#9e8a6f" aria-label="Beige Oscuro"></button>
+            <button class="pack-color-dot" style="background:#1f4a2e;" data-img="4" data-name="Verde Botella" data-bg="#1f4a2e" aria-label="Verde Botella"></button>
+          </div>
+        </div>
+      </div>
+      <div class="pack-card-top">
+        <span class="pack-num">06</span>
+      </div>
+      <div class="pack-card-main">
+        <h3 class="pack-name">2 Poleras Franela<br>Oversize 24/1</h3>
+        <div class="pack-meta">
+          <span class="pack-qty-price">S/ 99</span>
+        </div>
+      </div>
+      <div class="pack-overlay">
+        <div class="overlay-divider"></div>
+        <div class="overlay-pack-info">Franela Oversize. El tier premium al precio de entrada.</div>
+        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+06%3A+Polera+Franela+Oversize+24%2F1+(2+prendas+x+S%2F99).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
+          Pedir este pack <span>→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Pack 07 — FOTO (Slim Fit Pima) -->
+    <div class="pack-card pack-card--photo reveal reveal-delay-1">
+      <div class="pack-photo-zone">
+        <img class="pack-photo active"
+             src="../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/hf_20260524_002346_e00c7997-d085-4e54-8094-d9ff22f249e2.png"
+             alt="Slim Fit Pima — Azul" />
+        <img class="pack-photo"
+             src="../PRODUCTOS/PIMA%20SLIM%20FIT/NEGRO/hf_20260524_013440_0205dc50-cda2-4018-aa74-51a0c71e31c1.png"
+             alt="Slim Fit Pima — Negro" />
+        <div class="pack-color-bar">
+          <span class="pack-color-name" id="pima-color-label">Azul</span>
+          <div class="pack-color-dots">
+            <button class="pack-color-dot active" style="background:#1a3a6e;" data-img="0" data-name="Azul" data-bg="#1a3a6e" aria-label="Azul"></button>
+            <button class="pack-color-dot" style="background:#111111;" data-img="1" data-name="Negro" data-bg="#111111" aria-label="Negro"></button>
+          </div>
+        </div>
+      </div>
+      <div class="pack-card-top">
+        <span class="pack-num">07</span>
+        <span class="pack-badge" style="background:#505050;">Premium</span>
+      </div>
+      <div class="pack-card-main">
+        <h3 class="pack-name">2 Polos Slim Fit<br>Pima</h3>
+        <div class="pack-meta">
+          <span class="pack-qty-price">S/ 70</span>
+        </div>
+      </div>
+      <div class="pack-overlay">
+        <div class="overlay-divider"></div>
+        <div class="overlay-pack-info">Pima premium en corte Slim Fit. Lo mejor del algodón peruano al precio de quien lo fabrica.</div>
+        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+07%3A+Slim+Fit+Pima+(2+prendas+x+S%2F70).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
+          Pedir este pack <span>→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Pack 08 -->
+    <div class="pack-card pack-card--photo reveal">
+      <div class="pack-photo-zone">
+        <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
+        <div class="pack-color-bar">
+          <span class="pack-color-name" id="pack08-color-label">Negro</span>
+          <div class="pack-color-dots">
+            <button class="pack-color-dot active" style="background:#1a1a1a;" data-img="0" data-name="Negro" data-bg="#1a1a1a" aria-label="Negro"></button>
+            <button class="pack-color-dot" style="background:#f5f5f5;" data-img="1" data-name="Blanco" data-bg="#f5f5f5" aria-label="Blanco"></button>
+            <button class="pack-color-dot" style="background:#6b7280;" data-img="2" data-name="Acero" data-bg="#6b7280" aria-label="Acero"></button>
+            <button class="pack-color-dot" style="background:#c4b5fd;" data-img="3" data-name="Lila" data-bg="#c4b5fd" aria-label="Lila"></button>
+            <button class="pack-color-dot" style="background:#f9a8d4;" data-img="4" data-name="Rosado" data-bg="#f9a8d4" aria-label="Rosado"></button>
+            <button class="pack-color-dot" style="background:#c8a0a0;" data-img="5" data-name="Mauve" data-bg="#c8a0a0" aria-label="Mauve"></button>
+          </div>
+        </div>
+      </div>
+      <div class="pack-card-top">
+        <span class="pack-num">08</span>
+      </div>
+      <div class="pack-card-main">
+        <h3 class="pack-name">4 Polos 15/1<br>Oversize · Boxy · Regular</h3>
+        <div class="pack-meta">
+          <span class="pack-qty-price">S/ 100</span>
+        </div>
+      </div>
+      <div class="pack-overlay">
+        <div class="overlay-divider"></div>
+        <div class="overlay-pack-info">Oversize, Boxy y Regular en un solo pack. Un tier arriba del 20/1.</div>
+        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+08%3A+Oversize%2C+Boxy+y+Regular+15%2F1+(4+prendas+x+S%2F100).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
+          Pedir este pack <span>→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Pack 09 -->
+    <div class="pack-card pack-card--photo reveal reveal-delay-1">
+      <div class="pack-photo-zone">
+        <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
+        <div class="pack-color-bar">
+          <span class="pack-color-name" id="pack09-color-label">Negro</span>
+          <div class="pack-color-dots">
+            <button class="pack-color-dot active" style="background:#1a1a1a;" data-img="0" data-name="Negro" data-bg="#1a1a1a" aria-label="Negro"></button>
+            <button class="pack-color-dot" style="background:#f5f5f5;" data-img="1" data-name="Blanco" data-bg="#f5f5f5" aria-label="Blanco"></button>
+            <button class="pack-color-dot" style="background:#6b7280;" data-img="2" data-name="Acero" data-bg="#6b7280" aria-label="Acero"></button>
+            <button class="pack-color-dot" style="background:#1e3a5f;" data-img="3" data-name="English Blue" data-bg="#1e3a5f" aria-label="English Blue"></button>
+            <button class="pack-color-dot" style="background:#7c1d2e;" data-img="4" data-name="Guinda" data-bg="#7c1d2e" aria-label="Guinda"></button>
+            <button class="pack-color-dot" style="background:#4a5c3c;" data-img="5" data-name="Verde Militar" data-bg="#4a5c3c" aria-label="Verde Militar"></button>
+          </div>
+        </div>
+      </div>
+      <div class="pack-card-top">
+        <span class="pack-num">09</span>
+        <span class="pack-badge">High Cotton</span>
+      </div>
+      <div class="pack-card-main">
+        <h3 class="pack-name">4 Polos 11/1<br>Oversize · Boxy · Regular</h3>
+        <div class="pack-meta">
+          <span class="pack-qty-price">S/ 110</span>
+        </div>
+      </div>
+      <div class="pack-overlay">
+        <div class="overlay-divider"></div>
+        <div class="overlay-pack-info">High Cotton en los tres cortes. El tier más pesado del catálogo.</div>
+        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+09%3A+Oversize%2C+Boxy+y+Regular+11%2F1+(4+prendas+x+S%2F110).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
+          Pedir este pack <span>→</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CONVERSION STRIP ── -->
+<section class="conv-strip" id="por-que">
+  <div class="conv-heading reveal">
+    Por qué Blankstate<br>
+    <em>tiene sentido.</em>
+  </div>
+  <div class="conv-right">
+    <div class="conv-item reveal">
+      <span class="conv-n">01</span>
+      <div class="conv-text">
+        <strong>Calidad que se nota</strong>
+        <span>La misma tela que usa la ropa que más te gusta. Sin pagar el precio del logo de nadie.</span>
+      </div>
+    </div>
+    <div class="conv-item reveal reveal-delay-1">
+      <span class="conv-n">02</span>
+      <div class="conv-text">
+        <strong>Ropa que dura</strong>
+        <span>Material real, no fast fashion. Cada prenda está seleccionada para que la uses años, no temporadas.</span>
+      </div>
+    </div>
+    <div class="conv-item reveal reveal-delay-2">
+      <span class="conv-n">03</span>
+      <div class="conv-text">
+        <strong>El precio que tiene sentido</strong>
+        <span>Pagás por la tela, el corte y el acabado. No por un nombre en una etiqueta que igual vas a cortar.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STEPS ── -->
+<section class="steps-section" id="como-comprar">
+  <p class="steps-label">¿Cómo comprar?</p>
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-n">01</div>
+      <h3 class="step-title">Explorá los packs</h3>
+      <p class="step-text">Navegás los packs desde el inicio de la página o bajás al catálogo completo. Cada uno tiene su detalle y precio.</p>
+    </div>
+    <div class="step">
+      <div class="step-n">02</div>
+      <h3 class="step-title">Escribinos</h3>
+      <p class="step-text">Tocás "Pedir este pack" y se abre WhatsApp con tu pedido ya cargado. Nada que escribir desde cero.</p>
+    </div>
+    <div class="step">
+      <div class="step-n">03</div>
+      <h3 class="step-title">Lo recibís</h3>
+      <p class="step-text">Coordinamos tallas, colores y envío. Sin cuentas, sin carrito, sin esperas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINAL CTA ── -->
+<section class="cta-section">
+  <div class="cta-bg">BS</div>
+  <p class="cta-label">¿Listo?</p>
+  <h2 class="cta-title reveal">Elegí tu pack.<br>Escribinos ahora.</h2>
+  <p class="cta-sub reveal">Respondemos en minutos.</p>
+  <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate.+%C2%BFCu%C3%A1les+tienen+disponibles%3F" class="btn-cta-main reveal" target="_blank">
+    Abrir WhatsApp
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 1.41.37 2.74 1.01 3.89L0 16l4.28-1.12A7.96 7.96 0 008 16c4.42 0 8-3.58 8-8s-3.58-8-8-8zm3.93 11.07c-.17.48-.98.93-1.36.99-.35.05-.79.07-1.27-.08a11.5 11.5 0 01-1.15-.43C6.64 10.8 5.5 9.4 5.41 9.29c-.09-.11-.73-.97-.73-1.85 0-.88.46-1.31.62-1.49.17-.18.37-.22.49-.22h.35c.11 0 .27-.04.42.32l.54 1.35c.05.11.08.24.02.38l-.2.39-.3.31c-.1.1-.2.21-.09.41.11.2.5.82 1.07 1.33.73.65 1.35.85 1.54.94.19.09.3.08.41-.05l.49-.58c.14-.18.28-.15.47-.09l1.33.63c.19.09.31.14.36.22.04.08.04.46-.13.93z" fill="currentColor"/>
+    </svg>
+  </a>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <a href="#" class="footer-logo">
+    <span class="footer-logo-wordmark">blankstate<sup>©</sup></span>
+  </a>
+  <ul class="footer-links">
+    <li><a href="#packs">Packs</a></li>
+    <li><a href="https://instagram.com/blankstate.pe" target="_blank">@blankstate.pe</a></li>
+    <li><a href="https://wa.me/51942418379" target="_blank">WhatsApp</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 Blankstate</span>
+</footer>
+
+<script>
+  // ── HERO SLIDER ──
+  (function() {
+    const slider = document.getElementById('hero');
+    if (!slider) return;
+    const slides = slider.querySelectorAll('.hero-slide');
+    const dots   = slider.querySelectorAll('.hero-dot');
+    const prev   = document.getElementById('hero-prev');
+    const next   = document.getElementById('hero-next');
+    let current  = 0;
+    let startX   = 0;
+
+    function goTo(idx) {
+      slides[current].classList.remove('active');
+      dots[current] && dots[current].classList.remove('active');
+      current = (idx + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current] && dots[current].classList.add('active');
+    }
+
+    if (prev) prev.addEventListener('click', () => goTo(current - 1));
+    if (next) next.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    slider.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    slider.addEventListener('touchend', e => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+    }, { passive: true });
+  })();
+
+  // ── CUSTOM CURSOR ──
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top  = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, .pack-card').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
+  });
+
+  // ── NAV SCROLL ──
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+// ── INTERSECTION OBSERVER — scroll reveals ──
+  const revealEls = document.querySelectorAll('.reveal, .step');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+
+  // ── PACK CARD STAGGER ──
+  const packCards = document.querySelectorAll('.pack-card');
+  packCards.forEach((card, i) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(24px)';
+    card.style.transition = `opacity 0.6s ease ${i * 0.06}s, transform 0.6s ease ${i * 0.06}s, background 0.35s ease`;
+  });
+
+  const packObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        packObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  packCards.forEach(card => packObserver.observe(card));
+
+  // ── PACK GRID — COLOR PICKER (todos los packs) ──
+  document.querySelectorAll('.pack-color-dot').forEach(dot => {
+    dot.addEventListener('click', e => {
+      e.stopPropagation();
+      const zone = dot.closest('.pack-photo-zone');
+      const idx  = parseInt(dot.dataset.img);
+      const name = dot.dataset.name;
+      const bg   = dot.dataset.bg;
+
+      const photos = zone.querySelectorAll('.pack-photo');
+      if (photos.length) {
+        photos.forEach((p, i) => p.classList.toggle('active', i === idx));
+      } else if (bg) {
+        const placeholder = zone.querySelector('.pack-photo-placeholder');
+        if (placeholder) placeholder.style.background = bg;
+      }
+
+      zone.querySelectorAll('.pack-color-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === idx);
+      });
+
+      const label = zone.querySelector('.pack-color-name');
+      if (label) label.textContent = name;
+    });
+  });
+
+  // Wire pack cards → página de producto
+  document.querySelectorAll('.pack-card').forEach(card => {
+    const numEl = card.querySelector('.pack-num');
+    if (!numEl) return;
+    const num = numEl.textContent.trim().padStart(2, '0');
+    card.addEventListener('click', e => {
+      if (e.target.closest('.pack-color-dot') || e.target.closest('.overlay-cta')) return;
+      window.location.href = 'pack.html?id=' + num;
+    });
+  });
+
+  // Inject tap hint — visible only on touch devices
+  document.querySelectorAll('.pack-card').forEach(card => {
+    const meta = card.querySelector('.pack-meta');
+    if (!meta) return;
+    const hint = document.createElement('div');
+    hint.className = 'pack-tap-hint';
+    hint.textContent = 'Ver →';
+    meta.insertAdjacentElement('afterend', hint);
+  });
+</script>
+</body>
+</html>
