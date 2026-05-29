@@ -857,16 +857,17 @@
     }
 
     .hero-dot {
-      width: 28px; height: 2px;
-      background: rgba(246,246,246,0.28);
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(246,246,246,0.35);
       border: none;
       cursor: pointer;
-      transition: background 0.25s, width 0.35s var(--ease);
+      transition: background 0.25s, transform 0.25s;
       padding: 0;
     }
     .hero-dot.active {
       background: var(--white);
-      width: 48px;
+      transform: scale(1.35);
     }
 
     .hero-scroll-hint {
@@ -891,6 +892,7 @@
 
     @media (max-width: 900px) {
       .hero-overlay { padding: 0 20px 68px; }
+      .hero-title { font-size: clamp(22px, 5.5vw, 32px); margin-bottom: 24px; }
       .hero-arrow { display: none !important; }
       .hero-dots { right: 20px; }
       .hero-scroll-hint { left: 20px; }
@@ -1047,15 +1049,6 @@
     <picture>
       <img class="hero-img" src="../BRANDING/banners/1.png" alt="Blankstate — Packs Premium" fetchpriority="high" loading="eager" />
     </picture>
-    <div class="hero-overlay">
-      <div class="hero-content">
-        <p class="hero-label">Blanks premium · Lima</p>
-        <h1 class="hero-title">La ropa que<br>siempre quisiste.<br>Al precio justo.</h1>
-        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." class="hero-cta" target="_blank">
-          Ver packs →
-        </a>
-      </div>
-    </div>
   </div>
 
   <!-- Slide 2 -->
@@ -1063,15 +1056,6 @@
     <picture>
       <img class="hero-img" src="../BRANDING/banners/2.png" alt="Blankstate — Calidad sin markup" loading="lazy" />
     </picture>
-    <div class="hero-overlay">
-      <div class="hero-content">
-        <p class="hero-label">Blanks premium · Lima</p>
-        <h1 class="hero-title">Calidad que<br>se nota desde<br>el primer uso.</h1>
-        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." class="hero-cta" target="_blank">
-          Ver packs →
-        </a>
-      </div>
-    </div>
   </div>
 
   <!-- Slide 3 -->
@@ -1079,14 +1063,16 @@
     <picture>
       <img class="hero-img" src="../BRANDING/banners/3.png" alt="Blankstate — Packs desde S/70" loading="lazy" />
     </picture>
-    <div class="hero-overlay">
-      <div class="hero-content">
-        <p class="hero-label">Blanks premium · Lima</p>
-        <h1 class="hero-title">Tu estilo.<br>Sin pagar<br>el logo de nadie.</h1>
-        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." class="hero-cta" target="_blank">
-          Ver packs →
-        </a>
-      </div>
+  </div>
+
+  <!-- Overlay fijo — mismo texto en todos los banners -->
+  <div class="hero-overlay">
+    <div class="hero-content">
+      <p class="hero-label">Blanks premium · Lima</p>
+      <h1 class="hero-title">Los básicos que siempre quisiste a precio justo.</h1>
+      <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." class="hero-cta" target="_blank">
+        Ver packs →
+      </a>
     </div>
   </div>
 
