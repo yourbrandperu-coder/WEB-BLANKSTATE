@@ -12,7 +12,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <title>Blankstate — Packs Premium</title>
-  <link rel="preload" as="image" href="../BRANDING/portada-blank.webp" type="image/webp" />
+  <link rel="preload" as="image" href="../BRANDING/banners/1.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -138,6 +138,78 @@
       transition: background 0.2s, transform 0.2s;
     }
     .nav-cta:hover { background: var(--g5); transform: translateY(-1px); }
+
+    /* ── HAMBURGER ── */
+    .nav-hamburger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 26px;
+      color: var(--black);
+      padding: 6px 8px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s;
+      font-family: var(--sans);
+    }
+    .nav-hamburger:hover { color: var(--g4); }
+
+    /* ── NAV MENU ── */
+    .nav-menu {
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: var(--black);
+      z-index: 190;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s var(--ease);
+    }
+    .nav-menu.open { max-height: 500px; }
+
+    .nav-menu-inner {
+      padding: 48px 48px 52px;
+      border-bottom: 1px solid var(--g5);
+    }
+
+    .nav-menu-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+
+    .nav-menu-links a {
+      font-family: var(--serif);
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.2s;
+      line-height: 1.2;
+    }
+    .nav-menu-links a:hover { color: var(--g3); }
+
+    .nav-menu-wa {
+      padding-top: 28px;
+      border-top: 1px solid var(--g5);
+    }
+    .nav-menu-wa a {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--g3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-menu-wa a:hover { color: var(--white); }
+
+    @media (max-width: 900px) {
+      .nav-menu-inner { padding: 40px 20px 44px; }
+      .nav-menu-links a { font-size: 28px; }
+    }
 
     /* ── TICKER ── */
     .ticker-wrap {
@@ -936,7 +1008,7 @@
 
 <!-- ── ANNOUNCEMENT BAR ── -->
 <div class="bar">
-  Ropa de calidad real &nbsp;·&nbsp; Sin logo, sin markup &nbsp;·&nbsp; Pedidos por WhatsApp
+  🚚 Envíos a todo el Perú
 </div>
 
 <!-- ── NAV ── -->
@@ -949,24 +1021,35 @@
     <li><a href="#por-que">Por qué</a></li>
     <li><a href="#como-comprar">Cómo comprar</a></li>
   </ul>
-  <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." class="nav-cta" target="_blank">
-    Pedir ahora →
-  </a>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú">≡</button>
 </nav>
 
-<!-- ── HERO SLIDER ── -->
-<section class="hero-slider" id="hero" data-slides="1">
+<!-- ── NAV MENU ── -->
+<div class="nav-menu" id="nav-menu" aria-hidden="true">
+  <div class="nav-menu-inner">
+    <ul class="nav-menu-links">
+      <li><a href="#packs" class="nav-menu-link">Catálogo</a></li>
+      <li><a href="#por-que" class="nav-menu-link">Por qué Blankstate</a></li>
+      <li><a href="#como-comprar" class="nav-menu-link">Cómo comprar</a></li>
+    </ul>
+    <div class="nav-menu-wa">
+      <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." target="_blank">WhatsApp →</a>
+    </div>
+  </div>
+</div>
 
-  <!-- Slide 1 — Portada -->
+<!-- ── HERO SLIDER ── -->
+<section class="hero-slider" id="hero" data-slides="3">
+
+  <!-- Slide 1 -->
   <div class="hero-slide active">
     <picture>
-      <source srcset="../BRANDING/portada-blank.webp" type="image/webp" />
-      <img class="hero-img" src="../BRANDING/portada%20blank.png" alt="Blankstate — Packs Premium" fetchpriority="high" loading="eager" />
+      <img class="hero-img" src="../BRANDING/banners/1.png" alt="Blankstate — Packs Premium" fetchpriority="high" loading="eager" />
     </picture>
     <div class="hero-overlay">
       <div class="hero-content">
         <p class="hero-label">Blanks premium · Lima</p>
-        <h1 class="hero-title">Comodidad,<br>calidad y<br>precio justo.</h1>
+        <h1 class="hero-title">La ropa que<br>siempre quisiste.<br>Al precio justo.</h1>
         <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." class="hero-cta" target="_blank">
           Ver packs →
         </a>
@@ -974,14 +1057,45 @@
     </div>
   </div>
 
-  <!-- Slide 2 — pendiente -->
-  <!-- Slide 3 — pendiente -->
+  <!-- Slide 2 -->
+  <div class="hero-slide">
+    <picture>
+      <img class="hero-img" src="../BRANDING/banners/2.png" alt="Blankstate — Calidad sin markup" loading="lazy" />
+    </picture>
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <p class="hero-label">Blanks premium · Lima</p>
+        <h1 class="hero-title">Calidad que<br>se nota desde<br>el primer uso.</h1>
+        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." class="hero-cta" target="_blank">
+          Ver packs →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="hero-slide">
+    <picture>
+      <img class="hero-img" src="../BRANDING/banners/3.png" alt="Blankstate — Packs desde S/70" loading="lazy" />
+    </picture>
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <p class="hero-label">Blanks premium · Lima</p>
+        <h1 class="hero-title">Tu estilo.<br>Sin pagar<br>el logo de nadie.</h1>
+        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." class="hero-cta" target="_blank">
+          Ver packs →
+        </a>
+      </div>
+    </div>
+  </div>
 
   <button class="hero-arrow hero-arrow--prev" id="hero-prev" aria-label="Anterior">‹</button>
   <button class="hero-arrow hero-arrow--next" id="hero-next" aria-label="Siguiente">›</button>
 
   <div class="hero-dots" id="hero-dots">
     <button class="hero-dot active" data-slide="0" aria-label="Slide 1"></button>
+    <button class="hero-dot" data-slide="1" aria-label="Slide 2"></button>
+    <button class="hero-dot" data-slide="2" aria-label="Slide 3"></button>
   </div>
 
   <div class="hero-scroll-hint">
@@ -1001,7 +1115,7 @@
     <div class="ticker-item"><span class="ticker-text">Pima Premium</span><span class="ticker-dot">·</span></div>
     <div class="ticker-item"><span class="ticker-text">French Terry</span><span class="ticker-dot">·</span></div>
     <div class="ticker-item"><span class="ticker-text">Oversize Cotton</span><span class="ticker-dot">·</span></div>
-    <div class="ticker-item"><span class="ticker-text">Pack Unisex</span><span class="ticker-dot">·</span></div>
+
     <div class="ticker-item"><span class="ticker-text">Corte Dama</span><span class="ticker-dot">·</span></div>
     <div class="ticker-item"><span class="ticker-text">Franela Oversize</span><span class="ticker-dot">·</span></div>
     <div class="ticker-item"><span class="ticker-text">Pack Polos Oversize</span><span class="ticker-dot">·</span></div>
@@ -1010,7 +1124,7 @@
     <div class="ticker-item"><span class="ticker-text">Pima Premium</span><span class="ticker-dot">·</span></div>
     <div class="ticker-item"><span class="ticker-text">French Terry</span><span class="ticker-dot">·</span></div>
     <div class="ticker-item"><span class="ticker-text">Oversize Cotton</span><span class="ticker-dot">·</span></div>
-    <div class="ticker-item"><span class="ticker-text">Pack Unisex</span><span class="ticker-dot">·</span></div>
+
     <div class="ticker-item"><span class="ticker-text">Corte Dama</span><span class="ticker-dot">·</span></div>
     <div class="ticker-item"><span class="ticker-text">Franela Oversize</span><span class="ticker-dot">·</span></div>
   </div>
@@ -1019,14 +1133,13 @@
 <!-- ── CATÁLOGO COMPLETO ── -->
 <section class="packs-section" id="packs">
   <div class="packs-header reveal">
-    <h2 class="packs-title">Todos los packs</h2>
-    <span class="packs-count">9 disponibles</span>
+    <h2 class="packs-title">Elige tu pack.</h2>
   </div>
 
   <div class="pack-grid">
 
-    <!-- Pack 01 — FEATURED, fila completa -->
-    <div class="pack-card featured">
+    <!-- Pack 01 -->
+    <div class="pack-card">
       <div class="pack-card-top">
         <span class="pack-num">01</span>
         <span class="pack-badge">Más pedido</span>
@@ -1333,29 +1446,29 @@
 <!-- ── CONVERSION STRIP ── -->
 <section class="conv-strip" id="por-que">
   <div class="conv-heading reveal">
-    Por qué Blankstate<br>
-    <em>tiene sentido.</em>
+    Por qué<br>
+    <em>Blankstate.</em>
   </div>
   <div class="conv-right">
     <div class="conv-item reveal">
       <span class="conv-n">01</span>
       <div class="conv-text">
-        <strong>Calidad que se nota</strong>
-        <span>La misma tela que usa la ropa que más te gusta. Sin pagar el precio del logo de nadie.</span>
+        <strong>La tela primero</strong>
+        <span>Sin intermediarios, sin markup de marca. La misma calidad que una prenda premium, sin el precio del logo.</span>
       </div>
     </div>
     <div class="conv-item reveal reveal-delay-1">
       <span class="conv-n">02</span>
       <div class="conv-text">
-        <strong>Ropa que dura</strong>
-        <span>Material real, no fast fashion. Cada prenda está seleccionada para que la uses años, no temporadas.</span>
+        <strong>Dura porque es buena</strong>
+        <span>Material real, no fast fashion. Elegida para que siga viéndose bien temporada tras temporada.</span>
       </div>
     </div>
     <div class="conv-item reveal reveal-delay-2">
       <span class="conv-n">03</span>
       <div class="conv-text">
-        <strong>El precio que tiene sentido</strong>
-        <span>Pagas por la tela, el corte y el acabado. No por un nombre en una etiqueta que igual vas a cortar.</span>
+        <strong>Precio de proveedor</strong>
+        <span>Pagás la tela y el acabado. Nada más.</span>
       </div>
     </div>
   </div>
@@ -1363,22 +1476,22 @@
 
 <!-- ── STEPS ── -->
 <section class="steps-section" id="como-comprar">
-  <p class="steps-label">¿Cómo comprar?</p>
+  <p class="steps-label">Así de simple</p>
   <div class="steps-grid">
     <div class="step">
       <div class="step-n">01</div>
-      <h3 class="step-title">Explora los packs</h3>
-      <p class="step-text">Navega los packs desde el inicio de la página o baja al catálogo completo. Cada uno tiene su detalle y precio.</p>
+      <h3 class="step-title">Elige tu pack</h3>
+      <p class="step-text">Navega el catálogo y elige el que más te gusta. Cada pack tiene detalle, precio y opciones de color.</p>
     </div>
     <div class="step">
       <div class="step-n">02</div>
-      <h3 class="step-title">Escríbenos</h3>
-      <p class="step-text">Toca "Pedir este pack" y se abre WhatsApp con tu pedido ya cargado. Nada que escribir desde cero.</p>
+      <h3 class="step-title">Escríbenos por WhatsApp</h3>
+      <p class="step-text">Toca cualquier pack y se abre WhatsApp con tu pedido listo. Respondemos en minutos.</p>
     </div>
     <div class="step">
       <div class="step-n">03</div>
-      <h3 class="step-title">Lo recibes</h3>
-      <p class="step-text">Coordinamos tallas, colores y envío. Sin cuentas, sin carrito, sin esperas.</p>
+      <h3 class="step-title">Lo recibes en casa</h3>
+      <p class="step-text">Coordinamos tallas, colores y envío. Sin cuenta, sin carrito, sin complicaciones.</p>
     </div>
   </div>
 </section>
@@ -1437,15 +1550,18 @@
       dots[current] && dots[current].classList.add('active');
     }
 
-    if (prev) prev.addEventListener('click', () => goTo(current - 1));
-    if (next) next.addEventListener('click', () => goTo(current + 1));
-    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    if (prev) prev.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+    if (next) next.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); resetAuto(); }));
 
     slider.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
     slider.addEventListener('touchend', e => {
       const diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+      if (Math.abs(diff) > 50) { goTo(diff > 0 ? current + 1 : current - 1); resetAuto(); }
     }, { passive: true });
+
+    let autoTimer = setInterval(() => goTo(current + 1), 5000);
+    function resetAuto() { clearInterval(autoTimer); autoTimer = setInterval(() => goTo(current + 1), 5000); }
   })();
 
   // ── CUSTOM CURSOR ──
@@ -1529,6 +1645,30 @@
       window.location.href = 'pack.html?id=' + num;
     });
   });
+
+  // ── HAMBURGER MENU ──
+  (function() {
+    const btn  = document.getElementById('nav-hamburger');
+    const menu = document.getElementById('nav-menu');
+    let open = false;
+
+    function toggle(force) {
+      open = force !== undefined ? force : !open;
+      menu.classList.toggle('open', open);
+      menu.setAttribute('aria-hidden', String(!open));
+      btn.textContent = open ? '✕' : '≡';
+    }
+
+    btn.addEventListener('click', e => { e.stopPropagation(); toggle(); });
+
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => toggle(false));
+    });
+
+    document.addEventListener('click', e => {
+      if (open && !menu.contains(e.target) && e.target !== btn) toggle(false);
+    });
+  })();
 
   // Inject tap hint — visible only on touch devices
   document.querySelectorAll('.pack-card').forEach(card => {
