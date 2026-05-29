@@ -504,32 +504,34 @@
     /* ── CONVERSION STRIP ── */
     /* ── POR QUÉ BLANKSTATE ── */
     .why-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-direction: row;
       background: var(--black);
       border-bottom: 1px solid var(--g5);
     }
 
     .why-item {
-      padding: 22px 28px;
+      flex: 1 1 0;
+      min-width: 0;
+      padding: 18px 16px;
       border-right: 1px solid var(--g5);
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 4px;
     }
     .why-item:last-child { border-right: none; }
 
     .why-item strong {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       color: var(--white);
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
     }
 
     .why-item span {
-      font-size: 11.5px;
+      font-size: 10px;
       color: var(--g3);
-      line-height: 1.5;
+      line-height: 1.45;
       font-weight: 300;
     }
 
@@ -873,9 +875,7 @@
     @media (max-width: 480px) {
       .pack-grid { grid-template-columns: repeat(2, 1fr); }
       .bar { font-size: 10px; letter-spacing: 0.07em; padding: 9px 12px; }
-      .why-item { padding: 14px 12px; }
-      .why-item strong { font-size: 10px; }
-      .why-item span { font-size: 10px; }
+      .why-item { padding: 12px 10px; }
     }
 
     /* ── TOUCH DEVICES ── */
