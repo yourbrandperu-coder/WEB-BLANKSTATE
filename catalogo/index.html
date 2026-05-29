@@ -502,116 +502,34 @@
     .pack-card--photo .pack-card-main { padding: 8px 28px 28px; }
 
     /* ── CONVERSION STRIP ── */
-    .conv-strip {
-      background: var(--black);
-      padding: 80px 48px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .conv-heading {
-      font-family: var(--serif);
-      font-size: clamp(36px, 4vw, 56px);
-      font-weight: 300;
-      color: var(--white);
-      line-height: 1.15;
-    }
-
-    .conv-heading em {
-      font-style: italic;
-      color: var(--g3);
-    }
-
-    .conv-item {
-      display: flex;
-      gap: 20px;
-      padding: 22px 0;
-      border-bottom: 1px solid var(--g5);
-    }
-    .conv-item:first-child { border-top: 1px solid var(--g5); }
-
-    .conv-n {
-      font-family: var(--serif);
-      font-size: 28px;
-      font-weight: 300;
-      color: var(--g5);
-      min-width: 36px;
-      line-height: 1;
-      padding-top: 2px;
-    }
-
-    .conv-text strong {
-      display: block;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--white);
-      margin-bottom: 4px;
-      letter-spacing: 0.02em;
-    }
-
-    .conv-text span {
-      font-size: 12px;
-      color: var(--g4);
-      font-weight: 300;
-      line-height: 1.6;
-    }
-
-    /* ── STEPS ── */
-    .steps-section {
-      padding: 88px 48px;
-      background: var(--white);
-      border-bottom: 1px solid var(--g2);
-    }
-
-    .steps-label {
-      font-size: 10.5px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--g3);
-      margin-bottom: 56px;
-      text-align: center;
-    }
-
-    .steps-grid {
+    /* ── POR QUÉ BLANKSTATE ── */
+    .why-strip {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
+      background: var(--black);
+      border-bottom: 1px solid var(--g5);
     }
 
-    .step {
-      padding: 40px 36px;
-      background: var(--g1);
-      position: relative;
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+    .why-item {
+      padding: 22px 28px;
+      border-right: 1px solid var(--g5);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
     }
-    .step.visible { opacity: 1; transform: translateY(0); }
-    .step:nth-child(2) { transition-delay: 0.1s; }
-    .step:nth-child(3) { transition-delay: 0.2s; }
+    .why-item:last-child { border-right: none; }
 
-    .step-n {
-      font-family: var(--serif);
-      font-size: 64px;
-      font-weight: 300;
-      color: var(--g2);
-      line-height: 1;
-      margin-bottom: 20px;
-    }
-
-    .step-title {
-      font-size: 16px;
+    .why-item strong {
+      font-size: 12px;
       font-weight: 500;
-      margin-bottom: 10px;
-      letter-spacing: 0.02em;
+      color: var(--white);
+      letter-spacing: 0.04em;
     }
 
-    .step-text {
-      font-size: 13px;
-      color: var(--g4);
-      line-height: 1.7;
+    .why-item span {
+      font-size: 11.5px;
+      color: var(--g3);
+      line-height: 1.5;
       font-weight: 300;
     }
 
@@ -933,9 +851,6 @@
       .nav-links { display: none; }
 
 .packs-section { padding: 64px 20px; }
-      .conv-strip { grid-template-columns: 1fr; gap: 48px; padding: 64px 20px; }
-      .steps-section { padding: 64px 20px; }
-      .steps-grid { grid-template-columns: 1fr; gap: 2px; }
       .cta-section { padding: 80px 24px; }
       .footer { padding: 40px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
       .footer-links { flex-wrap: wrap; gap: 16px; }
@@ -956,9 +871,11 @@
 
     /* ── SMALL MOBILE ── */
     @media (max-width: 480px) {
-      .pack-grid { grid-template-columns: 1fr; }
-      .pack-card.featured { grid-column: span 1; }
+      .pack-grid { grid-template-columns: repeat(2, 1fr); }
       .bar { font-size: 10px; letter-spacing: 0.07em; padding: 9px 12px; }
+      .why-strip { grid-template-columns: 1fr; }
+      .why-item { border-right: none; border-bottom: 1px solid var(--g5); padding: 16px 20px; }
+      .why-item:last-child { border-bottom: none; }
     }
 
     /* ── TOUCH DEVICES ── */
@@ -1022,7 +939,6 @@
   <ul class="nav-links">
     <li><a href="#packs">Catálogo</a></li>
     <li><a href="#por-que">Por qué</a></li>
-    <li><a href="#como-comprar">Cómo comprar</a></li>
   </ul>
   <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú">≡</button>
 </nav>
@@ -1033,7 +949,6 @@
     <ul class="nav-menu-links">
       <li><a href="#packs" class="nav-menu-link">Catálogo</a></li>
       <li><a href="#por-que" class="nav-menu-link">Por qué Blankstate</a></li>
-      <li><a href="#como-comprar" class="nav-menu-link">Cómo comprar</a></li>
     </ul>
     <div class="nav-menu-wa">
       <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." target="_blank">WhatsApp →</a>
@@ -1111,6 +1026,22 @@
     <div class="ticker-item"><span class="ticker-text">Franela Oversize</span><span class="ticker-dot">·</span></div>
   </div>
 </div>
+
+<!-- ── POR QUÉ BLANKSTATE ── -->
+<section class="why-strip" id="por-que">
+  <div class="why-item">
+    <strong>La tela primero</strong>
+    <span>Sin intermediarios, sin markup de marca.</span>
+  </div>
+  <div class="why-item">
+    <strong>Dura porque es buena</strong>
+    <span>Material real, no fast fashion.</span>
+  </div>
+  <div class="why-item">
+    <strong>Precio de proveedor</strong>
+    <span>Pagás la tela y el acabado. Nada más.</span>
+  </div>
+</section>
 
 <!-- ── CATÁLOGO COMPLETO ── -->
 <section class="packs-section" id="packs">
@@ -1422,59 +1353,6 @@
       </div>
     </div>
 
-  </div>
-</section>
-
-<!-- ── CONVERSION STRIP ── -->
-<section class="conv-strip" id="por-que">
-  <div class="conv-heading reveal">
-    Por qué<br>
-    <em>Blankstate.</em>
-  </div>
-  <div class="conv-right">
-    <div class="conv-item reveal">
-      <span class="conv-n">01</span>
-      <div class="conv-text">
-        <strong>La tela primero</strong>
-        <span>Sin intermediarios, sin markup de marca. La misma calidad que una prenda premium, sin el precio del logo.</span>
-      </div>
-    </div>
-    <div class="conv-item reveal reveal-delay-1">
-      <span class="conv-n">02</span>
-      <div class="conv-text">
-        <strong>Dura porque es buena</strong>
-        <span>Material real, no fast fashion. Elegida para que siga viéndose bien temporada tras temporada.</span>
-      </div>
-    </div>
-    <div class="conv-item reveal reveal-delay-2">
-      <span class="conv-n">03</span>
-      <div class="conv-text">
-        <strong>Precio de proveedor</strong>
-        <span>Pagás la tela y el acabado. Nada más.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── STEPS ── -->
-<section class="steps-section" id="como-comprar">
-  <p class="steps-label">Así de simple</p>
-  <div class="steps-grid">
-    <div class="step">
-      <div class="step-n">01</div>
-      <h3 class="step-title">Elige tu pack</h3>
-      <p class="step-text">Navega el catálogo y elige el que más te gusta. Cada pack tiene detalle, precio y opciones de color.</p>
-    </div>
-    <div class="step">
-      <div class="step-n">02</div>
-      <h3 class="step-title">Escríbenos por WhatsApp</h3>
-      <p class="step-text">Toca cualquier pack y se abre WhatsApp con tu pedido listo. Respondemos en minutos.</p>
-    </div>
-    <div class="step">
-      <div class="step-n">03</div>
-      <h3 class="step-title">Lo recibes en casa</h3>
-      <p class="step-text">Coordinamos tallas, colores y envío. Sin cuenta, sin carrito, sin complicaciones.</p>
-    </div>
   </div>
 </section>
 
