@@ -273,173 +273,25 @@
       color: var(--g3);
     }
 
-    /* ── PACK GRID — 2 columnas ── */
+    /* ── PACK GRID ── */
     .pack-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 2px;
+      gap: 12px;
     }
 
     .pack-card {
-      position: relative;
-      overflow: hidden;
-      background: var(--g1);
+      display: flex;
+      flex-direction: column;
       cursor: pointer;
-      min-height: 320px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 32px;
-      transition: background 0.35s var(--ease);
-    }
-
-    .pack-card:hover { background: var(--black); }
-
-    .pack-card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-    }
-
-    .pack-num {
-      font-family: var(--serif);
-      font-size: 56px;
-      font-weight: 300;
-      line-height: 1;
-      color: var(--g2);
-      transition: color 0.35s;
-    }
-    .pack-card:hover .pack-num { color: rgba(255,255,255,0.1); }
-
-    .pack-badge {
-      font-size: 9.5px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      background: var(--black);
-      color: var(--white);
-      padding: 5px 11px;
-      font-weight: 500;
-      transition: background 0.35s;
-    }
-    .pack-card:hover .pack-badge { background: var(--white); color: var(--black); }
-
-    .pack-card-main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding-top: 24px;
-    }
-
-    .pack-name {
-      font-family: var(--serif);
-      font-size: 22px;
-      font-weight: 400;
-      line-height: 1.25;
-      margin-bottom: 16px;
-      color: var(--black);
-      transition: color 0.35s;
-    }
-    .pack-card:hover .pack-name { color: var(--white); }
-
-    .pack-meta {
-      display: flex;
-      align-items: center;
-    }
-
-    .pack-qty-price {
-      font-family: var(--serif);
-      font-size: 22px;
-      font-weight: 300;
-      letter-spacing: 0;
-      color: var(--g4);
-      transition: color 0.35s;
-      line-height: 1;
-    }
-    .pack-card:hover .pack-qty-price { color: var(--g3); }
-
-    /* Overlay slide-up on hover */
-    .pack-overlay {
-      position: absolute;
-      inset: 0;
-      background: var(--black);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 32px;
-      transform: translateY(100%);
-      transition: transform 0.4s var(--ease);
-    }
-    .pack-card:hover .pack-overlay { transform: translateY(0); }
-
-    .overlay-divider {
-      width: 32px;
-      height: 1px;
-      background: var(--g5);
-      margin-bottom: 24px;
-    }
-
-    .overlay-pack-info {
-      font-size: 12px;
-      color: var(--g3);
-      margin-bottom: 24px;
-      line-height: 1.6;
-    }
-
-    .overlay-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--white);
-      color: var(--black);
-      text-decoration: none;
-      padding: 13px 24px;
-      font-size: 11.5px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 500;
-      transition: background 0.2s;
-      width: 100%;
-      justify-content: space-between;
-    }
-    .overlay-cta:hover { background: var(--g1); }
-
-    .overlay-colors {
-      display: flex;
-      gap: 7px;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .overlay-color-dot {
-      width: 16px; height: 16px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(255,255,255,0.25);
-      flex-shrink: 0;
-    }
-
-    /* ── FEATURED PACK — fila completa ── */
-    .pack-card.featured {
-      grid-column: span 2;
-      min-height: 380px;
-      background: var(--g5);
-    }
-    .pack-card.featured .pack-num { color: rgba(255,255,255,0.08); }
-    .pack-card.featured .pack-name { color: var(--white); font-size: 28px; }
-    .pack-card.featured .pack-qty-price { color: var(--g3); }
-    .pack-card.featured:hover { background: var(--black); }
-
-    /* ── PACK FOTO — Pack 07 ── */
-    .pack-card--photo {
-      padding: 0;
+      background: transparent;
     }
 
     .pack-photo-zone {
-      position: relative;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 3 / 4;
       overflow: hidden;
-      background: #e4e4e4;
-      flex-shrink: 0;
+      background: var(--g1);
+      position: relative;
     }
 
     .pack-photo-placeholder {
@@ -455,53 +307,55 @@
       height: 100%;
       object-fit: cover;
       object-position: top center;
-      opacity: 0;
-      transition: opacity 0.5s ease;
+      display: block;
     }
-    .pack-photo.active { opacity: 1; }
 
-    .pack-color-bar {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
+    .pack-card-info {
+      padding: 12px 0 0;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 32px 16px 12px;
-      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
-      z-index: 2;
-    }
-
-    .pack-color-name {
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.85);
-      font-weight: 400;
-    }
-
-    .pack-color-dots {
-      display: flex;
+      flex-direction: column;
       gap: 8px;
     }
 
-    .pack-color-dot {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.3);
+    .pack-name {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--black);
+    }
+
+    .pack-card-price {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      letter-spacing: 0.02em;
+    }
+
+    .btn-ver-pack {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      align-self: flex-start;
+      border: 1px solid var(--g2);
+      color: var(--g4);
+      text-decoration: none;
+      padding: 6px 12px;
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: border-color 0.2s, color 0.2s;
+      background: none;
       cursor: pointer;
-      transition: border-color 0.2s, transform 0.2s;
-      padding: 0;
+      margin-top: 2px;
     }
-    .pack-color-dot.active {
-      border-color: white;
-      transform: scale(1.15);
+    .pack-card:hover .btn-ver-pack,
+    .btn-ver-pack:hover {
+      border-color: var(--black);
+      color: var(--black);
     }
-
-    .pack-card--photo .pack-card-top { padding: 20px 28px 0; }
-    .pack-card--photo .pack-card-main { padding: 8px 28px 28px; }
-
-    /* ── CONVERSION STRIP ── */
     /* ── POR QUÉ BLANKSTATE ── */
     .why-strip {
       display: flex;
@@ -860,43 +714,21 @@
 
     /* ── MOBILE ── */
     @media (max-width: 680px) {
-      .pack-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-      .pack-card.featured { grid-column: span 2; }
+      .pack-grid { gap: 6px; }
       .packs-header { flex-direction: column; align-items: flex-start; gap: 8px; }
-      .pack-card { padding: 20px; }
-      .pack-num { font-size: 40px; }
-      .pack-name { font-size: 17px; }
-      .pack-qty-price { font-size: 17px; }
-      .pack-card--photo .pack-card-top { padding: 14px 16px 0; }
-      .pack-card--photo .pack-card-main { padding: 6px 16px 16px; }
+      .pack-name { font-size: 15px; }
     }
 
     /* ── SMALL MOBILE ── */
     @media (max-width: 480px) {
-      .pack-grid { grid-template-columns: repeat(2, 1fr); }
+      .pack-grid { gap: 4px; }
       .bar { font-size: 10px; letter-spacing: 0.07em; padding: 9px 12px; }
       .why-item { padding: 12px 10px; }
     }
 
     /* ── TOUCH DEVICES ── */
-    .pack-tap-hint {
-      display: none;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: var(--g4);
-      margin-top: 12px;
-      padding: 6px 0;
-      font-weight: 400;
-    }
-    .pack-card.featured .pack-tap-hint { color: rgba(255,255,255,0.5); }
-
     @media (hover: none) {
       .cursor { display: none; }
-      .pack-overlay { display: none !important; }
-      .pack-tap-hint { display: flex; }
     }
 
     /* ── WHATSAPP FLOAT ── */
@@ -1029,304 +861,112 @@
   <div class="pack-grid">
 
     <!-- Pack 01 -->
-    <div class="pack-card">
-      <div class="pack-card-top">
-        <span class="pack-num">01</span>
-        <span class="pack-badge">Más pedido</span>
+    <div class="pack-card" data-id="01">
+      <div class="pack-photo-zone">
+        <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
       </div>
-      <div class="pack-card-main">
+      <div class="pack-card-info">
         <h3 class="pack-name">5 Polos 20/1<br>Oversize y Boxy</h3>
-        <div class="pack-meta">
-          <span class="pack-qty-price">S/ 100</span>
-        </div>
-      </div>
-      <div class="pack-overlay">
-        <div class="overlay-divider"></div>
-        <div class="overlay-pack-info">Oversize o Boxy — largo y corto. Más de 10 colores.</div>
-        <div class="overlay-colors">
-          <div class="overlay-color-dot" style="background:#1a1a1a;" title="Negro"></div>
-          <div class="overlay-color-dot" style="background:#f5f5f5;" title="Blanco"></div>
-          <div class="overlay-color-dot" style="background:#d4c5a9;" title="Beige Claro"></div>
-          <div class="overlay-color-dot" style="background:#6b7280;" title="Acero"></div>
-          <div class="overlay-color-dot" style="background:#1e3a5f;" title="English Blue"></div>
-          <div class="overlay-color-dot" style="background:#7c1d2e;" title="Guinda"></div>
-          <div class="overlay-color-dot" style="background:#c4b5fd;" title="Lila"></div>
-          <div class="overlay-color-dot" style="background:#f9a8d4;" title="Rosado"></div>
-        </div>
-        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+01%3A+Polos+20%2F1+Oversize+y+Boxy+(5+prendas+x+S%2F100).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
-          Pedir este pack <span>→</span>
-        </a>
+        <div class="pack-card-price">S/ 100</div>
+        <a href="pack.html?id=01" class="btn-ver-pack">Ver pack →</a>
       </div>
     </div>
 
     <!-- Pack 02 -->
-    <div class="pack-card pack-card--photo">
+    <div class="pack-card" data-id="02">
       <div class="pack-photo-zone">
         <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
-        <div class="pack-color-bar">
-          <span class="pack-color-name" id="pack02-color-label">Negro</span>
-          <div class="pack-color-dots">
-            <button class="pack-color-dot active" style="background:#1a1a1a;" data-img="0" data-name="Negro" data-bg="#1a1a1a" aria-label="Negro"></button>
-            <button class="pack-color-dot" style="background:#f5f5f5;" data-img="1" data-name="Blanco" data-bg="#f5f5f5" aria-label="Blanco"></button>
-            <button class="pack-color-dot" style="background:#d4c5a9;" data-img="2" data-name="Beige Claro" data-bg="#d4c5a9" aria-label="Beige Claro"></button>
-            <button class="pack-color-dot" style="background:#6b7280;" data-img="3" data-name="Acero" data-bg="#6b7280" aria-label="Acero"></button>
-            <button class="pack-color-dot" style="background:#1e3a5f;" data-img="4" data-name="English Blue" data-bg="#1e3a5f" aria-label="English Blue"></button>
-            <button class="pack-color-dot" style="background:#7c1d2e;" data-img="5" data-name="Guinda" data-bg="#7c1d2e" aria-label="Guinda"></button>
-          </div>
-        </div>
       </div>
-      <div class="pack-card-top">
-        <span class="pack-num">02</span>
-      </div>
-      <div class="pack-card-main">
+      <div class="pack-card-info">
         <h3 class="pack-name">6 Polos 20/1<br>Regular y Dama</h3>
-        <div class="pack-meta">
-          <span class="pack-qty-price">S/ 100</span>
-        </div>
-      </div>
-      <div class="pack-overlay">
-        <div class="overlay-divider"></div>
-        <div class="overlay-pack-info">Regular Fit y Corte Dama. Más de 10 colores disponibles.</div>
-        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+02%3A+Polos+20%2F1+Regular+y+Corte+Dama+(6+prendas+x+S%2F100).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
-          Pedir este pack <span>→</span>
-        </a>
+        <div class="pack-card-price">S/ 100</div>
+        <a href="pack.html?id=02" class="btn-ver-pack">Ver pack →</a>
       </div>
     </div>
 
     <!-- Pack 03 -->
-    <div class="pack-card pack-card--photo">
+    <div class="pack-card" data-id="03">
       <div class="pack-photo-zone">
         <div class="pack-photo-placeholder" style="background:#6b7280;"></div>
-        <div class="pack-color-bar">
-          <span class="pack-color-name" id="pack03-color-label">Acero</span>
-          <div class="pack-color-dots">
-            <button class="pack-color-dot active" style="background:#6b7280;" data-img="0" data-name="Acero" data-bg="#6b7280" aria-label="Acero"></button>
-            <button class="pack-color-dot" style="background:#f48fb1;" data-img="1" data-name="Chicle" data-bg="#f48fb1" aria-label="Chicle"></button>
-            <button class="pack-color-dot" style="background:#9ca3af;" data-img="2" data-name="Gris" data-bg="#9ca3af" aria-label="Gris"></button>
-            <button class="pack-color-dot" style="background:#7c5c3e;" data-img="3" data-name="Marrón" data-bg="#7c5c3e" aria-label="Marrón"></button>
-            <button class="pack-color-dot" style="background:#7c3aed;" data-img="4" data-name="Morado" data-bg="#7c3aed" aria-label="Morado"></button>
-            <button class="pack-color-dot" style="background:#1a1a1a;" data-img="5" data-name="Negro" data-bg="#1a1a1a" aria-label="Negro"></button>
-          </div>
-        </div>
       </div>
-      <div class="pack-card-top">
-        <span class="pack-num">03</span>
-        <span class="pack-badge" style="background:#505050;">Exclusivo</span>
-      </div>
-      <div class="pack-card-main">
-        <h3 class="pack-name">5 Polos Acid Wash 20/1</h3>
-        <div class="pack-meta">
-          <span class="pack-qty-price">S/ 110</span>
-        </div>
-      </div>
-      <div class="pack-overlay">
-        <div class="overlay-divider"></div>
-        <div class="overlay-pack-info">Efecto vintage único, sin repetición de patrón.</div>
-        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+03%3A+Polos+Acid+Wash+20%2F1+(5+prendas+x+S%2F110).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
-          Pedir este pack <span>→</span>
-        </a>
+      <div class="pack-card-info">
+        <h3 class="pack-name">5 Polos<br>Acid Wash 20/1</h3>
+        <div class="pack-card-price">S/ 110</div>
+        <a href="pack.html?id=03" class="btn-ver-pack">Ver pack →</a>
       </div>
     </div>
 
     <!-- Pack 04 -->
-    <div class="pack-card pack-card--photo">
+    <div class="pack-card" data-id="04">
       <div class="pack-photo-zone">
         <div class="pack-photo-placeholder" style="background:#1a3a6e;"></div>
-        <div class="pack-color-bar">
-          <span class="pack-color-name" id="pack04-color-label">Azul</span>
-          <div class="pack-color-dots">
-            <button class="pack-color-dot active" style="background:#1a3a6e;" data-img="0" data-name="Azul" data-bg="#1a3a6e" aria-label="Azul"></button>
-            <button class="pack-color-dot" style="background:#1a1a1a;" data-img="1" data-name="Negro" data-bg="#1a1a1a" aria-label="Negro"></button>
-            <button class="pack-color-dot" style="background:#4a5c3c;" data-img="2" data-name="Verde Militar" data-bg="#4a5c3c" aria-label="Verde Militar"></button>
-          </div>
-        </div>
       </div>
-      <div class="pack-card-top">
-        <span class="pack-num">04</span>
-      </div>
-      <div class="pack-card-main">
-        <h3 class="pack-name">4 Polos Focalizados 20/1</h3>
-        <div class="pack-meta">
-          <span class="pack-qty-price">S/ 100</span>
-        </div>
-      </div>
-      <div class="pack-overlay">
-        <div class="overlay-divider"></div>
-        <div class="overlay-pack-info">Colores que combinan con todo. Lo básico bien resuelto.</div>
-        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+04%3A+Polos+Focalizados+20%2F1+(4+prendas+x+S%2F100).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
-          Pedir este pack <span>→</span>
-        </a>
+      <div class="pack-card-info">
+        <h3 class="pack-name">4 Polos<br>Focalizados 20/1</h3>
+        <div class="pack-card-price">S/ 100</div>
+        <a href="pack.html?id=04" class="btn-ver-pack">Ver pack →</a>
       </div>
     </div>
 
     <!-- Pack 05 -->
-    <div class="pack-card pack-card--photo">
+    <div class="pack-card" data-id="05">
       <div class="pack-photo-zone">
         <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
-        <div class="pack-color-bar">
-          <span class="pack-color-name" id="pack05-color-label">Negro</span>
-          <div class="pack-color-dots">
-            <button class="pack-color-dot active" style="background:#1a1a1a;" data-img="0" data-name="Negro" data-bg="#1a1a1a" aria-label="Negro"></button>
-            <button class="pack-color-dot" style="background:#f5f5f5;" data-img="1" data-name="Blanco" data-bg="#f5f5f5" aria-label="Blanco"></button>
-            <button class="pack-color-dot" style="background:#6b7280;" data-img="2" data-name="Acero" data-bg="#6b7280" aria-label="Acero"></button>
-            <button class="pack-color-dot" style="background:#d4c5a9;" data-img="3" data-name="Beige Claro" data-bg="#d4c5a9" aria-label="Beige Claro"></button>
-            <button class="pack-color-dot" style="background:#6b4226;" data-img="4" data-name="Cocoa" data-bg="#6b4226" aria-label="Cocoa"></button>
-          </div>
-        </div>
       </div>
-      <div class="pack-card-top">
-        <span class="pack-num">05</span>
-      </div>
-      <div class="pack-card-main">
+      <div class="pack-card-info">
         <h3 class="pack-name">3 Poleras Franela<br>Boxy Fit 24/1</h3>
-        <div class="pack-meta">
-          <span class="pack-qty-price">S/ 130</span>
-        </div>
-      </div>
-      <div class="pack-overlay">
-        <div class="overlay-divider"></div>
-        <div class="overlay-pack-info">Franela Boxy Fit. Calidad premium, silueta contemporánea.</div>
-        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+05%3A+Polera+Franela+Boxy+Fit+24%2F1+(3+prendas+x+S%2F130).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
-          Pedir este pack <span>→</span>
-        </a>
+        <div class="pack-card-price">S/ 130</div>
+        <a href="pack.html?id=05" class="btn-ver-pack">Ver pack →</a>
       </div>
     </div>
 
     <!-- Pack 06 -->
-    <div class="pack-card pack-card--photo">
+    <div class="pack-card" data-id="06">
       <div class="pack-photo-zone">
         <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
-        <div class="pack-color-bar">
-          <span class="pack-color-name" id="pack06-color-label">Negro</span>
-          <div class="pack-color-dots">
-            <button class="pack-color-dot active" style="background:#1a1a1a;" data-img="0" data-name="Negro" data-bg="#1a1a1a" aria-label="Negro"></button>
-            <button class="pack-color-dot" style="background:#f5f5f5;" data-img="1" data-name="Blanco" data-bg="#f5f5f5" aria-label="Blanco"></button>
-            <button class="pack-color-dot" style="background:#6b7280;" data-img="2" data-name="Acero" data-bg="#6b7280" aria-label="Acero"></button>
-            <button class="pack-color-dot" style="background:#9e8a6f;" data-img="3" data-name="Beige Oscuro" data-bg="#9e8a6f" aria-label="Beige Oscuro"></button>
-            <button class="pack-color-dot" style="background:#1f4a2e;" data-img="4" data-name="Verde Botella" data-bg="#1f4a2e" aria-label="Verde Botella"></button>
-          </div>
-        </div>
       </div>
-      <div class="pack-card-top">
-        <span class="pack-num">06</span>
-      </div>
-      <div class="pack-card-main">
+      <div class="pack-card-info">
         <h3 class="pack-name">2 Poleras Franela<br>Oversize 24/1</h3>
-        <div class="pack-meta">
-          <span class="pack-qty-price">S/ 99</span>
-        </div>
-      </div>
-      <div class="pack-overlay">
-        <div class="overlay-divider"></div>
-        <div class="overlay-pack-info">Franela Oversize. El tier premium al precio de entrada.</div>
-        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+06%3A+Polera+Franela+Oversize+24%2F1+(2+prendas+x+S%2F99).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
-          Pedir este pack <span>→</span>
-        </a>
+        <div class="pack-card-price">S/ 99</div>
+        <a href="pack.html?id=06" class="btn-ver-pack">Ver pack →</a>
       </div>
     </div>
 
-    <!-- Pack 07 — FOTO (Slim Fit Pima) -->
-    <div class="pack-card pack-card--photo">
+    <!-- Pack 07 — Slim Fit Pima -->
+    <div class="pack-card" data-id="07">
       <div class="pack-photo-zone">
-        <img class="pack-photo active"
-             src="../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/hf_20260524_002346_e00c7997-d085-4e54-8094-d9ff22f249e2.png"
-             alt="Slim Fit Pima — Azul" />
         <img class="pack-photo"
-             src="../PRODUCTOS/PIMA%20SLIM%20FIT/NEGRO/hf_20260524_013440_0205dc50-cda2-4018-aa74-51a0c71e31c1.png"
-             alt="Slim Fit Pima — Negro" />
-        <div class="pack-color-bar">
-          <span class="pack-color-name" id="pima-color-label">Azul</span>
-          <div class="pack-color-dots">
-            <button class="pack-color-dot active" style="background:#1a3a6e;" data-img="0" data-name="Azul" data-bg="#1a3a6e" aria-label="Azul"></button>
-            <button class="pack-color-dot" style="background:#111111;" data-img="1" data-name="Negro" data-bg="#111111" aria-label="Negro"></button>
-          </div>
-        </div>
+             src="../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/hf_20260524_002346_e00c7997-d085-4e54-8094-d9ff22f249e2.png"
+             alt="Slim Fit Pima" />
       </div>
-      <div class="pack-card-top">
-        <span class="pack-num">07</span>
-        <span class="pack-badge" style="background:#505050;">Premium</span>
-      </div>
-      <div class="pack-card-main">
+      <div class="pack-card-info">
         <h3 class="pack-name">2 Polos Slim Fit<br>Pima</h3>
-        <div class="pack-meta">
-          <span class="pack-qty-price">S/ 70</span>
-        </div>
-      </div>
-      <div class="pack-overlay">
-        <div class="overlay-divider"></div>
-        <div class="overlay-pack-info">Pima premium en corte Slim Fit. Lo mejor del algodón peruano al precio de quien lo fabrica.</div>
-        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+07%3A+Slim+Fit+Pima+(2+prendas+x+S%2F70).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
-          Pedir este pack <span>→</span>
-        </a>
+        <div class="pack-card-price">S/ 70</div>
+        <a href="pack.html?id=07" class="btn-ver-pack">Ver pack →</a>
       </div>
     </div>
 
     <!-- Pack 08 -->
-    <div class="pack-card pack-card--photo">
+    <div class="pack-card" data-id="08">
       <div class="pack-photo-zone">
         <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
-        <div class="pack-color-bar">
-          <span class="pack-color-name" id="pack08-color-label">Negro</span>
-          <div class="pack-color-dots">
-            <button class="pack-color-dot active" style="background:#1a1a1a;" data-img="0" data-name="Negro" data-bg="#1a1a1a" aria-label="Negro"></button>
-            <button class="pack-color-dot" style="background:#f5f5f5;" data-img="1" data-name="Blanco" data-bg="#f5f5f5" aria-label="Blanco"></button>
-            <button class="pack-color-dot" style="background:#6b7280;" data-img="2" data-name="Acero" data-bg="#6b7280" aria-label="Acero"></button>
-            <button class="pack-color-dot" style="background:#c4b5fd;" data-img="3" data-name="Lila" data-bg="#c4b5fd" aria-label="Lila"></button>
-            <button class="pack-color-dot" style="background:#f9a8d4;" data-img="4" data-name="Rosado" data-bg="#f9a8d4" aria-label="Rosado"></button>
-            <button class="pack-color-dot" style="background:#c8a0a0;" data-img="5" data-name="Mauve" data-bg="#c8a0a0" aria-label="Mauve"></button>
-          </div>
-        </div>
       </div>
-      <div class="pack-card-top">
-        <span class="pack-num">08</span>
-      </div>
-      <div class="pack-card-main">
+      <div class="pack-card-info">
         <h3 class="pack-name">4 Polos 15/1<br>Oversize · Boxy · Regular</h3>
-        <div class="pack-meta">
-          <span class="pack-qty-price">S/ 100</span>
-        </div>
-      </div>
-      <div class="pack-overlay">
-        <div class="overlay-divider"></div>
-        <div class="overlay-pack-info">Oversize, Boxy y Regular en un solo pack. Un tier arriba del 20/1.</div>
-        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+08%3A+Oversize%2C+Boxy+y+Regular+15%2F1+(4+prendas+x+S%2F100).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
-          Pedir este pack <span>→</span>
-        </a>
+        <div class="pack-card-price">S/ 100</div>
+        <a href="pack.html?id=08" class="btn-ver-pack">Ver pack →</a>
       </div>
     </div>
 
     <!-- Pack 09 -->
-    <div class="pack-card pack-card--photo">
+    <div class="pack-card" data-id="09">
       <div class="pack-photo-zone">
         <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
-        <div class="pack-color-bar">
-          <span class="pack-color-name" id="pack09-color-label">Negro</span>
-          <div class="pack-color-dots">
-            <button class="pack-color-dot active" style="background:#1a1a1a;" data-img="0" data-name="Negro" data-bg="#1a1a1a" aria-label="Negro"></button>
-            <button class="pack-color-dot" style="background:#f5f5f5;" data-img="1" data-name="Blanco" data-bg="#f5f5f5" aria-label="Blanco"></button>
-            <button class="pack-color-dot" style="background:#6b7280;" data-img="2" data-name="Acero" data-bg="#6b7280" aria-label="Acero"></button>
-            <button class="pack-color-dot" style="background:#1e3a5f;" data-img="3" data-name="English Blue" data-bg="#1e3a5f" aria-label="English Blue"></button>
-            <button class="pack-color-dot" style="background:#7c1d2e;" data-img="4" data-name="Guinda" data-bg="#7c1d2e" aria-label="Guinda"></button>
-            <button class="pack-color-dot" style="background:#4a5c3c;" data-img="5" data-name="Verde Militar" data-bg="#4a5c3c" aria-label="Verde Militar"></button>
-          </div>
-        </div>
       </div>
-      <div class="pack-card-top">
-        <span class="pack-num">09</span>
-        <span class="pack-badge">High Cotton</span>
-      </div>
-      <div class="pack-card-main">
+      <div class="pack-card-info">
         <h3 class="pack-name">4 Polos 11/1<br>Oversize · Boxy · Regular</h3>
-        <div class="pack-meta">
-          <span class="pack-qty-price">S/ 110</span>
-        </div>
-      </div>
-      <div class="pack-overlay">
-        <div class="overlay-divider"></div>
-        <div class="overlay-pack-info">High Cotton en los tres cortes. El tier más pesado del catálogo.</div>
-        <a href="https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+09%3A+Oversize%2C+Boxy+y+Regular+11%2F1+(4+prendas+x+S%2F110).+%C2%BFQu%C3%A9+colores+tienen%3F" class="overlay-cta" target="_blank">
-          Pedir este pack <span>→</span>
-        </a>
+        <div class="pack-card-price">S/ 110</div>
+        <a href="pack.html?id=09" class="btn-ver-pack">Ver pack →</a>
       </div>
     </div>
 
@@ -1432,7 +1072,7 @@
   packCards.forEach((card, i) => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(24px)';
-    card.style.transition = `opacity 0.6s ease ${i * 0.06}s, transform 0.6s ease ${i * 0.06}s, background 0.35s ease`;
+    card.style.transition = `opacity 0.6s ease ${i * 0.06}s, transform 0.6s ease ${i * 0.06}s`;
   });
 
   const packObserver = new IntersectionObserver((entries) => {
@@ -1446,40 +1086,11 @@
   }, { threshold: 0.08 });
   packCards.forEach(card => packObserver.observe(card));
 
-  // ── PACK GRID — COLOR PICKER (todos los packs) ──
-  document.querySelectorAll('.pack-color-dot').forEach(dot => {
-    dot.addEventListener('click', e => {
-      e.stopPropagation();
-      const zone = dot.closest('.pack-photo-zone');
-      const idx  = parseInt(dot.dataset.img);
-      const name = dot.dataset.name;
-      const bg   = dot.dataset.bg;
-
-      const photos = zone.querySelectorAll('.pack-photo');
-      if (photos.length) {
-        photos.forEach((p, i) => p.classList.toggle('active', i === idx));
-      } else if (bg) {
-        const placeholder = zone.querySelector('.pack-photo-placeholder');
-        if (placeholder) placeholder.style.background = bg;
-      }
-
-      zone.querySelectorAll('.pack-color-dot').forEach((d, i) => {
-        d.classList.toggle('active', i === idx);
-      });
-
-      const label = zone.querySelector('.pack-color-name');
-      if (label) label.textContent = name;
-    });
-  });
-
-  // Wire pack cards → página de producto
-  document.querySelectorAll('.pack-card').forEach(card => {
-    const numEl = card.querySelector('.pack-num');
-    if (!numEl) return;
-    const num = numEl.textContent.trim().padStart(2, '0');
+  // ── PACK CARD CLICK → producto ──
+  document.querySelectorAll('.pack-card[data-id]').forEach(card => {
     card.addEventListener('click', e => {
-      if (e.target.closest('.pack-color-dot') || e.target.closest('.overlay-cta')) return;
-      window.location.href = 'pack.html?id=' + num;
+      if (e.target.closest('.btn-ver-pack')) return;
+      window.location.href = 'pack.html?id=' + card.dataset.id;
     });
   });
 
@@ -1507,15 +1118,6 @@
     });
   })();
 
-  // Inject tap hint — visible only on touch devices
-  document.querySelectorAll('.pack-card').forEach(card => {
-    const meta = card.querySelector('.pack-meta');
-    if (!meta) return;
-    const hint = document.createElement('div');
-    hint.className = 'pack-tap-hint';
-    hint.textContent = 'Ver detalles →';
-    meta.insertAdjacentElement('afterend', hint);
-  });
 </script>
 </body>
 </html>
