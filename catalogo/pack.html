@@ -872,9 +872,9 @@
           data-color="${ci}" data-photo="${pi}" />`;
       });
     });
+    html += '</div>';
     html += `<button class="gallery-nav-btn gallery-nav-prev" id="gallery-prev" aria-label="Anterior">&#8249;</button>
       <button class="gallery-nav-btn gallery-nav-next" id="gallery-next" aria-label="Siguiente">&#8250;</button>`;
-    html += '</div>';
     el.innerHTML = html;
 
     let curCi = 0, curPi = 0;
@@ -1020,7 +1020,7 @@
   render();
 
   // ── LIGHTBOX ──
-  let lbCi = 0, lbPi = 0;
+  let lbCi = 0, lbPi = 0, lbScrollY = 0;
   const lightbox    = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   const lbCounter   = document.getElementById('lightbox-counter');
@@ -1043,7 +1043,10 @@
     updateCounter();
     lbCounter.style.display = single ? 'none' : '';
     lightbox.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    lbScrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${lbScrollY}px`;
+    document.body.style.width = '100%';
   }
 
   function lbNavigate(delta) {
@@ -1060,7 +1063,10 @@
 
   function closeLightbox() {
     lightbox.classList.remove('open');
-    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    window.scrollTo(0, lbScrollY || 0);
   }
 
   document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
