@@ -29,6 +29,7 @@
       --serif:   'Cormorant Garamond', Georgia, serif;
       --sans:    'Space Grotesk', -apple-system, sans-serif;
       --ease:    cubic-bezier(0.4, 0, 0.2, 1);
+      --spring:  cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     html { scroll-behavior: smooth; }
@@ -38,6 +39,12 @@
       color: var(--black);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      animation: pageEnter 0.5s ease both;
+    }
+
+    @keyframes pageEnter {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     /* ── CURSOR ── */
@@ -166,7 +173,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.5s var(--ease);
+      transition: background 0.55s var(--ease);
       position: relative;
       overflow: hidden;
     }
@@ -180,7 +187,6 @@
       user-select: none;
       position: absolute;
     }
-
 
     /* Photo gallery */
     .visual-gallery {
@@ -197,7 +203,7 @@
       object-position: top center;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.4s ease;
+      transition: opacity 0.45s var(--ease);
     }
     .gallery-img.active { opacity: 1; pointer-events: auto; cursor: zoom-in; }
 
@@ -206,21 +212,21 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(8,8,8,0.55);
-      border: 1px solid rgba(8,8,8,0.1);
+      background: rgba(246,246,246,0.07);
+      border: 1px solid rgba(246,246,246,0.18);
       color: var(--white);
       width: 40px; height: 40px;
-      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       font-size: 22px;
       z-index: 6;
-      transition: background 0.2s;
+      transition: background 0.2s, border-color 0.2s;
       line-height: 1;
+      backdrop-filter: blur(4px);
     }
-    .gallery-nav-btn:hover { background: rgba(8,8,8,0.8); }
+    .gallery-nav-btn:hover { background: rgba(246,246,246,0.18); border-color: rgba(246,246,246,0.35); }
     .gallery-nav-prev { left: 16px; }
     .gallery-nav-next { right: 16px; }
 
@@ -307,10 +313,11 @@
       border-radius: 50%;
       border: 2px solid var(--g2);
       cursor: pointer;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: border-color 0.2s, transform 0.25s var(--spring);
       padding: 0;
     }
-    .info-color-dot.active { border-color: var(--black); transform: scale(1.12); }
+    .info-color-dot:hover { transform: scale(1.1); }
+    .info-color-dot.active { border-color: var(--black); transform: scale(1.15); }
     .info-color-name {
       font-size: 12px;
       color: var(--g4);
@@ -342,66 +349,107 @@
       font-weight: 500;
       letter-spacing: 0.06em;
       cursor: pointer;
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s var(--spring);
       padding: 0 14px;
     }
-    .info-size-btn:hover { border-color: var(--black); color: var(--black); }
+    .info-size-btn:hover { border-color: var(--black); color: var(--black); transform: translateY(-1px); }
     .info-size-btn.active { border-color: var(--black); background: var(--black); color: var(--white); }
 
     /* ── LIGHTBOX ── */
     .lightbox {
-      display: none;
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(8,8,8,0.95);
+      background: rgba(8,8,8,0);
+      display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: none;
+      opacity: 0;
+      transition: background 0.4s var(--ease), opacity 0.4s var(--ease);
     }
-    .lightbox.open { display: flex; }
+    .lightbox.open {
+      background: rgba(8,8,8,0.97);
+      pointer-events: all;
+      opacity: 1;
+    }
+
+    .lightbox-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: scale(0.92) translateY(18px);
+      opacity: 0;
+      transition: transform 0.5s var(--spring), opacity 0.45s var(--ease);
+      transition-delay: 0.05s;
+    }
+    .lightbox.open .lightbox-content {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+
     .lightbox-img {
-      max-width: 92vw;
-      max-height: 88vh;
+      max-width: min(88vw, 660px);
+      max-height: 80vh;
       object-fit: contain;
       user-select: none;
+      display: block;
+      transition: opacity 0.22s ease;
     }
+    .lightbox-img.fading { opacity: 0; }
+
+    .lightbox-counter {
+      margin-top: 18px;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: rgba(246,246,246,0.28);
+      text-transform: uppercase;
+      font-family: var(--sans);
+      font-weight: 300;
+    }
+
     .lightbox-close {
       position: absolute;
-      top: 20px;
-      right: 24px;
+      top: 24px;
+      right: 28px;
       background: none;
       border: none;
-      color: var(--white);
-      font-size: 32px;
+      color: rgba(246,246,246,0.4);
+      font-size: 22px;
       cursor: pointer;
-      opacity: 0.7;
       line-height: 1;
-      padding: 4px 8px;
-      transition: opacity 0.2s;
+      padding: 8px;
+      transition: color 0.2s, transform 0.35s var(--spring);
+      font-family: var(--sans);
+      font-weight: 300;
     }
-    .lightbox-close:hover { opacity: 1; }
+    .lightbox-close:hover { color: var(--white); transform: rotate(90deg) scale(1.1); }
 
     .lightbox-nav {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(246,246,246,0.1);
-      border: 1px solid rgba(246,246,246,0.2);
-      color: var(--white);
-      width: 52px; height: 52px;
-      border-radius: 50%;
+      background: none;
+      border: 1px solid rgba(246,246,246,0.12);
+      color: rgba(246,246,246,0.5);
+      width: 46px; height: 46px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 30px;
-      transition: background 0.2s;
+      font-size: 28px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.25s var(--spring);
       line-height: 1;
       padding: 0;
     }
-    .lightbox-nav:hover { background: rgba(246,246,246,0.22); }
-    .lightbox-nav-prev { left: 24px; }
-    .lightbox-nav-next { right: 24px; }
+    .lightbox-nav:hover {
+      border-color: rgba(246,246,246,0.3);
+      color: var(--white);
+      background: rgba(246,246,246,0.06);
+      transform: translateY(-50%) scale(1.05);
+    }
+    .lightbox-nav-prev { left: 28px; }
+    .lightbox-nav-next { right: 28px; }
     .lightbox-nav.hidden { display: none; }
 
     .info-spacer { flex: 1; min-height: 40px; }
@@ -421,7 +469,7 @@
       text-transform: uppercase;
       font-weight: 500;
       width: 100%;
-      transition: background 0.2s, transform 0.2s;
+      transition: background 0.2s, transform 0.3s var(--spring);
     }
     .info-cta:hover { background: var(--g5); transform: translateY(-2px); }
     .info-cta-icon { width: 20px; height: 20px; flex-shrink: 0; }
@@ -506,12 +554,15 @@
       .info-title { font-size: 36px; }
       .footer { padding: 40px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
       .footer-links { flex-wrap: wrap; gap: 16px; }
+      .lightbox-nav-prev { left: 12px; }
+      .lightbox-nav-next { right: 12px; }
     }
 
     @media (max-width: 680px) {
       .product-info { padding: 28px 20px 80px; }
       .info-title { font-size: 30px; }
       .info-cta { padding: 18px 24px; }
+      .lightbox-img { max-width: 96vw; max-height: 75vh; }
     }
 
     @media (hover: none) { .cursor { display: none; } }
@@ -532,7 +583,7 @@
       justify-content: center;
       text-decoration: none;
       box-shadow: 0 4px 20px rgba(0,0,0,0.35);
-      transition: transform 0.2s var(--ease), background 0.2s;
+      transition: transform 0.25s var(--spring), background 0.2s;
     }
     .wa-float:hover { transform: scale(1.08); background: var(--g5); }
     .wa-float svg { width: 26px; height: 26px; }
@@ -552,9 +603,8 @@
     <span class="nav-logo-wordmark">blankstate<sup>©</sup></span>
   </a>
   <ul class="nav-links">
+    <li><a href="index.html#destacados">Destacados</a></li>
     <li><a href="index.html#packs">Catálogo</a></li>
-    <li><a href="index.html#por-que">Por qué</a></li>
-    <li><a href="index.html#como-comprar">Cómo comprar</a></li>
   </ul>
   <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." class="nav-cta" target="_blank">
     Pedir ahora →
@@ -572,10 +622,14 @@
   <div class="product-info"  id="product-info"></div>
 </main>
 
+<!-- ── LIGHTBOX ── -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">✕</button>
+  <div class="lightbox-content" id="lightbox-content">
+    <img class="lightbox-img" id="lightbox-img" src="" alt="Vista ampliada" />
+    <span class="lightbox-counter" id="lightbox-counter"></span>
+  </div>
   <button class="lightbox-nav lightbox-nav-prev" id="lightbox-prev" aria-label="Anterior">&#8249;</button>
-  <img class="lightbox-img" id="lightbox-img" src="" alt="Vista ampliada" />
   <button class="lightbox-nav lightbox-nav-next" id="lightbox-next" aria-label="Siguiente">&#8250;</button>
 </div>
 
@@ -797,16 +851,13 @@
     const items = currentPack.colors || currentPack.swatches;
     const name = items[ci].name;
 
-    // Info dots
     document.querySelectorAll('.info-color-dot').forEach((d, i) => d.classList.toggle('active', i === ci));
     const icn = document.getElementById('info-color-name');
     if (icn) icn.textContent = name;
 
-    // Color bg (swatches packs)
     const bg = document.getElementById('visual-bg');
     if (bg && currentPack.swatches) bg.style.background = currentPack.swatches[ci].hex;
 
-    // Gallery (photo packs)
     if (currentPack.colors && currentPack._showPhoto) currentPack._showPhoto(ci, 0);
   }
 
@@ -837,7 +888,6 @@
 
     pack._showPhoto = showPhoto;
 
-    // Tap/click image → open lightbox
     el.querySelectorAll('.gallery-img').forEach(img => {
       img.addEventListener('click', () => openLightbox(curCi, curPi));
     });
@@ -920,12 +970,10 @@
         </svg>
       </a>`;
 
-    // Info color dots → sync
     el.querySelectorAll('.info-color-dot').forEach(dot => {
       dot.addEventListener('click', () => syncColor(parseInt(dot.dataset.color)));
     });
 
-    // Size buttons → toggle active
     el.querySelectorAll('.info-size-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         el.querySelectorAll('.info-size-btn').forEach(b => b.classList.remove('active'));
@@ -973,10 +1021,17 @@
 
   // ── LIGHTBOX ──
   let lbCi = 0, lbPi = 0;
-  const lightbox = document.getElementById('lightbox');
+  const lightbox    = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
-  const lbPrev = document.getElementById('lightbox-prev');
-  const lbNext = document.getElementById('lightbox-next');
+  const lbCounter   = document.getElementById('lightbox-counter');
+  const lbPrev      = document.getElementById('lightbox-prev');
+  const lbNext      = document.getElementById('lightbox-next');
+
+  function updateCounter() {
+    if (!currentPack || !currentPack.colors) return;
+    const total = currentPack.colors[lbCi].photos.length;
+    lbCounter.textContent = `${lbPi + 1} / ${total}`;
+  }
 
   function openLightbox(ci, pi) {
     lbCi = ci; lbPi = pi;
@@ -985,28 +1040,40 @@
     const single = photos.length === 1;
     lbPrev.classList.toggle('hidden', single);
     lbNext.classList.toggle('hidden', single);
+    updateCounter();
+    lbCounter.style.display = single ? 'none' : '';
     lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
 
   function lbNavigate(delta) {
+    if (!currentPack || !currentPack.colors) return;
     const photos = currentPack.colors[lbCi].photos;
     lbPi = (lbPi + delta + photos.length) % photos.length;
-    lightboxImg.src = photos[lbPi];
+    lightboxImg.classList.add('fading');
+    setTimeout(() => {
+      lightboxImg.src = photos[lbPi];
+      updateCounter();
+      lightboxImg.classList.remove('fading');
+    }, 200);
   }
 
-  function closeLightbox() { lightbox.classList.remove('open'); }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
 
   document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
   lbPrev.addEventListener('click', e => { e.stopPropagation(); lbNavigate(-1); });
   lbNext.addEventListener('click', e => { e.stopPropagation(); lbNavigate(1); });
   lightbox.addEventListener('click', e => {
-    if (e.target !== lightboxImg && e.target !== lbPrev && e.target !== lbNext) closeLightbox();
+    if (e.target === lightbox) closeLightbox();
   });
   document.addEventListener('keydown', e => {
     if (!lightbox.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') lbNavigate(-1);
-    if (e.key === 'ArrowRight') lbNavigate(1);
+    if (e.key === 'Escape')      closeLightbox();
+    if (e.key === 'ArrowLeft')   lbNavigate(-1);
+    if (e.key === 'ArrowRight')  lbNavigate(1);
   });
 
   let lbTsX = 0;
