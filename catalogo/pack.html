@@ -181,47 +181,6 @@
       position: absolute;
     }
 
-    /* Color bar overlay */
-    .visual-color-bar {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 64px 32px 24px;
-      background: linear-gradient(to top, rgba(8,8,8,0.55), transparent);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .visual-color-bar-inner {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      pointer-events: auto;
-    }
-    .visual-color-name {
-      font-size: 10.5px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.75);
-    }
-    .visual-color-dots { display: flex; gap: 9px; pointer-events: auto; }
-    .visual-color-dot {
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.25);
-      cursor: pointer;
-      transition: border-color 0.2s, transform 0.2s;
-      padding: 0;
-    }
-    .visual-color-dot.active { border-color: white; transform: scale(1.18); }
-    .visual-colors-count {
-      font-size: 9.5px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
-      font-weight: 300;
-    }
 
     /* Photo gallery */
     .visual-gallery {
@@ -241,28 +200,28 @@
     }
     .gallery-img.active { opacity: 1; }
 
-    /* Thumbs strip */
-    .visual-thumbs {
+    /* Gallery nav arrows */
+    .gallery-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(246,246,246,0.1);
+      border: 1px solid rgba(246,246,246,0.18);
+      color: var(--white);
+      width: 40px; height: 40px;
+      border-radius: 50%;
       display: flex;
-      gap: 2px;
-      background: var(--black);
-      flex-shrink: 0;
-    }
-    .visual-thumb {
-      flex: 1;
-      height: 96px;
-      overflow: hidden;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
-      opacity: 0.45;
-      transition: opacity 0.2s;
+      font-size: 22px;
+      z-index: 5;
+      transition: background 0.2s;
+      line-height: 1;
     }
-    .visual-thumb.active { opacity: 1; }
-    .visual-thumb img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: top center;
-      display: block;
-    }
+    .gallery-nav-btn:hover { background: rgba(246,246,246,0.24); }
+    .gallery-nav-prev { left: 16px; }
+    .gallery-nav-next { right: 16px; }
 
     /* ── INFO PANEL ── */
     .product-info {
@@ -362,7 +321,7 @@
       color: var(--g3);
       line-height: 1.7;
       font-weight: 300;
-      margin-bottom: 40px;
+      margin-bottom: 16px;
     }
 
     .info-spacer { flex: 1; min-height: 40px; }
@@ -471,7 +430,6 @@
     @media (max-width: 680px) {
       .product-info { padding: 28px 20px 80px; }
       .info-title { font-size: 30px; }
-      .visual-thumb { height: 80px; }
       .info-cta { padding: 18px 24px; }
     }
 
@@ -741,21 +699,23 @@
     const items = currentPack.colors || currentPack.swatches;
     const name = items[ci].name;
 
-    // Visual dots
-    document.querySelectorAll('.visual-color-dot').forEach((d, i) => d.classList.toggle('active', i === ci));
-    const vcn = document.getElementById('visual-color-name');
-    if (vcn) vcn.textContent = name;
-
     // Info dots
     document.querySelectorAll('.info-color-dot').forEach((d, i) => d.classList.toggle('active', i === ci));
     const icn = document.getElementById('info-color-name');
     if (icn) icn.textContent = name;
+
+    // Color bg (swatches packs)
+    const bg = document.getElementById('visual-bg');
+    if (bg && currentPack.swatches) bg.style.background = currentPack.swatches[ci].hex;
+
+    // Gallery (photo packs)
+    if (currentPack.colors && currentPack._showPhoto) currentPack._showPhoto(ci, 0);
   }
 
   // ── RENDER VISUAL — WITH PHOTOS ──
   function renderVisualPhotos(pack) {
     const el = document.getElementById('product-visual');
-    let html = '<div class="visual-gallery">';
+    let html = '<div class="visual-gallery" id="visual-gallery">';
     pack.colors.forEach((color, ci) => {
       color.photos.forEach((src, pi) => {
         html += `<img class="gallery-img${ci===0 && pi===0 ? ' active' : ''}"
@@ -763,116 +723,52 @@
           data-color="${ci}" data-photo="${pi}" />`;
       });
     });
+    html += `<button class="gallery-nav-btn gallery-nav-prev" id="gallery-prev" aria-label="Anterior">&#8249;</button>
+      <button class="gallery-nav-btn gallery-nav-next" id="gallery-next" aria-label="Siguiente">&#8250;</button>`;
     html += '</div>';
-
-    // Color bar
-    html += `<div class="visual-color-bar">
-      <span class="visual-color-name" id="visual-color-name">${pack.colors[0].name}</span>
-      <div class="visual-color-dots">`;
-    pack.colors.forEach((c, ci) => {
-      html += `<button class="visual-color-dot${ci===0?' active':''}"
-        style="background:${c.hex}" data-color="${ci}" aria-label="${c.name}"></button>`;
-    });
-    html += '</div></div>';
-
-    // Thumbs
-    html += '<div class="visual-thumbs" id="visual-thumbs">';
-    pack.colors[0].photos.forEach((src, pi) => {
-      html += `<div class="visual-thumb${pi===0?' active':''}" data-color="0" data-photo="${pi}">
-        <img src="${src}" alt="Foto ${pi+1}" /></div>`;
-    });
-    html += '</div>';
-
     el.innerHTML = html;
+
+    let curCi = 0, curPi = 0;
 
     function showPhoto(ci, pi) {
       el.querySelectorAll('.gallery-img').forEach(img => img.classList.remove('active'));
       const target = el.querySelector(`.gallery-img[data-color="${ci}"][data-photo="${pi}"]`);
       if (target) target.classList.add('active');
-      el.querySelectorAll('.visual-thumb').forEach((th, i) => th.classList.toggle('active', i === pi));
+      curCi = ci; curPi = pi;
     }
 
-    function rebuildThumbs(ci) {
-      const thumbsEl = document.getElementById('visual-thumbs');
-      thumbsEl.innerHTML = '';
-      pack.colors[ci].photos.forEach((src, pi) => {
-        const th = document.createElement('div');
-        th.className = 'visual-thumb' + (pi === 0 ? ' active' : '');
-        th.dataset.color = ci;
-        th.dataset.photo = pi;
-        th.innerHTML = `<img src="${src}" alt="Foto ${pi+1}" />`;
-        th.addEventListener('click', () => showPhoto(ci, pi));
-        attachCursor(th);
-        thumbsEl.appendChild(th);
-      });
-    }
+    pack._showPhoto = showPhoto;
 
-    el.querySelectorAll('.visual-color-dot').forEach(dot => {
-      dot.addEventListener('click', () => {
-        const ci = parseInt(dot.dataset.color);
-        syncColor(ci);
-        rebuildThumbs(ci);
-        showPhoto(ci, 0);
-      });
+    document.getElementById('gallery-prev').addEventListener('click', () => {
+      const total = pack.colors[curCi].photos.length;
+      showPhoto(curCi, (curPi - 1 + total) % total);
+    });
+    document.getElementById('gallery-next').addEventListener('click', () => {
+      const total = pack.colors[curCi].photos.length;
+      showPhoto(curCi, (curPi + 1) % total);
     });
 
-    el.querySelectorAll('.visual-thumb').forEach(th => {
-      th.addEventListener('click', () => showPhoto(parseInt(th.dataset.color), parseInt(th.dataset.photo)));
-    });
-
-    // Touch swipe for gallery
     const galleryEl = el.querySelector('.visual-gallery');
-    if (galleryEl) {
-      let tsX = 0, tsY = 0;
-      galleryEl.addEventListener('touchstart', e => {
-        tsX = e.touches[0].clientX;
-        tsY = e.touches[0].clientY;
-      }, { passive: true });
-      galleryEl.addEventListener('touchend', e => {
-        const dx = tsX - e.changedTouches[0].clientX;
-        const dy = Math.abs(tsY - e.changedTouches[0].clientY);
-        if (Math.abs(dx) > 40 && dy < 80) {
-          const activeImg = el.querySelector('.gallery-img.active');
-          if (!activeImg) return;
-          const ci = parseInt(activeImg.dataset.color);
-          const pi = parseInt(activeImg.dataset.photo);
-          const total = pack.colors[ci].photos.length;
-          showPhoto(ci, dx > 0 ? (pi + 1) % total : (pi - 1 + total) % total);
-        }
-      }, { passive: true });
-    }
+    let tsX = 0, tsY = 0;
+    galleryEl.addEventListener('touchstart', e => { tsX = e.touches[0].clientX; tsY = e.touches[0].clientY; }, { passive: true });
+    galleryEl.addEventListener('touchend', e => {
+      const dx = tsX - e.changedTouches[0].clientX;
+      const dy = Math.abs(tsY - e.changedTouches[0].clientY);
+      if (Math.abs(dx) > 40 && dy < 80) {
+        const total = pack.colors[curCi].photos.length;
+        showPhoto(curCi, dx > 0 ? (curPi + 1) % total : (curPi - 1 + total) % total);
+      }
+    }, { passive: true });
   }
 
   // ── RENDER VISUAL — COLOR BACKGROUND ──
   function renderVisualColor(pack) {
     const el = document.getElementById('product-visual');
     const first = pack.swatches[0];
-
     el.innerHTML = `
       <div class="visual-color-bg" id="visual-bg" style="background:${first.hex}">
         <span class="visual-pack-num">${pack.num}</span>
-      </div>
-      <div class="visual-color-bar">
-        <div>
-          <span class="visual-color-name" id="visual-color-name">${first.name}</span><br>
-          <span class="visual-colors-count">${pack.swatches.length} colores disponibles</span>
-        </div>
-        <div class="visual-color-dots">
-          ${pack.swatches.map((s, i) =>
-            `<button class="visual-color-dot${i===0?' active':''}"
-              style="background:${s.hex}" data-color="${i}" aria-label="${s.name}" title="${s.name}"></button>`
-          ).join('')}
-        </div>
       </div>`;
-
-    const bg = document.getElementById('visual-bg');
-    el.querySelectorAll('.visual-color-dot').forEach(dot => {
-      dot.addEventListener('click', () => {
-        const ci = parseInt(dot.dataset.color);
-        bg.style.background = pack.swatches[ci].hex;
-        syncColor(ci);
-      });
-    });
   }
 
   // ── RENDER INFO ──
@@ -884,7 +780,7 @@
     let colorsSection = '';
     if (colorItems) {
       const firstName = colorItems[0].name;
-      colorsSection += `<p class="info-colors-label">Colores disponibles</p>
+      colorsSection += `<p class="info-colors-label">Tallas</p>
         <div class="info-colors-row">
           ${colorItems.map((c, i) =>
             `<button class="info-color-dot${i===0?' active':''}"
@@ -904,9 +800,9 @@
         <span class="info-price">${pack.price}</span>
         <span class="info-qty">${pack.qty}</span>
       </div>
+      ${colorsSection}
       <div class="info-divider"></div>
       <p class="info-desc">${pack.desc}</p>
-      ${colorsSection}
       <div class="info-spacer"></div>
       <a href="${pack.wsp}" class="info-cta" target="_blank" rel="noopener">
         Pedir por WhatsApp
@@ -915,14 +811,9 @@
         </svg>
       </a>`;
 
-    // Info color dots → sync visual
+    // Info color dots → sync
     el.querySelectorAll('.info-color-dot').forEach(dot => {
-      dot.addEventListener('click', () => {
-        const ci = parseInt(dot.dataset.color);
-        const vDot = document.querySelector(`#product-visual .visual-color-dot[data-color="${ci}"]`);
-        if (vDot) vDot.click();
-        else syncColor(ci);
-      });
+      dot.addEventListener('click', () => syncColor(parseInt(dot.dataset.color)));
     });
   }
 
