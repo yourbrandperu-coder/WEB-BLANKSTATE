@@ -12,7 +12,8 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <title>Blankstate — Packs Premium</title>
-  <link rel="preload" as="image" href="../BRANDING/banners/1.png" />
+  <link rel="preload" as="image" href="../BRANDING/banners/1.webp" type="image/webp" media="(min-width: 901px)" />
+  <link rel="preload" as="image" href="../BRANDING/banners/cel-1.webp" type="image/webp" media="(max-width: 900px)" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -806,6 +807,8 @@
   <!-- Slide 1 -->
   <div class="hero-slide active">
     <picture>
+      <source media="(max-width: 900px)" srcset="../BRANDING/banners/cel-1.webp" type="image/webp" />
+      <source srcset="../BRANDING/banners/1.webp" type="image/webp" />
       <img class="hero-img" src="../BRANDING/banners/1.png" alt="Blankstate — Packs Premium" fetchpriority="high" loading="eager" />
     </picture>
   </div>
@@ -813,6 +816,8 @@
   <!-- Slide 2 -->
   <div class="hero-slide">
     <picture>
+      <source media="(max-width: 900px)" srcset="../BRANDING/banners/cel-2.webp" type="image/webp" />
+      <source srcset="../BRANDING/banners/2.webp" type="image/webp" />
       <img class="hero-img" src="../BRANDING/banners/2.png" alt="Blankstate — Calidad sin markup" loading="lazy" />
     </picture>
   </div>
@@ -820,6 +825,8 @@
   <!-- Slide 3 -->
   <div class="hero-slide">
     <picture>
+      <source media="(max-width: 900px)" srcset="../BRANDING/banners/cel-3.webp" type="image/webp" />
+      <source srcset="../BRANDING/banners/3.webp" type="image/webp" />
       <img class="hero-img" src="../BRANDING/banners/3.png" alt="Blankstate — Packs desde S/70" loading="lazy" />
     </picture>
   </div>
