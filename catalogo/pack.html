@@ -324,6 +324,62 @@
       margin-bottom: 16px;
     }
 
+    .info-sizes-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .info-size-btn {
+      min-width: 44px;
+      height: 44px;
+      border: 1px solid var(--g2);
+      background: none;
+      color: var(--g4);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      padding: 0 14px;
+    }
+    .info-size-btn:hover { border-color: var(--black); color: var(--black); }
+    .info-size-btn.active { border-color: var(--black); background: var(--black); color: var(--white); }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(8,8,8,0.95);
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-img {
+      max-width: 92vw;
+      max-height: 88vh;
+      object-fit: contain;
+      user-select: none;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 32px;
+      cursor: pointer;
+      opacity: 0.7;
+      line-height: 1;
+      padding: 4px 8px;
+      transition: opacity 0.2s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+
     .info-spacer { flex: 1; min-height: 40px; }
 
     /* CTA */
@@ -418,8 +474,8 @@
       .product-visual {
         position: relative;
         top: 0;
-        height: 72vw;
-        max-height: 500px;
+        height: 100vw;
+        max-height: 72vh;
       }
       .product-info { padding: 36px 24px 64px; min-height: auto; }
       .info-title { font-size: 36px; }
@@ -490,6 +546,11 @@
   <div class="product-visual" id="product-visual"></div>
   <div class="product-info"  id="product-info"></div>
 </main>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">✕</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="Vista ampliada" />
+</div>
 
 <footer class="footer">
   <a href="index.html" class="footer-logo">
@@ -739,6 +800,15 @@
 
     pack._showPhoto = showPhoto;
 
+    // Tap/click image → open lightbox
+    el.querySelectorAll('.gallery-img').forEach(img => {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => {
+        document.getElementById('lightbox-img').src = img.src;
+        document.getElementById('lightbox').classList.add('open');
+      });
+    });
+
     document.getElementById('gallery-prev').addEventListener('click', () => {
       const total = pack.colors[curCi].photos.length;
       showPhoto(curCi, (curPi - 1 + total) % total);
@@ -780,7 +850,7 @@
     let colorsSection = '';
     if (colorItems) {
       const firstName = colorItems[0].name;
-      colorsSection += `<p class="info-colors-label">Tallas</p>
+      colorsSection += `<p class="info-colors-label">Colores</p>
         <div class="info-colors-row">
           ${colorItems.map((c, i) =>
             `<button class="info-color-dot${i===0?' active':''}"
@@ -792,6 +862,12 @@
     if (pack.colorsNote) {
       colorsSection += `<p class="info-colors-note">${pack.colorsNote}</p>`;
     }
+    colorsSection += `<p class="info-colors-label" style="margin-top:18px;">Tallas</p>
+      <div class="info-sizes-row">
+        ${['S','M','L','XL'].map((s,i) =>
+          `<button class="info-size-btn${i===0?' active':''}" data-size="${s}">${s}</button>`
+        ).join('')}
+      </div>`;
 
     el.innerHTML = `
       <p class="info-tag">${tagLine}</p>
@@ -814,6 +890,14 @@
     // Info color dots → sync
     el.querySelectorAll('.info-color-dot').forEach(dot => {
       dot.addEventListener('click', () => syncColor(parseInt(dot.dataset.color)));
+    });
+
+    // Size buttons → toggle active
+    el.querySelectorAll('.info-size-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        el.querySelectorAll('.info-size-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
     });
   }
 
@@ -853,6 +937,16 @@
   }
 
   render();
+
+  // ── LIGHTBOX CLOSE ──
+  const lightbox = document.getElementById('lightbox');
+  document.getElementById('lightbox-close').addEventListener('click', () => lightbox.classList.remove('open'));
+  lightbox.addEventListener('click', e => {
+    if (e.target !== document.getElementById('lightbox-img')) lightbox.classList.remove('open');
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') lightbox.classList.remove('open');
+  });
 </script>
 </body>
 </html>

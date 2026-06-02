@@ -332,11 +332,17 @@
       letter-spacing: 0.02em;
     }
 
+    .pack-card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2px;
+    }
+
     .btn-ver-pack {
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      align-self: flex-start;
       border: 1px solid var(--g2);
       color: var(--g4);
       text-decoration: none;
@@ -349,7 +355,6 @@
       transition: border-color 0.2s, color 0.2s;
       background: none;
       cursor: pointer;
-      margin-top: 2px;
     }
     .pack-card:hover .btn-ver-pack,
     .btn-ver-pack:hover {
@@ -552,7 +557,7 @@
 
     @media (max-width: 900px) {
       .hero-slider { height: 68svh; }
-      .hero-img { object-fit: cover; object-position: center center; }
+      .hero-img { object-fit: cover; object-position: top center; }
     }
 
     .hero-overlay {
@@ -874,8 +879,10 @@
       </div>
       <div class="pack-card-info">
         <h3 class="pack-name">5 Polos 20/1<br>Oversize y Boxy</h3>
-        <div class="pack-card-price">S/ 100</div>
-        <a href="pack.html?id=01" class="btn-ver-pack">Ver →</a>
+        <div class="pack-card-bottom">
+          <div class="pack-card-price">S/ 100</div>
+          <a href="pack.html?id=01" class="btn-ver-pack">Ver →</a>
+        </div>
       </div>
     </div>
 
@@ -886,8 +893,10 @@
       </div>
       <div class="pack-card-info">
         <h3 class="pack-name">6 Polos 20/1<br>Regular y Dama</h3>
-        <div class="pack-card-price">S/ 100</div>
-        <a href="pack.html?id=02" class="btn-ver-pack">Ver →</a>
+        <div class="pack-card-bottom">
+          <div class="pack-card-price">S/ 100</div>
+          <a href="pack.html?id=02" class="btn-ver-pack">Ver →</a>
+        </div>
       </div>
     </div>
 
@@ -898,8 +907,10 @@
       </div>
       <div class="pack-card-info">
         <h3 class="pack-name">5 Polos<br>Acid Wash 20/1</h3>
-        <div class="pack-card-price">S/ 110</div>
-        <a href="pack.html?id=03" class="btn-ver-pack">Ver →</a>
+        <div class="pack-card-bottom">
+          <div class="pack-card-price">S/ 110</div>
+          <a href="pack.html?id=03" class="btn-ver-pack">Ver →</a>
+        </div>
       </div>
     </div>
 
@@ -910,8 +921,10 @@
       </div>
       <div class="pack-card-info">
         <h3 class="pack-name">4 Polos<br>Focalizados 20/1</h3>
-        <div class="pack-card-price">S/ 100</div>
-        <a href="pack.html?id=04" class="btn-ver-pack">Ver →</a>
+        <div class="pack-card-bottom">
+          <div class="pack-card-price">S/ 100</div>
+          <a href="pack.html?id=04" class="btn-ver-pack">Ver →</a>
+        </div>
       </div>
     </div>
 
@@ -922,8 +935,10 @@
       </div>
       <div class="pack-card-info">
         <h3 class="pack-name">3 Poleras Franela<br>Boxy Fit 24/1</h3>
-        <div class="pack-card-price">S/ 130</div>
-        <a href="pack.html?id=05" class="btn-ver-pack">Ver →</a>
+        <div class="pack-card-bottom">
+          <div class="pack-card-price">S/ 130</div>
+          <a href="pack.html?id=05" class="btn-ver-pack">Ver →</a>
+        </div>
       </div>
     </div>
 
@@ -934,8 +949,10 @@
       </div>
       <div class="pack-card-info">
         <h3 class="pack-name">2 Poleras Franela<br>Oversize 24/1</h3>
-        <div class="pack-card-price">S/ 99</div>
-        <a href="pack.html?id=06" class="btn-ver-pack">Ver →</a>
+        <div class="pack-card-bottom">
+          <div class="pack-card-price">S/ 99</div>
+          <a href="pack.html?id=06" class="btn-ver-pack">Ver →</a>
+        </div>
       </div>
     </div>
 
@@ -948,8 +965,10 @@
       </div>
       <div class="pack-card-info">
         <h3 class="pack-name">2 Polos Slim Fit<br>Pima</h3>
-        <div class="pack-card-price">S/ 70</div>
-        <a href="pack.html?id=07" class="btn-ver-pack">Ver →</a>
+        <div class="pack-card-bottom">
+          <div class="pack-card-price">S/ 70</div>
+          <a href="pack.html?id=07" class="btn-ver-pack">Ver →</a>
+        </div>
       </div>
     </div>
 
@@ -960,8 +979,10 @@
       </div>
       <div class="pack-card-info">
         <h3 class="pack-name">4 Polos 15/1<br>Oversize · Boxy · Regular</h3>
-        <div class="pack-card-price">S/ 100</div>
-        <a href="pack.html?id=08" class="btn-ver-pack">Ver →</a>
+        <div class="pack-card-bottom">
+          <div class="pack-card-price">S/ 100</div>
+          <a href="pack.html?id=08" class="btn-ver-pack">Ver →</a>
+        </div>
       </div>
     </div>
 
@@ -972,8 +993,10 @@
       </div>
       <div class="pack-card-info">
         <h3 class="pack-name">4 Polos 11/1<br>Oversize · Boxy · Regular</h3>
-        <div class="pack-card-price">S/ 110</div>
-        <a href="pack.html?id=09" class="btn-ver-pack">Ver →</a>
+        <div class="pack-card-bottom">
+          <div class="pack-card-price">S/ 110</div>
+          <a href="pack.html?id=09" class="btn-ver-pack">Ver →</a>
+        </div>
       </div>
     </div>
 
