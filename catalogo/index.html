@@ -7,7 +7,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Blankstate — Packs Premium" />
   <meta property="og:description" content="Ropa de calidad real. Sin logo, sin markup. Packs desde S/70. Lima, Perú." />
-  <meta property="og:image" content="../BRANDING/portada-blank.webp" />
+  <meta property="og:image" content="https://blankstate.pe/BRANDING/banners/1.webp" />
   <meta property="og:url" content="https://blankstate.pe" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -307,6 +307,14 @@
       color: var(--black);
     }
 
+    .pack-desc {
+      font-size: 12px;
+      color: var(--g3);
+      letter-spacing: 0.03em;
+      font-weight: 300;
+      margin-top: -2px;
+    }
+
     .pack-card-price {
       font-size: 16px;
       font-weight: 600;
@@ -522,14 +530,6 @@
 
     .hero-content { max-width: 560px; }
 
-    .hero-label {
-      font-size: 10.5px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(246,246,246,0.55);
-      margin-bottom: 18px;
-    }
-
     .hero-title {
       font-family: var(--serif);
       font-size: clamp(48px, 6.5vw, 96px);
@@ -605,32 +605,11 @@
       transform: scale(1.2);
     }
 
-    .hero-scroll-hint {
-      position: absolute;
-      bottom: 36px;
-      left: 48px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      z-index: 10;
-    }
-    .hero-scroll-line {
-      width: 28px; height: 1px;
-      background: rgba(246,246,246,0.28);
-    }
-    .hero-scroll-text {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(246,246,246,0.38);
-    }
-
     @media (max-width: 900px) {
       .hero-overlay { padding: 0 20px 68px; }
       .hero-title { font-size: clamp(28px, 7vw, 40px); margin-bottom: 24px; }
       .hero-arrow { display: none !important; }
       .hero-dots { right: 20px; }
-      .hero-scroll-hint { left: 20px; }
     }
 
     /* ── SCROLL ANIMATIONS ── */
@@ -670,6 +649,12 @@
     @media (max-width: 480px) {
       .pack-grid { gap: 4px; }
       .bar { font-size: 10px; letter-spacing: 0.07em; padding: 9px 12px; }
+    }
+
+    /* ── MOBILE-ONLY SLIDES ── */
+    @media (min-width: 901px) {
+      .hero-slide.mobile-only,
+      .hero-dot.mobile-only { display: none; }
     }
 
     /* ── TOUCH DEVICES ── */
@@ -725,8 +710,8 @@
 <div class="nav-menu" id="nav-menu" aria-hidden="true">
   <div class="nav-menu-inner">
     <ul class="nav-menu-links">
-      <li><a href="#packs" class="nav-menu-link">Más vendidos</a></li>
-      <li><a href="#packs" class="nav-menu-link">Todos los packs</a></li>
+      <li><a href="#" class="nav-menu-link">Inicio</a></li>
+      <li><a href="#packs" class="nav-menu-link">Catálogo</a></li>
     </ul>
     <div class="nav-menu-wa">
       <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." class="nav-menu-wa-btn" target="_blank" rel="noopener">
@@ -769,10 +754,9 @@
     </picture>
   </div>
 
-  <!-- Slide 4 (mobile banner) -->
-  <div class="hero-slide">
+  <!-- Slide 4 — solo mobile -->
+  <div class="hero-slide mobile-only">
     <picture>
-      <source media="(max-width: 900px)" srcset="../BRANDING/banners/Celular/4.png" />
       <img class="hero-img" src="../BRANDING/banners/Celular/4.png" alt="Blankstate" loading="lazy" />
     </picture>
   </div>
@@ -794,13 +778,9 @@
     <button class="hero-dot active" data-slide="0" aria-label="Slide 1"></button>
     <button class="hero-dot" data-slide="1" aria-label="Slide 2"></button>
     <button class="hero-dot" data-slide="2" aria-label="Slide 3"></button>
-    <button class="hero-dot" data-slide="3" aria-label="Slide 4"></button>
+    <button class="hero-dot mobile-only" data-slide="3" aria-label="Slide 4"></button>
   </div>
 
-  <div class="hero-scroll-hint">
-    <div class="hero-scroll-line"></div>
-    <span class="hero-scroll-text">Scroll</span>
-  </div>
 
 </section>
 
@@ -809,104 +789,24 @@
 <section class="packs-section" id="packs">
   <div class="packs-header reveal">
     <h2 class="packs-title">Catálogo completo.</h2>
-    <span class="packs-count">09 packs</span>
+    <span class="packs-count">08 packs</span>
   </div>
 
   <div class="pack-grid">
 
-    <!-- Pack 01 -->
-    <div class="pack-card" data-id="01">
-      <div class="pack-photo-zone">
-        <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
-      </div>
-      <div class="pack-card-info">
-        <h3 class="pack-name">5 Polos 20/1<br>Oversize y Boxy</h3>
-        <div class="pack-card-bottom">
-          <div class="pack-card-price">S/ 100</div>
-          <a href="pack.html?id=01" class="btn-ver-pack">Ver →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pack 02 -->
-    <div class="pack-card" data-id="02">
-      <div class="pack-photo-zone">
-        <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
-      </div>
-      <div class="pack-card-info">
-        <h3 class="pack-name">6 Polos 20/1<br>Regular y Dama</h3>
-        <div class="pack-card-bottom">
-          <div class="pack-card-price">S/ 100</div>
-          <a href="pack.html?id=02" class="btn-ver-pack">Ver →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pack 03 -->
-    <div class="pack-card" data-id="03">
-      <div class="pack-photo-zone">
-        <div class="pack-photo-placeholder" style="background:#6b7280;"></div>
-      </div>
-      <div class="pack-card-info">
-        <h3 class="pack-name">5 Polos<br>Acid Wash 20/1</h3>
-        <div class="pack-card-bottom">
-          <div class="pack-card-price">S/ 110</div>
-          <a href="pack.html?id=03" class="btn-ver-pack">Ver →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pack 04 -->
-    <div class="pack-card" data-id="04">
-      <div class="pack-photo-zone">
-        <div class="pack-photo-placeholder" style="background:#1a3a6e;"></div>
-      </div>
-      <div class="pack-card-info">
-        <h3 class="pack-name">4 Polos<br>Focalizados 20/1</h3>
-        <div class="pack-card-bottom">
-          <div class="pack-card-price">S/ 100</div>
-          <a href="pack.html?id=04" class="btn-ver-pack">Ver →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pack 05 -->
-    <div class="pack-card" data-id="05">
-      <div class="pack-photo-zone">
-        <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
-      </div>
-      <div class="pack-card-info">
-        <h3 class="pack-name">3 Poleras Franela<br>Boxy Fit 24/1</h3>
-        <div class="pack-card-bottom">
-          <div class="pack-card-price">S/ 130</div>
-          <a href="pack.html?id=05" class="btn-ver-pack">Ver →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pack 06 -->
-    <div class="pack-card" data-id="06">
-      <div class="pack-photo-zone">
-        <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
-      </div>
-      <div class="pack-card-info">
-        <h3 class="pack-name">2 Poleras Franela<br>Oversize 24/1</h3>
-        <div class="pack-card-bottom">
-          <div class="pack-card-price">S/ 99</div>
-          <a href="pack.html?id=06" class="btn-ver-pack">Ver →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pack 07 — Slim Fit Pima -->
+    <!-- Pack 07 — Pima (primero) -->
     <div class="pack-card" data-id="07">
       <div class="pack-photo-zone">
-        <img class="pack-photo"
-             src="../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/hf_20260524_002346_e00c7997-d085-4e54-8094-d9ff22f249e2.png"
-             alt="Slim Fit Pima" />
+        <picture>
+          <source srcset="../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/hf_20260524_002346_e00c7997-d085-4e54-8094-d9ff22f249e2.webp" type="image/webp" />
+          <img class="pack-photo"
+               src="../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/hf_20260524_002346_e00c7997-d085-4e54-8094-d9ff22f249e2.png"
+               alt="Pack Pima" />
+        </picture>
       </div>
       <div class="pack-card-info">
-        <h3 class="pack-name">2 Polos Slim Fit<br>Pima</h3>
+        <h3 class="pack-name">Pack Pima</h3>
+        <p class="pack-desc">2 polos · slim fit · algodón pima</p>
         <div class="pack-card-bottom">
           <div class="pack-card-price">S/ 70</div>
           <a href="pack.html?id=07" class="btn-ver-pack">Ver →</a>
@@ -914,13 +814,44 @@
       </div>
     </div>
 
-    <!-- Pack 08 -->
+    <!-- Pack 01 — Básicos -->
+    <div class="pack-card" data-id="01">
+      <div class="pack-photo-zone">
+        <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
+      </div>
+      <div class="pack-card-info">
+        <h3 class="pack-name">Pack Básicos</h3>
+        <p class="pack-desc">5 polos · oversize · boxy</p>
+        <div class="pack-card-bottom">
+          <div class="pack-card-price">S/ 100</div>
+          <a href="pack.html?id=01" class="btn-ver-pack">Ver →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pack 09 — High Cotton -->
+    <div class="pack-card" data-id="09">
+      <div class="pack-photo-zone">
+        <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
+      </div>
+      <div class="pack-card-info">
+        <h3 class="pack-name">Pack High Cotton</h3>
+        <p class="pack-desc">4 polos · oversize · boxy · regular</p>
+        <div class="pack-card-bottom">
+          <div class="pack-card-price">S/ 110</div>
+          <a href="pack.html?id=09" class="btn-ver-pack">Ver →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pack 08 — Medium Cotton -->
     <div class="pack-card" data-id="08">
       <div class="pack-photo-zone">
         <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
       </div>
       <div class="pack-card-info">
-        <h3 class="pack-name">4 Polos 15/1<br>Oversize · Boxy · Regular</h3>
+        <h3 class="pack-name">Pack Medium Cotton</h3>
+        <p class="pack-desc">4 polos · oversize · boxy · regular</p>
         <div class="pack-card-bottom">
           <div class="pack-card-price">S/ 100</div>
           <a href="pack.html?id=08" class="btn-ver-pack">Ver →</a>
@@ -928,16 +859,62 @@
       </div>
     </div>
 
-    <!-- Pack 09 -->
-    <div class="pack-card" data-id="09">
+    <!-- Pack 02 — Classic -->
+    <div class="pack-card" data-id="02">
       <div class="pack-photo-zone">
         <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
       </div>
       <div class="pack-card-info">
-        <h3 class="pack-name">4 Polos 11/1<br>Oversize · Boxy · Regular</h3>
+        <h3 class="pack-name">Pack Classic</h3>
+        <p class="pack-desc">6 polos · regular · dama</p>
+        <div class="pack-card-bottom">
+          <div class="pack-card-price">S/ 100</div>
+          <a href="pack.html?id=02" class="btn-ver-pack">Ver →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pack 03 — Acid Wash -->
+    <div class="pack-card" data-id="03">
+      <div class="pack-photo-zone">
+        <div class="pack-photo-placeholder" style="background:#6b7280;"></div>
+      </div>
+      <div class="pack-card-info">
+        <h3 class="pack-name">Pack Acid Wash</h3>
+        <p class="pack-desc">5 polos · efecto acid wash</p>
         <div class="pack-card-bottom">
           <div class="pack-card-price">S/ 110</div>
-          <a href="pack.html?id=09" class="btn-ver-pack">Ver →</a>
+          <a href="pack.html?id=03" class="btn-ver-pack">Ver →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pack 06 — Invierno -->
+    <div class="pack-card" data-id="06">
+      <div class="pack-photo-zone">
+        <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
+      </div>
+      <div class="pack-card-info">
+        <h3 class="pack-name">Pack Invierno</h3>
+        <p class="pack-desc">2 hoodies · franela oversize</p>
+        <div class="pack-card-bottom">
+          <div class="pack-card-price">S/ 99</div>
+          <a href="pack.html?id=06" class="btn-ver-pack">Ver →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pack 10 — Outfit Invierno -->
+    <div class="pack-card" data-id="10">
+      <div class="pack-photo-zone">
+        <div class="pack-photo-placeholder" style="background:#1e1e1e;"></div>
+      </div>
+      <div class="pack-card-info">
+        <h3 class="pack-name">Outfit Invierno</h3>
+        <p class="pack-desc">polo · hoodie · pantalón</p>
+        <div class="pack-card-bottom">
+          <div class="pack-card-price">S/ 120</div>
+          <a href="pack.html?id=10" class="btn-ver-pack">Ver →</a>
         </div>
       </div>
     </div>
@@ -980,12 +957,23 @@
 </a>
 
 <script>
+  // ── HERO DARK BG FOR CURSOR ──
+  (function() {
+    const heroEl = document.getElementById('hero');
+    document.body.classList.add('dark-bg');
+    new IntersectionObserver(entries => {
+      document.body.classList.toggle('dark-bg', entries[0].isIntersecting);
+    }, { threshold: 0.05 }).observe(heroEl);
+  })();
+
   // ── HERO SLIDER ──
   (function() {
     const slider = document.getElementById('hero');
     if (!slider) return;
-    const slides = slider.querySelectorAll('.hero-slide');
-    const dots   = slider.querySelectorAll('.hero-dot');
+    const isMobile = window.innerWidth <= 900;
+    const slides = Array.from(slider.querySelectorAll('.hero-slide')).filter(s => !s.classList.contains('mobile-only') || isMobile);
+    const dots   = Array.from(slider.querySelectorAll('.hero-dot')).filter(d => !d.classList.contains('mobile-only') || isMobile);
+    slider.dataset.slides = slides.length;
     const prev   = document.getElementById('hero-prev');
     const next   = document.getElementById('hero-next');
     let current  = 0;

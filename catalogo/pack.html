@@ -8,7 +8,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" id="og-title" content="Blankstate — Pack" />
   <meta property="og:description" content="Ropa de calidad real. Sin logo, sin markup. Lima, Perú." />
-  <meta property="og:image" content="../BRANDING/portada-blank.webp" />
+  <meta property="og:image" content="https://blankstate.pe/BRANDING/banners/1.webp" />
   <meta property="og:url" content="https://blankstate.pe" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -335,7 +335,7 @@
     .info-sizes-row {
       display: flex;
       gap: 8px;
-      margin-bottom: 24px;
+      margin-bottom: 12px;
       flex-wrap: wrap;
     }
     .info-size-btn {
@@ -354,6 +354,108 @@
     }
     .info-size-btn:hover { border-color: var(--black); color: var(--black); transform: translateY(-1px); }
     .info-size-btn.active { border-color: var(--black); background: var(--black); color: var(--white); }
+
+    /* ── GUÍA DE TALLAS ── */
+    .size-guide-toggle {
+      background: none;
+      border: none;
+      font-family: var(--sans);
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--g3);
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 20px;
+      transition: color 0.2s;
+    }
+    .size-guide-toggle:hover { color: var(--black); }
+    .size-guide-toggle-arrow {
+      font-size: 10px;
+      transition: transform 0.25s var(--ease);
+      display: inline-block;
+    }
+    .size-guide-toggle.open .size-guide-toggle-arrow { transform: rotate(180deg); }
+
+    .size-guide-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--ease);
+      margin-bottom: 0;
+    }
+    .size-guide-panel.open {
+      max-height: 400px;
+      margin-bottom: 20px;
+    }
+
+    .size-guide-note {
+      font-size: 11px;
+      color: var(--g3);
+      margin-bottom: 10px;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    .size-guide-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11.5px;
+    }
+    .size-guide-table th {
+      font-size: 9.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--g3);
+      font-weight: 500;
+      padding: 6px 10px 6px 0;
+      text-align: left;
+      border-bottom: 1px solid var(--g1);
+    }
+    .size-guide-table td {
+      padding: 7px 10px 7px 0;
+      color: var(--g4);
+      font-weight: 300;
+      border-bottom: 1px solid var(--g1);
+      font-size: 12px;
+    }
+    .size-guide-table td:first-child {
+      font-weight: 500;
+      color: var(--black);
+      letter-spacing: 0.06em;
+    }
+    .size-guide-table tr:last-child td { border-bottom: none; }
+    .size-guide-disclaimer {
+      font-size: 10px;
+      color: var(--g3);
+      margin-top: 8px;
+      font-weight: 300;
+    }
+
+    /* ── FIT SELECTOR ── */
+    .info-fits-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .info-fit-btn {
+      height: 44px;
+      border: 1px solid var(--g2);
+      background: none;
+      color: var(--g4);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s var(--spring);
+      padding: 0 16px;
+    }
+    .info-fit-btn:hover { border-color: var(--black); color: var(--black); transform: translateY(-1px); }
+    .info-fit-btn.active { border-color: var(--black); background: var(--black); color: var(--white); }
 
     /* ── LIGHTBOX ── */
     .lightbox {
@@ -603,7 +705,6 @@
     <span class="nav-logo-wordmark">blankstate<sup>©</sup></span>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html#destacados">Destacados</a></li>
     <li><a href="index.html#packs">Catálogo</a></li>
   </ul>
   <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." class="nav-cta" target="_blank">
@@ -653,12 +754,56 @@
 </a>
 
 <script>
+  // ── GUÍAS DE TALLA POR PACK ──
+  const SIZE_GUIDES = {
+    '01': {
+      note: 'Incluye Oversize y Boxy. Medidas del Oversize como referencia.',
+      cols: ['Talla', 'Pecho', 'Largo'],
+      rows: [['S','55cm','71.5cm'],['M','57cm','73.5cm'],['L','60cm','76cm'],['XL','62cm','79cm']]
+    },
+    '02': {
+      note: 'Incluye Regular y Corte Dama. Medidas del Regular Fit.',
+      cols: ['Talla', 'Ancho', 'Largo'],
+      rows: [['S','50cm','69cm'],['M','52cm','71cm'],['L','54cm','74cm'],['XL','57cm','77cm']]
+    },
+    '03': {
+      note: null,
+      cols: ['Talla', 'Pecho', 'Largo'],
+      rows: [['S','54cm','68cm'],['M','56cm','72cm'],['L','57cm','74cm'],['XL','59.5cm','76.5cm']]
+    },
+    '06': {
+      note: null,
+      cols: ['Talla', 'Pecho', 'Largo', 'Manga'],
+      rows: [['S','62cm','72cm','55cm'],['M','65cm','74cm','57cm'],['L','68cm','76.5cm','59cm']]
+    },
+    '07': {
+      note: '100% algodón Pima peruano. Corte slim fit entallado.',
+      cols: ['Talla', 'Largo', 'Pecho'],
+      rows: [['S','64.5cm','47.5cm'],['M','66.5cm','49cm'],['L','68.5cm','51.5cm']]
+    },
+    '08': {
+      note: 'Incluye Oversize, Boxy y Regular. Medidas del Oversize como referencia.',
+      cols: ['Talla', 'Pecho', 'Largo'],
+      rows: [['S','55cm','71.5cm'],['M','57cm','73.5cm'],['L','60cm','76cm'],['XL','62cm','79cm']]
+    },
+    '09': {
+      note: 'Incluye Oversize, Boxy y Regular. Medidas del Oversize como referencia.',
+      cols: ['Talla', 'Pecho', 'Largo'],
+      rows: [['S','55cm','71.5cm'],['M','57cm','73.5cm'],['L','60cm','76cm'],['XL','62cm','79cm']]
+    },
+    '10': {
+      note: 'Medidas del pantalón franela. Polo y hoodie en corte oversize.',
+      cols: ['Talla', 'Largo', 'Cintura', 'Cadera'],
+      rows: [['S','103.5cm','28cm','50cm'],['M','106cm','30cm','51cm'],['L','108cm','32cm','52cm']]
+    }
+  };
+
   const PACKS = {
     '01': {
       num: '01', badge: 'Más pedido',
-      name: '5 Polos 20/1<br>Oversize y Boxy',
+      name: 'Pack Básicos',
       price: 'S/ 100', qty: '5 polos',
-      desc: 'Jersey 20/1 — gramaje liviano y cómodo todo el año. Oversize largo, Oversize corto, Boxy largo, Boxy corto y un básico. Los cortes que más rotan del catálogo, en un solo pack.',
+      desc: 'Los dos cortes que más rotan en el armario: Oversize con hombros caídos y largo generoso, y Boxy cuadrado para un look más urbano. Tela 20/1, 200g de algodón peinado reactivo — liviana, transpirable, ideal todo el año en Lima. Cinco polos para tener la semana cubierta sin repetir.',
       colorsNote: 'Colores disponibles según stock de temporada — te los confirmamos al pedir.',
       colors: null,
       swatches: [
@@ -671,13 +816,13 @@
         { name: 'Lila',         hex: '#c4b5fd' },
         { name: 'Rosado',       hex: '#f9a8d4' }
       ],
-      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+01%3A+Polos+20%2F1+Oversize+y+Boxy+(5+prendas+x+S%2F100).+%C2%BFQu%C3%A9+colores+tienen%3F'
+      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+B%C3%A1sicos+(5+polos+x+S%2F100)'
     },
     '02': {
       num: '02', badge: null,
-      name: '6 Polos 20/1<br>Regular y Dama',
+      name: 'Pack Classic',
       price: 'S/ 100', qty: '6 polos',
-      desc: 'Jersey 20/1 — gramaje liviano, versátil todo el año. Regular ancho, Regular estrecho, Corte Dama recto, Corte Dama entallado. Para llenar el armario de una vez.',
+      desc: 'Seis polos en los cortes clásicos para hombre y mujer: Regular fit con hombros definidos y caída limpia, y Corte Dama entallado con silueta femenina. Tela 20/1, 200g de algodón peinado. El pack para renovar el armario de una vez — el que más prendas ofrece del catálogo.',
       colorsNote: 'Colores disponibles según stock de temporada.',
       colors: null,
       swatches: [
@@ -688,14 +833,14 @@
         { name: 'English Blue', hex: '#1e3a5f' },
         { name: 'Guinda',       hex: '#7c1d2e' }
       ],
-      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+02%3A+Polos+20%2F1+Regular+y+Corte+Dama+(6+prendas+x+S%2F100).+%C2%BFQu%C3%A9+colores+tienen%3F'
+      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Classic+(6+polos+x+S%2F100)'
     },
     '03': {
-      num: '03', badge: 'Exclusivo',
-      name: '5 Polos<br>Acid Wash 20/1',
+      num: '03', badge: 'Edición especial',
+      name: 'Pack Acid Wash',
       price: 'S/ 110', qty: '5 polos',
-      desc: 'Base Jersey 20/1 con tratamiento Acid Wash exclusivo. Efecto vintage sin repetición de patrón — cada prenda sale distinta. Imposible encontrar dos iguales.',
-      colorsNote: 'Cada polo es único por el proceso Acid Wash. Sin dos iguales.',
+      desc: 'Base Jersey 20/1 con tratamiento Acid Wash. El proceso decolora la tela de forma controlada pero impredecible — cada polo sale con un patrón de desteñido único, ninguno igual. El efecto es sutil y natural, nada recargado. Para quien quiere carácter en el básico sin necesidad de estampado.',
+      colorsNote: 'Cada polo es único por el proceso Acid Wash. El color que eliges es el tono base del desteñido.',
       colors: null,
       swatches: [
         { name: 'Acero',  hex: '#6b7280' },
@@ -705,59 +850,29 @@
         { name: 'Morado', hex: '#7c3aed' },
         { name: 'Negro',  hex: '#1a1a1a' }
       ],
-      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+03%3A+Polos+Acid+Wash+20%2F1+(5+prendas+x+S%2F110).+%C2%BFQu%C3%A9+colores+tienen%3F'
-    },
-    '04': {
-      num: '04', badge: null,
-      name: '4 Polos<br>Focalizados 20/1',
-      price: 'S/ 100', qty: '4 polos',
-      desc: 'Jersey 20/1 — gramaje liviano, ideal para el día a día. Colores neutros que combinan con todo. Para el que quiere lo básico bien resuelto, sin complicar.',
-      colorsNote: 'Selección de colores neutros según stock de temporada.',
-      colors: null,
-      swatches: [
-        { name: 'Azul',          hex: '#1a3a6e' },
-        { name: 'Negro',         hex: '#1a1a1a' },
-        { name: 'Verde Militar', hex: '#4a5c3c' }
-      ],
-      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+04%3A+Polos+Focalizados+20%2F1+(4+prendas+x+S%2F100).+%C2%BFQu%C3%A9+colores+tienen%3F'
-    },
-    '05': {
-      num: '05', badge: null,
-      name: '3 Poleras Franela<br>Boxy Fit 24/1',
-      price: 'S/ 130', qty: '3 poleras',
-      desc: 'Franela 24/1 — tela cepillada de gramaje pesado, más abrigo y textura diferente al jersey. Corte Boxy Fit, silueta contemporánea. La polera que no se ve en cualquier tienda.',
-      colorsNote: 'Colores disponibles según stock.',
-      colors: null,
-      swatches: [
-        { name: 'Negro',       hex: '#1a1a1a' },
-        { name: 'Blanco',      hex: '#f5f5f5' },
-        { name: 'Acero',       hex: '#6b7280' },
-        { name: 'Beige Claro', hex: '#d4c5a9' },
-        { name: 'Cocoa',       hex: '#6b4226' }
-      ],
-      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+05%3A+Polera+Franela+Boxy+Fit+24%2F1+(3+prendas+x+S%2F130).+%C2%BFQu%C3%A9+colores+tienen%3F'
+      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Acid+Wash+(5+polos+x+S%2F110)'
     },
     '06': {
       num: '06', badge: null,
-      name: '2 Poleras Franela<br>Oversize 24/1',
-      price: 'S/ 99', qty: '2 poleras',
-      desc: 'Franela 24/1 — gramaje pesado, tela cepillada, más abrigo que el jersey estándar. Corte Oversize. La calidad que se siente desde el primer uso.',
+      name: 'Pack Invierno',
+      price: 'S/ 99', qty: '2 hoodies',
+      desc: 'Franela 24/1, 320 gramos — tela cepillada de gramaje pesado. Más abrigo que el jersey estándar, diferente al tacto. Corte Oversize con hombros amplios y largo generoso. La polera para Lima de junio a septiembre. Dos piezas en colores que se complementan para armar el look de temporada.',
       colorsNote: 'Colores disponibles según stock.',
       colors: null,
       swatches: [
-        { name: 'Negro',        hex: '#1a1a1a' },
-        { name: 'Blanco',       hex: '#f5f5f5' },
-        { name: 'Acero',        hex: '#6b7280' },
-        { name: 'Beige Oscuro', hex: '#9e8a6f' },
+        { name: 'Negro',         hex: '#1a1a1a' },
+        { name: 'Blanco',        hex: '#f5f5f5' },
+        { name: 'Acero',         hex: '#6b7280' },
+        { name: 'Beige Oscuro',  hex: '#9e8a6f' },
         { name: 'Verde Botella', hex: '#1f4a2e' }
       ],
-      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+06%3A+Polera+Franela+Oversize+24%2F1+(2+prendas+x+S%2F99).+%C2%BFQu%C3%A9+colores+tienen%3F'
+      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Invierno+(2+hoodies+x+S%2F99)'
     },
     '07': {
       num: '07', badge: 'Premium',
-      name: '2 Polos Slim Fit<br>Pima',
+      name: 'Pack Pima',
       price: 'S/ 70', qty: '2 polos',
-      desc: 'Pima peruano — fibra larga, suavidad fina, no pica ni se encoge. Lo mejor del algodón local al precio de quien lo fabrica. Corte Slim Fit, silueta limpia.',
+      desc: '100% algodón Pima peruano — la fibra larga que produce el mejor algodón del país. Suavidad real desde el primer uso, no encoge con el lavado, no pierde forma. Corte Slim Fit con caída limpia que funciona igual en trabajo o salida. Si usas polos todos los días y quieres sentir la diferencia, este es el punto de partida.',
       colorsNote: null,
       swatches: null,
       colors: [
@@ -788,13 +903,13 @@
           ]
         }
       ],
-      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+07%3A+Slim+Fit+Pima+(2+prendas+x+S%2F70).+%C2%BFQu%C3%A9+colores+tienen%3F'
+      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Pima+(2+polos+x+S%2F70)'
     },
     '08': {
       num: '08', badge: null,
-      name: '4 Polos 15/1<br>Oversize · Boxy · Regular',
+      name: 'Pack Medium Cotton',
       price: 'S/ 100', qty: '4 polos',
-      desc: 'Jersey 15/1 — un tier arriba del 20/1. Tela más densa, mejor caída y mayor durabilidad. Tres cortes — Oversize, Boxy y Regular — en un solo pedido.',
+      desc: 'Tela 15/1, 280 gramos — notablemente más densa que un polo de tienda, sin llegar al peso del High Cotton. Mejor caída, más estructura, dura más lavados. Tres cortes en un pack: Oversize suelto, Boxy cuadrado y Regular clásico. Para quien quiere calidad diaria con versatilidad de siluetas.',
       colorsNote: 'Colores disponibles según stock.',
       colors: null,
       swatches: [
@@ -805,13 +920,13 @@
         { name: 'Rosado', hex: '#f9a8d4' },
         { name: 'Mauve',  hex: '#c8a0a0' }
       ],
-      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+08%3A+Oversize%2C+Boxy+y+Regular+15%2F1+(4+prendas+x+S%2F100).+%C2%BFQu%C3%A9+colores+tienen%3F'
+      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Medium+Cotton+(4+polos+x+S%2F100)'
     },
     '09': {
-      num: '09', badge: 'High Cotton',
-      name: '4 Polos 11/1<br>Oversize · Boxy · Regular',
+      num: '09', badge: 'El más grueso',
+      name: 'Pack High Cotton',
       price: 'S/ 110', qty: '4 polos',
-      desc: '11/1 High Cotton — el gramaje más pesado del catálogo. Se nota al tacto desde el primer día. Tres cortes — Oversize, Boxy y Regular. Para quien no negocia en calidad.',
+      desc: '11/1 High Cotton, 320 gramos — el jersey más pesado del catálogo. Se nota la diferencia al primer tacto: más cuerpo, mejor caída, no se transparenta, mantiene la forma. Tres cortes en un pack: Oversize suelto, Boxy cuadrado y Regular clásico. Para quien no negocia en calidad y quiere un polo que dure años.',
       colorsNote: 'Colores premium disponibles según stock.',
       colors: null,
       swatches: [
@@ -822,9 +937,39 @@
         { name: 'Guinda',        hex: '#7c1d2e' },
         { name: 'Verde Militar', hex: '#4a5c3c' }
       ],
-      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+09%3A+Oversize%2C+Boxy+y+Regular+11%2F1+(4+prendas+x+S%2F110).+%C2%BFQu%C3%A9+colores+tienen%3F'
+      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+High+Cotton+(4+polos+x+S%2F110)'
+    },
+    '10': {
+      num: '10', badge: 'Nuevo',
+      name: 'Outfit Invierno',
+      price: 'S/ 120', qty: 'polo · hoodie · pantalón',
+      desc: 'El look completo para los meses fríos: polo 20/1 oversize + hoodie de franela oversize + pantalón franela corte recto. Las tres prendas armadas en paleta coordinada — no tienes que pensar en qué combina con qué. La franela es 24/1, 320 gramos: abriga de verdad para Lima de junio a septiembre.',
+      colorsNote: 'Te armamos el outfit en colores coordinados. Dinos tu preferencia de tono.',
+      colors: null,
+      swatches: [
+        { name: 'Negro',         hex: '#1a1a1a' },
+        { name: 'Blanco Roto',   hex: '#f0ede8' },
+        { name: 'Acero',         hex: '#6b7280' },
+        { name: 'Beige Claro',   hex: '#d4c5a9' },
+        { name: 'Verde Botella', hex: '#1f4a2e' }
+      ],
+      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Outfit+Invierno+(polo+%2B+hoodie+%2B+pantal%C3%B3n+x+S%2F120)'
     }
   };
+
+  // ── FITS POR PACK ──
+  const FITS = {
+    '01': ['Oversize', 'Boxy'],
+    '02': ['Regular', 'Dama'],
+    '08': ['Oversize', 'Boxy', 'Regular'],
+    '09': ['Oversize', 'Boxy', 'Regular']
+  };
+
+  // ── WSP URL CON TALLA Y FIT ──
+  function buildWsp(base, size, fit) {
+    let extra = fit ? `. Fit: ${fit} - Talla: ${size}.` : `. Talla: ${size}.`;
+    return base + encodeURIComponent(extra).replace(/%20/g, '+');
+  }
 
   // ── CURSOR ──
   const cursor = document.getElementById('cursor');
@@ -930,6 +1075,12 @@
     const tagLine = pack.badge ? `Pack ${pack.num} &nbsp;·&nbsp; ${pack.badge}` : `Pack ${pack.num}`;
     const colorItems = pack.colors || pack.swatches;
 
+    const guide = SIZE_GUIDES[pack.num];
+    const fitOptions = FITS[pack.num] || [];
+    let selectedFit = fitOptions.length > 0 ? fitOptions[0] : null;
+    const sizeRows = guide ? guide.rows.map(r => r[0]) : ['S','M','L','XL'];
+    let selectedSize = sizeRows[0];
+
     let colorsSection = '';
     if (colorItems) {
       const firstName = colorItems[0].name;
@@ -945,12 +1096,40 @@
     if (pack.colorsNote) {
       colorsSection += `<p class="info-colors-note">${pack.colorsNote}</p>`;
     }
+
+    if (fitOptions.length > 0) {
+      colorsSection += `<p class="info-colors-label" style="margin-top:18px;">Fit</p>
+        <div class="info-fits-row">
+          ${fitOptions.map((f, i) =>
+            `<button class="info-fit-btn${i===0?' active':''}" data-fit="${f}">${f}</button>`
+          ).join('')}
+        </div>`;
+    }
+
     colorsSection += `<p class="info-colors-label" style="margin-top:18px;">Tallas</p>
       <div class="info-sizes-row">
-        ${['S','M','L','XL'].map((s,i) =>
+        ${sizeRows.map((s,i) =>
           `<button class="info-size-btn${i===0?' active':''}" data-size="${s}">${s}</button>`
         ).join('')}
       </div>`;
+
+    if (guide) {
+      const noteHtml = guide.note ? `<p class="size-guide-note">${guide.note}</p>` : '';
+      const thead = guide.cols.map(c => `<th>${c}</th>`).join('');
+      const tbody = guide.rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('');
+      colorsSection += `
+      <button class="size-guide-toggle" id="size-guide-toggle">
+        Guía de tallas <span class="size-guide-toggle-arrow">▾</span>
+      </button>
+      <div class="size-guide-panel" id="size-guide-panel">
+        ${noteHtml}
+        <table class="size-guide-table">
+          <thead><tr>${thead}</tr></thead>
+          <tbody>${tbody}</tbody>
+        </table>
+        <p class="size-guide-disclaimer">*Las medidas pueden variar ±1-2cm</p>
+      </div>`;
+    }
 
     el.innerHTML = `
       <p class="info-tag">${tagLine}</p>
@@ -963,7 +1142,7 @@
       <div class="info-divider"></div>
       <p class="info-desc">${pack.desc}</p>
       <div class="info-spacer"></div>
-      <a href="${pack.wsp}" class="info-cta" target="_blank" rel="noopener">
+      <a href="${pack.wsp}" class="info-cta" id="info-cta" target="_blank" rel="noopener">
         Pedir por WhatsApp
         <svg class="info-cta-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M8 0C3.58 0 0 3.58 0 8c0 1.41.37 2.74 1.01 3.89L0 16l4.28-1.12A7.96 7.96 0 008 16c4.42 0 8-3.58 8-8s-3.58-8-8-8zm3.93 11.07c-.17.48-.98.93-1.36.99-.35.05-.79.07-1.27-.08a11.5 11.5 0 01-1.15-.43C6.64 10.8 5.5 9.4 5.41 9.29c-.09-.11-.73-.97-.73-1.85 0-.88.46-1.31.62-1.49.17-.18.37-.22.49-.22h.35c.11 0 .27-.04.42.32l.54 1.35c.05.11.08.24.02.38l-.2.39-.3.31c-.1.1-.2.21-.09.41.11.2.5.82 1.07 1.33.73.65 1.35.85 1.54.94.19.09.3.08.41-.05l.49-.58c.14-.18.28-.15.47-.09l1.33.63c.19.09.31.14.36.22.04.08.04.46-.13.93z" fill="currentColor"/>
@@ -974,12 +1153,34 @@
       dot.addEventListener('click', () => syncColor(parseInt(dot.dataset.color)));
     });
 
+    el.querySelectorAll('.info-fit-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        el.querySelectorAll('.info-fit-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedFit = btn.dataset.fit;
+        const ctaEl = document.getElementById('info-cta');
+        if (ctaEl) ctaEl.href = buildWsp(pack.wsp, selectedSize, selectedFit);
+      });
+    });
+
     el.querySelectorAll('.info-size-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         el.querySelectorAll('.info-size-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        selectedSize = btn.dataset.size;
+        const ctaEl = document.getElementById('info-cta');
+        if (ctaEl) ctaEl.href = buildWsp(pack.wsp, selectedSize, selectedFit);
       });
     });
+
+    const toggleBtn = document.getElementById('size-guide-toggle');
+    const panel = document.getElementById('size-guide-panel');
+    if (toggleBtn && panel) {
+      toggleBtn.addEventListener('click', () => {
+        const open = panel.classList.toggle('open');
+        toggleBtn.classList.toggle('open', open);
+      });
+    }
   }
 
   // ── MAIN RENDER ──
@@ -999,10 +1200,10 @@
     }
 
     currentPack = pack;
-    document.getElementById('page-title').textContent = `Blankstate — Pack ${pack.num}`;
-    document.getElementById('breadcrumb-current').textContent = `Pack ${pack.num}`;
+    document.getElementById('page-title').textContent = `Blankstate — ${pack.name}`;
+    document.getElementById('breadcrumb-current').textContent = pack.name;
     const ogTitle = document.getElementById('og-title');
-    if (ogTitle) ogTitle.content = `Blankstate — Pack ${pack.num}: ${pack.name.replace(/<br>/g, ' ')}`;
+    if (ogTitle) ogTitle.content = `Blankstate — ${pack.name}`;
 
     const waFloat = document.getElementById('wa-float');
     if (waFloat) waFloat.href = pack.wsp;
@@ -1013,6 +1214,13 @@
       renderVisualColor(pack);
     }
     renderInfo(pack);
+
+    const guide0 = SIZE_GUIDES[pack.num];
+    const firstSize = guide0 ? guide0.rows[0][0] : 'S';
+    const fits0 = FITS[pack.num];
+    const firstFit = fits0 ? fits0[0] : null;
+    const ctaEl = document.getElementById('info-cta');
+    if (ctaEl) ctaEl.href = buildWsp(pack.wsp, firstSize, firstFit);
 
     document.querySelectorAll('a, button').forEach(attachCursor);
   }
