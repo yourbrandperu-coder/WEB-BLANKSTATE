@@ -356,23 +356,32 @@
     .info-size-btn.active { border-color: var(--black); background: var(--black); color: var(--white); }
 
     /* ── GUÍA DE TALLAS ── */
+    .size-guide-wrap { margin-bottom: 20px; }
+    .size-guide-question {
+      font-size: 13px;
+      color: var(--g4);
+      font-weight: 300;
+      margin-bottom: 5px;
+      line-height: 1.5;
+    }
     .size-guide-toggle {
       background: none;
       border: none;
+      border-bottom: 1px solid var(--g2);
       font-family: var(--sans);
-      font-size: 10.5px;
+      font-size: 10px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--g3);
       cursor: pointer;
-      padding: 0;
-      display: flex;
+      padding: 0 0 2px;
+      display: inline-flex;
       align-items: center;
-      gap: 6px;
-      margin-bottom: 20px;
-      transition: color 0.2s;
+      gap: 5px;
+      margin-bottom: 0;
+      transition: color 0.2s, border-color 0.2s;
     }
-    .size-guide-toggle:hover { color: var(--black); }
+    .size-guide-toggle:hover { color: var(--black); border-color: var(--black); }
     .size-guide-toggle-arrow {
       font-size: 10px;
       transition: transform 0.25s var(--ease);
@@ -384,11 +393,11 @@
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.4s var(--ease);
-      margin-bottom: 0;
+      margin-top: 0;
     }
     .size-guide-panel.open {
-      max-height: 400px;
-      margin-bottom: 20px;
+      max-height: 520px;
+      margin-top: 14px;
     }
 
     .size-guide-note {
@@ -456,6 +465,90 @@
     }
     .info-fit-btn:hover { border-color: var(--black); color: var(--black); transform: translateY(-1px); }
     .info-fit-btn.active { border-color: var(--black); background: var(--black); color: var(--white); }
+
+    /* ── UNIT ROWS (multi-unidad por pack) ── */
+    .units-section {
+      margin-bottom: 8px;
+    }
+    .unit-row {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--g1);
+    }
+    .unit-row:last-child { border-bottom: none; }
+    .unit-row-label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--g3);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .unit-colors-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .unit-color-dot {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--g2);
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s var(--spring);
+      padding: 0;
+      flex-shrink: 0;
+    }
+    .unit-color-dot:hover { transform: scale(1.1); }
+    .unit-color-dot.active { border-color: var(--black); transform: scale(1.15); }
+    .unit-color-name {
+      font-size: 11px;
+      color: var(--g4);
+      letter-spacing: 0.05em;
+      margin-left: 2px;
+    }
+    .unit-fit-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .unit-fit-btn {
+      height: 32px;
+      border: 1px solid var(--g2);
+      background: none;
+      color: var(--g4);
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      padding: 0 10px;
+    }
+    .unit-fit-btn:hover { border-color: var(--black); color: var(--black); }
+    .unit-fit-btn.active { border-color: var(--black); background: var(--black); color: var(--white); }
+    .unit-size-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .unit-size-btn {
+      min-width: 34px;
+      height: 32px;
+      border: 1px solid var(--g2);
+      background: none;
+      color: var(--g4);
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      padding: 0 8px;
+    }
+    .unit-size-btn:hover { border-color: var(--black); color: var(--black); }
+    .unit-size-btn.active { border-color: var(--black); background: var(--black); color: var(--white); }
 
     /* ── LIGHTBOX ── */
     .lightbox {
@@ -753,47 +846,53 @@
   </svg>
 </a>
 
+<script src="cart.js"></script>
 <script>
   // ── GUÍAS DE TALLA POR PACK ──
   const SIZE_GUIDES = {
     '01': {
-      note: 'Incluye Oversize y Boxy. Medidas del Oversize como referencia.',
-      cols: ['Talla', 'Pecho', 'Largo'],
-      rows: [['S','55cm','71.5cm'],['M','57cm','73.5cm'],['L','60cm','76cm'],['XL','62cm','79cm']]
+      byFit: {
+        'Oversize':   { cols: ['Talla','Pecho','Largo','Hombro','Manga'], rows: [['S','55cm','71.5cm','21.5cm','22cm'],['M','57cm','73.5cm','22cm','24cm'],['L','60cm','76cm','22cm','24.5cm'],['XL','62cm','79cm','23cm','25cm']] },
+        'Boxy':       { cols: ['Talla','Pecho','Largo','Manga'],          rows: [['S','57cm','62cm','23cm'],['M','59cm','64cm','25cm'],['L','61cm','66cm','27cm']] },
+        'Boxy Largo': { cols: ['Talla','Pecho','Largo','Hombro','Manga'], rows: [['S','56cm','68cm','22cm','21cm'],['M','59cm','71cm','23.5cm','22cm'],['L','62cm','74cm','25cm','22.5cm'],['XL','65cm','77cm','26.5cm','23cm']] }
+      }
     },
     '02': {
-      note: 'Incluye Regular y Corte Dama. Medidas del Regular Fit.',
-      cols: ['Talla', 'Ancho', 'Largo'],
-      rows: [['S','50cm','69cm'],['M','52cm','71cm'],['L','54cm','74cm'],['XL','57cm','77cm']]
+      byFit: {
+        'Regular': { cols: ['Talla','Ancho','Largo','Manga'],     rows: [['S','50cm','69cm','22.5cm'],['M','52cm','71cm','24cm'],['L','54cm','74cm','25cm'],['XL','57cm','77cm','26cm']] },
+        'Dama':    { cols: ['Talla','Pecho','Cintura','Largo'],   rows: [['S','45cm','43cm','61cm'],['M','47cm','45cm','63cm'],['L','49cm','46cm','66cm']] }
+      }
     },
     '03': {
-      note: null,
-      cols: ['Talla', 'Pecho', 'Largo'],
-      rows: [['S','54cm','68cm'],['M','56cm','72cm'],['L','57cm','74cm'],['XL','59.5cm','76.5cm']]
+      cols: ['Talla','Pecho','Largo','Hombro','Manga'],
+      rows: [['S','54cm','68cm','20cm','21.5cm'],['M','56cm','72cm','19.5cm','23cm'],['L','57cm','74cm','20cm','24cm'],['XL','59.5cm','76.5cm','22cm','25cm']]
     },
     '06': {
-      note: null,
-      cols: ['Talla', 'Pecho', 'Largo', 'Manga'],
-      rows: [['S','62cm','72cm','55cm'],['M','65cm','74cm','57cm'],['L','68cm','76.5cm','59cm']]
+      cols: ['Talla','Pecho','Largo','Hombro','Manga'],
+      rows: [['S','62cm','72cm','23cm','55cm'],['M','65cm','74cm','24cm','57cm'],['L','68cm','76.5cm','25cm','59cm']]
     },
     '07': {
       note: '100% algodón Pima peruano. Corte slim fit entallado.',
-      cols: ['Talla', 'Largo', 'Pecho'],
-      rows: [['S','64.5cm','47.5cm'],['M','66.5cm','49cm'],['L','68.5cm','51.5cm']]
+      cols: ['Talla','Largo','Pecho','Hombro','Manga'],
+      rows: [['S','64.5cm','47.5cm','12.5cm','19.5cm'],['M','66.5cm','49cm','13.5cm','21cm'],['L','68.5cm','51.5cm','15cm','23cm']]
     },
     '08': {
-      note: 'Incluye Oversize, Boxy y Regular. Medidas del Oversize como referencia.',
-      cols: ['Talla', 'Pecho', 'Largo'],
-      rows: [['S','55cm','71.5cm'],['M','57cm','73.5cm'],['L','60cm','76cm'],['XL','62cm','79cm']]
+      byFit: {
+        'Oversize': { cols: ['Talla','Pecho','Largo','Hombro','Manga'], rows: [['S','55cm','71.5cm','21.5cm','22cm'],['M','57cm','73.5cm','22cm','24cm'],['L','60cm','76cm','22cm','24.5cm'],['XL','62cm','79cm','23cm','25cm']] },
+        'Boxy':     { cols: ['Talla','Pecho','Largo','Manga'],          rows: [['S','57cm','62cm','23cm'],['M','59cm','64cm','25cm'],['L','61cm','66cm','27cm']] },
+        'Regular':  { cols: ['Talla','Ancho','Largo','Manga'],          rows: [['S','50cm','69cm','22.5cm'],['M','52cm','71cm','24cm'],['L','54cm','74cm','25cm'],['XL','57cm','77cm','26cm']] }
+      }
     },
     '09': {
-      note: 'Incluye Oversize, Boxy y Regular. Medidas del Oversize como referencia.',
-      cols: ['Talla', 'Pecho', 'Largo'],
-      rows: [['S','55cm','71.5cm'],['M','57cm','73.5cm'],['L','60cm','76cm'],['XL','62cm','79cm']]
+      byFit: {
+        'Oversize': { cols: ['Talla','Pecho','Largo','Hombro','Manga'], rows: [['S','55cm','71.5cm','21.5cm','22cm'],['M','57cm','73.5cm','22cm','24cm'],['L','60cm','76cm','22cm','24.5cm'],['XL','62cm','79cm','23cm','25cm']] },
+        'Boxy':     { cols: ['Talla','Pecho','Largo','Manga'],          rows: [['S','57cm','62cm','23cm'],['M','59cm','64cm','25cm'],['L','61cm','66cm','27cm']] },
+        'Regular':  { cols: ['Talla','Ancho','Largo','Manga'],          rows: [['S','50cm','69cm','22.5cm'],['M','52cm','71cm','24cm'],['L','54cm','74cm','25cm'],['XL','57cm','77cm','26cm']] }
+      }
     },
     '10': {
       note: 'Medidas del pantalón franela. Polo y hoodie en corte oversize.',
-      cols: ['Talla', 'Largo', 'Cintura', 'Cadera'],
+      cols: ['Talla','Largo','Cintura','Cadera'],
       rows: [['S','103.5cm','28cm','50cm'],['M','106cm','30cm','51cm'],['L','108cm','32cm','52cm']]
     }
   };
@@ -802,7 +901,7 @@
     '01': {
       num: '01', badge: 'Más pedido',
       name: 'Pack Básicos',
-      price: 'S/ 100', qty: '5 polos',
+      price: 'S/ 100', qty: '5 polos', unitCount: 5, unitType: 'Polo',
       desc: 'Los dos cortes que más rotan en el armario: Oversize con hombros caídos y largo generoso, y Boxy cuadrado para un look más urbano. Tela 20/1, 200g de algodón peinado reactivo — liviana, transpirable, ideal todo el año en Lima. Cinco polos para tener la semana cubierta sin repetir.',
       colorsNote: 'Colores disponibles según stock de temporada — te los confirmamos al pedir.',
       colors: null,
@@ -821,7 +920,7 @@
     '02': {
       num: '02', badge: null,
       name: 'Pack Classic',
-      price: 'S/ 100', qty: '6 polos',
+      price: 'S/ 100', qty: '6 polos', unitCount: 6, unitType: 'Polo',
       desc: 'Seis polos en los cortes clásicos para hombre y mujer: Regular fit con hombros definidos y caída limpia, y Corte Dama entallado con silueta femenina. Tela 20/1, 200g de algodón peinado. El pack para renovar el armario de una vez — el que más prendas ofrece del catálogo.',
       colorsNote: 'Colores disponibles según stock de temporada.',
       colors: null,
@@ -838,7 +937,7 @@
     '03': {
       num: '03', badge: 'Edición especial',
       name: 'Pack Acid Wash',
-      price: 'S/ 110', qty: '5 polos',
+      price: 'S/ 110', qty: '5 polos', unitCount: 5, unitType: 'Polo',
       desc: 'Base Jersey 20/1 con tratamiento Acid Wash. El proceso decolora la tela de forma controlada pero impredecible — cada polo sale con un patrón de desteñido único, ninguno igual. El efecto es sutil y natural, nada recargado. Para quien quiere carácter en el básico sin necesidad de estampado.',
       colorsNote: 'Cada polo es único por el proceso Acid Wash. El color que eliges es el tono base del desteñido.',
       colors: null,
@@ -855,7 +954,7 @@
     '06': {
       num: '06', badge: null,
       name: 'Pack Invierno',
-      price: 'S/ 99', qty: '2 hoodies',
+      price: 'S/ 99', qty: '2 hoodies', unitCount: 2, unitType: 'Hoodie',
       desc: 'Franela 24/1, 320 gramos — tela cepillada de gramaje pesado. Más abrigo que el jersey estándar, diferente al tacto. Corte Oversize con hombros amplios y largo generoso. La polera para Lima de junio a septiembre. Dos piezas en colores que se complementan para armar el look de temporada.',
       colorsNote: 'Colores disponibles según stock.',
       colors: null,
@@ -871,7 +970,7 @@
     '07': {
       num: '07', badge: 'Premium',
       name: 'Pack Pima',
-      price: 'S/ 70', qty: '2 polos',
+      price: 'S/ 70', qty: '2 polos', unitCount: 2, unitType: 'Polo',
       desc: '100% algodón Pima peruano — la fibra larga que produce el mejor algodón del país. Suavidad real desde el primer uso, no encoge con el lavado, no pierde forma. Corte Slim Fit con caída limpia que funciona igual en trabajo o salida. Si usas polos todos los días y quieres sentir la diferencia, este es el punto de partida.',
       colorsNote: null,
       swatches: null,
@@ -908,7 +1007,7 @@
     '08': {
       num: '08', badge: null,
       name: 'Pack Medium Cotton',
-      price: 'S/ 100', qty: '4 polos',
+      price: 'S/ 100', qty: '4 polos', unitCount: 4, unitType: 'Polo',
       desc: 'Tela 15/1, 280 gramos — notablemente más densa que un polo de tienda, sin llegar al peso del High Cotton. Mejor caída, más estructura, dura más lavados. Tres cortes en un pack: Oversize suelto, Boxy cuadrado y Regular clásico. Para quien quiere calidad diaria con versatilidad de siluetas.',
       colorsNote: 'Colores disponibles según stock.',
       colors: null,
@@ -925,7 +1024,7 @@
     '09': {
       num: '09', badge: 'El más grueso',
       name: 'Pack High Cotton',
-      price: 'S/ 110', qty: '4 polos',
+      price: 'S/ 110', qty: '4 polos', unitCount: 4, unitType: 'Polo',
       desc: '11/1 High Cotton, 320 gramos — el jersey más pesado del catálogo. Se nota la diferencia al primer tacto: más cuerpo, mejor caída, no se transparenta, mantiene la forma. Tres cortes en un pack: Oversize suelto, Boxy cuadrado y Regular clásico. Para quien no negocia en calidad y quiere un polo que dure años.',
       colorsNote: 'Colores premium disponibles según stock.',
       colors: null,
@@ -942,7 +1041,7 @@
     '10': {
       num: '10', badge: 'Nuevo',
       name: 'Outfit Invierno',
-      price: 'S/ 120', qty: 'polo · hoodie · pantalón',
+      price: 'S/ 120', qty: 'polo · hoodie · pantalón', unitLabels: ['Polo', 'Hoodie', 'Pantalón'],
       desc: 'El look completo para los meses fríos: polo 20/1 oversize + hoodie de franela oversize + pantalón franela corte recto. Las tres prendas armadas en paleta coordinada — no tienes que pensar en qué combina con qué. La franela es 24/1, 320 gramos: abriga de verdad para Lima de junio a septiembre.',
       colorsNote: 'Te armamos el outfit en colores coordinados. Dinos tu preferencia de tono.',
       colors: null,
@@ -959,10 +1058,19 @@
 
   // ── FITS POR PACK ──
   const FITS = {
-    '01': ['Oversize', 'Boxy'],
+    '01': ['Oversize', 'Boxy', 'Boxy Largo'],
     '02': ['Regular', 'Dama'],
     '08': ['Oversize', 'Boxy', 'Regular'],
     '09': ['Oversize', 'Boxy', 'Regular']
+  };
+
+  // Fotos por fit — llenar los arrays con las rutas cuando estén disponibles
+  const FIT_PHOTOS = {
+    '01': {
+      'Oversize':   [],
+      'Boxy':       [],
+      'Boxy Largo': []
+    }
   };
 
   // ── WSP URL CON TALLA Y FIT ──
@@ -1034,7 +1142,7 @@
     pack._showPhoto = showPhoto;
 
     el.querySelectorAll('.gallery-img').forEach(img => {
-      img.addEventListener('click', () => openLightbox(curCi, curPi));
+      img.addEventListener('click', () => openLightbox(pack.colors[curCi].photos, curPi));
     });
 
     document.getElementById('gallery-prev').addEventListener('click', () => {
@@ -1069,6 +1177,66 @@
       </div>`;
   }
 
+  // ── RENDER VISUAL — FIT PHOTOS ──
+  function renderVisualFitPhotos(pack, fit, photos) {
+    const el = document.getElementById('product-visual');
+    let html = '<div class="visual-gallery" id="visual-gallery">';
+    photos.forEach((src, pi) => {
+      html += `<img class="gallery-img${pi===0?' active':''}" src="${src}" alt="Pack ${pack.num} ${fit} ${pi+1}" data-photo="${pi}" />`;
+    });
+    html += '</div>';
+    if (photos.length > 1) {
+      html += `<button class="gallery-nav-btn gallery-nav-prev" id="gallery-prev" aria-label="Anterior">&#8249;</button>
+        <button class="gallery-nav-btn gallery-nav-next" id="gallery-next" aria-label="Siguiente">&#8250;</button>`;
+    }
+    el.innerHTML = html;
+    let curPi = 0;
+    function showFitPhoto(pi) {
+      el.querySelectorAll('.gallery-img').forEach(img => img.classList.remove('active'));
+      const t = el.querySelector(`.gallery-img[data-photo="${pi}"]`);
+      if (t) t.classList.add('active');
+      curPi = pi;
+    }
+    el.querySelectorAll('.gallery-img').forEach(img => {
+      img.addEventListener('click', () => openLightbox(photos, curPi));
+    });
+    if (photos.length > 1) {
+      document.getElementById('gallery-prev').addEventListener('click', () => showFitPhoto((curPi - 1 + photos.length) % photos.length));
+      document.getElementById('gallery-next').addEventListener('click', () => showFitPhoto((curPi + 1) % photos.length));
+      const galleryEl = el.querySelector('.visual-gallery');
+      let tsX = 0, tsY = 0;
+      galleryEl.addEventListener('touchstart', e => { tsX = e.touches[0].clientX; tsY = e.touches[0].clientY; }, { passive: true });
+      galleryEl.addEventListener('touchend', e => {
+        const dx = tsX - e.changedTouches[0].clientX;
+        const dy = Math.abs(tsY - e.changedTouches[0].clientY);
+        if (Math.abs(dx) > 40 && dy < 80) showFitPhoto(dx > 0 ? (curPi + 1) % photos.length : (curPi - 1 + photos.length) % photos.length);
+      }, { passive: true });
+    }
+  }
+
+  function showFitVisual(pack, fit) {
+    const photos = fit ? ((FIT_PHOTOS[pack.num] || {})[fit] || []) : [];
+    if (photos.length > 0) renderVisualFitPhotos(pack, fit, photos);
+    else renderVisualColor(pack);
+  }
+
+  // ── SIZE GUIDE HELPERS ──
+  function buildGuideTableHtml(guideData) {
+    const noteHtml = guideData.note ? `<p class="size-guide-note">${guideData.note}</p>` : '';
+    const thead = guideData.cols.map(c => `<th>${c}</th>`).join('');
+    const tbody = guideData.rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('');
+    return `${noteHtml}<table class="size-guide-table"><thead><tr>${thead}</tr></thead><tbody>${tbody}</tbody></table><p class="size-guide-disclaimer">*Las medidas pueden variar ±1-2cm</p>`;
+  }
+
+  function updateSizeGuide(packNum, fit) {
+    const inner = document.getElementById('size-guide-inner');
+    if (!inner) return;
+    const guide = SIZE_GUIDES[packNum];
+    if (!guide) return;
+    const guideData = guide.byFit ? (guide.byFit[fit] || Object.values(guide.byFit)[0]) : guide;
+    inner.innerHTML = buildGuideTableHtml(guideData);
+  }
+
   // ── RENDER INFO ──
   function renderInfo(pack) {
     const el = document.getElementById('product-info');
@@ -1077,57 +1245,71 @@
 
     const guide = SIZE_GUIDES[pack.num];
     const fitOptions = FITS[pack.num] || [];
-    let selectedFit = fitOptions.length > 0 ? fitOptions[0] : null;
-    const sizeRows = guide ? guide.rows.map(r => r[0]) : ['S','M','L','XL'];
-    let selectedSize = sizeRows[0];
-
-    let colorsSection = '';
-    if (colorItems) {
-      const firstName = colorItems[0].name;
-      colorsSection += `<p class="info-colors-label">Colores</p>
-        <div class="info-colors-row">
-          ${colorItems.map((c, i) =>
-            `<button class="info-color-dot${i===0?' active':''}"
-              style="background:${c.hex}" data-color="${i}" aria-label="${c.name}"></button>`
-          ).join('')}
-          <span class="info-color-name" id="info-color-name">${firstName}</span>
-        </div>`;
+    let sizeRows;
+    if (guide && guide.byFit) {
+      const allSizes = new Set();
+      Object.values(guide.byFit).forEach(fd => fd.rows.forEach(r => allSizes.add(r[0])));
+      sizeRows = ['S','M','L','XL'].filter(s => allSizes.has(s));
+    } else if (guide) {
+      sizeRows = guide.rows.map(r => r[0]);
+    } else {
+      sizeRows = ['S','M','L','XL'];
     }
+
+    const labels = pack.unitLabels ||
+      Array.from({length: pack.unitCount || 1}, (_, i) => `${pack.unitType || 'Prenda'} ${i + 1}`);
+
+    const unitSelections = labels.map(() => ({
+      color: colorItems ? colorItems[0].name : null,
+      fit:   fitOptions.length ? fitOptions[0] : null,
+      size:  sizeRows[0]
+    }));
+
+    let unitsSection = '';
+    labels.forEach((label, ui) => {
+      let rowHtml = `<div class="unit-row" data-unit="${ui}">`;
+      rowHtml += `<p class="unit-row-label">${label}</p>`;
+      if (colorItems) {
+        rowHtml += `<div class="unit-colors-row">`;
+        colorItems.forEach((c, ci) => {
+          rowHtml += `<button class="unit-color-dot${ci===0?' active':''}" style="background:${c.hex}" data-unit="${ui}" data-color="${ci}" aria-label="${c.name}" title="${c.name}"></button>`;
+        });
+        rowHtml += `<span class="unit-color-name" id="unit-color-name-${ui}">${colorItems[0].name}</span>`;
+        rowHtml += `</div>`;
+      }
+      if (fitOptions.length > 0) {
+        rowHtml += `<div class="unit-fit-row">`;
+        fitOptions.forEach((f, fi) => {
+          rowHtml += `<button class="unit-fit-btn${fi===0?' active':''}" data-unit="${ui}" data-fit="${f}">${f}</button>`;
+        });
+        rowHtml += `</div>`;
+      }
+      rowHtml += `<div class="unit-size-row">`;
+      sizeRows.forEach((s, si) => {
+        rowHtml += `<button class="unit-size-btn${si===0?' active':''}" data-unit="${ui}" data-size="${s}">${s}</button>`;
+      });
+      rowHtml += `</div></div>`;
+      unitsSection += rowHtml;
+    });
+
     if (pack.colorsNote) {
-      colorsSection += `<p class="info-colors-note">${pack.colorsNote}</p>`;
+      unitsSection = `<p class="info-colors-note">${pack.colorsNote}</p>` + unitsSection;
     }
 
-    if (fitOptions.length > 0) {
-      colorsSection += `<p class="info-colors-label" style="margin-top:18px;">Fit</p>
-        <div class="info-fits-row">
-          ${fitOptions.map((f, i) =>
-            `<button class="info-fit-btn${i===0?' active':''}" data-fit="${f}">${f}</button>`
-          ).join('')}
-        </div>`;
-    }
-
-    colorsSection += `<p class="info-colors-label" style="margin-top:18px;">Tallas</p>
-      <div class="info-sizes-row">
-        ${sizeRows.map((s,i) =>
-          `<button class="info-size-btn${i===0?' active':''}" data-size="${s}">${s}</button>`
-        ).join('')}
-      </div>`;
-
+    let guideHtml = '';
     if (guide) {
-      const noteHtml = guide.note ? `<p class="size-guide-note">${guide.note}</p>` : '';
-      const thead = guide.cols.map(c => `<th>${c}</th>`).join('');
-      const tbody = guide.rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('');
-      colorsSection += `
-      <button class="size-guide-toggle" id="size-guide-toggle">
-        Guía de tallas <span class="size-guide-toggle-arrow">▾</span>
-      </button>
-      <div class="size-guide-panel" id="size-guide-panel">
-        ${noteHtml}
-        <table class="size-guide-table">
-          <thead><tr>${thead}</tr></thead>
-          <tbody>${tbody}</tbody>
-        </table>
-        <p class="size-guide-disclaimer">*Las medidas pueden variar ±1-2cm</p>
+      const initialData = guide.byFit
+        ? (guide.byFit[fitOptions[0]] || Object.values(guide.byFit)[0])
+        : guide;
+      guideHtml = `
+      <div class="size-guide-wrap">
+        <p class="size-guide-question">¿No sabes qué talla te quedará mejor?</p>
+        <button class="size-guide-toggle" id="size-guide-toggle">
+          Consulta aquí <span class="size-guide-toggle-arrow">▾</span>
+        </button>
+        <div class="size-guide-panel" id="size-guide-panel">
+          <div class="size-guide-inner" id="size-guide-inner">${buildGuideTableHtml(initialData)}</div>
+        </div>
       </div>`;
     }
 
@@ -1138,7 +1320,8 @@
         <span class="info-price">${pack.price}</span>
         <span class="info-qty">${pack.qty}</span>
       </div>
-      ${colorsSection}
+      <div class="units-section">${unitsSection}</div>
+      ${guideHtml}
       <div class="info-divider"></div>
       <p class="info-desc">${pack.desc}</p>
       <div class="info-spacer"></div>
@@ -1147,29 +1330,38 @@
         <svg class="info-cta-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M8 0C3.58 0 0 3.58 0 8c0 1.41.37 2.74 1.01 3.89L0 16l4.28-1.12A7.96 7.96 0 008 16c4.42 0 8-3.58 8-8s-3.58-8-8-8zm3.93 11.07c-.17.48-.98.93-1.36.99-.35.05-.79.07-1.27-.08a11.5 11.5 0 01-1.15-.43C6.64 10.8 5.5 9.4 5.41 9.29c-.09-.11-.73-.97-.73-1.85 0-.88.46-1.31.62-1.49.17-.18.37-.22.49-.22h.35c.11 0 .27-.04.42.32l.54 1.35c.05.11.08.24.02.38l-.2.39-.3.31c-.1.1-.2.21-.09.41.11.2.5.82 1.07 1.33.73.65 1.35.85 1.54.94.19.09.3.08.41-.05l.49-.58c.14-.18.28-.15.47-.09l1.33.63c.19.09.31.14.36.22.04.08.04.46-.13.93z" fill="currentColor"/>
         </svg>
-      </a>`;
+      </a>
+      <button id="btn-add-cart">Agregar al carrito</button>`;
 
-    el.querySelectorAll('.info-color-dot').forEach(dot => {
-      dot.addEventListener('click', () => syncColor(parseInt(dot.dataset.color)));
-    });
-
-    el.querySelectorAll('.info-fit-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        el.querySelectorAll('.info-fit-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        selectedFit = btn.dataset.fit;
-        const ctaEl = document.getElementById('info-cta');
-        if (ctaEl) ctaEl.href = buildWsp(pack.wsp, selectedSize, selectedFit);
+    el.querySelectorAll('.unit-color-dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        const ui = parseInt(dot.dataset.unit);
+        const ci = parseInt(dot.dataset.color);
+        el.querySelectorAll(`.unit-color-dot[data-unit="${ui}"]`).forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+        unitSelections[ui].color = colorItems[ci].name;
+        const nameEl = document.getElementById(`unit-color-name-${ui}`);
+        if (nameEl) nameEl.textContent = colorItems[ci].name;
+        syncColor(ci);
       });
     });
 
-    el.querySelectorAll('.info-size-btn').forEach(btn => {
+    el.querySelectorAll('.unit-fit-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        el.querySelectorAll('.info-size-btn').forEach(b => b.classList.remove('active'));
+        const ui = parseInt(btn.dataset.unit);
+        el.querySelectorAll(`.unit-fit-btn[data-unit="${ui}"]`).forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        selectedSize = btn.dataset.size;
-        const ctaEl = document.getElementById('info-cta');
-        if (ctaEl) ctaEl.href = buildWsp(pack.wsp, selectedSize, selectedFit);
+        unitSelections[ui].fit = btn.dataset.fit;
+        updateSizeGuide(pack.num, btn.dataset.fit);
+      });
+    });
+
+    el.querySelectorAll('.unit-size-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const ui = parseInt(btn.dataset.unit);
+        el.querySelectorAll(`.unit-size-btn[data-unit="${ui}"]`).forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        unitSelections[ui].size = btn.dataset.size;
       });
     });
 
@@ -1179,6 +1371,26 @@
       toggleBtn.addEventListener('click', () => {
         const open = panel.classList.toggle('open');
         toggleBtn.classList.toggle('open', open);
+      });
+    }
+
+    const addCartBtn = document.getElementById('btn-add-cart');
+    if (addCartBtn) {
+      addCartBtn.addEventListener('click', () => {
+        if (typeof window.cartAdd !== 'function') return;
+        window.cartAdd({
+          packId: pack.num,
+          packName: pack.name,
+          price: pack.price,
+          priceNum: parseInt(pack.price.replace(/[^0-9]/g, '')),
+          qty: pack.qty,
+          units: unitSelections.map((sel, i) => ({
+            label: labels[i],
+            color: sel.color,
+            fit:   sel.fit,
+            size:  sel.size
+          }))
+        });
       });
     }
   }
@@ -1210,17 +1422,13 @@
 
     if (pack.colors) {
       renderVisualPhotos(pack);
+    } else if (FIT_PHOTOS[pack.num]) {
+      const fits0 = FITS[pack.num] || [];
+      showFitVisual(pack, fits0[0] || null);
     } else {
       renderVisualColor(pack);
     }
     renderInfo(pack);
-
-    const guide0 = SIZE_GUIDES[pack.num];
-    const firstSize = guide0 ? guide0.rows[0][0] : 'S';
-    const fits0 = FITS[pack.num];
-    const firstFit = fits0 ? fits0[0] : null;
-    const ctaEl = document.getElementById('info-cta');
-    if (ctaEl) ctaEl.href = buildWsp(pack.wsp, firstSize, firstFit);
 
     document.querySelectorAll('a, button').forEach(attachCursor);
   }
@@ -1228,27 +1436,20 @@
   render();
 
   // ── LIGHTBOX ──
-  let lbCi = 0, lbPi = 0, lbScrollY = 0;
+  let lbPi = 0, lbPhotos = [], lbScrollY = 0;
   const lightbox    = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   const lbCounter   = document.getElementById('lightbox-counter');
   const lbPrev      = document.getElementById('lightbox-prev');
   const lbNext      = document.getElementById('lightbox-next');
 
-  function updateCounter() {
-    if (!currentPack || !currentPack.colors) return;
-    const total = currentPack.colors[lbCi].photos.length;
-    lbCounter.textContent = `${lbPi + 1} / ${total}`;
-  }
-
-  function openLightbox(ci, pi) {
-    lbCi = ci; lbPi = pi;
-    const photos = currentPack.colors[ci].photos;
+  function openLightbox(photos, pi) {
+    lbPhotos = photos; lbPi = pi;
     lightboxImg.src = photos[pi];
     const single = photos.length === 1;
     lbPrev.classList.toggle('hidden', single);
     lbNext.classList.toggle('hidden', single);
-    updateCounter();
+    lbCounter.textContent = single ? '' : `${pi + 1} / ${photos.length}`;
     lbCounter.style.display = single ? 'none' : '';
     lightbox.classList.add('open');
     lbScrollY = window.scrollY;
@@ -1258,13 +1459,12 @@
   }
 
   function lbNavigate(delta) {
-    if (!currentPack || !currentPack.colors) return;
-    const photos = currentPack.colors[lbCi].photos;
-    lbPi = (lbPi + delta + photos.length) % photos.length;
+    if (!lbPhotos.length) return;
+    lbPi = (lbPi + delta + lbPhotos.length) % lbPhotos.length;
     lightboxImg.classList.add('fading');
     setTimeout(() => {
-      lightboxImg.src = photos[lbPi];
-      updateCounter();
+      lightboxImg.src = lbPhotos[lbPi];
+      lbCounter.textContent = `${lbPi + 1} / ${lbPhotos.length}`;
       lightboxImg.classList.remove('fading');
     }, 200);
   }
