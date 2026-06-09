@@ -1101,27 +1101,19 @@
         {
           name: 'Azul', hex: '#1a3a6e',
           photos: [
-            '../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/hf_20260524_002346_e00c7997-d085-4e54-8094-d9ff22f249e2.webp',
-            '../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/hf_20260524_000233_7aa3c5fb-f247-4a4f-adcb-07c6481cda2a.webp',
-            '../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/hf_20260524_000651_b2f2c2fa-85d0-4efe-88a1-c3e66460da15.webp',
-            '../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/hf_20260524_000641_766f9fc4-86b2-40d0-a3ab-107011d365de.webp',
-            '../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/hf_20260524_002336_1c2c6c18-ccff-4c17-b91e-b90cf9b13468.webp',
-            '../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/hf_20260523_224829_832eb07a-0d00-46b2-9ecd-e3a74f725324.webp',
-            '../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/hf_20260523_224838_a324b879-b33c-4129-9f88-9152909ae541.webp',
-            '../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/hf_20260523_225427_0f045555-3145-4296-92a7-3248a631f7ff.webp',
-            '../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/hf_20260523_225227_9088f51f-4db8-4f0a-af90-b5914bcc0bf8.webp'
+            '../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/0.png',
+            '../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/1.png',
+            '../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/2.png',
+            '../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/3.png'
           ]
         },
         {
           name: 'Negro', hex: '#111111',
           photos: [
-            '../PRODUCTOS/PIMA%20SLIM%20FIT/NEGRO/hf_20260524_013440_0205dc50-cda2-4018-aa74-51a0c71e31c1.webp',
-            '../PRODUCTOS/PIMA%20SLIM%20FIT/NEGRO/hf_20260524_012837_1299f756-0952-4b29-9768-901f53b683c9.webp',
-            '../PRODUCTOS/PIMA%20SLIM%20FIT/NEGRO/hf_20260526_225109_7b5aee89-426b-498f-bec6-0627da4b16f7.webp',
-            '../PRODUCTOS/PIMA%20SLIM%20FIT/NEGRO/hf_20260524_013137_82c987ef-1562-4d3d-925c-0788feaac751.webp',
-            '../PRODUCTOS/PIMA%20SLIM%20FIT/NEGRO/hf_20260524_013718_4c9ff33a-9a9e-48e8-a356-3c401a49252c.webp',
-            '../PRODUCTOS/PIMA%20SLIM%20FIT/NEGRO/hf_20260524_012511_7d1f27ac-18b2-413f-9918-ca24ad5d0cd2.webp',
-            '../PRODUCTOS/PIMA%20SLIM%20FIT/NEGRO/hf_20260524_011257_e80fded1-2cbf-442f-a92e-000719471f02.webp'
+            '../PRODUCTOS/PIMA%20SLIM%20FIT/NEGRO/0.png',
+            '../PRODUCTOS/PIMA%20SLIM%20FIT/NEGRO/1.png',
+            '../PRODUCTOS/PIMA%20SLIM%20FIT/NEGRO/2.png',
+            '../PRODUCTOS/PIMA%20SLIM%20FIT/NEGRO/3.png'
           ]
         }
       ],
@@ -1225,6 +1217,7 @@
       num: '10', badge: 'Polo 20/1 de regalo',
       name: 'Pack Invierno',
       price: 'S/ 120', qty: '2 prendas + polo 20/1 de regalo', unitCount: 2, unitLabels: ['Hoodie', 'Pantalón'],
+      unitFits: [['Boxy', 'Oversize'], null],
       desc: 'Hoodie franela 24/1 (320g) en corte Boxy o Oversize + pantalón franela 24/1 (350g) corte recto. Las dos prendas en la paleta que elijas. Y de regalo, un polo 20/1 oversize — el color lo coordinas directo en el chat al hacer tu pedido. El look de invierno completo para Lima de junio a septiembre.',
       colorsNote: 'Elige los colores de hoodie y pantalón. El polo de regalo lo coordinas en el chat.',
       colors: null,
@@ -1254,10 +1247,26 @@
     '09': ['Oversize', 'Boxy']
   };
 
-  // Fotos por fit — llenar los arrays con las rutas cuando estén disponibles
   const FIT_PHOTOS = {
     '01': {
-      'Oversize':   [],
+      'Oversize': [
+        '../PRODUCTOS/OVERSIZE/NEGRO/0.png',
+        '../PRODUCTOS/OVERSIZE/NEGRO/1.png',
+        '../PRODUCTOS/OVERSIZE/NEGRO/2.png',
+        '../PRODUCTOS/OVERSIZE/NEGRO/3.png',
+        '../PRODUCTOS/OVERSIZE/BLANCO/0.png',
+        '../PRODUCTOS/OVERSIZE/BLANCO/1.png',
+        '../PRODUCTOS/OVERSIZE/BLANCO/2.png',
+        '../PRODUCTOS/OVERSIZE/BLANCO/3.png',
+        '../PRODUCTOS/OVERSIZE/ACERO/0.png',
+        '../PRODUCTOS/OVERSIZE/ACERO/1.png',
+        '../PRODUCTOS/OVERSIZE/ACERO/2.png',
+        '../PRODUCTOS/OVERSIZE/ACERO/3.png',
+        '../PRODUCTOS/OVERSIZE/GUINDA/0.png',
+        '../PRODUCTOS/OVERSIZE/GUINDA/1.png',
+        '../PRODUCTOS/OVERSIZE/GUINDA/2.png',
+        '../PRODUCTOS/OVERSIZE/GUINDA/3.png'
+      ],
       'Boxy':       [],
       'Boxy Largo': [],
       'Regular':    []
@@ -1428,7 +1437,11 @@
     const badgeHtml = pack.badge ? `<span class="info-badge">${pack.badge}</span>` : '';
 
     const guide = SIZE_GUIDES[pack.num];
-    const fitOptions = FITS[pack.num] || [];
+    function getFitOptionsForUnit(ui) {
+      if (pack.unitFits) return pack.unitFits[ui] || [];
+      return FITS[pack.num] || [];
+    }
+    const fitOptions = getFitOptionsForUnit(0);
 
     function getSwatchesForFit(fit) {
       if (pack.swatchesByFit && fit && pack.swatchesByFit[fit]) return pack.swatchesByFit[fit];
@@ -1449,11 +1462,14 @@
     const labels = pack.unitLabels ||
       Array.from({length: pack.unitCount || 1}, (_, i) => `${pack.unitType || 'Prenda'} ${i + 1}`);
 
-    const unitSelections = labels.map(() => ({
-      color: colorItems ? colorItems[0].name : null,
-      fit:   fitOptions.length ? fitOptions[0] : null,
-      size:  sizeRows[0]
-    }));
+    const unitSelections = labels.map((_, ui) => {
+      const uFits = getFitOptionsForUnit(ui);
+      return {
+        color: colorItems ? colorItems[0].name : null,
+        fit:   uFits.length ? uFits[0] : null,
+        size:  sizeRows[0]
+      };
+    });
 
     let unitsSection = '';
     labels.forEach((label, ui) => {
@@ -1468,9 +1484,10 @@
         rowHtml += `</div>`;
         rowHtml += `<span class="unit-color-name" id="unit-color-name-${ui}">${unitInitColors[0].name}</span>`;
       }
-      if (fitOptions.length > 0) {
+      const uFitOptions = getFitOptionsForUnit(ui);
+      if (uFitOptions.length > 0) {
         rowHtml += `<div class="unit-fit-row">`;
-        fitOptions.forEach((f, fi) => {
+        uFitOptions.forEach((f, fi) => {
           rowHtml += `<button class="unit-fit-btn${fi===0?' active':''}" data-unit="${ui}" data-fit="${f}">${f}</button>`;
         });
         rowHtml += `</div>`;
@@ -1546,6 +1563,7 @@
         const newFit = btn.dataset.fit;
         unitSelections[ui].fit = newFit;
         updateSizeGuide(pack.num, newFit);
+        if (ui === 0 && FIT_PHOTOS[pack.num]) showFitVisual(pack, newFit);
 
         const newSizes = getSizesForFit(newFit);
         const unitRowEl = el.querySelector(`.unit-row[data-unit="${ui}"]`);
