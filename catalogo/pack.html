@@ -484,11 +484,10 @@
       font-weight: 500;
     }
     .unit-colors-row {
-      display: flex;
-      align-items: center;
+      display: grid;
+      grid-template-columns: repeat(8, 18px);
       gap: 7px;
-      flex-wrap: wrap;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
     .unit-color-dot {
       width: 18px; height: 18px;
@@ -505,7 +504,8 @@
       font-size: 11px;
       color: var(--g4);
       letter-spacing: 0.05em;
-      margin-left: 2px;
+      display: block;
+      margin-bottom: 8px;
     }
     .unit-fit-row {
       display: flex;
@@ -907,14 +907,22 @@
       colorsNote: 'Colores disponibles según stock de temporada — te los confirmamos al pedir.',
       colors: null,
       swatches: [
-        { name: 'Negro',        hex: '#1a1a1a' },
-        { name: 'Blanco',       hex: '#f5f5f5' },
-        { name: 'Beige Claro',  hex: '#d4c5a9' },
-        { name: 'Acero',        hex: '#6b7280' },
-        { name: 'English Blue', hex: '#1e3a5f' },
-        { name: 'Guinda',       hex: '#7c1d2e' },
-        { name: 'Lila',         hex: '#c4b5fd' },
-        { name: 'Rosado',       hex: '#f9a8d4' }
+        { name: 'Blanco',        hex: '#f5f5f5' },
+        { name: 'PPT',           hex: '#EDE5D8' },
+        { name: 'Beige',         hex: '#d4c5a9' },
+        { name: 'Verde Manzana', hex: '#7DB868' },
+        { name: 'Cocoa',         hex: '#8C6448' },
+        { name: 'Plomo Plata',   hex: '#9FAAB5' },
+        { name: 'Plomo Escolar', hex: '#6b7280' },
+        { name: 'Marrón',        hex: '#795548' },
+        { name: 'Negro',         hex: '#1a1a1a' },
+        { name: 'English Blue',  hex: '#1e3a5f' },
+        { name: 'Guinda',        hex: '#7c1d2e' },
+        { name: 'Mauve',         hex: '#c8a0a0' },
+        { name: 'Verde Militar', hex: '#4a5c3c' },
+        { name: 'Verde Botella', hex: '#1f4a2e' },
+        { name: 'Celeste',       hex: '#88C0D0' },
+        { name: 'Acero',         hex: '#2E3F5C' }
       ],
       wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+B%C3%A1sicos+(5+polos+x+S%2F100)'
     },
@@ -926,12 +934,17 @@
       colorsNote: 'Colores disponibles según stock de temporada.',
       colors: null,
       swatches: [
-        { name: 'Negro',        hex: '#1a1a1a' },
-        { name: 'Blanco',       hex: '#f5f5f5' },
-        { name: 'Beige Claro',  hex: '#d4c5a9' },
-        { name: 'Acero',        hex: '#6b7280' },
-        { name: 'English Blue', hex: '#1e3a5f' },
-        { name: 'Guinda',       hex: '#7c1d2e' }
+        { name: 'Negro',         hex: '#1a1a1a' },
+        { name: 'Blanco',        hex: '#f5f5f5' },
+        { name: 'PPT',           hex: '#EDE5D8' },
+        { name: 'Beige Claro',   hex: '#d4c5a9' },
+        { name: 'Mauve',         hex: '#c8a0a0' },
+        { name: 'Plomo Escolar', hex: '#6b7280' },
+        { name: 'English Blue',  hex: '#1e3a5f' },
+        { name: 'Guinda',        hex: '#7c1d2e' },
+        { name: 'Celeste',       hex: '#88C0D0' },
+        { name: 'Verde Manzana', hex: '#7DB868' },
+        { name: 'Rosado',        hex: '#f9a8d4' }
       ],
       wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Classic+(6+polos+x+S%2F100)'
     },
@@ -943,12 +956,18 @@
       colorsNote: 'Cada polo es único por el proceso Acid Wash. El color que eliges es el tono base del desteñido.',
       colors: null,
       swatches: [
-        { name: 'Acero',  hex: '#6b7280' },
-        { name: 'Chicle', hex: '#f48fb1' },
-        { name: 'Gris',   hex: '#9ca3af' },
-        { name: 'Marrón', hex: '#7c5c3e' },
-        { name: 'Morado', hex: '#7c3aed' },
-        { name: 'Negro',  hex: '#1a1a1a' }
+        { name: 'Negro',       hex: '#1a1a1a' },
+        { name: 'Guinda',      hex: '#7c1d2e' },
+        { name: 'Rojo',        hex: '#C0392B' },
+        { name: 'Morado',      hex: '#7c3aed' },
+        { name: 'Marrón',      hex: '#7c5c3e' },
+        { name: 'Plomo Plata', hex: '#9FAAB5' },
+        { name: 'Chicle',      hex: '#f48fb1' },
+        { name: 'Gris',        hex: '#9ca3af' },
+        { name: 'Acero',       hex: '#6B8599' },
+        { name: 'Plata',       hex: '#B8C4CC' },
+        { name: 'Verde',       hex: '#4A7C59' },
+        { name: 'Turquesa',    hex: '#00897B' }
       ],
       wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Acid+Wash+(5+polos+x+S%2F110)'
     },
@@ -962,7 +981,7 @@
       swatches: [
         { name: 'Negro',         hex: '#1a1a1a' },
         { name: 'Blanco',        hex: '#f5f5f5' },
-        { name: 'Acero',         hex: '#6b7280' },
+        { name: 'Plomo Escolar', hex: '#6b7280' },
         { name: 'Beige Oscuro',  hex: '#9e8a6f' },
         { name: 'Verde Botella', hex: '#1f4a2e' }
       ],
@@ -1007,35 +1026,95 @@
     },
     '08': {
       num: '08', badge: null,
-      name: 'Pack Medium Cotton',
+      name: 'Pack High Cotton 280g',
       price: 'S/ 100', qty: '4 polos', unitCount: 4, unitType: 'Polo',
-      desc: 'Tela 15/1, 280 gramos — notablemente más densa que un polo de tienda, sin llegar al peso del High Cotton. Mejor caída, más estructura, dura más lavados. Tres cortes en un pack: Oversize suelto, Boxy cuadrado y Regular clásico. Para quien quiere calidad diaria con versatilidad de siluetas.',
+      desc: 'Tela 15/1, 280 gramos — notablemente más densa que un polo de tienda, con mejor caída y más estructura. Tres cortes en un pack: Oversize suelto, Boxy cuadrado y Regular clásico. Para quien quiere calidad diaria con versatilidad de siluetas.',
       colorsNote: 'Colores disponibles según stock.',
       colors: null,
       swatches: [
-        { name: 'Negro',  hex: '#1a1a1a' },
-        { name: 'Blanco', hex: '#f5f5f5' },
-        { name: 'Acero',  hex: '#6b7280' },
-        { name: 'Lila',   hex: '#c4b5fd' },
-        { name: 'Rosado', hex: '#f9a8d4' },
-        { name: 'Mauve',  hex: '#c8a0a0' }
+        { name: 'Negro',         hex: '#1a1a1a' },
+        { name: 'Plomo Plata',   hex: '#9FAAB5' },
+        { name: 'Plomo Escolar', hex: '#6b7280' },
+        { name: 'Marrón',        hex: '#795548' },
+        { name: 'Verde Botella', hex: '#1f4a2e' },
+        { name: 'Verde Militar', hex: '#4a5c3c' },
+        { name: 'Celeste',       hex: '#88C0D0' },
+        { name: 'Blanco',        hex: '#f5f5f5' },
+        { name: 'PPT',           hex: '#EDE5D8' },
+        { name: 'Beige Claro',   hex: '#DDD0B3' },
+        { name: 'Beige Oscuro',  hex: '#9e8a6f' },
+        { name: 'Acero',         hex: '#2E3F5C' },
+        { name: 'Guinda',        hex: '#7c1d2e' }
       ],
-      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Medium+Cotton+(4+polos+x+S%2F100)'
+      swatchesByFit: {
+        'Oversize': [
+          { name: 'Negro',         hex: '#1a1a1a' },
+          { name: 'Plomo Plata',   hex: '#9FAAB5' },
+          { name: 'Plomo Escolar', hex: '#6b7280' },
+          { name: 'Marrón',        hex: '#795548' },
+          { name: 'Verde Botella', hex: '#1f4a2e' },
+          { name: 'Verde Militar', hex: '#4a5c3c' },
+          { name: 'Celeste',       hex: '#88C0D0' },
+          { name: 'Blanco',        hex: '#f5f5f5' },
+          { name: 'PPT',           hex: '#EDE5D8' },
+          { name: 'Beige Claro',   hex: '#DDD0B3' },
+          { name: 'Beige Oscuro',  hex: '#9e8a6f' },
+          { name: 'Acero',         hex: '#2E3F5C' },
+          { name: 'Guinda',        hex: '#7c1d2e' }
+        ],
+        'Boxy': [
+          { name: 'Negro',         hex: '#1a1a1a' },
+          { name: 'Plomo Plata',   hex: '#9FAAB5' },
+          { name: 'Plomo Escolar', hex: '#6b7280' },
+          { name: 'Marrón',        hex: '#795548' },
+          { name: 'Verde Botella', hex: '#1f4a2e' },
+          { name: 'Verde Militar', hex: '#4a5c3c' },
+          { name: 'Celeste',       hex: '#88C0D0' },
+          { name: 'Blanco',        hex: '#f5f5f5' },
+          { name: 'PPT',           hex: '#EDE5D8' },
+          { name: 'Beige Claro',   hex: '#DDD0B3' },
+          { name: 'Beige Oscuro',  hex: '#9e8a6f' },
+          { name: 'Acero',         hex: '#2E3F5C' },
+          { name: 'Guinda',        hex: '#7c1d2e' }
+        ],
+        'Regular': [
+          { name: 'Negro',         hex: '#1a1a1a' },
+          { name: 'Plomo Plata',   hex: '#9FAAB5' },
+          { name: 'Plomo Escolar', hex: '#6b7280' },
+          { name: 'Marrón',        hex: '#795548' },
+          { name: 'Verde Botella', hex: '#1f4a2e' },
+          { name: 'Verde Militar', hex: '#4a5c3c' },
+          { name: 'Blanco',        hex: '#f5f5f5' },
+          { name: 'PPT',           hex: '#EDE5D8' },
+          { name: 'Beige Claro',   hex: '#DDD0B3' },
+          { name: 'Beige Oscuro',  hex: '#9e8a6f' },
+          { name: 'Acero',         hex: '#2E3F5C' },
+          { name: 'Guinda',        hex: '#7c1d2e' }
+        ]
+      },
+      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+High+Cotton+280g+(4+polos+x+S%2F100)'
     },
     '09': {
       num: '09', badge: 'El más grueso',
-      name: 'Pack High Cotton',
+      name: 'Pack High Cotton 320g',
       price: 'S/ 110', qty: '4 polos', unitCount: 4, unitType: 'Polo',
-      desc: '11/1 High Cotton, 320 gramos — el jersey más pesado del catálogo. Se nota la diferencia al primer tacto: más cuerpo, mejor caída, no se transparenta, mantiene la forma. Tres cortes en un pack: Oversize suelto, Boxy cuadrado y Regular clásico. Para quien no negocia en calidad y quiere un polo que dure años.',
+      desc: '11/1 High Cotton, 320 gramos — el jersey más pesado del catálogo. Se nota la diferencia al primer tacto: más cuerpo, mejor caída, no se transparenta, mantiene la forma. Dos cortes en un pack: Oversize suelto y Boxy cuadrado. Para quien no negocia en calidad y quiere un polo que dure años.',
       colorsNote: 'Colores premium disponibles según stock.',
       colors: null,
       swatches: [
         { name: 'Negro',         hex: '#1a1a1a' },
+        { name: 'Plomo Plata',   hex: '#9FAAB5' },
+        { name: 'Plomo Escolar', hex: '#6b7280' },
+        { name: 'Marrón',        hex: '#795548' },
+        { name: 'Acero',         hex: '#2E3F5C' },
         { name: 'Blanco',        hex: '#f5f5f5' },
-        { name: 'Acero',         hex: '#6b7280' },
-        { name: 'English Blue',  hex: '#1e3a5f' },
-        { name: 'Guinda',        hex: '#7c1d2e' },
-        { name: 'Verde Militar', hex: '#4a5c3c' }
+        { name: 'PPT',           hex: '#EDE5D8' },
+        { name: 'Beige Claro',   hex: '#DDD0B3' },
+        { name: 'Beige Oscuro',  hex: '#9e8a6f' },
+        { name: 'Celeste',       hex: '#88C0D0' },
+        { name: 'Verde Botella', hex: '#1f4a2e' },
+        { name: 'Verde Militar', hex: '#4a5c3c' },
+        { name: 'Guinda',        hex: '#7c1d2e' }
       ],
       wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+High+Cotton+(4+polos+x+S%2F110)'
     },
@@ -1049,7 +1128,7 @@
       swatches: [
         { name: 'Negro',         hex: '#1a1a1a' },
         { name: 'Blanco Roto',   hex: '#f0ede8' },
-        { name: 'Acero',         hex: '#6b7280' },
+        { name: 'Plomo Escolar', hex: '#6b7280' },
         { name: 'Beige Claro',   hex: '#d4c5a9' },
         { name: 'Verde Botella', hex: '#1f4a2e' }
       ],
@@ -1062,7 +1141,7 @@
     '01': ['Oversize', 'Boxy', 'Boxy Largo'],
     '02': ['Regular', 'Dama'],
     '08': ['Oversize', 'Boxy', 'Regular'],
-    '09': ['Oversize', 'Boxy', 'Regular']
+    '09': ['Oversize', 'Boxy']
   };
 
   // Fotos por fit — llenar los arrays con las rutas cuando estén disponibles
@@ -1100,18 +1179,11 @@
   let currentColorIdx = 0;
   let currentPack = null;
 
-  function syncColor(ci) {
+  function syncColor(ci, hex) {
     currentColorIdx = ci;
-    const items = currentPack.colors || currentPack.swatches;
-    const name = items[ci].name;
-
-    document.querySelectorAll('.info-color-dot').forEach((d, i) => d.classList.toggle('active', i === ci));
-    const icn = document.getElementById('info-color-name');
-    if (icn) icn.textContent = name;
-
     const bg = document.getElementById('visual-bg');
-    if (bg && currentPack.swatches) bg.style.background = currentPack.swatches[ci].hex;
-
+    if (bg && hex) bg.style.background = hex;
+    else if (bg && currentPack.swatches) bg.style.background = currentPack.swatches[ci]?.hex;
     if (currentPack.colors && currentPack._showPhoto) currentPack._showPhoto(ci, 0);
   }
 
@@ -1242,10 +1314,15 @@
   function renderInfo(pack) {
     const el = document.getElementById('product-info');
     const tagLine = pack.badge ? `Pack ${pack.num} &nbsp;·&nbsp; ${pack.badge}` : `Pack ${pack.num}`;
-    const colorItems = pack.colors || pack.swatches;
 
     const guide = SIZE_GUIDES[pack.num];
     const fitOptions = FITS[pack.num] || [];
+
+    function getSwatchesForFit(fit) {
+      if (pack.swatchesByFit && fit && pack.swatchesByFit[fit]) return pack.swatchesByFit[fit];
+      return pack.colors || pack.swatches;
+    }
+    const colorItems = getSwatchesForFit(fitOptions[0] || null);
     let sizeRows;
     if (guide && guide.byFit) {
       const allSizes = new Set();
@@ -1271,12 +1348,13 @@
       let rowHtml = `<div class="unit-row" data-unit="${ui}">`;
       rowHtml += `<p class="unit-row-label">${label}</p>`;
       if (colorItems) {
-        rowHtml += `<div class="unit-colors-row">`;
-        colorItems.forEach((c, ci) => {
+        const unitInitColors = getSwatchesForFit(fitOptions[0] || null);
+        rowHtml += `<div class="unit-colors-row" id="unit-colors-row-${ui}">`;
+        unitInitColors.forEach((c, ci) => {
           rowHtml += `<button class="unit-color-dot${ci===0?' active':''}" style="background:${c.hex}" data-unit="${ui}" data-color="${ci}" aria-label="${c.name}" title="${c.name}"></button>`;
         });
-        rowHtml += `<span class="unit-color-name" id="unit-color-name-${ui}">${colorItems[0].name}</span>`;
         rowHtml += `</div>`;
+        rowHtml += `<span class="unit-color-name" id="unit-color-name-${ui}">${unitInitColors[0].name}</span>`;
       }
       if (fitOptions.length > 0) {
         rowHtml += `<div class="unit-fit-row">`;
@@ -1328,17 +1406,23 @@
       <div class="info-spacer"></div>
       <button id="btn-add-cart">Agregar al carrito</button>`;
 
-    el.querySelectorAll('.unit-color-dot').forEach(dot => {
-      dot.addEventListener('click', () => {
-        const ui = parseInt(dot.dataset.unit);
-        const ci = parseInt(dot.dataset.color);
-        el.querySelectorAll(`.unit-color-dot[data-unit="${ui}"]`).forEach(d => d.classList.remove('active'));
-        dot.classList.add('active');
-        unitSelections[ui].color = colorItems[ci].name;
-        const nameEl = document.getElementById(`unit-color-name-${ui}`);
-        if (nameEl) nameEl.textContent = colorItems[ci].name;
-        syncColor(ci);
+    function bindColorDots(row, colors, ui) {
+      row.querySelectorAll('.unit-color-dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+          const ci = parseInt(dot.dataset.color);
+          row.querySelectorAll('.unit-color-dot').forEach(d => d.classList.remove('active'));
+          dot.classList.add('active');
+          unitSelections[ui].color = colors[ci].name;
+          const nameEl = document.getElementById(`unit-color-name-${ui}`);
+          if (nameEl) nameEl.textContent = colors[ci].name;
+          syncColor(ci, colors[ci].hex);
+        });
       });
+    }
+
+    labels.forEach((_, ui) => {
+      const row = document.getElementById(`unit-colors-row-${ui}`);
+      if (row) bindColorDots(row, getSwatchesForFit(unitSelections[ui].fit), ui);
     });
 
     el.querySelectorAll('.unit-fit-btn').forEach(btn => {
@@ -1346,8 +1430,24 @@
         const ui = parseInt(btn.dataset.unit);
         el.querySelectorAll(`.unit-fit-btn[data-unit="${ui}"]`).forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        unitSelections[ui].fit = btn.dataset.fit;
-        updateSizeGuide(pack.num, btn.dataset.fit);
+        const newFit = btn.dataset.fit;
+        unitSelections[ui].fit = newFit;
+        updateSizeGuide(pack.num, newFit);
+
+        if (pack.swatchesByFit) {
+          const newColors = getSwatchesForFit(newFit);
+          const row = document.getElementById(`unit-colors-row-${ui}`);
+          const nameEl = document.getElementById(`unit-color-name-${ui}`);
+          if (row) {
+            row.innerHTML = newColors.map((c, ci) =>
+              `<button class="unit-color-dot${ci===0?' active':''}" style="background:${c.hex}" data-unit="${ui}" data-color="${ci}" aria-label="${c.name}" title="${c.name}"></button>`
+            ).join('');
+            bindColorDots(row, newColors, ui);
+          }
+          unitSelections[ui].color = newColors[0].name;
+          if (nameEl) nameEl.textContent = newColors[0].name;
+          syncColor(0, newColors[0].hex);
+        }
       });
     });
 
