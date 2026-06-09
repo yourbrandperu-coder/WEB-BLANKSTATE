@@ -1249,27 +1249,15 @@
 
   const FIT_PHOTOS = {
     '01': {
-      'Oversize': [
-        '../PRODUCTOS/OVERSIZE/NEGRO/1.webp',
-        '../PRODUCTOS/OVERSIZE/NEGRO/2.webp',
-        '../PRODUCTOS/OVERSIZE/NEGRO/3.webp',
-        '../PRODUCTOS/OVERSIZE/NEGRO/4.webp',
-        '../PRODUCTOS/OVERSIZE/BLANCO/1.webp',
-        '../PRODUCTOS/OVERSIZE/BLANCO/2.webp',
-        '../PRODUCTOS/OVERSIZE/BLANCO/3.webp',
-        '../PRODUCTOS/OVERSIZE/BLANCO/4.webp',
-        '../PRODUCTOS/OVERSIZE/ACERO/1.webp',
-        '../PRODUCTOS/OVERSIZE/ACERO/2.webp',
-        '../PRODUCTOS/OVERSIZE/ACERO/3.webp',
-        '../PRODUCTOS/OVERSIZE/ACERO/4.webp',
-        '../PRODUCTOS/OVERSIZE/GUINDA/1.webp',
-        '../PRODUCTOS/OVERSIZE/GUINDA/2.webp',
-        '../PRODUCTOS/OVERSIZE/GUINDA/3.webp',
-        '../PRODUCTOS/OVERSIZE/GUINDA/4.webp'
-      ],
-      'Boxy':       [],
-      'Boxy Largo': [],
-      'Regular':    []
+      'Oversize': {
+        'Negro':  ['../PRODUCTOS/OVERSIZE/NEGRO/1.webp','../PRODUCTOS/OVERSIZE/NEGRO/2.webp','../PRODUCTOS/OVERSIZE/NEGRO/3.webp','../PRODUCTOS/OVERSIZE/NEGRO/4.webp'],
+        'Blanco': ['../PRODUCTOS/OVERSIZE/BLANCO/1.webp','../PRODUCTOS/OVERSIZE/BLANCO/2.webp','../PRODUCTOS/OVERSIZE/BLANCO/3.webp','../PRODUCTOS/OVERSIZE/BLANCO/4.webp'],
+        'Acero':  ['../PRODUCTOS/OVERSIZE/ACERO/1.webp','../PRODUCTOS/OVERSIZE/ACERO/2.webp','../PRODUCTOS/OVERSIZE/ACERO/3.webp','../PRODUCTOS/OVERSIZE/ACERO/4.webp'],
+        'Guinda': ['../PRODUCTOS/OVERSIZE/GUINDA/1.webp','../PRODUCTOS/OVERSIZE/GUINDA/2.webp','../PRODUCTOS/OVERSIZE/GUINDA/3.webp','../PRODUCTOS/OVERSIZE/GUINDA/4.webp']
+      },
+      'Boxy':       {},
+      'Boxy Largo': {},
+      'Regular':    {}
     }
   };
 
@@ -1299,53 +1287,71 @@
   let currentColorIdx = 0;
   let currentPack = null;
 
-  function syncColor(ci, hex) {
+  function syncColor(ci, hex, colorName) {
     currentColorIdx = ci;
     const bg = document.getElementById('visual-bg');
     if (bg && hex) bg.style.background = hex;
     else if (bg && currentPack.swatches) bg.style.background = currentPack.swatches[ci]?.hex;
     if (currentPack.colors && currentPack._showPhoto) currentPack._showPhoto(ci, 0);
+    if (colorName && currentPack._showColorPhotos) currentPack._showColorPhotos(colorName);
   }
 
   // ── RENDER VISUAL — WITH PHOTOS ──
   function renderVisualPhotos(pack) {
     const el = document.getElementById('product-visual');
-    let html = '<div class="visual-gallery" id="visual-gallery">';
+
+    // Lista plana de todas las fotos con referencia al color
+    const flatPhotos = [];
     pack.colors.forEach((color, ci) => {
-      color.photos.forEach((src, pi) => {
-        html += `<img class="gallery-img${ci===0 && pi===0 ? ' active' : ''}"
-          src="${src}" alt="Pack ${pack.num} ${color.name} ${pi+1}"
-          data-color="${ci}" data-photo="${pi}" />`;
-      });
+      color.photos.forEach((src, pi) => flatPhotos.push({ ci, pi, src }));
+    });
+
+    let html = '<div class="visual-gallery" id="visual-gallery">';
+    flatPhotos.forEach((p, fi) => {
+      html += `<img class="gallery-img${fi===0?' active':''}" src="${p.src}"
+        alt="Pack ${pack.num} ${pack.colors[p.ci].name} ${p.pi+1}" data-fi="${fi}" />`;
     });
     html += '</div>';
     html += `<button class="gallery-nav-btn gallery-nav-prev" id="gallery-prev" aria-label="Anterior">&#8249;</button>
       <button class="gallery-nav-btn gallery-nav-next" id="gallery-next" aria-label="Siguiente">&#8250;</button>`;
     el.innerHTML = html;
 
-    let curCi = 0, curPi = 0;
+    let selectedCi = null; // null = sin color seleccionado, muestra todas
+    let curFi = 0;
 
-    function showPhoto(ci, pi) {
-      el.querySelectorAll('.gallery-img').forEach(img => img.classList.remove('active'));
-      const target = el.querySelector(`.gallery-img[data-color="${ci}"][data-photo="${pi}"]`);
-      if (target) target.classList.add('active');
-      curCi = ci; curPi = pi;
+    function getVisible() {
+      if (selectedCi === null) return flatPhotos.map((_, fi) => fi);
+      return flatPhotos.reduce((acc, p, fi) => { if (p.ci === selectedCi) acc.push(fi); return acc; }, []);
     }
 
-    pack._showPhoto = showPhoto;
+    function showFlatIdx(fi) {
+      el.querySelectorAll('.gallery-img').forEach(img => img.classList.remove('active'));
+      const t = el.querySelector(`.gallery-img[data-fi="${fi}"]`);
+      if (t) t.classList.add('active');
+      curFi = fi;
+    }
+
+    function navigate(delta) {
+      const visible = getVisible();
+      const pos = visible.indexOf(curFi);
+      showFlatIdx(visible[(pos === -1 ? 0 : (pos + delta + visible.length) % visible.length)]);
+    }
+
+    pack._showPhoto = (ci, pi) => {
+      selectedCi = ci;
+      const fi = flatPhotos.findIndex(p => p.ci === ci && p.pi === pi);
+      if (fi >= 0) showFlatIdx(fi);
+    };
 
     el.querySelectorAll('.gallery-img').forEach(img => {
-      img.addEventListener('click', () => openLightbox(pack.colors[curCi].photos, curPi));
+      img.addEventListener('click', () => {
+        const visible = getVisible();
+        openLightbox(visible.map(fi => flatPhotos[fi].src), visible.indexOf(curFi));
+      });
     });
 
-    document.getElementById('gallery-prev').addEventListener('click', () => {
-      const total = pack.colors[curCi].photos.length;
-      showPhoto(curCi, (curPi - 1 + total) % total);
-    });
-    document.getElementById('gallery-next').addEventListener('click', () => {
-      const total = pack.colors[curCi].photos.length;
-      showPhoto(curCi, (curPi + 1) % total);
-    });
+    document.getElementById('gallery-prev').addEventListener('click', () => navigate(-1));
+    document.getElementById('gallery-next').addEventListener('click', () => navigate(1));
 
     const galleryEl = el.querySelector('.visual-gallery');
     let tsX = 0, tsY = 0;
@@ -1353,10 +1359,7 @@
     galleryEl.addEventListener('touchend', e => {
       const dx = tsX - e.changedTouches[0].clientX;
       const dy = Math.abs(tsY - e.changedTouches[0].clientY);
-      if (Math.abs(dx) > 40 && dy < 80) {
-        const total = pack.colors[curCi].photos.length;
-        showPhoto(curCi, dx > 0 ? (curPi + 1) % total : (curPi - 1 + total) % total);
-      }
+      if (Math.abs(dx) > 40 && dy < 80) navigate(dx > 0 ? 1 : -1);
     }, { passive: true });
   }
 
@@ -1371,46 +1374,86 @@
   }
 
   // ── RENDER VISUAL — FIT PHOTOS ──
-  function renderVisualFitPhotos(pack, fit, photos) {
+  // photosByColor: { colorName: [src, ...], ... }
+  function renderVisualFitPhotos(pack, fit, photosByColor) {
     const el = document.getElementById('product-visual');
+
+    // Lista plana con metadata de color
+    const flatPhotos = [];
+    Object.entries(photosByColor).forEach(([colorName, photos]) => {
+      photos.forEach(src => flatPhotos.push({ colorName, src }));
+    });
+
+    if (!flatPhotos.length) { renderVisualColor(pack); return; }
+
     let html = '<div class="visual-gallery" id="visual-gallery">';
-    photos.forEach((src, pi) => {
-      html += `<img class="gallery-img${pi===0?' active':''}" src="${src}" alt="Pack ${pack.num} ${fit} ${pi+1}" data-photo="${pi}" />`;
+    flatPhotos.forEach((p, fi) => {
+      html += `<img class="gallery-img${fi===0?' active':''}" src="${p.src}" alt="Pack ${pack.num} ${fit} ${p.colorName}" data-fi="${fi}" />`;
     });
     html += '</div>';
-    if (photos.length > 1) {
+    if (flatPhotos.length > 1) {
       html += `<button class="gallery-nav-btn gallery-nav-prev" id="gallery-prev" aria-label="Anterior">&#8249;</button>
         <button class="gallery-nav-btn gallery-nav-next" id="gallery-next" aria-label="Siguiente">&#8250;</button>`;
     }
     el.innerHTML = html;
-    let curPi = 0;
-    function showFitPhoto(pi) {
-      el.querySelectorAll('.gallery-img').forEach(img => img.classList.remove('active'));
-      const t = el.querySelector(`.gallery-img[data-photo="${pi}"]`);
-      if (t) t.classList.add('active');
-      curPi = pi;
+
+    let selectedColor = null; // null = sin color, muestra todas
+    let curFi = 0;
+
+    function getVisible() {
+      if (!selectedColor) return flatPhotos.map((_, fi) => fi);
+      const f = flatPhotos.reduce((acc, p, fi) => { if (p.colorName === selectedColor) acc.push(fi); return acc; }, []);
+      return f.length ? f : flatPhotos.map((_, fi) => fi); // fallback: sin fotos para ese color
     }
+
+    function showFlatIdx(fi) {
+      el.querySelectorAll('.gallery-img').forEach(img => img.classList.remove('active'));
+      const t = el.querySelector(`.gallery-img[data-fi="${fi}"]`);
+      if (t) t.classList.add('active');
+      curFi = fi;
+    }
+
+    function navigate(delta) {
+      const visible = getVisible();
+      const pos = visible.indexOf(curFi);
+      showFlatIdx(visible[(pos === -1 ? 0 : (pos + delta + visible.length) % visible.length)]);
+    }
+
+    pack._showColorPhotos = (colorName) => {
+      selectedColor = colorName;
+      const visible = getVisible();
+      if (visible.length) showFlatIdx(visible[0]);
+    };
+
     el.querySelectorAll('.gallery-img').forEach(img => {
-      img.addEventListener('click', () => openLightbox(photos, curPi));
+      img.addEventListener('click', () => {
+        const visible = getVisible();
+        openLightbox(visible.map(fi => flatPhotos[fi].src), visible.indexOf(curFi));
+      });
     });
-    if (photos.length > 1) {
-      document.getElementById('gallery-prev').addEventListener('click', () => showFitPhoto((curPi - 1 + photos.length) % photos.length));
-      document.getElementById('gallery-next').addEventListener('click', () => showFitPhoto((curPi + 1) % photos.length));
+
+    if (flatPhotos.length > 1) {
+      document.getElementById('gallery-prev').addEventListener('click', () => navigate(-1));
+      document.getElementById('gallery-next').addEventListener('click', () => navigate(1));
       const galleryEl = el.querySelector('.visual-gallery');
       let tsX = 0, tsY = 0;
       galleryEl.addEventListener('touchstart', e => { tsX = e.touches[0].clientX; tsY = e.touches[0].clientY; }, { passive: true });
       galleryEl.addEventListener('touchend', e => {
         const dx = tsX - e.changedTouches[0].clientX;
         const dy = Math.abs(tsY - e.changedTouches[0].clientY);
-        if (Math.abs(dx) > 40 && dy < 80) showFitPhoto(dx > 0 ? (curPi + 1) % photos.length : (curPi - 1 + photos.length) % photos.length);
+        if (Math.abs(dx) > 40 && dy < 80) navigate(dx > 0 ? 1 : -1);
       }, { passive: true });
     }
   }
 
   function showFitVisual(pack, fit) {
-    const photos = fit ? ((FIT_PHOTOS[pack.num] || {})[fit] || []) : [];
-    if (photos.length > 0) renderVisualFitPhotos(pack, fit, photos);
-    else renderVisualColor(pack);
+    delete pack._showColorPhotos;
+    const fitEntry = fit ? ((FIT_PHOTOS[pack.num] || {})[fit]) : null;
+    if (fitEntry && typeof fitEntry === 'object' && Object.keys(fitEntry).length > 0) {
+      renderVisualFitPhotos(pack, fit, fitEntry);
+    } else {
+      renderVisualColor(pack);
+    }
   }
 
   // ── SIZE GUIDE HELPERS ──
@@ -1545,7 +1588,7 @@
           unitSelections[ui].color = colors[ci].name;
           const nameEl = document.getElementById(`unit-color-name-${ui}`);
           if (nameEl) nameEl.textContent = colors[ci].name;
-          syncColor(ci, colors[ci].hex);
+          syncColor(ci, colors[ci].hex, colors[ci].name);
         });
       });
     }
