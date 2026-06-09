@@ -870,8 +870,10 @@
       rows: [['S','54cm','68cm','20cm','21.5cm'],['M','56cm','72cm','19.5cm','23cm'],['L','57cm','74cm','20cm','24cm'],['XL','59.5cm','76.5cm','22cm','25cm']]
     },
     '06': {
-      cols: ['Talla','Pecho','Largo','Hombro','Manga'],
-      rows: [['S','62cm','72cm','23cm','55cm'],['M','65cm','74cm','24cm','57cm'],['L','68cm','76.5cm','25cm','59cm']]
+      byFit: {
+        'Boxy':     { cols: ['Talla','Pecho','Largo','Hombro','Manga'], rows: [['S','57cm','60cm','20.5cm','56cm'],['M','59cm','62.5cm','22cm','57cm'],['L','61cm','65cm','23.5cm','59cm']] },
+        'Oversize': { cols: ['Talla','Pecho','Largo','Hombro','Manga'], rows: [['S','62cm','72cm','23cm','55cm'],['M','65cm','74cm','24cm','57cm'],['L','68cm','76.5cm','25cm','59cm']] }
+      }
     },
     '07': {
       note: '100% algodón Pima peruano. Corte slim fit entallado.',
@@ -893,7 +895,7 @@
       }
     },
     '10': {
-      note: 'Medidas del pantalón franela. Polo y hoodie en corte oversize.',
+      note: 'Medidas del pantalón franela 24/1 (350g). Medidas del hoodie: consulta al pedir.',
       cols: ['Talla','Largo','Cintura','Cadera'],
       rows: [['S','103.5cm','28cm','50cm'],['M','106cm','30cm','51cm'],['L','108cm','32cm','52cm']]
     }
@@ -1041,19 +1043,52 @@
     },
     '06': {
       num: '06', badge: null,
-      name: 'Pack Invierno',
+      name: 'Pack Hoodies',
       price: 'S/ 99', qty: '2 hoodies', unitCount: 2, unitType: 'Hoodie',
-      desc: 'Franela 24/1, 320 gramos — tela cepillada de gramaje pesado. Más abrigo que el jersey estándar, diferente al tacto. Corte Oversize con hombros amplios y largo generoso. La polera para Lima de junio a septiembre. Dos piezas en colores que se complementan para armar el look de temporada.',
-      colorsNote: 'Colores disponibles según stock.',
+      desc: 'Franela 24/1, 320 gramos — tela cepillada de gramaje pesado. Más abrigo que el jersey estándar, diferente al tacto. Dos cortes: Boxy para un look cuadrado y urbano, Oversize con hombros amplios y largo generoso. La polera para Lima de junio a septiembre.',
+      colorsNote: 'Colores disponibles según stock de temporada.',
       colors: null,
       swatches: [
         { name: 'Negro',         hex: '#1a1a1a' },
-        { name: 'Blanco',        hex: '#f5f5f5' },
         { name: 'Plomo Escolar', hex: '#6b7280' },
+        { name: 'Plomo Plata',   hex: '#9FAAB5' },
+        { name: 'Marrón',        hex: '#795548' },
+        { name: 'Verde Botella', hex: '#1f4a2e' },
+        { name: 'Acero',         hex: '#2E3F5C' },
         { name: 'Beige Oscuro',  hex: '#9e8a6f' },
-        { name: 'Verde Botella', hex: '#1f4a2e' }
+        { name: 'PPT',           hex: '#EDE5D8' },
+        { name: 'Lila 69',       hex: '#C9B1D9' }
       ],
-      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Invierno+(2+hoodies+x+S%2F99)'
+      swatchesByFit: {
+        'Boxy': [
+          { name: 'Negro',         hex: '#1a1a1a' },
+          { name: 'Plomo Escolar', hex: '#6b7280' },
+          { name: 'Plomo Plata',   hex: '#9FAAB5' },
+          { name: 'Marrón',        hex: '#795548' },
+          { name: 'Verde Botella', hex: '#1f4a2e' },
+          { name: 'Acero',         hex: '#2E3F5C' },
+          { name: 'Beige Oscuro',  hex: '#9e8a6f' },
+          { name: 'PPT',           hex: '#EDE5D8' },
+          { name: 'Lila 69',       hex: '#C9B1D9' }
+        ],
+        'Oversize': [
+          { name: 'Negro',         hex: '#1a1a1a' },
+          { name: 'Marrón',        hex: '#795548' },
+          { name: 'Denim',         hex: '#5B7FA6' },
+          { name: 'Plomo Escolar', hex: '#6b7280' },
+          { name: 'Plomo Plata',   hex: '#9FAAB5' },
+          { name: 'Verde Botella', hex: '#1f4a2e' },
+          { name: 'Verde Militar', hex: '#4a5c3c' },
+          { name: 'PPT',           hex: '#EDE5D8' },
+          { name: 'Beige',         hex: '#d4c5a9' },
+          { name: 'Acero',         hex: '#2E3F5C' },
+          { name: 'Celeste',       hex: '#88C0D0' },
+          { name: 'Lila 69',       hex: '#C9B1D9' },
+          { name: 'Lila Oscuro',   hex: '#8A6BA8' },
+          { name: 'Mauve',         hex: '#c8a0a0' }
+        ]
+      },
+      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Hoodies+(2+hoodies+x+S%2F99)'
     },
     '07': {
       num: '07', badge: 'Premium',
@@ -1094,7 +1129,7 @@
     },
     '08': {
       num: '08', badge: null,
-      name: 'Pack High Cotton 280g',
+      name: 'Pack Medium Cotton 280g',
       price: 'S/ 100', qty: '4 polos', unitCount: 4, unitType: 'Polo',
       desc: 'Tela 15/1, 280 gramos — notablemente más densa que un polo de tienda, con mejor caída y más estructura. Tres cortes en un pack: Oversize suelto, Boxy cuadrado y Regular clásico. Para quien quiere calidad diaria con versatilidad de siluetas.',
       colorsNote: 'Colores disponibles según stock.',
@@ -1160,7 +1195,7 @@
           { name: 'Guinda',        hex: '#7c1d2e' }
         ]
       },
-      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+High+Cotton+280g+(4+polos+x+S%2F100)'
+      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Medium+Cotton+280g+(4+polos+x+S%2F100)'
     },
     '09': {
       num: '09', badge: 'El más grueso',
@@ -1184,23 +1219,29 @@
         { name: 'Verde Militar', hex: '#4a5c3c' },
         { name: 'Guinda',        hex: '#7c1d2e' }
       ],
-      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+High+Cotton+(4+polos+x+S%2F110)'
+      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+High+Cotton+320g+(4+polos+x+S%2F110)'
     },
     '10': {
-      num: '10', badge: 'Nuevo',
-      name: 'Outfit Invierno',
-      price: 'S/ 120', qty: 'polo · hoodie · pantalón', unitLabels: ['Polo', 'Hoodie', 'Pantalón'],
-      desc: 'El look completo para los meses fríos: polo 20/1 oversize + hoodie de franela oversize + pantalón franela corte recto. Las tres prendas armadas en paleta coordinada — no tienes que pensar en qué combina con qué. La franela es 24/1, 320 gramos: abriga de verdad para Lima de junio a septiembre.',
-      colorsNote: 'Te armamos el outfit en colores coordinados. Dinos tu preferencia de tono.',
+      num: '10', badge: 'Polo 20/1 de regalo',
+      name: 'Pack Invierno',
+      price: 'S/ 120', qty: '2 prendas + polo 20/1 de regalo', unitCount: 2, unitLabels: ['Hoodie', 'Pantalón'],
+      desc: 'Hoodie franela 24/1 (320g) en corte Boxy o Oversize + pantalón franela 24/1 (350g) corte recto. Las dos prendas en la paleta que elijas. Y de regalo, un polo 20/1 oversize — el color lo coordinas directo en el chat al hacer tu pedido. El look de invierno completo para Lima de junio a septiembre.',
+      colorsNote: 'Elige los colores de hoodie y pantalón. El polo de regalo lo coordinas en el chat.',
       colors: null,
       swatches: [
         { name: 'Negro',         hex: '#1a1a1a' },
-        { name: 'Blanco Roto',   hex: '#f0ede8' },
         { name: 'Plomo Escolar', hex: '#6b7280' },
-        { name: 'Beige Claro',   hex: '#d4c5a9' },
-        { name: 'Verde Botella', hex: '#1f4a2e' }
+        { name: 'Plomo Plata',   hex: '#9FAAB5' },
+        { name: 'Marrón',        hex: '#795548' },
+        { name: 'Verde Botella', hex: '#1f4a2e' },
+        { name: 'Verde Militar', hex: '#4a5c3c' },
+        { name: 'Beige',         hex: '#d4c5a9' },
+        { name: 'Celeste',       hex: '#88C0D0' },
+        { name: 'Azul',          hex: '#2B7FD4' },
+        { name: 'PPT',           hex: '#EDE5D8' },
+        { name: 'Acero',         hex: '#2E3F5C' }
       ],
-      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Outfit+Invierno+(polo+%2B+hoodie+%2B+pantal%C3%B3n+x+S%2F120)'
+      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Invierno+(hoodie+%2B+pantal%C3%B3n+%2B+polo+20%2F1+de+regalo+x+S%2F120)'
     }
   };
 
@@ -1208,6 +1249,7 @@
   const FITS = {
     '01': ['Oversize', 'Boxy', 'Boxy Largo', 'Regular'],
     '02': ['Dama'],
+    '06': ['Boxy', 'Oversize'],
     '08': ['Oversize', 'Boxy', 'Regular'],
     '09': ['Oversize', 'Boxy']
   };
@@ -1382,7 +1424,8 @@
   // ── RENDER INFO ──
   function renderInfo(pack) {
     const el = document.getElementById('product-info');
-    const tagLine = pack.badge ? `Pack ${pack.num} &nbsp;·&nbsp; ${pack.badge}` : `Pack ${pack.num}`;
+    const tagLine = `Pack ${pack.num}`;
+    const badgeHtml = pack.badge ? `<span class="info-badge">${pack.badge}</span>` : '';
 
     const guide = SIZE_GUIDES[pack.num];
     const fitOptions = FITS[pack.num] || [];
@@ -1392,16 +1435,16 @@
       return pack.colors || pack.swatches;
     }
     const colorItems = getSwatchesForFit(fitOptions[0] || null);
-    let sizeRows;
-    if (guide && guide.byFit) {
-      const allSizes = new Set();
-      Object.values(guide.byFit).forEach(fd => fd.rows.forEach(r => allSizes.add(r[0])));
-      sizeRows = ['S','M','L','XL'].filter(s => allSizes.has(s));
-    } else if (guide) {
-      sizeRows = guide.rows.map(r => r[0]);
-    } else {
-      sizeRows = ['S','M','L','XL'];
+    function getSizesForFit(fit) {
+      if (guide && guide.byFit) {
+        const fitGuide = (fit && guide.byFit[fit]) || Object.values(guide.byFit)[0];
+        return fitGuide.rows.map(r => r[0]);
+      }
+      if (guide) return guide.rows.map(r => r[0]);
+      return ['S','M','L','XL'];
     }
+
+    let sizeRows = getSizesForFit(fitOptions[0] || null);
 
     const labels = pack.unitLabels ||
       Array.from({length: pack.unitCount || 1}, (_, i) => `${pack.unitType || 'Prenda'} ${i + 1}`);
@@ -1463,6 +1506,7 @@
 
     el.innerHTML = `
       <p class="info-tag">${tagLine}</p>
+      ${badgeHtml}
       <h1 class="info-title">${pack.name}</h1>
       <div class="info-price-row">
         <span class="info-price">${pack.price}</span>
@@ -1503,6 +1547,17 @@
         unitSelections[ui].fit = newFit;
         updateSizeGuide(pack.num, newFit);
 
+        const newSizes = getSizesForFit(newFit);
+        const unitRowEl = el.querySelector(`.unit-row[data-unit="${ui}"]`);
+        const sizeRowEl = unitRowEl && unitRowEl.querySelector('.unit-size-row');
+        if (sizeRowEl) {
+          sizeRowEl.innerHTML = newSizes.map((s, si) =>
+            `<button class="unit-size-btn${si===0?' active':''}" data-unit="${ui}" data-size="${s}">${s}</button>`
+          ).join('');
+          bindSizeBtns(sizeRowEl);
+          unitSelections[ui].size = newSizes[0];
+        }
+
         if (pack.swatchesByFit) {
           const newColors = getSwatchesForFit(newFit);
           const row = document.getElementById(`unit-colors-row-${ui}`);
@@ -1520,14 +1575,17 @@
       });
     });
 
-    el.querySelectorAll('.unit-size-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const ui = parseInt(btn.dataset.unit);
-        el.querySelectorAll(`.unit-size-btn[data-unit="${ui}"]`).forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        unitSelections[ui].size = btn.dataset.size;
+    function bindSizeBtns(container) {
+      container.querySelectorAll('.unit-size-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const ui = parseInt(btn.dataset.unit);
+          el.querySelectorAll(`.unit-size-btn[data-unit="${ui}"]`).forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          unitSelections[ui].size = btn.dataset.size;
+        });
       });
-    });
+    }
+    bindSizeBtns(el);
 
     const toggleBtn = document.getElementById('size-guide-toggle');
     const panel = document.getElementById('size-guide-panel');
