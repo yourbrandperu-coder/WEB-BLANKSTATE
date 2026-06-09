@@ -855,7 +855,8 @@
       byFit: {
         'Oversize':   { cols: ['Talla','Pecho','Largo','Hombro','Manga'], rows: [['S','55cm','71.5cm','21.5cm','22cm'],['M','57cm','73.5cm','22cm','24cm'],['L','60cm','76cm','22cm','24.5cm'],['XL','62cm','79cm','23cm','25cm']] },
         'Boxy':       { cols: ['Talla','Pecho','Largo','Manga'],          rows: [['S','57cm','62cm','23cm'],['M','59cm','64cm','25cm'],['L','61cm','66cm','27cm']] },
-        'Boxy Largo': { cols: ['Talla','Pecho','Largo','Hombro','Manga'], rows: [['S','56cm','68cm','22cm','21cm'],['M','59cm','71cm','23.5cm','22cm'],['L','62cm','74cm','25cm','22.5cm'],['XL','65cm','77cm','26.5cm','23cm']] }
+        'Boxy Largo': { cols: ['Talla','Pecho','Largo','Hombro','Manga'], rows: [['S','56cm','68cm','22cm','21cm'],['M','59cm','71cm','23.5cm','22cm'],['L','62cm','74cm','25cm','22.5cm'],['XL','65cm','77cm','26.5cm','23cm']] },
+        'Regular':    { cols: ['Talla','Ancho','Largo','Manga'],          rows: [['S','50cm','69cm','22.5cm'],['M','52cm','71cm','24cm'],['L','54cm','74cm','25cm'],['XL','57cm','77cm','26cm']] }
       }
     },
     '02': {
@@ -903,7 +904,7 @@
       num: '01', badge: 'Más pedido',
       name: 'Pack Básicos',
       price: 'S/ 100', qty: '5 polos', unitCount: 5, unitType: 'Polo',
-      desc: 'Los dos cortes que más rotan en el armario: Oversize con hombros caídos y largo generoso, y Boxy cuadrado para un look más urbano. Tela 20/1, 200g de algodón peinado reactivo — liviana, transpirable, ideal todo el año en Lima. Cinco polos para tener la semana cubierta sin repetir.',
+      desc: 'Los cortes que más rotan en el armario: Oversize con hombros caídos y largo generoso, Boxy cuadrado para un look más urbano, y Regular con caída estructurada para el día a día. Tela 20/1, 200g de algodón peinado reactivo — liviana, transpirable, ideal todo el año en Lima. Cinco polos para tener la semana cubierta sin repetir.',
       colorsNote: 'Colores disponibles según stock de temporada — te los confirmamos al pedir.',
       colors: null,
       swatches: [
@@ -924,13 +925,81 @@
         { name: 'Celeste',       hex: '#88C0D0' },
         { name: 'Acero',         hex: '#2E3F5C' }
       ],
+      swatchesByFit: {
+        'Oversize': [
+          { name: 'Blanco',        hex: '#f5f5f5' },
+          { name: 'PPT',           hex: '#EDE5D8' },
+          { name: 'Beige',         hex: '#d4c5a9' },
+          { name: 'Verde Manzana', hex: '#7DB868' },
+          { name: 'Cocoa',         hex: '#8C6448' },
+          { name: 'Plomo Plata',   hex: '#9FAAB5' },
+          { name: 'Plomo Escolar', hex: '#6b7280' },
+          { name: 'Marrón',        hex: '#795548' },
+          { name: 'Negro',         hex: '#1a1a1a' },
+          { name: 'English Blue',  hex: '#1e3a5f' },
+          { name: 'Guinda',        hex: '#7c1d2e' },
+          { name: 'Mauve',         hex: '#c8a0a0' },
+          { name: 'Verde Militar', hex: '#4a5c3c' },
+          { name: 'Verde Botella', hex: '#1f4a2e' },
+          { name: 'Celeste',       hex: '#88C0D0' },
+          { name: 'Acero',         hex: '#2E3F5C' }
+        ],
+        'Boxy': [
+          { name: 'Blanco',        hex: '#f5f5f5' },
+          { name: 'PPT',           hex: '#EDE5D8' },
+          { name: 'Beige',         hex: '#d4c5a9' },
+          { name: 'Plomo Plata',   hex: '#9FAAB5' },
+          { name: 'Plomo Escolar', hex: '#6b7280' },
+          { name: 'Marrón',        hex: '#795548' },
+          { name: 'Negro',         hex: '#1a1a1a' },
+          { name: 'Mauve',         hex: '#c8a0a0' },
+          { name: 'Celeste',       hex: '#88C0D0' },
+          { name: 'English Blue',  hex: '#1e3a5f' },
+          { name: 'Acero',         hex: '#2E3F5C' }
+        ],
+        'Boxy Largo': [
+          { name: 'Blanco',        hex: '#f5f5f5' },
+          { name: 'PPT',           hex: '#EDE5D8' },
+          { name: 'Beige',         hex: '#d4c5a9' },
+          { name: 'Verde Manzana', hex: '#7DB868' },
+          { name: 'Plomo Plata',   hex: '#9FAAB5' },
+          { name: 'Plomo Escolar', hex: '#6b7280' },
+          { name: 'Marrón',        hex: '#795548' },
+          { name: 'Negro',         hex: '#1a1a1a' },
+          { name: 'English Blue',  hex: '#1e3a5f' },
+          { name: 'Cocoa',         hex: '#8C6448' },
+          { name: 'Mauve',         hex: '#c8a0a0' },
+          { name: 'Verde Militar', hex: '#4a5c3c' },
+          { name: 'Verde Botella', hex: '#1f4a2e' },
+          { name: 'Celeste',       hex: '#88C0D0' },
+          { name: 'Acero',         hex: '#2E3F5C' }
+        ],
+        'Regular': [
+          { name: 'Blanco',        hex: '#f5f5f5' },
+          { name: 'PPT',           hex: '#EDE5D8' },
+          { name: 'Beige',         hex: '#d4c5a9' },
+          { name: 'Verde Manzana', hex: '#7DB868' },
+          { name: 'Plomo Plata',   hex: '#9FAAB5' },
+          { name: 'Plomo Escolar', hex: '#6b7280' },
+          { name: 'Marrón',        hex: '#795548' },
+          { name: 'Negro',         hex: '#1a1a1a' },
+          { name: 'English Blue',  hex: '#1e3a5f' },
+          { name: 'Cocoa',         hex: '#8C6448' },
+          { name: 'Mauve',         hex: '#c8a0a0' },
+          { name: 'Verde Militar', hex: '#4a5c3c' },
+          { name: 'Verde Botella', hex: '#1f4a2e' },
+          { name: 'Celeste',       hex: '#88C0D0' },
+          { name: 'Acero',         hex: '#2E3F5C' },
+          { name: 'Guinda',        hex: '#7c1d2e' }
+        ]
+      },
       wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+B%C3%A1sicos+(5+polos+x+S%2F100)'
     },
     '02': {
       num: '02', badge: null,
-      name: 'Pack Classic',
+      name: 'Pack Dama',
       price: 'S/ 100', qty: '6 polos', unitCount: 6, unitType: 'Polo',
-      desc: 'Seis polos en los cortes clásicos para hombre y mujer: Regular fit con hombros definidos y caída limpia, y Corte Dama entallado con silueta femenina. Tela 20/1, 200g de algodón peinado. El pack para renovar el armario de una vez — el que más prendas ofrece del catálogo.',
+      desc: 'Seis polos en Corte Dama — entallado, con silueta femenina limpia. Tela 20/1, 200g de algodón peinado. El pack para renovar el armario de una vez — el que más prendas ofrece del catálogo.',
       colorsNote: 'Colores disponibles según stock de temporada.',
       colors: null,
       swatches: [
@@ -946,13 +1015,13 @@
         { name: 'Verde Manzana', hex: '#7DB868' },
         { name: 'Rosado',        hex: '#f9a8d4' }
       ],
-      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Classic+(6+polos+x+S%2F100)'
+      wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Dama+(6+polos+x+S%2F100)'
     },
     '03': {
       num: '03', badge: 'Edición especial',
       name: 'Pack Acid Wash',
       price: 'S/ 110', qty: '5 polos', unitCount: 5, unitType: 'Polo',
-      desc: 'Base Jersey 20/1 con tratamiento Acid Wash. El proceso decolora la tela de forma controlada pero impredecible — cada polo sale con un patrón de desteñido único, ninguno igual. El efecto es sutil y natural, nada recargado. Para quien quiere carácter en el básico sin necesidad de estampado.',
+      desc: 'Base Jersey 20/1, 220g con tratamiento Acid Wash. El proceso decolora la tela de forma controlada pero impredecible — cada polo sale con un patrón de desteñido único, ninguno igual. El efecto es sutil y natural, nada recargado. Para quien quiere carácter en el básico sin necesidad de estampado.',
       colorsNote: 'Cada polo es único por el proceso Acid Wash. El color que eliges es el tono base del desteñido.',
       colors: null,
       swatches: [
@@ -965,7 +1034,6 @@
         { name: 'Chicle',      hex: '#f48fb1' },
         { name: 'Gris',        hex: '#9ca3af' },
         { name: 'Acero',       hex: '#6B8599' },
-        { name: 'Plata',       hex: '#B8C4CC' },
         { name: 'Verde',       hex: '#4A7C59' },
         { name: 'Turquesa',    hex: '#00897B' }
       ],
@@ -1138,8 +1206,8 @@
 
   // ── FITS POR PACK ──
   const FITS = {
-    '01': ['Oversize', 'Boxy', 'Boxy Largo'],
-    '02': ['Regular', 'Dama'],
+    '01': ['Oversize', 'Boxy', 'Boxy Largo', 'Regular'],
+    '02': ['Dama'],
     '08': ['Oversize', 'Boxy', 'Regular'],
     '09': ['Oversize', 'Boxy']
   };
@@ -1149,7 +1217,8 @@
     '01': {
       'Oversize':   [],
       'Boxy':       [],
-      'Boxy Largo': []
+      'Boxy Largo': [],
+      'Regular':    []
     }
   };
 
