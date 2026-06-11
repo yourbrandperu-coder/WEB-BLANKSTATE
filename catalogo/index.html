@@ -7,13 +7,12 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Blankstate — Packs Premium" />
   <meta property="og:description" content="Ropa de calidad real. Sin logo, sin markup. Packs desde S/70. Lima, Perú." />
-  <meta property="og:image" content="https://blankstate.pe/BRANDING/banners/1.webp" />
+  <meta property="og:image" content="https://blankstate.pe/BRANDING/banners/NUEVOS/FINALES/PACK%20BASICOS.webp" />
   <meta property="og:url" content="https://blankstate.pe" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <title>Blankstate — Packs Premium</title>
-  <link rel="preload" as="image" href="../BRANDING/banners/1.webp" type="image/webp" media="(min-width: 901px)" />
-  <link rel="preload" as="image" href="../BRANDING/banners/cel-1.webp" type="image/webp" media="(max-width: 900px)" />
+  <link rel="preload" as="image" href="../BRANDING/banners/NUEVOS/FINALES/PACK%20BASICOS.webp" type="image/webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -557,59 +556,9 @@
     }
     .hero-cta:hover { background: var(--g1); transform: translateY(-2px); }
 
-    .hero-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(246,246,246,0.08);
-      border: 1px solid rgba(246,246,246,0.18);
-      color: var(--white);
-      width: 52px; height: 52px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 22px;
-      z-index: 10;
-      transition: background 0.2s, border-color 0.2s;
-      backdrop-filter: blur(4px);
-      line-height: 1;
-    }
-    .hero-arrow:hover { background: rgba(246,246,246,0.18); border-color: rgba(246,246,246,0.35); }
-    .hero-arrow--prev { left: 24px; }
-    .hero-arrow--next { right: 24px; }
-
-    .hero-slider[data-slides="1"] .hero-arrow,
-    .hero-slider[data-slides="1"] .hero-dots { display: none; }
-
-    .hero-dots {
-      position: absolute;
-      bottom: 36px;
-      right: 48px;
-      display: flex;
-      gap: 8px;
-      z-index: 10;
-    }
-
-    .hero-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: rgba(246,246,246,0.35);
-      border: none;
-      cursor: pointer;
-      transition: background 0.25s, transform 0.25s;
-      padding: 0;
-    }
-    .hero-dot.active {
-      background: var(--white);
-      transform: scale(1.2);
-    }
-
     @media (max-width: 900px) {
       .hero-overlay { padding: 0 20px 68px; }
       .hero-title { font-size: clamp(28px, 7vw, 40px); margin-bottom: 24px; }
-      .hero-arrow { display: none !important; }
-      .hero-dots { right: 20px; }
     }
 
     /* ── SCROLL ANIMATIONS ── */
@@ -649,12 +598,6 @@
     @media (max-width: 480px) {
       .pack-grid { gap: 4px; }
       .bar { font-size: 10px; letter-spacing: 0.07em; padding: 9px 12px; }
-    }
-
-    /* ── MOBILE-ONLY SLIDES ── */
-    @media (min-width: 901px) {
-      .hero-slide.mobile-only,
-      .hero-dot.mobile-only { display: none; }
     }
 
     /* ── TOUCH DEVICES ── */
@@ -725,39 +668,54 @@
 </div>
 
 <!-- ── HERO SLIDER ── -->
-<section class="hero-slider" id="hero" data-slides="4">
+<section class="hero-slider" id="hero">
 
-  <!-- Slide 1 -->
   <div class="hero-slide active">
     <picture>
-      <source media="(max-width: 900px)" srcset="../BRANDING/banners/cel-1.webp" type="image/webp" />
-      <source srcset="../BRANDING/banners/1.webp" type="image/webp" />
-      <img class="hero-img" src="../BRANDING/banners/1.png" alt="Blankstate — Packs Premium" fetchpriority="high" loading="eager" />
+      <source srcset="../BRANDING/banners/NUEVOS/FINALES/PACK%20BASICOS.webp" type="image/webp" />
+      <img class="hero-img" src="../BRANDING/banners/NUEVOS/FINALES/PACK%20BASICOS.png" alt="Pack Básicos" fetchpriority="high" loading="eager" />
     </picture>
   </div>
 
-  <!-- Slide 2 -->
   <div class="hero-slide">
     <picture>
-      <source media="(max-width: 900px)" srcset="../BRANDING/banners/cel-2.webp" type="image/webp" />
-      <source srcset="../BRANDING/banners/2.webp" type="image/webp" />
-      <img class="hero-img" src="../BRANDING/banners/2.png" alt="Blankstate — Calidad sin markup" loading="lazy" />
+      <source srcset="../BRANDING/banners/NUEVOS/FINALES/PACK%20PIMA.webp" type="image/webp" />
+      <img class="hero-img" src="../BRANDING/banners/NUEVOS/FINALES/PACK%20PIMA.png" alt="Pack Pima" loading="lazy" />
     </picture>
   </div>
 
-  <!-- Slide 3 -->
   <div class="hero-slide">
     <picture>
-      <source media="(max-width: 900px)" srcset="../BRANDING/banners/cel-3.webp" type="image/webp" />
-      <source srcset="../BRANDING/banners/3.webp" type="image/webp" />
-      <img class="hero-img" src="../BRANDING/banners/3.png" alt="Blankstate — Packs desde S/70" loading="lazy" />
+      <source srcset="../BRANDING/banners/NUEVOS/FINALES/PACK%20ACID%20WASH.webp" type="image/webp" />
+      <img class="hero-img" src="../BRANDING/banners/NUEVOS/FINALES/PACK%20ACID%20WASH.png" alt="Pack Acid Wash" loading="lazy" />
     </picture>
   </div>
 
-  <!-- Slide 4 — solo mobile -->
-  <div class="hero-slide mobile-only">
+  <div class="hero-slide">
     <picture>
-      <img class="hero-img" src="../BRANDING/banners/Celular/4.png" alt="Blankstate" loading="lazy" />
+      <source srcset="../BRANDING/banners/NUEVOS/FINALES/PACK%20HOODIES.webp" type="image/webp" />
+      <img class="hero-img" src="../BRANDING/banners/NUEVOS/FINALES/PACK%20HOODIES.png" alt="Pack Hoodies" loading="lazy" />
+    </picture>
+  </div>
+
+  <div class="hero-slide">
+    <picture>
+      <source srcset="../BRANDING/banners/NUEVOS/FINALES/PACK%20DAMA.webp" type="image/webp" />
+      <img class="hero-img" src="../BRANDING/banners/NUEVOS/FINALES/PACK%20DAMA.png" alt="Pack Dama" loading="lazy" />
+    </picture>
+  </div>
+
+  <div class="hero-slide">
+    <picture>
+      <source srcset="../BRANDING/banners/NUEVOS/FINALES/PACK%20320%20GRAMOS.webp" type="image/webp" />
+      <img class="hero-img" src="../BRANDING/banners/NUEVOS/FINALES/PACK%20320%20GRAMOS.png" alt="Pack High Cotton 320g" loading="lazy" />
+    </picture>
+  </div>
+
+  <div class="hero-slide">
+    <picture>
+      <source srcset="../BRANDING/banners/NUEVOS/FINALES/PACK%20OUTFIT%20INVIERNO.webp" type="image/webp" />
+      <img class="hero-img" src="../BRANDING/banners/NUEVOS/FINALES/PACK%20OUTFIT%20INVIERNO.png" alt="Pack Outfit Invierno" loading="lazy" />
     </picture>
   </div>
 
@@ -770,17 +728,6 @@
       </a>
     </div>
   </div>
-
-  <button class="hero-arrow hero-arrow--prev" id="hero-prev" aria-label="Anterior">‹</button>
-  <button class="hero-arrow hero-arrow--next" id="hero-next" aria-label="Siguiente">›</button>
-
-  <div class="hero-dots" id="hero-dots">
-    <button class="hero-dot active" data-slide="0" aria-label="Slide 1"></button>
-    <button class="hero-dot" data-slide="1" aria-label="Slide 2"></button>
-    <button class="hero-dot" data-slide="2" aria-label="Slide 3"></button>
-    <button class="hero-dot mobile-only" data-slide="3" aria-label="Slide 4"></button>
-  </div>
-
 
 </section>
 
@@ -850,7 +797,7 @@
       </div>
       <div class="pack-card-info">
         <h3 class="pack-name">Pack High Cotton 320g</h3>
-        <p class="pack-desc">4 polos · oversize · boxy · regular</p>
+        <p class="pack-desc">4 polos · oversize · boxy</p>
         <div class="pack-card-bottom">
           <div class="pack-card-price">S/ 110</div>
           <a href="pack.html?id=09" class="btn-ver-pack">Ver →</a>
@@ -969,35 +916,35 @@
   (function() {
     const slider = document.getElementById('hero');
     if (!slider) return;
-    const isMobile = window.innerWidth <= 900;
-    const slides = Array.from(slider.querySelectorAll('.hero-slide')).filter(s => !s.classList.contains('mobile-only') || isMobile);
-    const dots   = Array.from(slider.querySelectorAll('.hero-dot')).filter(d => !d.classList.contains('mobile-only') || isMobile);
-    slider.dataset.slides = slides.length;
-    const prev   = document.getElementById('hero-prev');
-    const next   = document.getElementById('hero-next');
-    let current  = 0;
-    let startX   = 0;
+    const slides = Array.from(slider.querySelectorAll('.hero-slide'));
+    let current = 0, startX = 0, dragX = 0, dragging = false;
 
     function goTo(idx) {
       slides[current].classList.remove('active');
-      dots[current] && dots[current].classList.remove('active');
       current = (idx + slides.length) % slides.length;
       slides[current].classList.add('active');
-      dots[current] && dots[current].classList.add('active');
     }
+    function resetAuto() { clearInterval(autoTimer); autoTimer = setInterval(() => goTo(current + 1), 5000); }
 
-    if (prev) prev.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
-    if (next) next.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
-    dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); resetAuto(); }));
-
+    // Touch
     slider.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
     slider.addEventListener('touchend', e => {
       const diff = startX - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 50) { goTo(diff > 0 ? current + 1 : current - 1); resetAuto(); }
     }, { passive: true });
 
-    let autoTimer = setInterval(() => goTo(current + 1), 5500);
-    function resetAuto() { clearInterval(autoTimer); autoTimer = setInterval(() => goTo(current + 1), 5500); }
+    // Mouse drag
+    slider.addEventListener('mousedown', e => { dragging = true; dragX = e.clientX; slider.style.cursor = 'grabbing'; });
+    slider.addEventListener('mousemove', e => { if (!dragging) return; });
+    slider.addEventListener('mouseup', e => {
+      if (!dragging) return;
+      dragging = false; slider.style.cursor = '';
+      const diff = dragX - e.clientX;
+      if (Math.abs(diff) > 50) { goTo(diff > 0 ? current + 1 : current - 1); resetAuto(); }
+    });
+    slider.addEventListener('mouseleave', () => { dragging = false; slider.style.cursor = ''; });
+
+    let autoTimer = setInterval(() => goTo(current + 1), 5000);
   })();
 
   // ── CUSTOM CURSOR ──
