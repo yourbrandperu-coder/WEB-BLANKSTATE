@@ -529,6 +529,7 @@
     }
     .unit-fit-btn:hover { border-color: var(--black); color: var(--black); }
     .unit-fit-btn.active { border-color: var(--black); background: var(--black); color: var(--white); }
+    .unit-fit-btn:disabled { opacity: 0.32; cursor: not-allowed; transform: none !important; border-style: dashed; }
     .unit-size-row {
       display: flex;
       gap: 6px;
@@ -1242,6 +1243,10 @@
     '09': ['Oversize', 'Boxy']
   };
 
+  const DISABLED_FITS = {
+    '01': ['Boxy Largo']
+  };
+
   const FIT_PHOTOS = {
     '01': {
       'Oversize': {
@@ -1666,9 +1671,11 @@
       }
       const uFitOptions = getFitOptionsForUnit(ui);
       if (uFitOptions.length > 0) {
+        const disabledFits = DISABLED_FITS[pack.num] || [];
         rowHtml += `<div class="unit-fit-row">`;
         uFitOptions.forEach((f, fi) => {
-          rowHtml += `<button class="unit-fit-btn${fi===0?' active':''}" data-unit="${ui}" data-fit="${f}">${f}</button>`;
+          const dis = disabledFits.includes(f);
+          rowHtml += `<button class="unit-fit-btn${fi===0?' active':''}" data-unit="${ui}" data-fit="${f}"${dis ? ' disabled title="Próximamente"' : ''}>${f}</button>`;
         });
         rowHtml += `</div>`;
       }
