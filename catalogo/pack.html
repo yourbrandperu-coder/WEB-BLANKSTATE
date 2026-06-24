@@ -766,7 +766,7 @@
 
     /* ── WHATSAPP FLOAT ── */
     .wa-float {
-      display: none;
+      display: flex;
       position: fixed;
       bottom: 24px;
       right: 24px;
@@ -784,7 +784,6 @@
     }
     .wa-float:hover { transform: scale(1.08); background: var(--g5); }
     .wa-float svg { width: 26px; height: 26px; }
-    @media (max-width: 900px) { .wa-float { display: flex; } }
   </style>
 </head>
 <body>
@@ -1740,12 +1739,14 @@
     if (addCartBtn) {
       addCartBtn.addEventListener('click', () => {
         if (typeof window.cartAdd !== 'function') return;
+        const activeImg = document.querySelector('.gallery-img.active');
         window.cartAdd({
           packId: pack.num,
           packName: pack.name,
           price: pack.price,
           priceNum: parseInt(pack.price.replace(/[^0-9]/g, '')),
           qty: pack.qty,
+          thumb: activeImg ? activeImg.src : null,
           units: unitSelections.map((sel, i) => ({
             label: labels[i],
             color: sel.color,

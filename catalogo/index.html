@@ -12,7 +12,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <title>Blankstate — Packs Premium</title>
-  <link rel="preload" as="image" href="../BRANDING/banners/NUEVOS/FINALES/PACK%20BASICOS.webp" type="image/webp" />
+  <link rel="preload" as="image" href="../BRANDING/portada-blank.webp" type="image/webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -69,16 +69,34 @@
     body.dark-bg .cursor { background: var(--white); }
     body.dark-bg .cursor.grow { border-color: var(--white); background: transparent; }
 
-    /* ── ANNOUNCEMENT ── */
+    /* ── ANNOUNCEMENT TICKER ── */
     .bar {
       background: var(--black);
       color: var(--white);
-      text-align: center;
-      padding: 9px 20px;
+      padding: 13px 0;
       font-size: 11px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       font-weight: 400;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .bar-track {
+      display: inline-flex;
+      animation: ticker 20s linear infinite;
+    }
+
+    .bar-item {
+      padding: 0 48px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bar-sep {
+      color: rgba(246,246,246,0.25);
+      padding: 0 4px;
     }
 
     /* ── NAV ── */
@@ -86,10 +104,10 @@
       position: sticky; top: 0; z-index: 200;
       background: var(--white);
       border-bottom: 1px solid var(--g2);
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      justify-content: space-between;
-      padding: 0 48px;
+      padding: 0 20px;
       height: 64px;
       transition: background 0.3s;
     }
@@ -100,11 +118,12 @@
       display: flex;
       align-items: center;
       text-decoration: none;
+      justify-self: center;
     }
 
     .nav-logo-wordmark {
       font-family: var(--sans);
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 300;
       letter-spacing: 0.04em;
       color: var(--black);
@@ -117,37 +136,11 @@
       letter-spacing: 0;
     }
 
-    .nav-links {
-      display: flex; gap: 32px; list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-weight: 400;
-      color: var(--g4);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--black); }
-
-    .nav-cta {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--black);
-      color: var(--white);
-      text-decoration: none;
-      padding: 10px 22px;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 500;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .nav-cta:hover { background: var(--g5); transform: translateY(-1px); }
+    .nav-links { display: none; }
 
     /* ── HAMBURGER ── */
     .nav-hamburger {
+      justify-self: start;
       background: none;
       border: none;
       cursor: pointer;
@@ -162,6 +155,31 @@
       font-family: var(--sans);
     }
     .nav-hamburger:hover { color: var(--g4); }
+
+    /* ── NAV CART ── */
+    .nav-cart {
+      justify-self: end;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: none;
+      color: var(--black);
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s;
+      font-family: var(--sans);
+      padding: 0;
+    }
+    .nav-cart:hover { color: var(--g4); }
+    .nav-cart svg { width: 20px; height: 20px; }
+    #cart-badge {
+      background: var(--black) !important;
+      color: var(--white) !important;
+      border: 2px solid var(--white) !important;
+    }
 
     /* ── NAV MENU ── */
     .nav-menu {
@@ -222,6 +240,110 @@
     @media (max-width: 900px) {
       .nav-menu-inner { padding: 40px 20px 44px; }
       .nav-menu-links a { font-size: 28px; }
+    }
+
+    /* ── CATEGORY TILES ── */
+    .cat-tile {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      display: block;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    @media (min-width: 680px) {
+      .cat-tile { aspect-ratio: 16/9; }
+    }
+
+    .cat-tile-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.8s var(--ease);
+    }
+    .cat-tile:hover .cat-tile-img { transform: scale(1.03); }
+
+    .cat-tile-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(8,8,8,0.32);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 0 32px 52px;
+    }
+
+    .cat-tile-arrow {
+      width: 52px;
+      height: 52px;
+      border: 1.5px solid rgba(246,246,246,0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 20px;
+      flex-shrink: 0;
+      transition: background 0.25s, border-color 0.25s;
+      font-family: var(--sans);
+    }
+    .cat-tile:hover .cat-tile-arrow {
+      background: var(--white);
+      color: var(--black);
+      border-color: var(--white);
+    }
+
+    /* ── HERO BOTTOM ── */
+    .hero-bottom {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 0 32px 52px;
+    }
+
+    .hero-label {
+      font-family: var(--sans);
+      font-size: clamp(48px, 13vw, 100px);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .hero-arrow {
+      width: 56px;
+      height: 56px;
+      border: 1.5px solid rgba(246,246,246,0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 22px;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: background 0.25s, border-color 0.25s;
+      font-family: var(--sans);
+    }
+    .hero-arrow:hover {
+      background: var(--white);
+      color: var(--black);
+      border-color: var(--white);
+    }
+
+    .cat-tile-label {
+      font-family: var(--sans);
+      font-size: clamp(48px, 13vw, 100px);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1;
     }
 
     /* ── PACKS SECTION ── */
@@ -353,11 +475,25 @@
 
     /* ── FINAL CTA ── */
     .cta-section {
-      background: var(--black);
+      background-color: var(--black);
+      background-size: cover;
+      background-position: center top;
       padding: 120px 48px;
       text-align: center;
       position: relative;
       overflow: hidden;
+    }
+
+    .cta-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(8,8,8,0.68);
+      z-index: 0;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
     }
 
     .cta-bg {
@@ -472,7 +608,7 @@
       letter-spacing: 0.05em;
     }
 
-    /* ── HERO SLIDER ── */
+    /* ── HERO ── */
     .hero-slider {
       position: relative;
       width: 100%;
@@ -481,83 +617,12 @@
       background: var(--black);
     }
 
-    .hero-slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 0.9s var(--ease);
-      pointer-events: none;
-    }
-
-    .hero-slide.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .hero-slide picture {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
     .hero-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center top;
       display: block;
-      transition: transform 8s ease;
-    }
-
-    .hero-slide.active .hero-img {
-      transform: scale(1.04);
-    }
-
-    @media (max-width: 900px) {
-      .hero-img { object-position: top center; }
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(8,8,8,0.84) 0%, rgba(8,8,8,0.15) 55%, transparent 100%);
-      display: flex;
-      align-items: flex-end;
-      padding: 0 48px 80px;
-    }
-
-    .hero-content { max-width: 560px; }
-
-    .hero-title {
-      font-family: var(--serif);
-      font-size: clamp(48px, 6.5vw, 96px);
-      font-weight: 300;
-      color: var(--white);
-      line-height: 1.04;
-      letter-spacing: -0.01em;
-      margin-bottom: 40px;
-      text-shadow: 0 2px 24px rgba(0,0,0,0.55);
-    }
-
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--white);
-      color: var(--black);
-      text-decoration: none;
-      padding: 10px 20px;
-      font-size: 10.5px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 500;
-      transition: background 0.2s, transform 0.3s var(--spring);
-    }
-    .hero-cta:hover { background: var(--g1); transform: translateY(-2px); }
-
-    @media (max-width: 900px) {
-      .hero-overlay { padding: 0 20px 68px; }
-      .hero-title { font-size: clamp(28px, 7vw, 40px); margin-bottom: 24px; }
     }
 
     /* ── SCROLL ANIMATIONS ── */
@@ -578,8 +643,6 @@
 
     /* ── TABLET ── */
     @media (max-width: 900px) {
-      .nav { padding: 0 20px; }
-      .nav-links { display: none; }
       .packs-section { padding: 64px 20px; }
       .cta-section { padding: 80px 24px; }
       .footer { padding: 40px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
@@ -599,6 +662,126 @@
       .bar { font-size: 10px; letter-spacing: 0.07em; padding: 9px 12px; }
     }
 
+    /* ── LIFESTYLE CAROUSEL ── */
+    .lifestyle-section { overflow: hidden; }
+
+    .lifestyle-viewport { overflow: hidden; width: 100%; }
+
+    .lifestyle-track {
+      display: flex;
+      transition: transform 0.8s var(--ease);
+      will-change: transform;
+    }
+
+    .lifestyle-slide {
+      flex-shrink: 0;
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+
+    @media (min-width: 680px) {
+      .lifestyle-slide { aspect-ratio: 16/9; }
+    }
+
+    .lifestyle-slide img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+
+    /* ── BEST SELLERS SCROLL ── */
+    .best-section { padding: 80px 0 88px; overflow: hidden; }
+
+    .best-header {
+      padding: 0 48px;
+      margin-bottom: 36px;
+      display: flex; align-items: flex-end; justify-content: space-between;
+    }
+
+    .best-title {
+      font-family: var(--sans);
+      font-size: clamp(48px, 13vw, 100px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .best-scroll {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      display: flex;
+      gap: 0;
+      padding: 0;
+      cursor: grab;
+    }
+    .best-scroll::-webkit-scrollbar { display: none; }
+    .best-scroll.grabbing { cursor: grabbing; }
+    .best-scroll.grabbing * { user-select: none; pointer-events: none; }
+
+    .best-card {
+      flex-shrink: 0;
+      width: 85vw;
+      max-width: 480px;
+      scroll-snap-align: start;
+      cursor: pointer;
+      background: transparent;
+      position: relative;
+    }
+
+    .best-card-photo {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background: var(--g1);
+      position: relative;
+    }
+
+    .best-card-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center; display: block;
+      transition: transform 0.7s var(--ease);
+    }
+    .best-card:hover .best-card-photo img { transform: scale(1.04); }
+
+    .best-card-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 60px 20px 20px;
+      background: linear-gradient(to top, rgba(8,8,8,0.5) 0%, transparent 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .btn-ver-pack-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--black);
+      padding: 11px 24px;
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .btn-ver-pack-card:hover { background: var(--g1); }
+
+    @media (max-width: 900px) {
+      .best-section { padding: 56px 0 64px; }
+    }
+
+    @media (max-width: 680px) {
+      .best-header { padding: 0 20px; }
+      .best-scroll { padding: 0 20px; }
+      .best-card { width: 82vw; max-width: 340px; }
+    }
+
     /* ── TOUCH DEVICES ── */
     @media (hover: none) {
       .cursor { display: none; }
@@ -607,7 +790,7 @@
 
     /* ── WHATSAPP FLOAT ── */
     .wa-float {
-      display: none;
+      display: flex;
       position: fixed;
       bottom: 24px;
       right: 24px;
@@ -625,27 +808,25 @@
     }
     .wa-float:hover { transform: scale(1.08); background: var(--g5); }
     .wa-float svg { width: 26px; height: 26px; }
-    @media (max-width: 900px) { .wa-float { display: flex; } }
   </style>
 </head>
 <body>
 
 <div class="cursor" id="cursor"></div>
 
-<!-- ── ANNOUNCEMENT BAR ── -->
-<div class="bar">
-  🚚 Envíos a todo el Perú
-</div>
-
 <!-- ── NAV ── -->
 <nav class="nav" id="nav">
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú">≡</button>
   <a href="#" class="nav-logo">
     <span class="nav-logo-wordmark">blankstate<sup>©</sup></span>
   </a>
-  <ul class="nav-links">
-    <li><a href="#packs">Catálogo</a></li>
-  </ul>
-  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú">≡</button>
+  <button class="nav-cart" id="cart-btn" aria-label="Ver carrito">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+    <span id="cart-badge"></span>
+  </button>
 </nav>
 
 <!-- ── NAV MENU ── -->
@@ -666,225 +847,169 @@
   </div>
 </div>
 
-<!-- ── HERO SLIDER ── -->
+<!-- ── HERO ── -->
 <section class="hero-slider" id="hero">
-
-  <div class="hero-slide active">
-    <picture>
-      <source srcset="../BRANDING/banners/NUEVOS/FINALES/PACK%20BASICOS.webp" type="image/webp" />
-      <img class="hero-img" src="../BRANDING/banners/NUEVOS/FINALES/PACK%20BASICOS.png" alt="Pack Básicos" fetchpriority="high" loading="eager" />
-    </picture>
+  <img class="hero-img"
+       src="../BRANDING/banners/v2/HERO%20PRINCIPAL.png"
+       alt="Blankstate"
+       fetchpriority="high" loading="eager" />
+  <div class="hero-bottom">
+    <span class="hero-label">Prendas básicas.</span>
+    <a href="#mas-vendidos" class="hero-arrow">→</a>
   </div>
-
-  <div class="hero-slide">
-    <picture>
-      <source srcset="../BRANDING/banners/NUEVOS/FINALES/PACK%20PIMA.webp" type="image/webp" />
-      <img class="hero-img" src="../BRANDING/banners/NUEVOS/FINALES/PACK%20PIMA.png" alt="Pack Pima" loading="lazy" />
-    </picture>
-  </div>
-
-  <div class="hero-slide">
-    <picture>
-      <source srcset="../BRANDING/banners/NUEVOS/FINALES/PACK%20ACID%20WASH.webp" type="image/webp" />
-      <img class="hero-img" src="../BRANDING/banners/NUEVOS/FINALES/PACK%20ACID%20WASH.png" alt="Pack Acid Wash" loading="lazy" />
-    </picture>
-  </div>
-
-  <div class="hero-slide">
-    <picture>
-      <source srcset="../BRANDING/banners/NUEVOS/FINALES/PACK%20HOODIES.webp" type="image/webp" />
-      <img class="hero-img" src="../BRANDING/banners/NUEVOS/FINALES/PACK%20HOODIES.png" alt="Pack Hoodies" loading="lazy" />
-    </picture>
-  </div>
-
-  <div class="hero-slide">
-    <picture>
-      <source srcset="../BRANDING/banners/NUEVOS/FINALES/PACK%20DAMA.webp" type="image/webp" />
-      <img class="hero-img" src="../BRANDING/banners/NUEVOS/FINALES/PACK%20DAMA.png" alt="Pack Dama" loading="lazy" />
-    </picture>
-  </div>
-
-  <div class="hero-slide">
-    <picture>
-      <source srcset="../BRANDING/banners/NUEVOS/FINALES/PACK%20320%20GRAMOS.webp" type="image/webp" />
-      <img class="hero-img" src="../BRANDING/banners/NUEVOS/FINALES/PACK%20320%20GRAMOS.png" alt="Pack High Cotton 320g" loading="lazy" />
-    </picture>
-  </div>
-
-  <div class="hero-slide">
-    <picture>
-      <source srcset="../BRANDING/banners/NUEVOS/FINALES/PACK%20OUTFIT%20INVIERNO.webp" type="image/webp" />
-      <img class="hero-img" src="../BRANDING/banners/NUEVOS/FINALES/PACK%20OUTFIT%20INVIERNO.png" alt="Pack Outfit Invierno" loading="lazy" />
-    </picture>
-  </div>
-
-  <!-- Overlay fijo -->
-  <div class="hero-overlay">
-    <div class="hero-content">
-      <h1 class="hero-title">Los básicos que siempre quisiste a precio justo.</h1>
-      <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate." class="hero-cta" target="_blank">
-        Ver packs →
-      </a>
-    </div>
-  </div>
-
 </section>
 
 
-<!-- ── CATÁLOGO COMPLETO ── -->
-<section class="packs-section" id="packs">
-  <div class="packs-header reveal">
-    <h2 class="packs-title">Catálogo completo.</h2>
-    <span class="packs-count">08 packs</span>
+<!-- ── CATEGORY TILES ── -->
+<a class="cat-tile" href="#packs">
+  <img class="cat-tile-img"
+       src="../BRANDING/banners/v2/PORTADA%20CAMISETAS.png"
+       alt="Camisetas" loading="lazy" />
+  <div class="cat-tile-overlay">
+    <span class="cat-tile-label">camisetas.</span>
+    <span class="cat-tile-arrow">→</span>
   </div>
+</a>
 
-  <div class="pack-grid">
+<a class="cat-tile" href="#mas-vendidos">
+  <img class="cat-tile-img"
+       src="../BRANDING/banners/v2/PORTADA%20PACKS.png"
+       alt="Packs" loading="lazy" />
+  <div class="cat-tile-overlay">
+    <span class="cat-tile-label">packs.</span>
+    <span class="cat-tile-arrow">→</span>
+  </div>
+</a>
 
-    <!-- Pack 07 — Pima (primero) -->
-    <div class="pack-card" data-id="07">
-      <div class="pack-photo-zone">
-        <img class="pack-photo"
-             src="../PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/1.webp"
-             alt="Pack Pima" loading="lazy" />
-      </div>
-      <div class="pack-card-info">
-        <h3 class="pack-name">Pack Pima</h3>
-        <p class="pack-desc">2 polos · slim fit · algodón pima</p>
-        <div class="pack-card-bottom">
-          <div class="pack-card-price">S/ 70</div>
-          <a href="pack.html?id=07" class="btn-ver-pack">Ver →</a>
-        </div>
-      </div>
+
+<!-- ── ANNOUNCEMENT TICKER ── -->
+<div class="bar">
+  <div class="bar-track">
+    <span class="bar-item">🚚 Envíos a todo el Perú</span>
+    <span class="bar-sep">·</span>
+    <span class="bar-item">👕 Somos fabricantes</span>
+    <span class="bar-sep">·</span>
+    <span class="bar-item">🔒 Pagos seguros</span>
+    <span class="bar-sep">·</span>
+    <span class="bar-item">🚚 Envíos a todo el Perú</span>
+    <span class="bar-sep">·</span>
+    <span class="bar-item">👕 Somos fabricantes</span>
+    <span class="bar-sep">·</span>
+    <span class="bar-item">🔒 Pagos seguros</span>
+    <span class="bar-sep">·</span>
+  </div>
+</div>
+
+<!-- ── LIFESTYLE / SOCIAL PROOF ── -->
+<section class="lifestyle-section">
+  <div class="lifestyle-viewport" id="ls-vp">
+    <div class="lifestyle-track" id="ls-track">
+      <div class="lifestyle-slide"><img src="../BRANDING/banners/cel-1.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
+      <div class="lifestyle-slide"><img src="../BRANDING/banners/cel-2.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
+      <div class="lifestyle-slide"><img src="../BRANDING/banners/cel-3.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
+      <div class="lifestyle-slide"><img src="../BRANDING/banners/1.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
+      <div class="lifestyle-slide"><img src="../BRANDING/banners/2.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
+      <div class="lifestyle-slide"><img src="../BRANDING/banners/3.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
     </div>
-
-    <!-- Pack 01 — Básicos -->
-    <div class="pack-card" data-id="01">
-      <div class="pack-photo-zone">
-        <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
-      </div>
-      <div class="pack-card-info">
-        <h3 class="pack-name">Pack Básicos</h3>
-        <p class="pack-desc">5 polos · oversize · boxy · boxy largo · regular</p>
-        <div class="pack-card-bottom">
-          <div class="pack-card-price">S/ 100</div>
-          <a href="pack.html?id=01" class="btn-ver-pack">Ver →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pack 08 — Medium Cotton -->
-    <div class="pack-card" data-id="08">
-      <div class="pack-photo-zone">
-        <img class="pack-photo"
-             src="../PRODUCTOS/OVERSIZE/NEGRO/1.webp"
-             alt="Pack Medium Cotton 280g" loading="lazy" />
-      </div>
-      <div class="pack-card-info">
-        <h3 class="pack-name">Pack Medium Cotton 280g</h3>
-        <p class="pack-desc">4 polos · oversize · boxy · regular</p>
-        <div class="pack-card-bottom">
-          <div class="pack-card-price">S/ 100</div>
-          <a href="pack.html?id=08" class="btn-ver-pack">Ver →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pack 09 — High Cotton -->
-    <div class="pack-card" data-id="09">
-      <div class="pack-photo-zone">
-        <img class="pack-photo"
-             src="../PRODUCTOS/BOXY/Negro/1.webp"
-             alt="Pack High Cotton 320g" loading="lazy" />
-      </div>
-      <div class="pack-card-info">
-        <h3 class="pack-name">Pack High Cotton 320g</h3>
-        <p class="pack-desc">4 polos · oversize · boxy</p>
-        <div class="pack-card-bottom">
-          <div class="pack-card-price">S/ 110</div>
-          <a href="pack.html?id=09" class="btn-ver-pack">Ver →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pack 02 — Classic -->
-    <div class="pack-card" data-id="02">
-      <div class="pack-photo-zone">
-        <img class="pack-photo"
-             src="../PRODUCTOS/DAMA/Negro/1.webp"
-             alt="Pack Dama" loading="lazy" />
-      </div>
-      <div class="pack-card-info">
-        <h3 class="pack-name">Pack Dama</h3>
-        <p class="pack-desc">6 polos · fit dama</p>
-        <div class="pack-card-bottom">
-          <div class="pack-card-price">S/ 100</div>
-          <a href="pack.html?id=02" class="btn-ver-pack">Ver →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pack 03 — Acid Wash -->
-    <div class="pack-card" data-id="03">
-      <div class="pack-photo-zone">
-        <img class="pack-photo"
-             src="../PRODUCTOS/ACID-WASH/NEGRO/1.webp"
-             alt="Pack Acid Wash" loading="lazy" />
-      </div>
-      <div class="pack-card-info">
-        <h3 class="pack-name">Pack Acid Wash</h3>
-        <p class="pack-desc">5 polos · efecto acid wash</p>
-        <div class="pack-card-bottom">
-          <div class="pack-card-price">S/ 110</div>
-          <a href="pack.html?id=03" class="btn-ver-pack">Ver →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pack 06 — Hoodies -->
-    <div class="pack-card" data-id="06">
-      <div class="pack-photo-zone">
-        <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
-      </div>
-      <div class="pack-card-info">
-        <h3 class="pack-name">Pack Hoodies</h3>
-        <p class="pack-desc">2 hoodies · boxy · oversize</p>
-        <div class="pack-card-bottom">
-          <div class="pack-card-price">S/ 99</div>
-          <a href="pack.html?id=06" class="btn-ver-pack">Ver →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pack 10 — Pack Invierno -->
-    <div class="pack-card" data-id="10">
-      <div class="pack-photo-zone">
-        <div class="pack-photo-placeholder" style="background:#1e1e1e;"></div>
-      </div>
-      <div class="pack-card-info">
-        <h3 class="pack-name">Pack Invierno</h3>
-        <p class="pack-desc">hoodie · pantalón + polo 20/1 de regalo</p>
-        <div class="pack-card-bottom">
-          <div class="pack-card-price">S/ 120</div>
-          <a href="pack.html?id=10" class="btn-ver-pack">Ver →</a>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
 <!-- ── FINAL CTA ── -->
-<section class="cta-section">
+<section class="cta-section" style="background-image: url('../BRANDING/portada-blank.webp');">
+  <div class="cta-overlay"></div>
   <div class="cta-bg">BS</div>
-  <p class="cta-label">¿Listo?</p>
-  <h2 class="cta-title reveal">Elige tu pack.<br>Escríbenos ahora.</h2>
-  <p class="cta-sub reveal">Respondemos en minutos.</p>
-  <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate.+%C2%BFCu%C3%A1les+tienen+disponibles%3F" class="btn-cta-main reveal" target="_blank">
-    Abrir WhatsApp
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 0C3.58 0 0 3.58 0 8c0 1.41.37 2.74 1.01 3.89L0 16l4.28-1.12A7.96 7.96 0 008 16c4.42 0 8-3.58 8-8s-3.58-8-8-8zm3.93 11.07c-.17.48-.98.93-1.36.99-.35.05-.79.07-1.27-.08a11.5 11.5 0 01-1.15-.43C6.64 10.8 5.5 9.4 5.41 9.29c-.09-.11-.73-.97-.73-1.85 0-.88.46-1.31.62-1.49.17-.18.37-.22.49-.22h.35c.11 0 .27-.04.42.32l.54 1.35c.05.11.08.24.02.38l-.2.39-.3.31c-.1.1-.2.21-.09.41.11.2.5.82 1.07 1.33.73.65 1.35.85 1.54.94.19.09.3.08.41-.05l.49-.58c.14-.18.28-.15.47-.09l1.33.63c.19.09.31.14.36.22.04.08.04.46-.13.93z" fill="currentColor"/>
-    </svg>
-  </a>
+  <div class="cta-inner">
+    <h2 class="cta-title reveal">Elige tu pack.<br>Escríbenos ahora.</h2>
+    <p class="cta-sub reveal">Respondemos en minutos.</p>
+    <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate.+%C2%BFCu%C3%A1les+tienen+disponibles%3F" class="btn-cta-main reveal" target="_blank">
+      Abrir WhatsApp
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 1.41.37 2.74 1.01 3.89L0 16l4.28-1.12A7.96 7.96 0 008 16c4.42 0 8-3.58 8-8s-3.58-8-8-8zm3.93 11.07c-.17.48-.98.93-1.36.99-.35.05-.79.07-1.27-.08a11.5 11.5 0 01-1.15-.43C6.64 10.8 5.5 9.4 5.41 9.29c-.09-.11-.73-.97-.73-1.85 0-.88.46-1.31.62-1.49.17-.18.37-.22.49-.22h.35c.11 0 .27-.04.42.32l.54 1.35c.05.11.08.24.02.38l-.2.39-.3.31c-.1.1-.2.21-.09.41.11.2.5.82 1.07 1.33.73.65 1.35.85 1.54.94.19.09.3.08.41-.05l.49-.58c.14-.18.28-.15.47-.09l1.33.63c.19.09.31.14.36.22.04.08.04.46-.13.93z" fill="currentColor"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- ── MÁS VENDIDOS ── -->
+<section class="best-section" id="mas-vendidos">
+  <div class="best-header reveal">
+    <h2 class="best-title">Más vendidos.</h2>
+  </div>
+  <div class="best-scroll" id="best-scroll">
+
+    <div class="best-card" data-id="07">
+      <div class="best-card-photo">
+        <img src="../BRANDING/banners/NUEVOS/FINALES/PACK%20PIMA.webp" alt="Pack Pima" loading="lazy" />
+        <div class="best-card-overlay">
+          <a href="pack.html?id=07" class="btn-ver-pack-card">Ver pack →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="best-card" data-id="09">
+      <div class="best-card-photo">
+        <img src="../BRANDING/banners/NUEVOS/FINALES/PACK%20320%20GRAMOS.webp" alt="Pack High Cotton 320g" loading="lazy" />
+        <div class="best-card-overlay">
+          <a href="pack.html?id=09" class="btn-ver-pack-card">Ver pack →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="best-card" data-id="01">
+      <div class="best-card-photo">
+        <img src="../BRANDING/banners/NUEVOS/FINALES/PACK%20BASICOS.webp" alt="Pack Básicos" loading="lazy" />
+        <div class="best-card-overlay">
+          <a href="pack.html?id=01" class="btn-ver-pack-card">Ver pack →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="best-card" data-id="02">
+      <div class="best-card-photo">
+        <img src="../BRANDING/banners/NUEVOS/FINALES/PACK%20DAMA.webp" alt="Pack Dama" loading="lazy" />
+        <div class="best-card-overlay">
+          <a href="pack.html?id=02" class="btn-ver-pack-card">Ver pack →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="best-card" data-id="03">
+      <div class="best-card-photo">
+        <img src="../BRANDING/banners/NUEVOS/FINALES/PACK%20ACID%20WASH.webp" alt="Pack Acid Wash" loading="lazy" />
+        <div class="best-card-overlay">
+          <a href="pack.html?id=03" class="btn-ver-pack-card">Ver pack →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="best-card" data-id="06">
+      <div class="best-card-photo">
+        <img src="../BRANDING/banners/NUEVOS/FINALES/PACK%20HOODIES.webp" alt="Pack Hoodies" loading="lazy" />
+        <div class="best-card-overlay">
+          <a href="pack.html?id=06" class="btn-ver-pack-card">Ver pack →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="best-card" data-id="10">
+      <div class="best-card-photo">
+        <img src="../BRANDING/banners/NUEVOS/FINALES/PACK%20OUTFIT%20INVIERNO.webp" alt="Pack Invierno" loading="lazy" />
+        <div class="best-card-overlay">
+          <a href="pack.html?id=10" class="btn-ver-pack-card">Ver pack →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="best-card" data-id="08">
+      <div class="best-card-photo">
+        <img src="../PRODUCTOS/OVERSIZE/NEGRO/1.webp" alt="Pack Medium Cotton 280g" loading="lazy" />
+        <div class="best-card-overlay">
+          <a href="pack.html?id=08" class="btn-ver-pack-card">Ver pack →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <!-- ── FOOTER ── -->
@@ -917,48 +1042,13 @@
     }, { threshold: 0.05 }).observe(heroEl);
   })();
 
-  // ── HERO SLIDER ──
-  (function() {
-    const slider = document.getElementById('hero');
-    if (!slider) return;
-    const slides = Array.from(slider.querySelectorAll('.hero-slide'));
-    let current = 0, startX = 0, dragX = 0, dragging = false;
-
-    function goTo(idx) {
-      slides[current].classList.remove('active');
-      current = (idx + slides.length) % slides.length;
-      slides[current].classList.add('active');
-    }
-    function resetAuto() { clearInterval(autoTimer); autoTimer = setInterval(() => goTo(current + 1), 5000); }
-
-    // Touch
-    slider.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-    slider.addEventListener('touchend', e => {
-      const diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) { goTo(diff > 0 ? current + 1 : current - 1); resetAuto(); }
-    }, { passive: true });
-
-    // Mouse drag
-    slider.addEventListener('mousedown', e => { dragging = true; dragX = e.clientX; slider.style.cursor = 'grabbing'; });
-    slider.addEventListener('mousemove', e => { if (!dragging) return; });
-    slider.addEventListener('mouseup', e => {
-      if (!dragging) return;
-      dragging = false; slider.style.cursor = '';
-      const diff = dragX - e.clientX;
-      if (Math.abs(diff) > 50) { goTo(diff > 0 ? current + 1 : current - 1); resetAuto(); }
-    });
-    slider.addEventListener('mouseleave', () => { dragging = false; slider.style.cursor = ''; });
-
-    let autoTimer = setInterval(() => goTo(current + 1), 5000);
-  })();
-
   // ── CUSTOM CURSOR ──
   const cursor = document.getElementById('cursor');
   document.addEventListener('mousemove', e => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top  = e.clientY + 'px';
   });
-  document.querySelectorAll('a, button, .pack-card').forEach(el => {
+  document.querySelectorAll('a, button, .pack-card, .best-card, .lifestyle-slide').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
   });
@@ -978,25 +1068,6 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   revealEls.forEach(el => observer.observe(el));
 
-  // ── PACK CARD STAGGER ──
-  const packCards = document.querySelectorAll('.pack-card');
-  packCards.forEach((card, i) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(24px)';
-    card.style.transition = `opacity 0.6s ease ${i * 0.055}s, transform 0.6s ease ${i * 0.055}s`;
-  });
-
-  const packObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        packObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  packCards.forEach(card => packObserver.observe(card));
-
   // ── PACK CARD CLICK → producto ──
   document.querySelectorAll('.pack-card[data-id]').forEach(card => {
     card.addEventListener('click', e => {
@@ -1004,6 +1075,51 @@
       window.location.href = 'pack.html?id=' + card.dataset.id;
     });
   });
+
+  // ── BEST CARD CLICK → producto ──
+  document.querySelectorAll('.best-card[data-id]').forEach(card => {
+    card.addEventListener('click', e => {
+      if (e.target.closest('.btn-ver-pack-card')) return;
+      window.location.href = 'pack.html?id=' + card.dataset.id;
+    });
+  });
+
+  // ── LIFESTYLE CAROUSEL ──
+  (function() {
+    const track  = document.getElementById('ls-track');
+    const slides = document.querySelectorAll('.lifestyle-slide');
+    const total  = slides.length;
+    let current  = 0;
+
+    function goTo(idx) {
+      current = ((idx % total) + total) % total;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    }
+
+    setInterval(() => goTo(current + 1), 3000);
+  })();
+
+  // ── DRAG SCROLL — más vendidos ──
+  (function() {
+    const wrap = document.getElementById('best-scroll');
+    if (!wrap) return;
+    let isDown = false, startX, scrollLeft;
+
+    wrap.addEventListener('mousedown', e => {
+      isDown = true;
+      wrap.classList.add('grabbing');
+      startX = e.pageX - wrap.offsetLeft;
+      scrollLeft = wrap.scrollLeft;
+    });
+    wrap.addEventListener('mouseleave', () => { isDown = false; wrap.classList.remove('grabbing'); });
+    wrap.addEventListener('mouseup',    () => { isDown = false; wrap.classList.remove('grabbing'); });
+    wrap.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - wrap.offsetLeft;
+      wrap.scrollLeft = scrollLeft - (x - startX) * 1.6;
+    });
+  })();
 
   // ── HAMBURGER MENU ──
   (function() {
