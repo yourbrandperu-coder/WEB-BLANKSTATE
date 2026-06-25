@@ -1,118 +1,118 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { PACKS, PACK_ORDER } from '../data/packs';
-
-const orderedPacks = PACK_ORDER.map(id => PACKS[id]).filter(Boolean);
 ---
 <Layout
+  navVariant="editorial"
   title="Blankstate — Packs Premium"
-  description="Ropa buena al precio que vale. Packs premium desde S/70. Lima, Perú."
+  description="Ropa de calidad real. Sin logo, sin markup. Packs desde S/70. Lima, Perú."
 >
   <Fragment slot="head">
-    <link rel="preload" as="image" href="/BRANDING/banners/NUEVOS/FINALES/PACK%20BASICOS.webp" type="image/webp" />
+    <link rel="preload" as="image" href="/BRANDING/portada-blank.webp" type="image/webp" />
     <style>
       body { animation: bodyEnter 0.45s ease both; }
       @keyframes bodyEnter { from { opacity: 0; } to { opacity: 1; } }
 
-      /* ── HERO SLIDER ── */
+      /* ── HERO ── */
       .hero-slider {
-        position: relative; width: 100%; aspect-ratio: 3 / 4;
-        overflow: hidden; background: var(--black); cursor: pointer;
+        position: relative; width: 100%; aspect-ratio: 3/4; overflow: hidden; background: var(--black);
       }
-      .hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.9s var(--ease); pointer-events: none; }
-      .hero-slide.active { opacity: 1; pointer-events: auto; }
-      .hero-slide picture { display: block; width: 100%; height: 100%; }
-      .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform 8s ease; }
-      .hero-slide.active .hero-img { transform: scale(1.04); }
-      @media (max-width: 900px) { .hero-img { object-position: top center; } }
+      @media (min-width: 680px) { .hero-slider { aspect-ratio: 16/9; max-height: 92vh; } }
 
-      .hero-overlay {
-        position: absolute; inset: 0;
-        background: linear-gradient(to top, rgba(8,8,8,0.84) 0%, rgba(8,8,8,0.15) 55%, transparent 100%);
-        display: flex; align-items: flex-end; padding: 0 48px 80px;
-        pointer-events: none;
-      }
-      .hero-content { max-width: 560px; pointer-events: auto; }
-      .hero-title {
-        font-family: var(--serif); font-size: clamp(48px, 6.5vw, 96px);
-        font-weight: 300; color: var(--white); line-height: 1.04;
-        letter-spacing: -0.01em; margin-bottom: 40px;
-        text-shadow: 0 2px 24px rgba(0,0,0,0.55);
-      }
-      .hero-cta {
-        display: inline-flex; align-items: center; gap: 8px;
-        background: var(--white); color: var(--black); text-decoration: none;
-        padding: 10px 20px; font-size: 10.5px; letter-spacing: 0.12em;
-        text-transform: uppercase; font-weight: 500;
-        transition: background 0.2s, transform 0.3s var(--spring);
-      }
-      .hero-cta:hover { background: var(--g1); transform: translateY(-2px); }
-      @media (max-width: 900px) {
-        .hero-overlay { padding: 0 20px 68px; }
-        .hero-title { font-size: clamp(28px, 7vw, 40px); margin-bottom: 24px; }
-      }
+      .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
 
-      /* ── PACKS SECTION ── */
-      .packs-section { padding: 88px 48px; }
-      @media (max-width: 900px) { .packs-section { padding: 64px 20px; } }
-
-      .packs-header {
+      .hero-bottom {
+        position: absolute; bottom: 0; left: 0; right: 0;
         display: flex; align-items: flex-end; justify-content: space-between;
-        margin-bottom: 60px;
+        padding: 0 32px 52px;
       }
-      @media (max-width: 680px) { .packs-header { flex-direction: column; align-items: flex-start; gap: 8px; } }
+      @media (max-width: 480px) { .hero-bottom { padding: 0 20px 36px; } }
 
-      .packs-title { font-family: var(--serif); font-size: clamp(32px, 4vw, 52px); font-weight: 300; line-height: 1.1; }
-      .packs-count { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g3); }
-
-      /* ── PACK GRID ── */
-      .pack-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-      @media (max-width: 680px) { .pack-grid { gap: 6px; } }
-      @media (max-width: 480px) { .pack-grid { gap: 4px; } }
-
-      .pack-card { display: flex; flex-direction: column; cursor: pointer; background: transparent; transition: transform 0.38s var(--spring); text-decoration: none; color: inherit; }
-      .pack-card:hover { transform: translateY(-5px); }
-      @media (hover: none) { .pack-card:hover { transform: none; } }
-
-      .pack-photo-zone { aspect-ratio: 3 / 4; overflow: hidden; background: var(--g1); position: relative; }
-      .pack-photo-placeholder { position: absolute; inset: 0; }
-      .pack-photo {
-        position: absolute; inset: 0; width: 100%; height: 100%;
-        object-fit: cover; object-position: top center; display: block;
-        transition: transform 0.6s var(--ease);
+      .hero-label {
+        font-family: var(--sans); font-size: clamp(48px, 13vw, 100px);
+        font-weight: 700; color: var(--white); letter-spacing: -0.03em; line-height: 1;
       }
-      .pack-card:hover .pack-photo { transform: scale(1.04); }
-
-      .pack-card-info { padding: 12px 0 0; display: flex; flex-direction: column; gap: 8px; }
-      .pack-name { font-family: var(--serif); font-size: 18px; font-weight: 500; line-height: 1.3; color: var(--black); }
-      @media (max-width: 680px) { .pack-name { font-size: 15px; } }
-      .pack-desc { font-size: 12px; color: var(--g3); letter-spacing: 0.03em; font-weight: 300; margin-top: -2px; }
-
-      .pack-card-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 2px; }
-      .pack-card-price { font-size: 16px; font-weight: 600; color: var(--black); letter-spacing: 0.02em; }
-
-      .btn-ver-pack {
-        display: inline-flex; align-items: center; gap: 4px;
-        border: 1px solid var(--g2); color: var(--g4); text-decoration: none;
-        padding: 5px 10px; font-family: var(--sans); font-size: 10px;
-        letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
-        transition: border-color 0.2s, color 0.2s; background: none; cursor: pointer;
+      .hero-arrow {
+        width: 56px; height: 56px;
+        border: 1.5px solid rgba(246,246,246,0.5); border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        color: var(--white); font-size: 22px; text-decoration: none; flex-shrink: 0;
+        transition: background 0.25s, border-color 0.25s; font-family: var(--sans);
       }
-      .pack-card:hover .btn-ver-pack, .btn-ver-pack:hover { border-color: var(--black); color: var(--black); }
+      .hero-arrow:hover { background: var(--white); color: var(--black); border-color: var(--white); }
+
+      /* ── CATEGORY TILES ── */
+      .cat-tile {
+        position: relative; width: 100%; aspect-ratio: 3/4;
+        overflow: hidden; display: block; text-decoration: none; cursor: pointer;
+      }
+      @media (min-width: 680px) { .cat-tile { aspect-ratio: 16/9; } }
+
+      .cat-tile-img {
+        width: 100%; height: 100%; object-fit: cover; object-position: center top;
+        display: block; transition: transform 0.8s var(--ease);
+      }
+      .cat-tile:hover .cat-tile-img { transform: scale(1.03); }
+
+      .cat-tile-overlay {
+        position: absolute; inset: 0; background: rgba(8,8,8,0.32);
+        display: flex; align-items: flex-end; justify-content: space-between;
+        padding: 0 32px 52px;
+      }
+      @media (max-width: 480px) { .cat-tile-overlay { padding: 0 20px 36px; } }
+
+      .cat-tile-label {
+        font-family: var(--sans); font-size: clamp(48px, 13vw, 100px);
+        font-weight: 700; color: var(--white); letter-spacing: -0.03em; line-height: 1;
+      }
+      .cat-tile-arrow {
+        width: 52px; height: 52px; border: 1.5px solid rgba(246,246,246,0.5);
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        color: var(--white); font-size: 20px; flex-shrink: 0;
+        transition: background 0.25s, border-color 0.25s; font-family: var(--sans);
+      }
+      .cat-tile:hover .cat-tile-arrow { background: var(--white); color: var(--black); border-color: var(--white); }
+
+      /* ── ANIMATED TICKER BAR ── */
+      .bar {
+        background: var(--black); color: var(--white);
+        padding: 13px 0; font-size: 11px; letter-spacing: 0.14em;
+        text-transform: uppercase; font-weight: 400;
+        overflow: hidden; white-space: nowrap;
+      }
+      .bar-track { display: inline-flex; animation: ticker 20s linear infinite; }
+      .bar-item { padding: 0 48px; display: inline-flex; align-items: center; gap: 8px; }
+      .bar-sep { color: rgba(246,246,246,0.25); padding: 0 4px; }
+      @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+      /* ── LIFESTYLE CAROUSEL ── */
+      .lifestyle-section { overflow: hidden; }
+      .lifestyle-viewport { overflow: hidden; width: 100%; }
+      .lifestyle-track { display: flex; transition: transform 0.8s var(--ease); will-change: transform; }
+      .lifestyle-slide { flex-shrink: 0; width: 100%; aspect-ratio: 3/4; overflow: hidden; }
+      @media (min-width: 680px) { .lifestyle-slide { aspect-ratio: 16/9; } }
+      .lifestyle-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
       /* ── FINAL CTA ── */
-      .cta-section { background: var(--black); padding: 120px 48px; text-align: center; position: relative; overflow: hidden; }
+      .cta-section {
+        background-color: var(--black); background-size: cover;
+        background-position: center top; padding: 120px 48px;
+        text-align: center; position: relative; overflow: hidden;
+      }
       @media (max-width: 900px) { .cta-section { padding: 80px 24px; } }
 
+      .cta-overlay { position: absolute; inset: 0; background: rgba(8,8,8,0.68); z-index: 0; }
+      .cta-inner { position: relative; z-index: 1; }
       .cta-bg {
         position: absolute; font-family: var(--serif);
         font-size: clamp(100px, 18vw, 260px); font-weight: 300;
-        color: rgba(255,255,255,0.02);
-        top: 50%; left: 50%; transform: translate(-50%, -50%);
-        white-space: nowrap; user-select: none; letter-spacing: -0.02em;
+        color: rgba(255,255,255,0.02); top: 50%; left: 50%;
+        transform: translate(-50%, -50%); white-space: nowrap; user-select: none; letter-spacing: -0.02em;
       }
-      .cta-label { font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--g4); margin-bottom: 28px; position: relative; }
-      .cta-title { font-family: var(--serif); font-size: clamp(40px, 5vw, 72px); font-weight: 300; color: var(--white); margin-bottom: 20px; line-height: 1.1; position: relative; }
+      .cta-title {
+        font-family: var(--serif); font-size: clamp(40px, 5vw, 72px);
+        font-weight: 300; color: var(--white); margin-bottom: 20px;
+        line-height: 1.1; position: relative;
+      }
       .cta-sub { font-size: 14px; color: var(--g3); margin-bottom: 52px; font-weight: 300; position: relative; }
       .btn-cta-main {
         display: inline-flex; align-items: center; gap: 12px;
@@ -123,166 +123,234 @@ const orderedPacks = PACK_ORDER.map(id => PACKS[id]).filter(Boolean);
       }
       .btn-cta-main:hover { background: var(--g1); transform: translateY(-3px); }
 
-      /* ── SCROLL REVEALS ── */
-      .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
-      .reveal.visible { opacity: 1; transform: translateY(0); }
+      /* ── MÁS VENDIDOS ── */
+      .best-section { padding: 80px 0 88px; overflow: hidden; }
+      @media (max-width: 900px) { .best-section { padding: 56px 0 64px; } }
+
+      .best-header { padding: 0 48px; margin-bottom: 36px; }
+      @media (max-width: 680px) { .best-header { padding: 0 20px; } }
+
+      .best-title { font-family: var(--sans); font-size: clamp(48px, 13vw, 100px); font-weight: 700; line-height: 1; letter-spacing: -0.03em; }
+
+      .best-scroll {
+        overflow-x: auto; scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch; scrollbar-width: none;
+        display: flex; cursor: grab;
+      }
+      .best-scroll::-webkit-scrollbar { display: none; }
+      .best-scroll.grabbing { cursor: grabbing; }
+      .best-scroll.grabbing * { user-select: none; pointer-events: none; }
+      @media (max-width: 680px) { .best-scroll { padding: 0 20px; } }
+
+      .best-card {
+        flex-shrink: 0; width: 85vw; max-width: 480px;
+        scroll-snap-align: start; cursor: pointer; background: transparent; position: relative;
+      }
+      @media (max-width: 680px) { .best-card { width: 82vw; max-width: 340px; } }
+
+      .best-card-photo { aspect-ratio: 3/4; overflow: hidden; background: var(--g1); position: relative; }
+      .best-card-photo img {
+        width: 100%; height: 100%; object-fit: cover; object-position: top center;
+        display: block; transition: transform 0.7s var(--ease);
+      }
+      .best-card:hover .best-card-photo img { transform: scale(1.04); }
+
+      .best-card-overlay {
+        position: absolute; bottom: 0; left: 0; right: 0;
+        padding: 60px 20px 20px;
+        background: linear-gradient(to top, rgba(8,8,8,0.5) 0%, transparent 100%);
+        display: flex; align-items: flex-end; justify-content: center;
+      }
+      .btn-ver-pack-card {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: var(--white); color: var(--black);
+        padding: 11px 24px; font-family: var(--sans); font-size: 10px;
+        letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
+        text-decoration: none; transition: background 0.2s; white-space: nowrap;
+      }
+      .btn-ver-pack-card:hover { background: var(--g1); }
     </style>
   </Fragment>
 
-  <!-- HERO SLIDER -->
+  <!-- ── HERO ── -->
   <section class="hero-slider" id="hero">
-    {[
-      { src: '/BRANDING/banners/NUEVOS/FINALES/PACK%20BASICOS.webp',       alt: 'Pack Básicos',      packId: '01' },
-      { src: '/BRANDING/banners/NUEVOS/FINALES/PACK%20PIMA.webp',          alt: 'Pack Pima',         packId: '07' },
-      { src: '/BRANDING/banners/NUEVOS/FINALES/PACK%20ACID%20WASH.webp',   alt: 'Pack Acid Wash',    packId: '03' },
-      { src: '/BRANDING/banners/NUEVOS/FINALES/PACK%20HOODIES.webp',       alt: 'Pack Hoodies',      packId: '06' },
-      { src: '/BRANDING/banners/NUEVOS/FINALES/PACK%20DAMA.webp',          alt: 'Pack Dama',         packId: '02' },
-      { src: '/BRANDING/banners/NUEVOS/FINALES/PACK%20320%20GRAMOS.webp',  alt: 'Pack High Cotton',  packId: '09' },
-      { src: '/BRANDING/banners/NUEVOS/FINALES/PACK%20OUTFIT%20INVIERNO.webp', alt: 'Pack Invierno', packId: '10' },
-    ].map((slide, i) => (
-      <a class={`hero-slide${i === 0 ? ' active' : ''}`}
-         href={`/packs/${PACKS[slide.packId]?.slug}`}
-         aria-label={slide.alt}>
-        <picture>
-          <source srcset={slide.src} type="image/webp" />
-          <img class="hero-img" src={slide.src} alt={slide.alt}
-               fetchpriority={i === 0 ? 'high' : undefined}
-               loading={i === 0 ? 'eager' : 'lazy'} />
-        </picture>
-      </a>
-    ))}
+    <img class="hero-img"
+         src="/BRANDING/banners/v2/HERO%20PRINCIPAL.png"
+         alt="Blankstate"
+         fetchpriority="high" loading="eager" />
+    <div class="hero-bottom">
+      <span class="hero-label">Prendas básicas.</span>
+      <a href="/catalogo" class="hero-arrow">→</a>
+    </div>
+  </section>
 
-    <div class="hero-overlay">
-      <div class="hero-content">
-        <h1 class="hero-title">Los básicos que siempre quisiste a precio justo.</h1>
-        <a href="/#packs" class="hero-cta">Ver packs →</a>
+  <!-- ── CATEGORY TILES ── -->
+  <a class="cat-tile" href="/catalogo">
+    <img class="cat-tile-img"
+         src="/BRANDING/banners/v2/PORTADA%20CAMISETAS.png"
+         alt="Camisetas" loading="lazy" />
+    <div class="cat-tile-overlay">
+      <span class="cat-tile-label">camisetas.</span>
+      <span class="cat-tile-arrow">→</span>
+    </div>
+  </a>
+
+  <a class="cat-tile" href="/catalogo">
+    <img class="cat-tile-img"
+         src="/BRANDING/banners/v2/PORTADA%20PACKS.png"
+         alt="Packs" loading="lazy" />
+    <div class="cat-tile-overlay">
+      <span class="cat-tile-label">packs.</span>
+      <span class="cat-tile-arrow">→</span>
+    </div>
+  </a>
+
+  <!-- ── ANIMATED TICKER ── -->
+  <div class="bar">
+    <div class="bar-track">
+      <span class="bar-item">🚚 Envíos a todo el Perú</span>
+      <span class="bar-sep">·</span>
+      <span class="bar-item">👕 Somos fabricantes</span>
+      <span class="bar-sep">·</span>
+      <span class="bar-item">🔒 Pagos seguros</span>
+      <span class="bar-sep">·</span>
+      <span class="bar-item">🚚 Envíos a todo el Perú</span>
+      <span class="bar-sep">·</span>
+      <span class="bar-item">👕 Somos fabricantes</span>
+      <span class="bar-sep">·</span>
+      <span class="bar-item">🔒 Pagos seguros</span>
+      <span class="bar-sep">·</span>
+    </div>
+  </div>
+
+  <!-- ── LIFESTYLE / SOCIAL PROOF ── -->
+  <section class="lifestyle-section">
+    <div class="lifestyle-viewport" id="ls-vp">
+      <div class="lifestyle-track" id="ls-track">
+        <div class="lifestyle-slide"><img src="/BRANDING/banners/cel-1.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
+        <div class="lifestyle-slide"><img src="/BRANDING/banners/cel-2.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
+        <div class="lifestyle-slide"><img src="/BRANDING/banners/cel-3.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
+        <div class="lifestyle-slide"><img src="/BRANDING/banners/1.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
+        <div class="lifestyle-slide"><img src="/BRANDING/banners/2.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
+        <div class="lifestyle-slide"><img src="/BRANDING/banners/3.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
       </div>
     </div>
   </section>
 
-  <!-- CATÁLOGO -->
-  <section class="packs-section" id="packs">
-    <div class="packs-header reveal">
-      <h2 class="packs-title">Catálogo completo.</h2>
-      <span class="packs-count">{String(orderedPacks.length).padStart(2, '0')} packs</span>
-    </div>
-
-    <div class="pack-grid">
-      {orderedPacks.map((pack, i) => (
-        <a class="pack-card" href={`/packs/${pack.slug}`} data-id={pack.num}>
-          <div class="pack-photo-zone">
-            {pack.thumb
-              ? <img class="pack-photo" src={pack.thumb} alt={pack.name} loading="lazy" />
-              : <div class="pack-photo-placeholder" style="background:#1a1a1a;"></div>
-            }
-          </div>
-          <div class="pack-card-info">
-            <h3 class="pack-name">{pack.name}</h3>
-            <p class="pack-desc">{pack.qty}</p>
-            <div class="pack-card-bottom">
-              <div class="pack-card-price">{pack.price}</div>
-              <span class="btn-ver-pack">Ver →</span>
-            </div>
-          </div>
-        </a>
-      ))}
+  <!-- ── FINAL CTA ── -->
+  <section class="cta-section" style="background-image: url('/BRANDING/portada-blank.webp');">
+    <div class="cta-overlay"></div>
+    <div class="cta-bg">BS</div>
+    <div class="cta-inner">
+      <h2 class="cta-title reveal">Elige tu pack.<br>Escríbenos ahora.</h2>
+      <p class="cta-sub reveal">Respondemos en minutos.</p>
+      <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate.+%C2%BFCu%C3%A1les+tienen+disponibles%3F"
+         class="btn-cta-main reveal" target="_blank" rel="noopener">
+        Abrir WhatsApp
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 1.41.37 2.74 1.01 3.89L0 16l4.28-1.12A7.96 7.96 0 008 16c4.42 0 8-3.58 8-8s-3.58-8-8-8zm3.93 11.07c-.17.48-.98.93-1.36.99-.35.05-.79.07-1.27-.08a11.5 11.5 0 01-1.15-.43C6.64 10.8 5.5 9.4 5.41 9.29c-.09-.11-.73-.97-.73-1.85 0-.88.46-1.31.62-1.49.17-.18.37-.22.49-.22h.35c.11 0 .27-.04.42.32l.54 1.35c.05.11.08.24.02.38l-.2.39-.3.31c-.1.1-.2.21-.09.41.11.2.5.82 1.07 1.33.73.65 1.35.85 1.54.94.19.09.3.08.41-.05l.49-.58c.14-.18.28-.15.47-.09l1.33.63c.19.09.31.14.36.22.04.08.04.46-.13.93z"/>
+        </svg>
+      </a>
     </div>
   </section>
 
-  <!-- FINAL CTA -->
-  <section class="cta-section">
-    <div class="cta-bg">BS</div>
-    <p class="cta-label">¿Listo?</p>
-    <h2 class="cta-title reveal">Elige tu pack.<br>Escríbenos ahora.</h2>
-    <p class="cta-sub reveal">Respondemos en minutos.</p>
-    <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate.+%C2%BFCu%C3%A1les+tienen+disponibles%3F"
-       class="btn-cta-main reveal" target="_blank">
-      Abrir WhatsApp
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 0C3.58 0 0 3.58 0 8c0 1.41.37 2.74 1.01 3.89L0 16l4.28-1.12A7.96 7.96 0 008 16c4.42 0 8-3.58 8-8s-3.58-8-8-8zm3.93 11.07c-.17.48-.98.93-1.36.99-.35.05-.79.07-1.27-.08a11.5 11.5 0 01-1.15-.43C6.64 10.8 5.5 9.4 5.41 9.29c-.09-.11-.73-.97-.73-1.85 0-.88.46-1.31.62-1.49.17-.18.37-.22.49-.22h.35c.11 0 .27-.04.42.32l.54 1.35c.05.11.08.24.02.38l-.2.39-.3.31c-.1.1-.2.21-.09.41.11.2.5.82 1.07 1.33.73.65 1.35.85 1.54.94.19.09.3.08.41-.05l.49-.58c.14-.18.28-.15.47-.09l1.33.63c.19.09.31.14.36.22.04.08.04.46-.13.93z" fill="currentColor"/>
-      </svg>
-    </a>
+  <!-- ── MÁS VENDIDOS ── -->
+  <section class="best-section" id="mas-vendidos">
+    <div class="best-header reveal">
+      <h2 class="best-title">Más vendidos.</h2>
+    </div>
+    <div class="best-scroll" id="best-scroll">
+      <div class="best-card">
+        <div class="best-card-photo">
+          <img src="/BRANDING/banners/NUEVOS/FINALES/PACK%20PIMA.webp" alt="Pack Pima" loading="lazy" />
+          <div class="best-card-overlay"><a href="/packs/pima" class="btn-ver-pack-card">Ver pack →</a></div>
+        </div>
+      </div>
+      <div class="best-card">
+        <div class="best-card-photo">
+          <img src="/BRANDING/banners/NUEVOS/FINALES/PACK%20320%20GRAMOS.webp" alt="Pack High Cotton 320g" loading="lazy" />
+          <div class="best-card-overlay"><a href="/packs/high-cotton" class="btn-ver-pack-card">Ver pack →</a></div>
+        </div>
+      </div>
+      <div class="best-card">
+        <div class="best-card-photo">
+          <img src="/BRANDING/banners/NUEVOS/FINALES/PACK%20BASICOS.webp" alt="Pack Básicos" loading="lazy" />
+          <div class="best-card-overlay"><a href="/packs/basicos" class="btn-ver-pack-card">Ver pack →</a></div>
+        </div>
+      </div>
+      <div class="best-card">
+        <div class="best-card-photo">
+          <img src="/BRANDING/banners/NUEVOS/FINALES/PACK%20DAMA.webp" alt="Pack Dama" loading="lazy" />
+          <div class="best-card-overlay"><a href="/packs/dama" class="btn-ver-pack-card">Ver pack →</a></div>
+        </div>
+      </div>
+      <div class="best-card">
+        <div class="best-card-photo">
+          <img src="/BRANDING/banners/NUEVOS/FINALES/PACK%20ACID%20WASH.webp" alt="Pack Acid Wash" loading="lazy" />
+          <div class="best-card-overlay"><a href="/packs/acid-wash" class="btn-ver-pack-card">Ver pack →</a></div>
+        </div>
+      </div>
+      <div class="best-card">
+        <div class="best-card-photo">
+          <img src="/BRANDING/banners/NUEVOS/FINALES/PACK%20HOODIES.webp" alt="Pack Hoodies" loading="lazy" />
+          <div class="best-card-overlay"><a href="/packs/hoodies" class="btn-ver-pack-card">Ver pack →</a></div>
+        </div>
+      </div>
+      <div class="best-card">
+        <div class="best-card-photo">
+          <img src="/BRANDING/banners/NUEVOS/FINALES/PACK%20OUTFIT%20INVIERNO.webp" alt="Pack Invierno" loading="lazy" />
+          <div class="best-card-overlay"><a href="/packs/invierno" class="btn-ver-pack-card">Ver pack →</a></div>
+        </div>
+      </div>
+      <div class="best-card">
+        <div class="best-card-photo">
+          <img src="/PRODUCTOS/OVERSIZE/NEGRO/1.webp" alt="Pack Medium Cotton 280g" loading="lazy" />
+          <div class="best-card-overlay"><a href="/packs/medium-cotton" class="btn-ver-pack-card">Ver pack →</a></div>
+        </div>
+      </div>
+    </div>
   </section>
 </Layout>
 
 <script>
-  // ── HERO DARK BG CURSOR ──
-  const heroEl = document.getElementById('hero');
-  if (heroEl) {
+  // ── HERO DARK BG ──
+  (function() {
+    const heroEl = document.getElementById('hero');
+    if (!heroEl) return;
     document.body.classList.add('dark-bg');
     new IntersectionObserver(entries => {
       document.body.classList.toggle('dark-bg', entries[0].isIntersecting);
     }, { threshold: 0.05 }).observe(heroEl);
-  }
+  })();
 
-  // ── HERO SLIDER ──
+  // ── LIFESTYLE CAROUSEL ──
   (function() {
-    const slider = document.getElementById('hero');
-    if (!slider) return;
-    const slides = Array.from(slider.querySelectorAll('.hero-slide'));
-    let current = 0, startX = 0, dragging = false, dragX = 0;
-
-    function goTo(idx: number) {
-      slides[current].classList.remove('active');
-      current = (idx + slides.length) % slides.length;
-      slides[current].classList.add('active');
+    const track  = document.getElementById('ls-track');
+    const slides = document.querySelectorAll('.lifestyle-slide');
+    if (!track || !slides.length) return;
+    const total = slides.length;
+    let current = 0;
+    function goTo(idx) {
+      current = ((idx % total) + total) % total;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
     }
-
-    let autoTimer = setInterval(() => goTo(current + 1), 5000);
-    function resetAuto() { clearInterval(autoTimer); autoTimer = setInterval(() => goTo(current + 1), 5000); }
-
-    slider.addEventListener('touchstart', e => { startX = (e as TouchEvent).touches[0].clientX; }, { passive: true });
-    slider.addEventListener('touchend', e => {
-      const diff = startX - (e as TouchEvent).changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) { goTo(diff > 0 ? current + 1 : current - 1); resetAuto(); }
-    }, { passive: true });
-
-    slider.addEventListener('mousedown', e => { dragging = true; dragX = (e as MouseEvent).clientX; (slider as HTMLElement).style.cursor = 'grabbing'; });
-    slider.addEventListener('mouseup', e => {
-      if (!dragging) return;
-      dragging = false; (slider as HTMLElement).style.cursor = '';
-      const diff = dragX - (e as MouseEvent).clientX;
-      if (Math.abs(diff) > 50) { goTo(diff > 0 ? current + 1 : current - 1); resetAuto(); }
-    });
-    slider.addEventListener('mouseleave', () => { dragging = false; (slider as HTMLElement).style.cursor = ''; });
+    setInterval(() => goTo(current + 1), 3000);
   })();
 
-  // ── SCROLL REVEALS ──
-  const revealEls = document.querySelectorAll('.reveal');
-  new IntersectionObserver((entries) => {
-    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }).observe = (() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(el => observer.observe(el));
-    return observer.observe.bind(observer);
-  })();
-
-  // ── PACK CARD STAGGER ──
-  const packCards = document.querySelectorAll('.pack-card');
-  packCards.forEach((card, i) => {
-    (card as HTMLElement).style.opacity = '0';
-    (card as HTMLElement).style.transform = 'translateY(24px)';
-    (card as HTMLElement).style.transition = `opacity 0.6s ease ${i * 0.055}s, transform 0.6s ease ${i * 0.055}s`;
-  });
-  new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        (entry.target as HTMLElement).style.opacity = '1';
-        (entry.target as HTMLElement).style.transform = 'translateY(0)';
-      }
+  // ── DRAG SCROLL — más vendidos ──
+  (function() {
+    const wrap = document.getElementById('best-scroll');
+    if (!wrap) return;
+    let isDown = false, startX, scrollLeft;
+    wrap.addEventListener('mousedown', e => {
+      isDown = true; wrap.classList.add('grabbing');
+      startX = e.pageX - wrap.offsetLeft; scrollLeft = wrap.scrollLeft;
     });
-  }, { threshold: 0.08 }).observe = (() => {
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          (entry.target as HTMLElement).style.opacity = '1';
-          (entry.target as HTMLElement).style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.08 });
-    packCards.forEach(card => obs.observe(card));
-    return obs.observe.bind(obs);
+    wrap.addEventListener('mouseleave', () => { isDown = false; wrap.classList.remove('grabbing'); });
+    wrap.addEventListener('mouseup',    () => { isDown = false; wrap.classList.remove('grabbing'); });
+    wrap.addEventListener('mousemove', e => {
+      if (!isDown) return; e.preventDefault();
+      wrap.scrollLeft = scrollLeft - (e.pageX - wrap.offsetLeft - startX) * 1.6;
+    });
   })();
 </script>
