@@ -26,18 +26,47 @@ Para colores ya generados: subir `3.webp` (plano medio frontal) del mismo color 
 
 | Pool | Packs | Colores | Shots | Hecho | Pendiente |
 |------|-------|---------|-------|-------|-----------|
-| OVERSIZE | 01·08·09 | 17 | 68 | 68 | 0 ✅ |
-| BOXY | 01·08·09 | 15 | 60 | 60 | 0 ✅ |
+| OVERSIZE (High Cotton) | 08·09 | 17 | 68 | 68 | 0 ✅ |
+| BOXY (High Cotton) | 08·09 | 15 | 60 | 60 | 0 ✅ |
 | SLIM FIT PIMA | 07 | 2 | 8 | 8 | 0 ✅ |
-| REGULAR | 01·08 | 17 | 68 | 68 | 0 ✅ |
-| BOXY LARGO | 01 | 13 | 52 | 0 | 52 |
+| REGULAR | 02·08 | 17 | 68 | 68 | 0 ✅ |
 | DAMA | 02 | 11 | 44 | 44 | 0 ✅ |
-| ACID WASH | 03 | 12 | 48 | 0 | 48 |
+| ACID WASH | 03 | 12 | 48 | 48 | 0 ✅ |
+| **20/1 OVERSIZE** | **01** | **17** | **68** | **68** | **0 ✅** |
+| BOXY LARGO | 01 | 13 | 52 | 0 | 52 |
 | HOODIE BOXY | 06 | 8 | 32 | 0 | 32 |
 | HOODIE OVERSIZE | 06·10 | 15 | 60 | 0 | 60 |
 | PANTALÓN FRANELA | 10 | 11 | 44 | 0 | 44 |
 | OUTFIT INVIERNO | 10 | 11 | 22 | 0 | 22 |
-| **Total** | | **132** | **506** | **200** | **306** |
+| **Total** | | **149** | **574** | **288** | **286** |
+
+---
+
+## 20/1 OVERSIZE · Pack 01
+
+`PRODUCTOS/OVERSIZE-20/[COLOR]/` · Inferior: `basic black slightly oversized jeans`
+Shots: 1=portada waist up hip tilt · 2=lateral 90° raking · 3=ghost mannequin · 4=frontal manos en bolsillos
+Referencias: MODEL_REF + COLOR_REF (shots 1·2·4) · solo COLOR_REF (shot 3)
+
+| Color | Ref color | 1 | 2 | 3 | 4 |
+|-------|-----------|---|---|---|---|
+| Negro | COLORES/Negro.webp | ✅ | ✅ | ✅ | ✅ |
+| Blanco | COLORES/Blanco.webp | ✅ | ✅ | ✅ | ✅ |
+| PPT | COLORES/PPT.webp | ✅ | ✅ | ✅ | ✅ |
+| Beige | COLORES/Beige.webp | ✅ | ✅ | ✅ | ✅ |
+| Beige Claro | COLORES/Beige Claro.webp | ✅ | ✅ | ✅ | ✅ |
+| Plomo Plata | COLORES/Plomo Plata.webp | ✅ | ✅ | ✅ | ✅ |
+| Plomo Escolar | COLORES/Plomo Escolar.webp | ✅ | ✅ | ✅ | ✅ |
+| Marrón | COLORES/Marron.webp | ✅ | ✅ | ✅ | ✅ |
+| English Blue | COLORES/English Blue.webp | ✅ | ✅ | ✅ | ✅ |
+| Guinda | COLORES/Guinda.webp | ✅ | ✅ | ✅ | ✅ |
+| Mauve | COLORES/Mauve.webp | ✅ | ✅ | ✅ | ✅ |
+| Verde Manzana | COLORES/Verde Manzana.webp | ✅ | ✅ | ✅ | ✅ |
+| Cocoa | COLORES/Cocoa.webp | ✅ | ✅ | ✅ | ✅ |
+| Verde Militar | COLORES/Verde Militar.webp | ✅ | ✅ | ✅ | ✅ |
+| Verde Botella | COLORES/Verde Botella.webp | ✅ | ✅ | ✅ | ✅ |
+| Celeste | COLORES/Celeste.webp | ✅ | ✅ | ✅ | ✅ |
+| Acero | COLORES/Acero.webp | ✅ | ✅ | ✅ | ✅ |
 
 ---
 
@@ -120,18 +149,18 @@ Referencias de color: `PRODUCTOS/COLORES/ACID WASH/[COLOR].png`
 
 | Color | Ref color | 1 | 2 | 3 | 4 |
 |-------|-----------|---|---|---|---|
-| Negro | `ACID WASH/NEGRO.png` | ⬜ | ⬜ | ⬜ | ⬜ |
-| Guinda | `ACID WASH/GUINDA.png` | ⬜ | ⬜ | ⬜ | ⬜ |
-| Rojo | `ACID WASH/ROJO.png` | ⬜ | ⬜ | ⬜ | ⬜ |
-| Morado | `ACID WASH/MORADO.png` | ⬜ | ⬜ | ⬜ | ⬜ |
-| Marrón | `ACID WASH/MARRON.png` | ⬜ | ⬜ | ⬜ | ⬜ |
-| Plomo Plata | `ACID WASH/PLOMO PLATA.png` | ⬜ | ⬜ | ⬜ | ⬜ |
-| Chicle | `ACID WASH/CHICLE.png` | ⬜ | ⬜ | ⬜ | ⬜ |
-| Gris | `ACID WASH/GRIS.png` | ⬜ | ⬜ | ⬜ | ⬜ |
-| Acero | `ACID WASH/ACERO.png` | ⬜ | ⬜ | ⬜ | ⬜ |
-| Verde | `ACID WASH/VERDE.png` | ⬜ | ⬜ | ⬜ | ⬜ |
-| Turquesa | `ACID WASH/TURQUEZA.png` | ⬜ | ⬜ | ⬜ | ⬜ |
-| Naranja | `ACID WASH/NARANJA.png` | ⬜ | ⬜ | ⬜ | ⬜ |
+| Negro | `ACID WASH/NEGRO.png` | ✅ | ✅ | ✅ | ✅ |
+| Guinda | `ACID WASH/GUINDA.png` | ✅ | ✅ | ✅ | ✅ |
+| Rojo | `ACID WASH/ROJO.png` | ✅ | ✅ | ✅ | ✅ |
+| Morado | `ACID WASH/MORADO.png` | ✅ | ✅ | ✅ | ✅ |
+| Marrón | `ACID WASH/MARRON.png` | ✅ | ✅ | ✅ | ✅ |
+| Plomo Plata | `ACID WASH/PLOMO PLATA.jpeg` | ✅ | ✅ | ✅ | ✅ |
+| Chicle | `ACID WASH/CHICLE.png` | ✅ | ✅ | ✅ | ✅ |
+| Gris | `ACID WASH/GRIS.png` | ✅ | ✅ | ✅ | ✅ |
+| Acero | `ACID WASH/ACERO.jpeg` | ✅ | ✅ | ✅ | ✅ |
+| Verde | `ACID WASH/VERDE.png` | ✅ | ✅ | ✅ | ✅ |
+| Turquesa | `ACID WASH/TURQUEZA.jpeg` | ✅ | ✅ | ✅ | ✅ |
+| Naranja | `ACID WASH/NARANJA.png` | ✅ | ✅ | ✅ | ✅ |
 
 ---
 
