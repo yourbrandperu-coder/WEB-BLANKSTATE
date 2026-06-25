@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
 import { createReadStream, existsSync } from 'fs';
-import { cp } from 'fs/promises';
 import { fileURLToPath } from 'url';
 import { join, dirname, extname } from 'path';
 
@@ -37,22 +36,5 @@ export default defineConfig({
   output: 'static',
   vite: {
     plugins: [serveStaticAssets()]
-  },
-  integrations: [
-    {
-      name: 'copy-assets',
-      hooks: {
-        'astro:build:done': async ({ dir }) => {
-          const out = fileURLToPath(dir);
-          try {
-            await cp(join(__dirname, 'PRODUCTOS'), join(out, 'PRODUCTOS'), { recursive: true });
-            await cp(join(__dirname, 'BRANDING'),  join(out, 'BRANDING'),  { recursive: true });
-            console.log('\n✓ PRODUCTOS/ y BRANDING/ copiados a dist/\n');
-          } catch (e) {
-            console.warn('copy-assets warning:', e.message);
-          }
-        }
-      }
-    }
-  ]
+  }
 });
