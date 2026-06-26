@@ -8,9 +8,10 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" id="og-title" content="Blankstate — Pack" />
   <meta property="og:description" content="Ropa de calidad real. Sin logo, sin markup. Lima, Perú." />
-  <meta property="og:image" content="https://blankstate.pe/BRANDING/banners/1.webp" />
-  <meta property="og:url" content="https://blankstate.pe" />
+  <meta property="og:image" id="og-image" content="https://blankstate.pe/BRANDING/banners/NUEVOS/FINALES/PACK%20BASICOS.webp" />
+  <meta property="og:url" id="og-url" content="https://blankstate.pe/pack.html" />
   <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" id="canonical-link" href="https://blankstate.pe/pack.html" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -858,7 +859,7 @@
 <div class="cursor" id="cursor"></div>
 
 <div class="bar">
-  🚚 Envíos a todo el Perú
+  — Envíos a todo el Perú
 </div>
 
 <nav class="nav" id="nav">
@@ -937,6 +938,17 @@
 
 <script src="cart.js"></script>
 <script>
+  const PACK_BANNERS = {
+    '01': 'https://blankstate.pe/BRANDING/banners/NUEVOS/FINALES/PACK%20BASICOS.webp',
+    '02': 'https://blankstate.pe/BRANDING/banners/NUEVOS/FINALES/PACK%20DAMA.webp',
+    '03': 'https://blankstate.pe/BRANDING/banners/NUEVOS/FINALES/PACK%20ACID%20WASH.webp',
+    '06': 'https://blankstate.pe/BRANDING/banners/NUEVOS/FINALES/PACK%20HOODIES.webp',
+    '07': 'https://blankstate.pe/BRANDING/banners/NUEVOS/FINALES/PACK%20PIMA.webp',
+    '08': 'https://blankstate.pe/BRANDING/banners/NUEVOS/FINALES/PACK%20280G.webp',
+    '09': 'https://blankstate.pe/BRANDING/banners/NUEVOS/FINALES/PACK%20320%20GRAMOS.webp',
+    '10': 'https://blankstate.pe/BRANDING/banners/NUEVOS/FINALES/PACK%20OUTFIT%20INVIERNO.webp'
+  };
+
   // ── GUÍAS DE TALLA POR PACK ──
   const SIZE_GUIDES = {
     '01': {
@@ -1886,6 +1898,13 @@
     document.getElementById('breadcrumb-current').textContent = pack.name;
     const ogTitle = document.getElementById('og-title');
     if (ogTitle) ogTitle.content = `Blankstate — ${pack.name}`;
+    const ogImg = document.getElementById('og-image');
+    if (ogImg && PACK_BANNERS[id]) ogImg.content = PACK_BANNERS[id];
+    const ogUrl = document.getElementById('og-url');
+    const canonical = document.getElementById('canonical-link');
+    const packUrl = `https://blankstate.pe/pack.html?id=${id}`;
+    if (ogUrl) ogUrl.content = packUrl;
+    if (canonical) canonical.href = packUrl;
 
     const waFloat = document.getElementById('wa-float');
     if (waFloat) waFloat.href = pack.wsp;
