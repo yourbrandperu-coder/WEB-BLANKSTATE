@@ -3,6 +3,8 @@
     { "src": "/", "dest": "/catalogo/index.html" },
     { "src": "/index.html", "dest": "/catalogo/index.html" },
     { "src": "/pack.html", "dest": "/catalogo/pack.html" },
+    { "src": "/catalogo.html",  "dest": "/catalogo/catalogo.html"  },
+    { "src": "/camisetas.html", "dest": "/catalogo/camisetas.html" },
     {
       "src": "/PRODUCTOS/(.*)",
       "headers": { "Cache-Control": "public, max-age=31536000, immutable" },
