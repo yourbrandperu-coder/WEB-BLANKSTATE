@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { PACKS } from '../data/packs';
+
+const packs = [
+  { id: '01', slug: 'basicos',      img: '/BRANDING/banners/NUEVOS/FINALES/PACK%20BASICOS.webp',       name: 'Pack Básicos',          desc: '5 polos · Oversize, Boxy y Regular · 20/1 200g', price: 'S/ 100' },
+  { id: '02', slug: 'dama',         img: '/BRANDING/banners/NUEVOS/FINALES/PACK%20DAMA.webp',           name: 'Pack Dama',             desc: '6 polos · Regular y Dama · 20/1 200g',           price: 'S/ 100' },
+  { id: '07', slug: 'pima',         img: '/BRANDING/banners/NUEVOS/FINALES/PACK%20PIMA.webp',           name: 'Pack Pima',             desc: '2 polos · Slim Fit · 100% Algodón Pima',         price: 'S/ 70'  },
+  { id: '03', slug: 'acid-wash',    img: '/BRANDING/banners/NUEVOS/FINALES/PACK%20ACID%20WASH.webp',   name: 'Pack Acid Wash',        desc: '5 polos · Tratamiento Acid Wash · 20/1 220g',    price: 'S/ 110' },
+  { id: '08', slug: 'medium-cotton',img: '/PRODUCTOS/OVERSIZE/NEGRO/1.webp',                            name: 'Pack Medium Cotton 280g',desc: '4 polos · Oversize, Boxy y Regular · 15/1 280g', price: 'S/ 100' },
+  { id: '09', slug: 'high-cotton',  img: '/BRANDING/banners/NUEVOS/FINALES/PACK%20320%20GRAMOS.webp',  name: 'Pack High Cotton 320g', desc: '4 polos · Oversize y Boxy · 11/1 320g',          price: 'S/ 110' },
+  { id: '06', slug: 'hoodies',      img: '/BRANDING/banners/NUEVOS/FINALES/PACK%20HOODIES.webp',       name: 'Pack Hoodies',          desc: '2 hoodies · Boxy y Oversize · Franela 24/1 320g',price: 'S/ 99'  },
+  { id: '10', slug: 'invierno',     img: '/BRANDING/banners/NUEVOS/FINALES/PACK%20OUTFIT%20INVIERNO.webp', name: 'Pack Invierno', desc: 'Hoodie + Pantalón + Polo de regalo · Franela 24/1', price: 'S/ 120' },
+];
+---
+<Layout
+  navVariant="editorial"
+  title="Catálogo — Blankstate"
+  description="8 packs disponibles. Ropa premium sin logo, precio de fábrica. Lima, Perú."
+>
+  <Fragment slot="head">
+    <style>
+      body { animation: bodyEnter 0.45s ease both; }
+      @keyframes bodyEnter { from { opacity: 0; } to { opacity: 1; } }
+
+      /* ── PAGE HEADER ── */
+      .page-header {
+        padding: 40px 20px 32px;
+        display: flex; align-items: flex-end; justify-content: space-between;
+        border-bottom: 1px solid var(--g1);
+      }
+      .page-title {
+        font-family: var(--sans); font-size: clamp(36px, 8vw, 64px);
+        font-weight: 700; letter-spacing: -0.03em; line-height: 1;
+      }
+      .page-subtitle { font-size: 12px; color: var(--g3); letter-spacing: 0.08em; margin-top: 6px; }
+
+      .cat-filter { display: flex; gap: 16px; }
+      .cat-filter a {
+        font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+        color: var(--g3); text-decoration: none; transition: color 0.2s;
+        padding-bottom: 2px;
+      }
+      .cat-filter a.active { color: var(--black); border-bottom: 1px solid var(--black); }
+      .cat-filter a:hover { color: var(--black); }
+
+      /* ── PACKS SECTION ── */
+      .packs-section { padding: 24px 20px 80px; }
+
+      /* ── PACK GRID ── */
+      .pack-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      @media (max-width: 680px) { .pack-grid { gap: 6px; } }
+      @media (max-width: 480px) { .pack-grid { gap: 4px; } }
+
+      .pack-card {
+        display: flex; flex-direction: column;
+        cursor: pointer; background: transparent; text-decoration: none;
+        transition: transform 0.38s var(--spring);
+      }
+      .pack-card:hover { transform: translateY(-5px); }
+      @media (hover: none) { .pack-card:hover { transform: none; } }
+
+      .pack-photo-zone {
+        aspect-ratio: 3/4; overflow: hidden; background: var(--g1); position: relative;
+      }
+      .pack-photo {
+        position: absolute; inset: 0; width: 100%; height: 100%;
+        object-fit: cover; object-position: top center; display: block;
+        transition: transform 0.6s var(--ease);
+      }
+      .pack-card:hover .pack-photo { transform: scale(1.04); }
+
+      .pack-card-info { padding: 12px 0 0; display: flex; flex-direction: column; gap: 8px; }
+      .pack-name { font-family: var(--serif); font-size: 18px; font-weight: 500; line-height: 1.3; color: var(--black); }
+      @media (max-width: 680px) { .pack-name { font-size: 15px; } }
+      .pack-desc { font-size: 12px; color: var(--g3); letter-spacing: 0.03em; font-weight: 300; margin-top: -2px; }
+      .pack-card-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 2px; }
+      .pack-card-price { font-size: 16px; font-weight: 600; color: var(--black); letter-spacing: 0.02em; }
+      .btn-ver-pack {
+        display: inline-flex; align-items: center; gap: 4px;
+        border: 1px solid var(--g2); color: var(--g4); text-decoration: none;
+        padding: 5px 10px; font-family: var(--sans); font-size: 10px;
+        letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
+        transition: border-color 0.2s, color 0.2s; background: none; cursor: pointer;
+      }
+      .pack-card:hover .btn-ver-pack { border-color: var(--black); color: var(--black); }
+    </style>
+  </Fragment>
+
+  <!-- ── PAGE HEADER ── -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">El catálogo.</h1>
+      <p class="page-subtitle">8 packs disponibles</p>
+    </div>
+    <div class="cat-filter">
+      <a href="/catalogo" class="active">Todos</a>
+    </div>
+  </div>
+
+  <!-- ── PACK GRID ── -->
+  <section class="packs-section">
+    <div class="pack-grid">
+      {packs.map(p => (
+        <a class="pack-card" href={`/packs/${p.slug}`}>
+          <div class="pack-photo-zone">
+            <img class="pack-photo" src={p.img} alt={p.name} loading="lazy" />
+          </div>
+          <div class="pack-card-info">
+            <p class="pack-name">{p.name}</p>
+            <p class="pack-desc">{p.desc}</p>
+            <div class="pack-card-bottom">
+              <span class="pack-card-price">{p.price}</span>
+              <span class="btn-ver-pack">Ver →</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

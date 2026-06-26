@@ -3,3 +3,12 @@ MARCA/
 AGENTES/
 
 .vercel
+.astro/
+dist/
+node_modules/
+skills-lock.json
+tmp*.png
+SESION_ACTIVA.md
+DOCUMENTOS/
+.agents/
+.claude/
