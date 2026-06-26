@@ -1,21 +1,27 @@
 {
-  "routes": [
-    { "src": "/", "dest": "/catalogo/index.html" },
-    { "src": "/index.html", "dest": "/catalogo/index.html" },
-    { "src": "/pack.html", "dest": "/catalogo/pack.html" },
-    { "src": "/catalogo.html",  "dest": "/catalogo/catalogo.html"  },
-    { "src": "/camisetas.html", "dest": "/catalogo/camisetas.html" },
+  "builds": [
     {
-      "src": "/PRODUCTOS/(.*)",
-      "headers": { "Cache-Control": "public, max-age=31536000, immutable" },
-      "continue": true
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
     },
     {
-      "src": "/BRANDING/(.*)",
-      "headers": { "Cache-Control": "public, max-age=31536000" },
-      "continue": true
+      "src": "BRANDING/**",
+      "use": "@vercel/static"
     },
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "status": 404, "dest": "/404.html" }
+    {
+      "src": "PRODUCTOS/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/BRANDING/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000" }]
+    },
+    {
+      "source": "/PRODUCTOS/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    }
   ]
 }
