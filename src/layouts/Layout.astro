@@ -4,6 +4,7 @@ interface Props {
   description?: string;
   ogImage?:     string;
   ogUrl?:       string;
+  canonical?:   string;
   navVariant?:  'standard' | 'editorial';
 }
 
@@ -12,6 +13,7 @@ const {
   description = 'Ropa de calidad real. Sin logo, sin markup. Packs desde S/70. Lima, Perú.',
   ogImage     = 'https://blankstate.pe/BRANDING/banners/NUEVOS/FINALES/PACK%20BASICOS.webp',
   ogUrl       = 'https://blankstate.pe',
+  canonical   = ogUrl,
   navVariant  = 'standard',
 } = Astro.props;
 ---
@@ -27,6 +29,7 @@ const {
   <meta property="og:image"       content={ogImage} />
   <meta property="og:url"         content={ogUrl} />
   <meta name="twitter:card"       content="summary_large_image" />
+  <link rel="canonical" href={canonical} />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <title>{title}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -154,6 +157,9 @@ const {
     }
     .nav-hamburger:hover { color: var(--g4); }
 
+    .nav-hamburger-standard { display: none; }
+    @media (max-width: 900px) { .nav-hamburger-standard { display: flex; } }
+
     .nav-cart {
       justify-self: end;
       position: relative; display: flex; align-items: center; justify-content: center;
@@ -256,6 +262,7 @@ const {
 
 {navVariant === 'standard' ? (
   <nav class="nav-standard" id="nav">
+    <button class="nav-hamburger nav-hamburger-standard" id="nav-hamburger" aria-label="Menú">≡</button>
     <a href="/" class="nav-logo">
       <span class="nav-logo-wordmark">blankstate<sup>©</sup></span>
     </a>
@@ -291,6 +298,7 @@ const {
     <ul class="nav-menu-links">
       <li><a href="/" class="nav-menu-link">Inicio</a></li>
       <li><a href="/catalogo" class="nav-menu-link">Catálogo</a></li>
+      <li><a href="/catalogo" class="nav-menu-link">Camisetas</a></li>
     </ul>
     <div class="nav-menu-wa">
       <a href="https://wa.me/51942418379?text=Hola%2C+quiero+ver+los+packs+de+Blankstate."
