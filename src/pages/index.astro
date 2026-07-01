@@ -148,7 +148,7 @@ import Layout from '../layouts/Layout.astro';
       }
       .best-scroll::-webkit-scrollbar { display: none; }
       .best-scroll.grabbing { cursor: grabbing; }
-      .best-scroll.grabbing * { user-select: none; pointer-events: none; }
+      .best-scroll.grabbing * { user-select: none; }
       @media (max-width: 680px) { .best-scroll { padding: 0 20px; } }
 
       .best-card {
@@ -362,16 +362,24 @@ import Layout from '../layouts/Layout.astro';
   (function() {
     const wrap = document.getElementById('best-scroll');
     if (!wrap) return;
-    let isDown = false, startX, scrollLeft;
+    let isDown = false, startX, scrollLeft, dragged = false;
     wrap.addEventListener('mousedown', e => {
-      isDown = true; wrap.classList.add('grabbing');
+      isDown = true; dragged = false; wrap.classList.add('grabbing');
       startX = e.pageX - wrap.offsetLeft; scrollLeft = wrap.scrollLeft;
     });
     wrap.addEventListener('mouseleave', () => { isDown = false; wrap.classList.remove('grabbing'); });
     wrap.addEventListener('mouseup',    () => { isDown = false; wrap.classList.remove('grabbing'); });
     wrap.addEventListener('mousemove', e => {
-      if (!isDown) return; e.preventDefault();
-      wrap.scrollLeft = scrollLeft - (e.pageX - wrap.offsetLeft - startX) * 1.6;
+      if (!isDown) return;
+      const delta = (e.pageX - wrap.offsetLeft) - startX;
+      if (Math.abs(delta) > 6) dragged = true;
+      if (!dragged) return;
+      e.preventDefault();
+      wrap.scrollLeft = scrollLeft - delta * 1.6;
     });
+    // Solo bloquea el click si hubo un arrastre real — evita que el drag dispare una navegación no deseada
+    wrap.addEventListener('click', e => {
+      if (dragged) { e.preventDefault(); e.stopPropagation(); }
+    }, true);
   })();
 </script>
