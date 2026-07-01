@@ -143,8 +143,9 @@ import Layout from '../layouts/Layout.astro';
       @media (max-width: 680px) { .best-scroll { padding: 0 20px; } }
 
       .best-card {
-        flex-shrink: 0; width: 85vw; max-width: 480px;
+        display: block; flex-shrink: 0; width: 85vw; max-width: 480px;
         scroll-snap-align: start; cursor: pointer; background: transparent; position: relative;
+        text-decoration: none;
       }
       @media (max-width: 680px) { .best-card { width: 82vw; max-width: 340px; } }
 
@@ -185,7 +186,7 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- ── CATEGORY TILES ── -->
-  <a class="cat-tile" href="/catalogo">
+  <a class="cat-tile" href="/catalogo?cat=camisetas">
     <img class="cat-tile-img"
          src="/BRANDING/banners/v2/PORTADA%20CAMISETAS.png"
          alt="Camisetas" loading="lazy" />
@@ -195,7 +196,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </a>
 
-  <a class="cat-tile" href="/catalogo">
+  <a class="cat-tile" href="/catalogo?cat=packs">
     <img class="cat-tile-img"
          src="/BRANDING/banners/v2/PORTADA%20PACKS.png"
          alt="Packs" loading="lazy" />
@@ -260,54 +261,54 @@ import Layout from '../layouts/Layout.astro';
       <h2 class="best-title">Más vendidos.</h2>
     </div>
     <div class="best-scroll" id="best-scroll">
-      <div class="best-card">
+      <a class="best-card" href="/packs/pima">
         <div class="best-card-photo">
           <img src="/BRANDING/banners/NUEVOS/FINALES/PACK%20PIMA.webp" alt="Pack Pima" loading="lazy" />
-          <div class="best-card-overlay"><a href="/packs/pima" class="btn-ver-pack-card">Ver pack →</a></div>
+          <div class="best-card-overlay"><span class="btn-ver-pack-card">Ver pack →</span></div>
         </div>
-      </div>
-      <div class="best-card">
+      </a>
+      <a class="best-card" href="/packs/high-cotton">
         <div class="best-card-photo">
           <img src="/BRANDING/banners/NUEVOS/FINALES/PACK%20320%20GRAMOS.webp" alt="Pack High Cotton 320g" loading="lazy" />
-          <div class="best-card-overlay"><a href="/packs/high-cotton" class="btn-ver-pack-card">Ver pack →</a></div>
+          <div class="best-card-overlay"><span class="btn-ver-pack-card">Ver pack →</span></div>
         </div>
-      </div>
-      <div class="best-card">
+      </a>
+      <a class="best-card" href="/packs/basicos">
         <div class="best-card-photo">
           <img src="/BRANDING/banners/NUEVOS/FINALES/PACK%20BASICOS.webp" alt="Pack Básicos" loading="lazy" />
-          <div class="best-card-overlay"><a href="/packs/basicos" class="btn-ver-pack-card">Ver pack →</a></div>
+          <div class="best-card-overlay"><span class="btn-ver-pack-card">Ver pack →</span></div>
         </div>
-      </div>
-      <div class="best-card">
+      </a>
+      <a class="best-card" href="/packs/dama">
         <div class="best-card-photo">
           <img src="/BRANDING/banners/NUEVOS/FINALES/PACK%20DAMA.webp" alt="Pack Dama" loading="lazy" />
-          <div class="best-card-overlay"><a href="/packs/dama" class="btn-ver-pack-card">Ver pack →</a></div>
+          <div class="best-card-overlay"><span class="btn-ver-pack-card">Ver pack →</span></div>
         </div>
-      </div>
-      <div class="best-card">
+      </a>
+      <a class="best-card" href="/packs/acid-wash">
         <div class="best-card-photo">
           <img src="/BRANDING/banners/NUEVOS/FINALES/PACK%20ACID%20WASH.webp" alt="Pack Acid Wash" loading="lazy" />
-          <div class="best-card-overlay"><a href="/packs/acid-wash" class="btn-ver-pack-card">Ver pack →</a></div>
+          <div class="best-card-overlay"><span class="btn-ver-pack-card">Ver pack →</span></div>
         </div>
-      </div>
-      <div class="best-card">
+      </a>
+      <a class="best-card" href="/packs/hoodies">
         <div class="best-card-photo">
           <img src="/BRANDING/banners/NUEVOS/FINALES/PACK%20HOODIES.webp" alt="Pack Hoodies" loading="lazy" />
-          <div class="best-card-overlay"><a href="/packs/hoodies" class="btn-ver-pack-card">Ver pack →</a></div>
+          <div class="best-card-overlay"><span class="btn-ver-pack-card">Ver pack →</span></div>
         </div>
-      </div>
-      <div class="best-card">
+      </a>
+      <a class="best-card" href="/packs/invierno">
         <div class="best-card-photo">
           <img src="/BRANDING/banners/NUEVOS/FINALES/PACK%20OUTFIT%20INVIERNO.webp" alt="Pack Invierno" loading="lazy" />
-          <div class="best-card-overlay"><a href="/packs/invierno" class="btn-ver-pack-card">Ver pack →</a></div>
+          <div class="best-card-overlay"><span class="btn-ver-pack-card">Ver pack →</span></div>
         </div>
-      </div>
-      <div class="best-card">
+      </a>
+      <a class="best-card" href="/packs/medium-cotton">
         <div class="best-card-photo">
           <img src="/PRODUCTOS/OVERSIZE/NEGRO/1.webp" alt="Pack Medium Cotton 280g" loading="lazy" />
-          <div class="best-card-overlay"><a href="/packs/medium-cotton" class="btn-ver-pack-card">Ver pack →</a></div>
+          <div class="best-card-overlay"><span class="btn-ver-pack-card">Ver pack →</span></div>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 </Layout>

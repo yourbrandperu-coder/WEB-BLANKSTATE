@@ -3,14 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import { PACKS } from '../data/packs';
 
 const packs = [
-  { id: '01', slug: 'basicos',      img: '/BRANDING/banners/NUEVOS/FINALES/PACK%20BASICOS.webp',       name: 'Pack Básicos',          desc: '5 polos · Oversize, Boxy y Regular · 20/1 200g', price: 'S/ 100' },
-  { id: '02', slug: 'dama',         img: '/BRANDING/banners/NUEVOS/FINALES/PACK%20DAMA.webp',           name: 'Pack Dama',             desc: '6 polos · Regular y Dama · 20/1 200g',           price: 'S/ 100' },
-  { id: '07', slug: 'pima',         img: '/BRANDING/banners/NUEVOS/FINALES/PACK%20PIMA.webp',           name: 'Pack Pima',             desc: '2 polos · Slim Fit · 100% Algodón Pima',         price: 'S/ 70'  },
-  { id: '03', slug: 'acid-wash',    img: '/BRANDING/banners/NUEVOS/FINALES/PACK%20ACID%20WASH.webp',   name: 'Pack Acid Wash',        desc: '5 polos · Tratamiento Acid Wash · 20/1 220g',    price: 'S/ 110' },
-  { id: '08', slug: 'medium-cotton',img: '/PRODUCTOS/OVERSIZE/NEGRO/1.webp',                            name: 'Pack Medium Cotton 280g',desc: '4 polos · Oversize, Boxy y Regular · 15/1 280g', price: 'S/ 100' },
-  { id: '09', slug: 'high-cotton',  img: '/BRANDING/banners/NUEVOS/FINALES/PACK%20320%20GRAMOS.webp',  name: 'Pack High Cotton 320g', desc: '4 polos · Oversize y Boxy · 11/1 320g',          price: 'S/ 110' },
-  { id: '06', slug: 'hoodies',      img: '/BRANDING/banners/NUEVOS/FINALES/PACK%20HOODIES.webp',       name: 'Pack Hoodies',          desc: '2 hoodies · Boxy y Oversize · Franela 24/1 320g',price: 'S/ 99'  },
-  { id: '10', slug: 'invierno',     img: '/BRANDING/banners/NUEVOS/FINALES/PACK%20OUTFIT%20INVIERNO.webp', name: 'Pack Invierno', desc: 'Hoodie + Pantalón + Polo de regalo · Franela 24/1', price: 'S/ 120' },
+  { id: '01', slug: 'basicos',      img: '/PRODUCTOS/OVERSIZE-20/Negro/1.webp',              name: 'Pack Básicos',          desc: '5 polos · Oversize, Boxy y Regular · 20/1 200g', price: 'S/ 100', category: 'camisetas' },
+  { id: '02', slug: 'dama',         img: '/PRODUCTOS/DAMA/Negro/1.webp',                     name: 'Pack Dama',             desc: '6 polos · Regular y Dama · 20/1 200g',           price: 'S/ 100', category: 'camisetas' },
+  { id: '07', slug: 'pima',         img: '/PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/1.webp',         name: 'Pack Pima',             desc: '2 polos · Slim Fit · 100% Algodón Pima',         price: 'S/ 70',  category: 'camisetas' },
+  { id: '03', slug: 'acid-wash',    img: '/PRODUCTOS/ACID-WASH/NEGRO/1.webp',                name: 'Pack Acid Wash',        desc: '5 polos · Tratamiento Acid Wash · 20/1 220g',    price: 'S/ 110', category: 'camisetas' },
+  { id: '08', slug: 'medium-cotton',img: '/PRODUCTOS/OVERSIZE/NEGRO/1.webp',                 name: 'Pack Medium Cotton 280g',desc: '4 polos · Oversize, Boxy y Regular · 15/1 280g', price: 'S/ 100', category: 'camisetas' },
+  { id: '09', slug: 'high-cotton',  img: '/PRODUCTOS/BOXY/Negro/1.webp',                     name: 'Pack High Cotton 320g', desc: '4 polos · Oversize y Boxy · 11/1 320g',          price: 'S/ 110', category: 'camisetas' },
+  { id: '06', slug: 'hoodies',      img: '/BRANDING/banners/NUEVOS/FINALES/PACK%20HOODIES.webp',       name: 'Pack Hoodies',          desc: '2 hoodies · Boxy y Oversize · Franela 24/1 320g',price: 'S/ 99',  category: 'packs' },
+  { id: '10', slug: 'invierno',     img: '/BRANDING/banners/NUEVOS/FINALES/PACK%20OUTFIT%20INVIERNO.webp', name: 'Pack Invierno', desc: 'Hoodie + Pantalón + Polo de regalo · Franela 24/1', price: 'S/ 120', category: 'packs' },
 ];
 ---
 <Layout
@@ -91,18 +91,20 @@ const packs = [
   <div class="page-header">
     <div>
       <h1 class="page-title">El catálogo.</h1>
-      <p class="page-subtitle">8 packs disponibles</p>
+      <p class="page-subtitle" id="page-subtitle">8 packs disponibles</p>
     </div>
-    <div class="cat-filter">
-      <a href="/catalogo" class="active">Todos</a>
+    <div class="cat-filter" id="cat-filter">
+      <a href="/catalogo" data-cat="todos" class="active">Todos</a>
+      <a href="/catalogo?cat=camisetas" data-cat="camisetas">Camisetas</a>
+      <a href="/catalogo?cat=packs" data-cat="packs">Packs</a>
     </div>
   </div>
 
   <!-- ── PACK GRID ── -->
   <section class="packs-section">
-    <div class="pack-grid">
+    <div class="pack-grid" id="pack-grid">
       {packs.map(p => (
-        <a class="pack-card" href={`/packs/${p.slug}`}>
+        <a class="pack-card" href={`/packs/${p.slug}`} data-category={p.category}>
           <div class="pack-photo-zone">
             <img class="pack-photo" src={p.img} alt={p.name} loading="lazy" />
           </div>
@@ -119,3 +121,22 @@ const packs = [
     </div>
   </section>
 </Layout>
+
+<script>
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('cat') || 'todos';
+    const cards = document.querySelectorAll('#pack-grid .pack-card');
+    let visible = 0;
+    cards.forEach(card => {
+      const match = cat === 'todos' || card.getAttribute('data-category') === cat;
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+    document.querySelectorAll('#cat-filter a').forEach(a => {
+      a.classList.toggle('active', a.dataset.cat === cat);
+    });
+    const subtitle = document.getElementById('page-subtitle');
+    if (subtitle) subtitle.textContent = `${visible} pack${visible === 1 ? '' : 's'} disponible${visible === 1 ? '' : 's'}`;
+  })();
+</script>
