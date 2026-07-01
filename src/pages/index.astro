@@ -5,9 +5,10 @@ import Layout from '../layouts/Layout.astro';
   navVariant="editorial"
   title="Blankstate — Packs Premium"
   description="Ropa de calidad real. Sin logo, sin markup. Packs desde S/70. Lima, Perú."
+  canonical="https://blankstate.pe/"
 >
   <Fragment slot="head">
-    <link rel="preload" as="image" href="/BRANDING/portada-blank.webp" type="image/webp" />
+    <link rel="preload" as="image" href="/BRANDING/banners/v2/HERO%20PRINCIPAL.png" />
     <style>
       body { animation: bodyEnter 0.45s ease both; }
       @keyframes bodyEnter { from { opacity: 0; } to { opacity: 1; } }
@@ -88,6 +89,14 @@ import Layout from '../layouts/Layout.astro';
       .lifestyle-section { overflow: hidden; }
       .lifestyle-viewport { overflow: hidden; width: 100%; }
       .lifestyle-track { display: flex; transition: transform 0.8s var(--ease); will-change: transform; }
+
+      .ls-dots { display: flex; justify-content: center; align-items: center; gap: 8px; padding: 14px 0 6px; }
+      .ls-dot {
+        width: 7px; height: 7px; border-radius: 50%;
+        border: 1px solid var(--g3); background: transparent; cursor: pointer; padding: 0;
+        transition: background 0.2s, border-color 0.2s;
+      }
+      .ls-dot.active { background: var(--black); border-color: var(--black); }
       .lifestyle-slide { flex-shrink: 0; width: 100%; aspect-ratio: 3/4; overflow: hidden; }
       @media (min-width: 680px) { .lifestyle-slide { aspect-ratio: 16/9; } }
       .lifestyle-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -209,17 +218,17 @@ import Layout from '../layouts/Layout.astro';
   <!-- ── ANIMATED TICKER ── -->
   <div class="bar">
     <div class="bar-track">
-      <span class="bar-item">🚚 Envíos a todo el Perú</span>
+      <span class="bar-item">— Envíos a todo el Perú</span>
       <span class="bar-sep">·</span>
-      <span class="bar-item">👕 Somos fabricantes</span>
+      <span class="bar-item">— Somos fabricantes</span>
       <span class="bar-sep">·</span>
-      <span class="bar-item">🔒 Pagos seguros</span>
+      <span class="bar-item">— Pagos seguros</span>
       <span class="bar-sep">·</span>
-      <span class="bar-item">🚚 Envíos a todo el Perú</span>
+      <span class="bar-item">— Envíos a todo el Perú</span>
       <span class="bar-sep">·</span>
-      <span class="bar-item">👕 Somos fabricantes</span>
+      <span class="bar-item">— Somos fabricantes</span>
       <span class="bar-sep">·</span>
-      <span class="bar-item">🔒 Pagos seguros</span>
+      <span class="bar-item">— Pagos seguros</span>
       <span class="bar-sep">·</span>
     </div>
   </div>
@@ -235,6 +244,14 @@ import Layout from '../layouts/Layout.astro';
         <div class="lifestyle-slide"><img src="/BRANDING/banners/2.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
         <div class="lifestyle-slide"><img src="/BRANDING/banners/3.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
       </div>
+    </div>
+    <div class="ls-dots" id="ls-dots">
+      <button class="ls-dot active" data-i="0" aria-label="Slide 1"></button>
+      <button class="ls-dot" data-i="1" aria-label="Slide 2"></button>
+      <button class="ls-dot" data-i="2" aria-label="Slide 3"></button>
+      <button class="ls-dot" data-i="3" aria-label="Slide 4"></button>
+      <button class="ls-dot" data-i="4" aria-label="Slide 5"></button>
+      <button class="ls-dot" data-i="5" aria-label="Slide 6"></button>
     </div>
   </section>
 
@@ -328,14 +345,17 @@ import Layout from '../layouts/Layout.astro';
   (function() {
     const track  = document.getElementById('ls-track');
     const slides = document.querySelectorAll('.lifestyle-slide');
+    const dots   = document.querySelectorAll('.ls-dot');
     if (!track || !slides.length) return;
     const total = slides.length;
     let current = 0;
     function goTo(idx) {
       current = ((idx % total) + total) % total;
       track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
     }
     setInterval(() => goTo(current + 1), 3000);
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
   })();
 
   // ── DRAG SCROLL — más vendidos ──

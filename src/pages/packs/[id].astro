@@ -25,6 +25,7 @@ const pageData = {
   title={`Blankstate — ${pack.name}`}
   description={`${pack.name} · ${pack.qty} · ${pack.price}. ${pack.desc.slice(0, 120)}…`}
   ogImage={pack.thumb ? `https://blankstate.pe${pack.thumb}` : undefined}
+  canonical={`https://blankstate.pe/packs/${pack.slug}`}
 >
   <Fragment slot="head">
     <style>
