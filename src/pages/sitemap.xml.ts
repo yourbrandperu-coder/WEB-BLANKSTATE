@@ -3,10 +3,10 @@ import { PACKS } from '../data/packs';
 
 export const GET: APIRoute = () => {
   const urls = [
-    { loc: 'https://blankstate.pe/', priority: '1.0' },
-    { loc: 'https://blankstate.pe/catalogo', priority: '0.9' },
+    { loc: 'https://blankstate-zeta.vercel.app/', priority: '1.0' },
+    { loc: 'https://blankstate-zeta.vercel.app/catalogo', priority: '0.9' },
     ...Object.values(PACKS).map(pack => ({
-      loc: `https://blankstate.pe/packs/${pack.slug}`,
+      loc: `https://blankstate-zeta.vercel.app/packs/${pack.slug}`,
       priority: '0.8',
     })),
   ];

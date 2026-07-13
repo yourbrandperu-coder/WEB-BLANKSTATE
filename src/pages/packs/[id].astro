@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { PACKS, FITS, DISABLED_FITS, FIT_PHOTOS, SIZE_GUIDES, getPackBySlug } from '../../data/packs';
+import { buildInfoHtml, getInitialVisualHtml } from '../../utils/renderProduct';
 
 export function getStaticPaths() {
   return Object.values(PACKS).map(pack => ({
@@ -20,12 +21,18 @@ const pageData = {
   fitPhotos:    FIT_PHOTOS[packNum]    ?? {},
   sizeGuide:    SIZE_GUIDES[packNum]   ?? null,
 };
+
+// Estado inicial pintado en el HTML estático (mismo que produce el script
+// cliente al montar) — para que Google/redes/WhatsApp preview vean el
+// contenido real sin depender de JS, y no haya parpadeo de contenido vacío.
+const visualHtml = getInitialVisualHtml(pack, pageData.fits, pageData.fitPhotos);
+const infoHtml    = buildInfoHtml(pack, pageData.fits, pageData.disabledFits, pageData.sizeGuide);
 ---
 <Layout
   title={`Blankstate — ${pack.name}`}
   description={`${pack.name} · ${pack.qty} · ${pack.price}. ${pack.desc.slice(0, 120)}…`}
-  ogImage={pack.thumb ? `https://blankstate.pe${pack.thumb}` : undefined}
-  canonical={`https://blankstate.pe/packs/${pack.slug}`}
+  ogImage={pack.thumb ? `https://blankstate-zeta.vercel.app${pack.thumb}` : undefined}
+  canonical={`https://blankstate-zeta.vercel.app/packs/${pack.slug}`}
 >
   <Fragment slot="head">
     <style is:global>
@@ -169,8 +176,8 @@ const pageData = {
 
   <!-- PRODUCT PAGE -->
   <main class="product-page" id="product-page">
-    <div class="product-visual" id="product-visual"></div>
-    <div class="product-info"  id="product-info"></div>
+    <div class="product-visual" id="product-visual" set:html={visualHtml}></div>
+    <div class="product-info"  id="product-info"  set:html={infoHtml}></div>
   </main>
 
   <!-- LIGHTBOX -->
