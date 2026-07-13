@@ -21,7 +21,7 @@ function serveStaticAssets() {
       server.middlewares.use((req, res, next) => {
         const url = (req.url || '').split('?')[0];
         if (!url.startsWith('/PRODUCTOS/') && !url.startsWith('/BRANDING/')) return next();
-        const filePath = join(__dirname, decodeURIComponent(url));
+        const filePath = join(__dirname, '..', decodeURIComponent(url));
         if (!existsSync(filePath)) return next();
         const mime = MIME_TYPES[extname(filePath).toLowerCase()] || 'application/octet-stream';
         res.setHeader('Content-Type', mime);

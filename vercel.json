@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-      "src": "package.json",
+      "src": "WEB/package.json",
       "use": "@vercel/static-build",
       "config": { "distDir": "dist" }
     },
@@ -14,14 +14,21 @@
       "use": "@vercel/static"
     }
   ],
-  "headers": [
+  "routes": [
     {
-      "source": "/BRANDING/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000" }]
+      "src": "/BRANDING/(.*)",
+      "headers": { "cache-control": "public, max-age=31536000" },
+      "continue": true
     },
     {
-      "source": "/PRODUCTOS/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "src": "/PRODUCTOS/(.*)",
+      "headers": { "cache-control": "public, max-age=31536000, immutable" },
+      "continue": true
+    },
+    { "handle": "filesystem" },
+    {
+      "src": "/(.*)",
+      "dest": "/WEB/$1"
     }
   ]
 }
