@@ -173,7 +173,7 @@ export const PACKS: Record<string, Pack> = {
       { name: 'Gris',        hex: '#9ca3af', photos: ['/PRODUCTOS/ACID-WASH/GRIS/1.webp','/PRODUCTOS/ACID-WASH/GRIS/2.webp','/PRODUCTOS/ACID-WASH/GRIS/3.webp','/PRODUCTOS/ACID-WASH/GRIS/4.webp'] },
       { name: 'Acero',       hex: '#6B8599', photos: ['/PRODUCTOS/ACID-WASH/ACERO/1.webp','/PRODUCTOS/ACID-WASH/ACERO/2.webp','/PRODUCTOS/ACID-WASH/ACERO/3.webp','/PRODUCTOS/ACID-WASH/ACERO/4.webp'] },
       { name: 'Verde',       hex: '#4A7C59', photos: ['/PRODUCTOS/ACID-WASH/VERDE/1.webp','/PRODUCTOS/ACID-WASH/VERDE/2.webp','/PRODUCTOS/ACID-WASH/VERDE/3.webp','/PRODUCTOS/ACID-WASH/VERDE/4.webp'] },
-      { name: 'Turquesa',    hex: '#00897B', photos: ['/PRODUCTOS/ACID-WASH/TURQUEZA/1.webp','/PRODUCTOS/ACID-WASH/TURQUEZA/2.webp','/PRODUCTOS/ACID-WASH/TURQUEZA/3.webp','/PRODUCTOS/ACID-WASH/TURQUEZA/4.webp'] },
+      { name: 'Turquesa',    hex: '#4E9FBF', photos: ['/PRODUCTOS/ACID-WASH/TURQUEZA/1.webp','/PRODUCTOS/ACID-WASH/TURQUEZA/2.webp','/PRODUCTOS/ACID-WASH/TURQUEZA/3.webp','/PRODUCTOS/ACID-WASH/TURQUEZA/4.webp'] },
       { name: 'Naranja',     hex: '#E8640A', photos: ['/PRODUCTOS/ACID-WASH/NARANJA/1.webp','/PRODUCTOS/ACID-WASH/NARANJA/2.webp','/PRODUCTOS/ACID-WASH/NARANJA/3.webp','/PRODUCTOS/ACID-WASH/NARANJA/4.webp'] }
     ],
     thumb: '/PRODUCTOS/ACID-WASH/NEGRO/1.webp',
