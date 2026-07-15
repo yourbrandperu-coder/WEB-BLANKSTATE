@@ -409,6 +409,19 @@ export const FIT_PHOTOS: Record<string, Record<string, Record<string, string[]>>
       'Verde Botella': ['/PRODUCTOS/OVERSIZE-20/Verde Botella/1.webp','/PRODUCTOS/OVERSIZE-20/Verde Botella/2.webp','/PRODUCTOS/OVERSIZE-20/Verde Botella/3.webp','/PRODUCTOS/OVERSIZE-20/Verde Botella/4.webp'],
       'Celeste':       ['/PRODUCTOS/OVERSIZE-20/Celeste/1.webp','/PRODUCTOS/OVERSIZE-20/Celeste/2.webp','/PRODUCTOS/OVERSIZE-20/Celeste/3.webp','/PRODUCTOS/OVERSIZE-20/Celeste/4.webp'],
       'Acero':         ['/PRODUCTOS/OVERSIZE-20/Acero/1.webp','/PRODUCTOS/OVERSIZE-20/Acero/2.webp','/PRODUCTOS/OVERSIZE-20/Acero/3.webp','/PRODUCTOS/OVERSIZE-20/Acero/4.webp']
+    },
+    'Boxy': {
+      'Blanco':        ['/PRODUCTOS/BOXY/Blanco/1.webp','/PRODUCTOS/BOXY/Blanco/2.webp','/PRODUCTOS/BOXY/Blanco/3.webp','/PRODUCTOS/BOXY/Blanco/4.webp'],
+      'PPT':           ['/PRODUCTOS/BOXY/PPT/1.webp','/PRODUCTOS/BOXY/PPT/2.webp','/PRODUCTOS/BOXY/PPT/3.webp','/PRODUCTOS/BOXY/PPT/4.webp'],
+      'Beige':         ['/PRODUCTOS/BOXY/Beige/1.webp','/PRODUCTOS/BOXY/Beige/2.webp','/PRODUCTOS/BOXY/Beige/3.webp','/PRODUCTOS/BOXY/Beige/4.webp'],
+      'Plomo Plata':   ['/PRODUCTOS/BOXY/Plomo Plata/1.webp','/PRODUCTOS/BOXY/Plomo Plata/2.webp','/PRODUCTOS/BOXY/Plomo Plata/3.webp','/PRODUCTOS/BOXY/Plomo Plata/4.webp'],
+      'Plomo Escolar': ['/PRODUCTOS/BOXY/Plomo Escolar/1.webp','/PRODUCTOS/BOXY/Plomo Escolar/2.webp','/PRODUCTOS/BOXY/Plomo Escolar/3.webp','/PRODUCTOS/BOXY/Plomo Escolar/4.webp'],
+      'Marrón':        ['/PRODUCTOS/BOXY/Marron/1.webp','/PRODUCTOS/BOXY/Marron/2.webp','/PRODUCTOS/BOXY/Marron/3.webp','/PRODUCTOS/BOXY/Marron/4.webp'],
+      'Negro':         ['/PRODUCTOS/BOXY/Negro/1.webp','/PRODUCTOS/BOXY/Negro/2.webp','/PRODUCTOS/BOXY/Negro/3.webp','/PRODUCTOS/BOXY/Negro/4.webp'],
+      'Mauve':         ['/PRODUCTOS/BOXY/Mauve/1.webp','/PRODUCTOS/BOXY/Mauve/2.webp','/PRODUCTOS/BOXY/Mauve/3.webp','/PRODUCTOS/BOXY/Mauve/4.webp'],
+      'Celeste':       ['/PRODUCTOS/BOXY/Celeste/1.webp','/PRODUCTOS/BOXY/Celeste/2.webp','/PRODUCTOS/BOXY/Celeste/3.webp','/PRODUCTOS/BOXY/Celeste/4.webp'],
+      'English Blue':  ['/PRODUCTOS/BOXY/English Blue/1.webp','/PRODUCTOS/BOXY/English Blue/2.webp','/PRODUCTOS/BOXY/English Blue/3.webp','/PRODUCTOS/BOXY/English Blue/4.webp'],
+      'Acero':         ['/PRODUCTOS/BOXY/Acero/1.webp','/PRODUCTOS/BOXY/Acero/2.webp','/PRODUCTOS/BOXY/Acero/3.webp','/PRODUCTOS/BOXY/Acero/4.webp']
     }
   },
   '02': {
