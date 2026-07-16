@@ -422,6 +422,22 @@ export const FIT_PHOTOS: Record<string, Record<string, Record<string, string[]>>
       'Celeste':       ['/PRODUCTOS/BOXY/Celeste/1.webp','/PRODUCTOS/BOXY/Celeste/2.webp','/PRODUCTOS/BOXY/Celeste/3.webp','/PRODUCTOS/BOXY/Celeste/4.webp'],
       'English Blue':  ['/PRODUCTOS/BOXY/English Blue/1.webp','/PRODUCTOS/BOXY/English Blue/2.webp','/PRODUCTOS/BOXY/English Blue/3.webp','/PRODUCTOS/BOXY/English Blue/4.webp'],
       'Acero':         ['/PRODUCTOS/BOXY/Acero/1.webp','/PRODUCTOS/BOXY/Acero/2.webp','/PRODUCTOS/BOXY/Acero/3.webp','/PRODUCTOS/BOXY/Acero/4.webp']
+    },
+    'Regular': {
+      'Plomo Plata':   ['/PRODUCTOS/REGULAR/Plomo Plata/4.webp'],
+      'Plomo Escolar': ['/PRODUCTOS/REGULAR/Plomo Escolar/4.webp'],
+      'Marrón':        ['/PRODUCTOS/REGULAR/Marron/4.webp'],
+      'Negro':         ['/PRODUCTOS/REGULAR/Negro/4.webp'],
+      'English Blue':  ['/PRODUCTOS/REGULAR/English Blue/4.webp'],
+      'Beige':         ['/PRODUCTOS/REGULAR/Beige/4.webp'],
+      'Verde Manzana': ['/PRODUCTOS/REGULAR/Verde Manzana/4.webp'],
+      'Cocoa':         ['/PRODUCTOS/REGULAR/Cocoa/4.webp'],
+      'Mauve':         ['/PRODUCTOS/REGULAR/Mauve/4.webp'],
+      'Verde Militar': ['/PRODUCTOS/REGULAR/Verde Militar/4.webp'],
+      'Verde Botella': ['/PRODUCTOS/REGULAR/Verde Botella/4.webp'],
+      'Celeste':       ['/PRODUCTOS/REGULAR/Celeste/4.webp'],
+      'Acero':         ['/PRODUCTOS/REGULAR/Acero/4.webp'],
+      'Guinda':        ['/PRODUCTOS/REGULAR/Guinda/4.webp']
     }
   },
   '02': {
