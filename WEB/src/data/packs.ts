@@ -208,7 +208,9 @@ export const PACKS: Record<string, Pack> = {
         { name: 'Verde Botella', hex: '#1f4a2e' },
         { name: 'Acero',         hex: '#2E3F5C' },
         { name: 'PPT',           hex: '#EDE5D8' },
-        { name: 'Lila 69',       hex: '#C9B1D9' }
+        { name: 'Lila 69',       hex: '#C9B1D9' },
+        { name: 'Celeste',       hex: '#88C0D0' },
+        { name: 'Guinda',        hex: '#7c1d2e' }
       ],
       'Oversize': [
         { name: 'Negro',         hex: '#1a1a1a' },
@@ -224,10 +226,11 @@ export const PACKS: Record<string, Pack> = {
         { name: 'Celeste',       hex: '#88C0D0' },
         { name: 'Lila 69',       hex: '#C9B1D9' },
         { name: 'Lila Oscuro',   hex: '#8A6BA8' },
-        { name: 'Mauve',         hex: '#c8a0a0' }
+        { name: 'Mauve',         hex: '#c8a0a0' },
+        { name: 'Guinda',        hex: '#7c1d2e' }
       ]
     },
-    thumb: undefined,
+    thumb: '/PRODUCTOS/HOODIES-BOXY/Negro/1.webp',
     wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Hoodies+(2+hoodies+x+S%2F99)'
   },
 
@@ -371,7 +374,7 @@ export const PACKS: Record<string, Pack> = {
       { name: 'PPT',           hex: '#EDE5D8' },
       { name: 'Acero',         hex: '#2E3F5C' }
     ],
-    thumb: undefined,
+    thumb: '/PRODUCTOS/HOODIES-BOXY/Negro/1.webp',
     wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Invierno+(hoodie+%2B+pantal%C3%B3n+%2B+polo+20%2F1+de+regalo+x+S%2F120)'
   }
 };
@@ -383,7 +386,8 @@ export const FITS: Record<string, string[]> = {
   '02': ['Dama'],
   '06': ['Boxy', 'Oversize'],
   '08': ['Oversize', 'Boxy', 'Regular'],
-  '09': ['Oversize', 'Boxy']
+  '09': ['Oversize', 'Boxy'],
+  '10': ['Boxy', 'Oversize']
 };
 
 export const DISABLED_FITS: Record<string, string[]> = {
@@ -457,6 +461,31 @@ export const FIT_PHOTOS: Record<string, Record<string, Record<string, string[]>>
       'Celeste':       ['/PRODUCTOS/DAMA/Celeste/1.webp','/PRODUCTOS/DAMA/Celeste/2.webp','/PRODUCTOS/DAMA/Celeste/3.webp','/PRODUCTOS/DAMA/Celeste/4.webp'],
       'Verde Manzana': ['/PRODUCTOS/DAMA/Verde Manzana/1.webp','/PRODUCTOS/DAMA/Verde Manzana/2.webp','/PRODUCTOS/DAMA/Verde Manzana/3.webp','/PRODUCTOS/DAMA/Verde Manzana/4.webp'],
       'Rosado':        ['/PRODUCTOS/DAMA/Rosado/1.webp','/PRODUCTOS/DAMA/Rosado/2.webp','/PRODUCTOS/DAMA/Rosado/3.webp','/PRODUCTOS/DAMA/Rosado/4.webp']
+    }
+  },
+  '06': {
+    'Boxy': {
+      'Negro':         ['/PRODUCTOS/HOODIES-BOXY/Negro/1.webp','/PRODUCTOS/HOODIES-BOXY/Negro/2.webp'],
+      'Plomo Escolar': ['/PRODUCTOS/HOODIES-BOXY/Plomo Escolar/1.webp','/PRODUCTOS/HOODIES-BOXY/Plomo Escolar/2.webp','/PRODUCTOS/HOODIES-BOXY/Plomo Escolar/3.webp'],
+      'Plomo Plata':   ['/PRODUCTOS/HOODIES-BOXY/Plomo Plata/1.webp','/PRODUCTOS/HOODIES-BOXY/Plomo Plata/2.webp','/PRODUCTOS/HOODIES-BOXY/Plomo Plata/3.webp'],
+      'Marrón':        ['/PRODUCTOS/HOODIES-BOXY/Marron/1.webp','/PRODUCTOS/HOODIES-BOXY/Marron/2.webp'],
+      'Verde Botella': ['/PRODUCTOS/HOODIES-BOXY/Verde Botella/1.webp','/PRODUCTOS/HOODIES-BOXY/Verde Botella/2.webp','/PRODUCTOS/HOODIES-BOXY/Verde Botella/3.webp'],
+      'Acero':         ['/PRODUCTOS/HOODIES-BOXY/Acero/1.webp','/PRODUCTOS/HOODIES-BOXY/Acero/2.webp','/PRODUCTOS/HOODIES-BOXY/Acero/3.webp'],
+      'Lila 69':       ['/PRODUCTOS/HOODIES-BOXY/Lila 69/1.webp','/PRODUCTOS/HOODIES-BOXY/Lila 69/2.webp','/PRODUCTOS/HOODIES-BOXY/Lila 69/3.webp'],
+      'Celeste':       ['/PRODUCTOS/HOODIES-BOXY/Celeste/1.webp','/PRODUCTOS/HOODIES-BOXY/Celeste/2.webp','/PRODUCTOS/HOODIES-BOXY/Celeste/3.webp'],
+      'Guinda':        ['/PRODUCTOS/HOODIES-BOXY/Guinda/1.webp','/PRODUCTOS/HOODIES-BOXY/Guinda/2.webp','/PRODUCTOS/HOODIES-BOXY/Guinda/3.webp']
+    },
+    'Oversize': {
+      'Negro':         ['/PRODUCTOS/HOODIES-OVERSIZE/Negro/1.webp'],
+      'Marrón':        ['/PRODUCTOS/HOODIES-OVERSIZE/Marron/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Marron/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Marron/3.webp'],
+      'Plomo Escolar': ['/PRODUCTOS/HOODIES-OVERSIZE/Plomo Escolar/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Plomo Escolar/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Plomo Escolar/3.webp'],
+      'Plomo Plata':   ['/PRODUCTOS/HOODIES-OVERSIZE/Plomo Plata/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Plomo Plata/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Plomo Plata/3.webp'],
+      'Verde Botella': ['/PRODUCTOS/HOODIES-OVERSIZE/Verde Botella/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Verde Botella/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Verde Botella/3.webp'],
+      'Beige':         ['/PRODUCTOS/HOODIES-OVERSIZE/Beige/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Beige/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Beige/3.webp'],
+      'Acero':         ['/PRODUCTOS/HOODIES-OVERSIZE/Acero/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Acero/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Acero/3.webp'],
+      'Celeste':       ['/PRODUCTOS/HOODIES-OVERSIZE/Celeste/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Celeste/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Celeste/3.webp'],
+      'Lila 69':       ['/PRODUCTOS/HOODIES-OVERSIZE/Lila 69/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Lila 69/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Lila 69/3.webp'],
+      'Guinda':        ['/PRODUCTOS/HOODIES-OVERSIZE/Guinda/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Guinda/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Guinda/3.webp']
     }
   },
   '08': {
@@ -533,6 +562,30 @@ export const FIT_PHOTOS: Record<string, Record<string, Record<string, string[]>>
       'Verde Botella': ['/PRODUCTOS/BOXY/Verde Botella/1.webp','/PRODUCTOS/BOXY/Verde Botella/2.webp','/PRODUCTOS/BOXY/Verde Botella/3.webp','/PRODUCTOS/BOXY/Verde Botella/4.webp'],
       'Verde Militar': ['/PRODUCTOS/BOXY/Verde Militar/1.webp','/PRODUCTOS/BOXY/Verde Militar/2.webp','/PRODUCTOS/BOXY/Verde Militar/3.webp','/PRODUCTOS/BOXY/Verde Militar/4.webp'],
       'Guinda':        ['/PRODUCTOS/BOXY/Guinda/1.webp','/PRODUCTOS/BOXY/Guinda/2.webp','/PRODUCTOS/BOXY/Guinda/3.webp','/PRODUCTOS/BOXY/Guinda/4.webp']
+    }
+  },
+  '10': {
+    'Boxy': {
+      'Negro':         ['/PRODUCTOS/HOODIES-BOXY/Negro/1.webp','/PRODUCTOS/HOODIES-BOXY/Negro/2.webp'],
+      'Plomo Escolar': ['/PRODUCTOS/HOODIES-BOXY/Plomo Escolar/1.webp','/PRODUCTOS/HOODIES-BOXY/Plomo Escolar/2.webp','/PRODUCTOS/HOODIES-BOXY/Plomo Escolar/3.webp'],
+      'Plomo Plata':   ['/PRODUCTOS/HOODIES-BOXY/Plomo Plata/1.webp','/PRODUCTOS/HOODIES-BOXY/Plomo Plata/2.webp','/PRODUCTOS/HOODIES-BOXY/Plomo Plata/3.webp'],
+      'Marrón':        ['/PRODUCTOS/HOODIES-BOXY/Marron/1.webp','/PRODUCTOS/HOODIES-BOXY/Marron/2.webp'],
+      'Verde Botella': ['/PRODUCTOS/HOODIES-BOXY/Verde Botella/1.webp','/PRODUCTOS/HOODIES-BOXY/Verde Botella/2.webp','/PRODUCTOS/HOODIES-BOXY/Verde Botella/3.webp'],
+      'Acero':         ['/PRODUCTOS/HOODIES-BOXY/Acero/1.webp','/PRODUCTOS/HOODIES-BOXY/Acero/2.webp','/PRODUCTOS/HOODIES-BOXY/Acero/3.webp'],
+      'Celeste':       ['/PRODUCTOS/HOODIES-BOXY/Celeste/1.webp','/PRODUCTOS/HOODIES-BOXY/Celeste/2.webp','/PRODUCTOS/HOODIES-BOXY/Celeste/3.webp'],
+      'Guinda':        ['/PRODUCTOS/HOODIES-BOXY/Guinda/1.webp','/PRODUCTOS/HOODIES-BOXY/Guinda/2.webp','/PRODUCTOS/HOODIES-BOXY/Guinda/3.webp']
+    },
+    'Oversize': {
+      'Negro':         ['/PRODUCTOS/HOODIES-OVERSIZE/Negro/1.webp'],
+      'Marrón':        ['/PRODUCTOS/HOODIES-OVERSIZE/Marron/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Marron/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Marron/3.webp'],
+      'Plomo Escolar': ['/PRODUCTOS/HOODIES-OVERSIZE/Plomo Escolar/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Plomo Escolar/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Plomo Escolar/3.webp'],
+      'Plomo Plata':   ['/PRODUCTOS/HOODIES-OVERSIZE/Plomo Plata/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Plomo Plata/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Plomo Plata/3.webp'],
+      'Verde Botella': ['/PRODUCTOS/HOODIES-OVERSIZE/Verde Botella/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Verde Botella/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Verde Botella/3.webp'],
+      'Beige':         ['/PRODUCTOS/HOODIES-OVERSIZE/Beige/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Beige/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Beige/3.webp'],
+      'Acero':         ['/PRODUCTOS/HOODIES-OVERSIZE/Acero/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Acero/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Acero/3.webp'],
+      'Celeste':       ['/PRODUCTOS/HOODIES-OVERSIZE/Celeste/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Celeste/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Celeste/3.webp'],
+      'Lila 69':       ['/PRODUCTOS/HOODIES-OVERSIZE/Lila 69/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Lila 69/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Lila 69/3.webp'],
+      'Guinda':        ['/PRODUCTOS/HOODIES-OVERSIZE/Guinda/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Guinda/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Guinda/3.webp']
     }
   }
 };
