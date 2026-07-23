@@ -111,6 +111,8 @@ export const PACKS: Record<string, Pack> = {
         { name: 'Acero',         hex: '#2E3F5C' }
       ],
       'Regular': [
+        { name: 'Blanco',        hex: '#f5f5f5' },
+        { name: 'PPT',           hex: '#EDE5D8' },
         { name: 'Plomo Plata',   hex: '#9FAAB5' },
         { name: 'Plomo Escolar', hex: '#6b7280' },
         { name: 'Marrón',        hex: '#795548' },
@@ -424,20 +426,22 @@ export const FIT_PHOTOS: Record<string, Record<string, Record<string, string[]>>
       'Acero':         ['/PRODUCTOS/BOXY/Acero/1.webp','/PRODUCTOS/BOXY/Acero/2.webp','/PRODUCTOS/BOXY/Acero/3.webp','/PRODUCTOS/BOXY/Acero/4.webp']
     },
     'Regular': {
-      'Plomo Plata':   ['/PRODUCTOS/REGULAR/Plomo Plata/4.webp'],
-      'Plomo Escolar': ['/PRODUCTOS/REGULAR/Plomo Escolar/4.webp'],
-      'Marrón':        ['/PRODUCTOS/REGULAR/Marron/4.webp'],
-      'Negro':         ['/PRODUCTOS/REGULAR/Negro/4.webp'],
-      'English Blue':  ['/PRODUCTOS/REGULAR/English Blue/4.webp'],
-      'Beige':         ['/PRODUCTOS/REGULAR/Beige/4.webp'],
-      'Verde Manzana': ['/PRODUCTOS/REGULAR/Verde Manzana/4.webp'],
-      'Cocoa':         ['/PRODUCTOS/REGULAR/Cocoa/4.webp'],
-      'Mauve':         ['/PRODUCTOS/REGULAR/Mauve/4.webp'],
-      'Verde Militar': ['/PRODUCTOS/REGULAR/Verde Militar/4.webp'],
-      'Verde Botella': ['/PRODUCTOS/REGULAR/Verde Botella/4.webp'],
-      'Celeste':       ['/PRODUCTOS/REGULAR/Celeste/4.webp'],
-      'Acero':         ['/PRODUCTOS/REGULAR/Acero/4.webp'],
-      'Guinda':        ['/PRODUCTOS/REGULAR/Guinda/4.webp']
+      'Blanco':        ['/PRODUCTOS/REGULAR/Blanco/1.webp','/PRODUCTOS/REGULAR/Blanco/2.webp','/PRODUCTOS/REGULAR/Blanco/3.webp'],
+      'PPT':           ['/PRODUCTOS/REGULAR/PPT/1.webp','/PRODUCTOS/REGULAR/PPT/2.webp','/PRODUCTOS/REGULAR/PPT/3.webp'],
+      'Plomo Plata':   ['/PRODUCTOS/REGULAR/Plomo Plata/1.webp','/PRODUCTOS/REGULAR/Plomo Plata/2.webp','/PRODUCTOS/REGULAR/Plomo Plata/3.webp'],
+      'Plomo Escolar': ['/PRODUCTOS/REGULAR/Plomo Escolar/1.webp','/PRODUCTOS/REGULAR/Plomo Escolar/2.webp','/PRODUCTOS/REGULAR/Plomo Escolar/3.webp'],
+      'Marrón':        ['/PRODUCTOS/REGULAR/Marron/1.webp','/PRODUCTOS/REGULAR/Marron/2.webp','/PRODUCTOS/REGULAR/Marron/3.webp'],
+      'Negro':         ['/PRODUCTOS/REGULAR/Negro/1.webp','/PRODUCTOS/REGULAR/Negro/2.webp','/PRODUCTOS/REGULAR/Negro/3.webp'],
+      'English Blue':  ['/PRODUCTOS/REGULAR/English Blue/1.webp','/PRODUCTOS/REGULAR/English Blue/2.webp','/PRODUCTOS/REGULAR/English Blue/3.webp'],
+      'Beige':         ['/PRODUCTOS/REGULAR/Beige/1.webp','/PRODUCTOS/REGULAR/Beige/2.webp','/PRODUCTOS/REGULAR/Beige/3.webp'],
+      'Verde Manzana': ['/PRODUCTOS/REGULAR/Verde Manzana/1.webp','/PRODUCTOS/REGULAR/Verde Manzana/2.webp','/PRODUCTOS/REGULAR/Verde Manzana/3.webp'],
+      'Cocoa':         ['/PRODUCTOS/REGULAR/Cocoa/1.webp','/PRODUCTOS/REGULAR/Cocoa/2.webp','/PRODUCTOS/REGULAR/Cocoa/3.webp'],
+      'Mauve':         ['/PRODUCTOS/REGULAR/Mauve/1.webp','/PRODUCTOS/REGULAR/Mauve/2.webp','/PRODUCTOS/REGULAR/Mauve/3.webp'],
+      'Verde Militar': ['/PRODUCTOS/REGULAR/Verde Militar/1.webp','/PRODUCTOS/REGULAR/Verde Militar/2.webp','/PRODUCTOS/REGULAR/Verde Militar/3.webp'],
+      'Verde Botella': ['/PRODUCTOS/REGULAR/Verde Botella/1.webp','/PRODUCTOS/REGULAR/Verde Botella/2.webp','/PRODUCTOS/REGULAR/Verde Botella/3.webp'],
+      'Celeste':       ['/PRODUCTOS/REGULAR/Celeste/1.webp','/PRODUCTOS/REGULAR/Celeste/2.webp','/PRODUCTOS/REGULAR/Celeste/3.webp'],
+      'Acero':         ['/PRODUCTOS/REGULAR/Acero/1.webp','/PRODUCTOS/REGULAR/Acero/2.webp','/PRODUCTOS/REGULAR/Acero/3.webp'],
+      'Guinda':        ['/PRODUCTOS/REGULAR/Guinda/1.webp','/PRODUCTOS/REGULAR/Guinda/2.webp','/PRODUCTOS/REGULAR/Guinda/3.webp']
     }
   },
   '02': {
@@ -485,20 +489,20 @@ export const FIT_PHOTOS: Record<string, Record<string, Record<string, string[]>>
       'Guinda':        ['/PRODUCTOS/BOXY/Guinda/1.webp','/PRODUCTOS/BOXY/Guinda/2.webp','/PRODUCTOS/BOXY/Guinda/3.webp','/PRODUCTOS/BOXY/Guinda/4.webp']
     },
     'Regular': {
-      'Plomo Plata':   ['/PRODUCTOS/REGULAR/Plomo Plata/1.webp','/PRODUCTOS/REGULAR/Plomo Plata/2.webp','/PRODUCTOS/REGULAR/Plomo Plata/3.webp','/PRODUCTOS/REGULAR/Plomo Plata/4.webp'],
-      'Plomo Escolar': ['/PRODUCTOS/REGULAR/Plomo Escolar/1.webp','/PRODUCTOS/REGULAR/Plomo Escolar/2.webp','/PRODUCTOS/REGULAR/Plomo Escolar/3.webp','/PRODUCTOS/REGULAR/Plomo Escolar/4.webp'],
-      'Marrón':        ['/PRODUCTOS/REGULAR/Marron/1.webp','/PRODUCTOS/REGULAR/Marron/2.webp','/PRODUCTOS/REGULAR/Marron/3.webp','/PRODUCTOS/REGULAR/Marron/4.webp'],
-      'English Blue':  ['/PRODUCTOS/REGULAR/English Blue/1.webp','/PRODUCTOS/REGULAR/English Blue/2.webp','/PRODUCTOS/REGULAR/English Blue/3.webp','/PRODUCTOS/REGULAR/English Blue/4.webp'],
-      'Guinda':        ['/PRODUCTOS/REGULAR/Guinda/1.webp','/PRODUCTOS/REGULAR/Guinda/2.webp','/PRODUCTOS/REGULAR/Guinda/3.webp','/PRODUCTOS/REGULAR/Guinda/4.webp'],
-      'Mauve':         ['/PRODUCTOS/REGULAR/Mauve/1.webp','/PRODUCTOS/REGULAR/Mauve/2.webp','/PRODUCTOS/REGULAR/Mauve/3.webp','/PRODUCTOS/REGULAR/Mauve/4.webp'],
-      'Verde Manzana': ['/PRODUCTOS/REGULAR/Verde Manzana/1.webp','/PRODUCTOS/REGULAR/Verde Manzana/2.webp','/PRODUCTOS/REGULAR/Verde Manzana/3.webp','/PRODUCTOS/REGULAR/Verde Manzana/4.webp'],
-      'Cocoa':         ['/PRODUCTOS/REGULAR/Cocoa/1.webp','/PRODUCTOS/REGULAR/Cocoa/2.webp','/PRODUCTOS/REGULAR/Cocoa/3.webp','/PRODUCTOS/REGULAR/Cocoa/4.webp'],
-      'Verde Militar': ['/PRODUCTOS/REGULAR/Verde Militar/1.webp','/PRODUCTOS/REGULAR/Verde Militar/2.webp','/PRODUCTOS/REGULAR/Verde Militar/3.webp','/PRODUCTOS/REGULAR/Verde Militar/4.webp'],
-      'Verde Botella': ['/PRODUCTOS/REGULAR/Verde Botella/1.webp','/PRODUCTOS/REGULAR/Verde Botella/2.webp','/PRODUCTOS/REGULAR/Verde Botella/3.webp','/PRODUCTOS/REGULAR/Verde Botella/4.webp'],
-      'Celeste':       ['/PRODUCTOS/REGULAR/Celeste/1.webp','/PRODUCTOS/REGULAR/Celeste/2.webp','/PRODUCTOS/REGULAR/Celeste/3.webp','/PRODUCTOS/REGULAR/Celeste/4.webp'],
-      'Acero':         ['/PRODUCTOS/REGULAR/Acero/1.webp','/PRODUCTOS/REGULAR/Acero/2.webp','/PRODUCTOS/REGULAR/Acero/3.webp','/PRODUCTOS/REGULAR/Acero/4.webp'],
-      'Negro':         ['/PRODUCTOS/REGULAR/Negro/1.webp','/PRODUCTOS/REGULAR/Negro/2.webp','/PRODUCTOS/REGULAR/Negro/3.webp','/PRODUCTOS/REGULAR/Negro/4.webp'],
-      'Beige':         ['/PRODUCTOS/REGULAR/Beige/1.webp','/PRODUCTOS/REGULAR/Beige/2.webp','/PRODUCTOS/REGULAR/Beige/3.webp','/PRODUCTOS/REGULAR/Beige/4.webp']
+      'Plomo Plata':   ['/PRODUCTOS/REGULAR/Plomo Plata/1.webp','/PRODUCTOS/REGULAR/Plomo Plata/2.webp','/PRODUCTOS/REGULAR/Plomo Plata/3.webp'],
+      'Plomo Escolar': ['/PRODUCTOS/REGULAR/Plomo Escolar/1.webp','/PRODUCTOS/REGULAR/Plomo Escolar/2.webp','/PRODUCTOS/REGULAR/Plomo Escolar/3.webp'],
+      'Marrón':        ['/PRODUCTOS/REGULAR/Marron/1.webp','/PRODUCTOS/REGULAR/Marron/2.webp','/PRODUCTOS/REGULAR/Marron/3.webp'],
+      'English Blue':  ['/PRODUCTOS/REGULAR/English Blue/1.webp','/PRODUCTOS/REGULAR/English Blue/2.webp','/PRODUCTOS/REGULAR/English Blue/3.webp'],
+      'Guinda':        ['/PRODUCTOS/REGULAR/Guinda/1.webp','/PRODUCTOS/REGULAR/Guinda/2.webp','/PRODUCTOS/REGULAR/Guinda/3.webp'],
+      'Mauve':         ['/PRODUCTOS/REGULAR/Mauve/1.webp','/PRODUCTOS/REGULAR/Mauve/2.webp','/PRODUCTOS/REGULAR/Mauve/3.webp'],
+      'Verde Manzana': ['/PRODUCTOS/REGULAR/Verde Manzana/1.webp','/PRODUCTOS/REGULAR/Verde Manzana/2.webp','/PRODUCTOS/REGULAR/Verde Manzana/3.webp'],
+      'Cocoa':         ['/PRODUCTOS/REGULAR/Cocoa/1.webp','/PRODUCTOS/REGULAR/Cocoa/2.webp','/PRODUCTOS/REGULAR/Cocoa/3.webp'],
+      'Verde Militar': ['/PRODUCTOS/REGULAR/Verde Militar/1.webp','/PRODUCTOS/REGULAR/Verde Militar/2.webp','/PRODUCTOS/REGULAR/Verde Militar/3.webp'],
+      'Verde Botella': ['/PRODUCTOS/REGULAR/Verde Botella/1.webp','/PRODUCTOS/REGULAR/Verde Botella/2.webp','/PRODUCTOS/REGULAR/Verde Botella/3.webp'],
+      'Celeste':       ['/PRODUCTOS/REGULAR/Celeste/1.webp','/PRODUCTOS/REGULAR/Celeste/2.webp','/PRODUCTOS/REGULAR/Celeste/3.webp'],
+      'Acero':         ['/PRODUCTOS/REGULAR/Acero/1.webp','/PRODUCTOS/REGULAR/Acero/2.webp','/PRODUCTOS/REGULAR/Acero/3.webp'],
+      'Negro':         ['/PRODUCTOS/REGULAR/Negro/1.webp','/PRODUCTOS/REGULAR/Negro/2.webp','/PRODUCTOS/REGULAR/Negro/3.webp'],
+      'Beige':         ['/PRODUCTOS/REGULAR/Beige/1.webp','/PRODUCTOS/REGULAR/Beige/2.webp','/PRODUCTOS/REGULAR/Beige/3.webp']
     }
   },
   '09': {
