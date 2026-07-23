@@ -374,7 +374,7 @@ export const PACKS: Record<string, Pack> = {
       { name: 'PPT',           hex: '#EDE5D8' },
       { name: 'Acero',         hex: '#2E3F5C' }
     ],
-    thumb: '/PRODUCTOS/HOODIES-BOXY/Negro/1.webp',
+    thumb: '/PRODUCTOS/PORTADAS-PACKS/invierno.webp',
     wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Invierno+(hoodie+%2B+pantal%C3%B3n+%2B+polo+20%2F1+de+regalo+x+S%2F120)'
   }
 };
