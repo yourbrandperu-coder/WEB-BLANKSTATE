@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { PACKS, FITS, DISABLED_FITS, FIT_PHOTOS, SIZE_GUIDES, getPackBySlug } from '../../data/packs';
+import { PACKS, FITS, DISABLED_FITS, FIT_PHOTOS, UNIT_PHOTOS, SIZE_GUIDES, getPackBySlug } from '../../data/packs';
 import { buildInfoHtml, getInitialVisualHtml } from '../../utils/renderProduct';
 
 export function getStaticPaths() {
@@ -19,6 +19,7 @@ const pageData = {
   fits:         FITS[packNum]          ?? [],
   disabledFits: DISABLED_FITS[packNum] ?? [],
   fitPhotos:    FIT_PHOTOS[packNum]    ?? {},
+  unitPhotos:   UNIT_PHOTOS[packNum]   ?? {},
   sizeGuide:    SIZE_GUIDES[packNum]   ?? null,
 };
 
@@ -198,7 +199,17 @@ const infoHtml    = buildInfoHtml(pack, pageData.fits, pageData.disabledFits, pa
   const FITS   = { [PACK.num]: pageData.fits };
   const DISABLED_FITS = { [PACK.num]: pageData.disabledFits };
   const FIT_PHOTOS    = { [PACK.num]: pageData.fitPhotos };
+  const UNIT_PHOTOS   = { [PACK.num]: pageData.unitPhotos };
   const SIZE_GUIDES   = { [PACK.num]: pageData.sizeGuide };
+
+  // Colores para una unidad concreta (ej. "Hoodie" vs "Pantalón" en el Pack
+  // Invierno) — algunas unidades tienen paleta fija propia (Pack.unitSwatches)
+  // que no depende del fit de la unidad 0.
+  function getSwatchesForUnit(fit, ui) {
+    if (PACK.unitSwatches && PACK.unitSwatches[ui]) return PACK.unitSwatches[ui];
+    if (PACK.swatchesByFit && fit && PACK.swatchesByFit[fit]) return PACK.swatchesByFit[fit];
+    return PACK.colors || PACK.swatches;
+  }
 
   // ── CURSOR ──
   const cursor = document.getElementById('cursor');
@@ -420,12 +431,6 @@ const infoHtml    = buildInfoHtml(pack, pageData.fits, pageData.disabledFits, pa
     }
     const fitOptions = getFitOptionsForUnit(0);
 
-    function getSwatchesForFit(fit) {
-      if (pack.swatchesByFit && fit && pack.swatchesByFit[fit]) return pack.swatchesByFit[fit];
-      return pack.colors || pack.swatches;
-    }
-    const colorItems = getSwatchesForFit(fitOptions[0] || null);
-
     function getSizesForFit(fit) {
       if (guide && guide.byFit) {
         const fitGuide = (fit && guide.byFit[fit]) || Object.values(guide.byFit)[0];
@@ -441,8 +446,9 @@ const infoHtml    = buildInfoHtml(pack, pageData.fits, pageData.disabledFits, pa
 
     const unitSelections = labels.map((_, ui) => {
       const uFits = getFitOptionsForUnit(ui);
+      const uColors = getSwatchesForUnit(uFits[0] || fitOptions[0] || null, ui);
       return {
-        color: colorItems ? colorItems[0].name : null,
+        color: uColors ? uColors[0].name : null,
         fit:   uFits.length ? uFits[0] : null,
         size:  sizeRows[0]
       };
@@ -450,17 +456,18 @@ const infoHtml    = buildInfoHtml(pack, pageData.fits, pageData.disabledFits, pa
 
     let unitsSection = '';
     labels.forEach((label, ui) => {
+      const uFitOptions = getFitOptionsForUnit(ui);
+      const unitColors = getSwatchesForUnit(uFitOptions[0] || fitOptions[0] || null, ui);
+
       let rowHtml = `<div class="unit-row" data-unit="${ui}">`;
       rowHtml += `<p class="unit-row-label">${label}</p>`;
-      if (colorItems) {
-        const unitInitColors = getSwatchesForFit(fitOptions[0] || null);
+      if (unitColors) {
         rowHtml += `<div class="unit-colors-row" id="unit-colors-row-${ui}">`;
-        unitInitColors.forEach((c, ci) => {
+        unitColors.forEach((c, ci) => {
           rowHtml += `<button class="unit-color-dot${ci===0?' active':''}" style="background:${c.hex}" data-unit="${ui}" data-color="${ci}" aria-label="${c.name}" title="${c.name}"></button>`;
         });
-        rowHtml += `</div><span class="unit-color-name" id="unit-color-name-${ui}">${unitInitColors[0].name}</span>`;
+        rowHtml += `</div><span class="unit-color-name" id="unit-color-name-${ui}">${unitColors[0].name}</span>`;
       }
-      const uFitOptions = getFitOptionsForUnit(ui);
       if (uFitOptions.length > 0) {
         const disabledFits = DISABLED_FITS[pack.num] || [];
         rowHtml += `<div class="unit-fit-row">`;
@@ -512,6 +519,23 @@ const infoHtml    = buildInfoHtml(pack, pageData.fits, pageData.disabledFits, pa
       <div class="info-spacer"></div>
       <button id="btn-add-cart">Agregar al carrito</button>`;
 
+    // Cambiar de color en una unidad debe mostrar la galería de ESA unidad
+    // (hoodie vs pantalón tienen fotos distintas) — no la última que haya
+    // quedado activa en pantalla.
+    function showUnitColorVisual(ui, color) {
+      const unitPhotos = (UNIT_PHOTOS[pack.num] || {})[ui];
+      if (unitPhotos && Object.keys(unitPhotos).length) {
+        const unitLabel = (pack.unitLabels && pack.unitLabels[ui]) || 'Prenda';
+        renderVisualFitPhotos(pack, unitLabel, unitPhotos);
+        if (pack._showColorPhotos) pack._showColorPhotos(color.name);
+      } else if (ui === 0 && FIT_PHOTOS[pack.num]) {
+        showFitVisual(pack, unitSelections[0].fit);
+        if (pack._showColorPhotos) pack._showColorPhotos(color.name);
+      } else {
+        syncColor(0, color.hex, color.name);
+      }
+    }
+
     function bindColorDots(row, colors, ui) {
       row.querySelectorAll('.unit-color-dot').forEach(dot => {
         dot.addEventListener('click', () => {
@@ -521,14 +545,14 @@ const infoHtml    = buildInfoHtml(pack, pageData.fits, pageData.disabledFits, pa
           unitSelections[ui].color = colors[ci].name;
           const nameEl = document.getElementById(`unit-color-name-${ui}`);
           if (nameEl) nameEl.textContent = colors[ci].name;
-          syncColor(ci, colors[ci].hex, colors[ci].name);
+          showUnitColorVisual(ui, colors[ci]);
         });
       });
     }
 
     labels.forEach((_, ui) => {
       const row = document.getElementById(`unit-colors-row-${ui}`);
-      if (row) bindColorDots(row, getSwatchesForFit(unitSelections[ui].fit), ui);
+      if (row) bindColorDots(row, getSwatchesForUnit(unitSelections[ui].fit, ui), ui);
     });
 
     el.querySelectorAll('.unit-fit-btn').forEach(btn => {
@@ -553,7 +577,7 @@ const infoHtml    = buildInfoHtml(pack, pageData.fits, pageData.disabledFits, pa
         }
 
         if (pack.swatchesByFit) {
-          const newColors = getSwatchesForFit(newFit);
+          const newColors = getSwatchesForUnit(newFit, ui);
           const row = document.getElementById(`unit-colors-row-${ui}`);
           const nameEl = document.getElementById(`unit-color-name-${ui}`);
           if (row) {
@@ -564,7 +588,6 @@ const infoHtml    = buildInfoHtml(pack, pageData.fits, pageData.disabledFits, pa
           }
           unitSelections[ui].color = newColors[0].name;
           if (nameEl) nameEl.textContent = newColors[0].name;
-          syncColor(0, newColors[0].hex);
         }
       });
     });

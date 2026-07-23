@@ -18,6 +18,7 @@ export interface Pack {
   colors?:      ColorWithPhotos[] | null;
   swatches?:    Swatch[] | null;
   swatchesByFit?: Record<string, Swatch[]>;
+  unitSwatches?: (Swatch[] | null)[];
   wsp:          string;
   thumb?:       string;
 }
@@ -196,7 +197,6 @@ export const PACKS: Record<string, Pack> = {
       { name: 'Marrón',        hex: '#795548' },
       { name: 'Verde Botella', hex: '#1f4a2e' },
       { name: 'Acero',         hex: '#2E3F5C' },
-      { name: 'PPT',           hex: '#EDE5D8' },
       { name: 'Lila 69',       hex: '#C9B1D9' }
     ],
     swatchesByFit: {
@@ -207,7 +207,6 @@ export const PACKS: Record<string, Pack> = {
         { name: 'Marrón',        hex: '#795548' },
         { name: 'Verde Botella', hex: '#1f4a2e' },
         { name: 'Acero',         hex: '#2E3F5C' },
-        { name: 'PPT',           hex: '#EDE5D8' },
         { name: 'Lila 69',       hex: '#C9B1D9' },
         { name: 'Celeste',       hex: '#88C0D0' },
         { name: 'Guinda',        hex: '#7c1d2e' }
@@ -215,18 +214,13 @@ export const PACKS: Record<string, Pack> = {
       'Oversize': [
         { name: 'Negro',         hex: '#1a1a1a' },
         { name: 'Marrón',        hex: '#795548' },
-        { name: 'Denim',         hex: '#5B7FA6' },
         { name: 'Plomo Escolar', hex: '#6b7280' },
         { name: 'Plomo Plata',   hex: '#9FAAB5' },
         { name: 'Verde Botella', hex: '#1f4a2e' },
-        { name: 'Verde Militar', hex: '#4a5c3c' },
-        { name: 'PPT',           hex: '#EDE5D8' },
         { name: 'Beige',         hex: '#d4c5a9' },
         { name: 'Acero',         hex: '#2E3F5C' },
         { name: 'Celeste',       hex: '#88C0D0' },
         { name: 'Lila 69',       hex: '#C9B1D9' },
-        { name: 'Lila Oscuro',   hex: '#8A6BA8' },
-        { name: 'Mauve',         hex: '#c8a0a0' },
         { name: 'Guinda',        hex: '#7c1d2e' }
       ]
     },
@@ -367,12 +361,46 @@ export const PACKS: Record<string, Pack> = {
       { name: 'Plomo Plata',   hex: '#9FAAB5' },
       { name: 'Marrón',        hex: '#795548' },
       { name: 'Verde Botella', hex: '#1f4a2e' },
-      { name: 'Verde Militar', hex: '#4a5c3c' },
-      { name: 'Beige',         hex: '#d4c5a9' },
-      { name: 'Celeste',       hex: '#88C0D0' },
-      { name: 'Azul',          hex: '#2B7FD4' },
-      { name: 'PPT',           hex: '#EDE5D8' },
-      { name: 'Acero',         hex: '#2E3F5C' }
+      { name: 'Acero',         hex: '#2E3F5C' },
+      { name: 'Lila 69',       hex: '#C9B1D9' }
+    ],
+    swatchesByFit: {
+      'Boxy': [
+        { name: 'Negro',         hex: '#1a1a1a' },
+        { name: 'Plomo Escolar', hex: '#6b7280' },
+        { name: 'Plomo Plata',   hex: '#9FAAB5' },
+        { name: 'Marrón',        hex: '#795548' },
+        { name: 'Verde Botella', hex: '#1f4a2e' },
+        { name: 'Acero',         hex: '#2E3F5C' },
+        { name: 'Lila 69',       hex: '#C9B1D9' },
+        { name: 'Celeste',       hex: '#88C0D0' },
+        { name: 'Guinda',        hex: '#7c1d2e' }
+      ],
+      'Oversize': [
+        { name: 'Negro',         hex: '#1a1a1a' },
+        { name: 'Marrón',        hex: '#795548' },
+        { name: 'Plomo Escolar', hex: '#6b7280' },
+        { name: 'Plomo Plata',   hex: '#9FAAB5' },
+        { name: 'Verde Botella', hex: '#1f4a2e' },
+        { name: 'Beige',         hex: '#d4c5a9' },
+        { name: 'Acero',         hex: '#2E3F5C' },
+        { name: 'Celeste',       hex: '#88C0D0' },
+        { name: 'Lila 69',       hex: '#C9B1D9' },
+        { name: 'Guinda',        hex: '#7c1d2e' }
+      ]
+    },
+    unitSwatches: [
+      null,
+      [
+        { name: 'Negro',         hex: '#1a1a1a' },
+        { name: 'Plomo Escolar', hex: '#6b7280' },
+        { name: 'Plomo Plata',   hex: '#9FAAB5' },
+        { name: 'Verde Botella', hex: '#1f4a2e' },
+        { name: 'Acero',         hex: '#2E3F5C' },
+        { name: 'Celeste',       hex: '#88C0D0' },
+        { name: 'English Blue',  hex: '#1e3a5f' },
+        { name: 'Guinda',        hex: '#7c1d2e' }
+      ]
     ],
     thumb: '/PRODUCTOS/PORTADAS-PACKS/invierno.webp',
     wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Invierno+(hoodie+%2B+pantal%C3%B3n+%2B+polo+20%2F1+de+regalo+x+S%2F120)'
@@ -572,6 +600,7 @@ export const FIT_PHOTOS: Record<string, Record<string, Record<string, string[]>>
       'Marrón':        ['/PRODUCTOS/HOODIES-BOXY/Marron/1.webp','/PRODUCTOS/HOODIES-BOXY/Marron/2.webp'],
       'Verde Botella': ['/PRODUCTOS/HOODIES-BOXY/Verde Botella/1.webp','/PRODUCTOS/HOODIES-BOXY/Verde Botella/2.webp','/PRODUCTOS/HOODIES-BOXY/Verde Botella/3.webp'],
       'Acero':         ['/PRODUCTOS/HOODIES-BOXY/Acero/1.webp','/PRODUCTOS/HOODIES-BOXY/Acero/2.webp','/PRODUCTOS/HOODIES-BOXY/Acero/3.webp'],
+      'Lila 69':       ['/PRODUCTOS/HOODIES-BOXY/Lila 69/1.webp','/PRODUCTOS/HOODIES-BOXY/Lila 69/2.webp','/PRODUCTOS/HOODIES-BOXY/Lila 69/3.webp'],
       'Celeste':       ['/PRODUCTOS/HOODIES-BOXY/Celeste/1.webp','/PRODUCTOS/HOODIES-BOXY/Celeste/2.webp','/PRODUCTOS/HOODIES-BOXY/Celeste/3.webp'],
       'Guinda':        ['/PRODUCTOS/HOODIES-BOXY/Guinda/1.webp','/PRODUCTOS/HOODIES-BOXY/Guinda/2.webp','/PRODUCTOS/HOODIES-BOXY/Guinda/3.webp']
     },
@@ -586,6 +615,25 @@ export const FIT_PHOTOS: Record<string, Record<string, Record<string, string[]>>
       'Celeste':       ['/PRODUCTOS/HOODIES-OVERSIZE/Celeste/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Celeste/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Celeste/3.webp'],
       'Lila 69':       ['/PRODUCTOS/HOODIES-OVERSIZE/Lila 69/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Lila 69/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Lila 69/3.webp'],
       'Guinda':        ['/PRODUCTOS/HOODIES-OVERSIZE/Guinda/1.webp','/PRODUCTOS/HOODIES-OVERSIZE/Guinda/2.webp','/PRODUCTOS/HOODIES-OVERSIZE/Guinda/3.webp']
+    }
+  }
+};
+
+// ─── FOTOS POR UNIDAD (prendas sin fit, ej. pantalón del Pack Invierno) ───────
+// Estructura: packNum -> índice de unidad (según unitLabels) -> color -> fotos.
+// Se usa para unidades que no comparten el selector de fit/fotos de la unidad 0.
+
+export const UNIT_PHOTOS: Record<string, Record<number, Record<string, string[]>>> = {
+  '10': {
+    1: {
+      'Negro':         ['/PRODUCTOS/PANTS/Negro/1.webp','/PRODUCTOS/PANTS/Negro/2.webp','/PRODUCTOS/PANTS/Negro/3.webp','/PRODUCTOS/PANTS/Negro/4.webp'],
+      'Plomo Escolar': ['/PRODUCTOS/PANTS/Plomo Escolar/1.webp','/PRODUCTOS/PANTS/Plomo Escolar/2.webp','/PRODUCTOS/PANTS/Plomo Escolar/3.webp','/PRODUCTOS/PANTS/Plomo Escolar/4.webp'],
+      'Plomo Plata':   ['/PRODUCTOS/PANTS/Plomo Plata/1.webp'],
+      'Verde Botella': ['/PRODUCTOS/PANTS/Verde Botella/1.webp','/PRODUCTOS/PANTS/Verde Botella/2.webp','/PRODUCTOS/PANTS/Verde Botella/3.webp','/PRODUCTOS/PANTS/Verde Botella/4.webp'],
+      'Acero':         ['/PRODUCTOS/PANTS/Acero/1.webp','/PRODUCTOS/PANTS/Acero/2.webp','/PRODUCTOS/PANTS/Acero/3.webp','/PRODUCTOS/PANTS/Acero/4.webp'],
+      'Celeste':       ['/PRODUCTOS/PANTS/Celeste/1.webp','/PRODUCTOS/PANTS/Celeste/2.webp','/PRODUCTOS/PANTS/Celeste/3.webp','/PRODUCTOS/PANTS/Celeste/4.webp'],
+      'English Blue':  ['/PRODUCTOS/PANTS/English Blue/1.webp','/PRODUCTOS/PANTS/English Blue/2.webp','/PRODUCTOS/PANTS/English Blue/3.webp','/PRODUCTOS/PANTS/English Blue/4.webp'],
+      'Guinda':        ['/PRODUCTOS/PANTS/Guinda/1.webp','/PRODUCTOS/PANTS/Guinda/2.webp','/PRODUCTOS/PANTS/Guinda/3.webp','/PRODUCTOS/PANTS/Guinda/4.webp']
     }
   }
 };

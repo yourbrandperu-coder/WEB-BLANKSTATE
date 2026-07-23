@@ -23,6 +23,14 @@ export function getSwatchesForFit(pack: Pack, fit: string | null) {
   return pack.colors || pack.swatches || null;
 }
 
+// Colores para una unidad concreta (ej. "Hoodie" vs "Pantalón" en el Pack
+// Invierno) — algunas unidades tienen su propia paleta fija que no depende
+// del fit de la unidad 0 (ver Pack.unitSwatches).
+export function getSwatchesForUnit(pack: Pack, fit: string | null, ui: number) {
+  if (pack.unitSwatches && pack.unitSwatches[ui]) return pack.unitSwatches[ui];
+  return getSwatchesForFit(pack, fit);
+}
+
 export function getSizesForFit(guide: SizeGuide | null, fit: string | null): string[] {
   if (guide && guide.byFit) {
     const fitGuide = (fit && guide.byFit[fit]) || Object.values(guide.byFit)[0];
@@ -42,23 +50,23 @@ export function buildInfoHtml(pack: Pack, fits: string[], disabledFits: string[]
   const badgeHtml = pack.badge ? `<span class="info-badge">${pack.badge}</span>` : '';
 
   const fitOptions = getFitOptionsForUnit(pack, fits, 0);
-  const colorItems = getSwatchesForFit(pack, fitOptions[0] || null);
   const sizeRows = getSizesForFit(guide, fitOptions[0] || null);
   const labels = getUnitLabels(pack);
 
   let unitsSection = '';
   labels.forEach((label, ui) => {
+    const uFitOptions = getFitOptionsForUnit(pack, fits, ui);
+    const unitColors = getSwatchesForUnit(pack, uFitOptions[0] || fitOptions[0] || null, ui);
+
     let rowHtml = `<div class="unit-row" data-unit="${ui}">`;
     rowHtml += `<p class="unit-row-label">${label}</p>`;
-    if (colorItems) {
-      const unitInitColors = getSwatchesForFit(pack, fitOptions[0] || null)!;
+    if (unitColors) {
       rowHtml += `<div class="unit-colors-row" id="unit-colors-row-${ui}">`;
-      unitInitColors.forEach((c, ci) => {
+      unitColors.forEach((c, ci) => {
         rowHtml += `<button class="unit-color-dot${ci === 0 ? ' active' : ''}" style="background:${c.hex}" data-unit="${ui}" data-color="${ci}" aria-label="${c.name}" title="${c.name}"></button>`;
       });
-      rowHtml += `</div><span class="unit-color-name" id="unit-color-name-${ui}">${unitInitColors[0].name}</span>`;
+      rowHtml += `</div><span class="unit-color-name" id="unit-color-name-${ui}">${unitColors[0].name}</span>`;
     }
-    const uFitOptions = getFitOptionsForUnit(pack, fits, ui);
     if (uFitOptions.length > 0) {
       rowHtml += `<div class="unit-fit-row">`;
       uFitOptions.forEach((f, fi) => {
