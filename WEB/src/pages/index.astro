@@ -8,7 +8,8 @@ import Layout from '../layouts/Layout.astro';
   canonical="https://blankstate-zeta.vercel.app/"
 >
   <Fragment slot="head">
-    <link rel="preload" as="image" href="/BRANDING/banners/v2/HERO%20PRINCIPAL.png" />
+    <link rel="preload" as="image" href="/BRANDING/CREATIVOS%20PC/BANNER%20PRINCIPAL.webp" media="(min-width: 680px)" />
+    <link rel="preload" as="image" href="/BRANDING/banners/v2/HERO%20PRINCIPAL.png" media="(max-width: 679px)" />
     <style>
       body { animation: bodyEnter 0.45s ease both; }
       @keyframes bodyEnter { from { opacity: 0; } to { opacity: 1; } }
@@ -19,6 +20,7 @@ import Layout from '../layouts/Layout.astro';
       }
       @media (min-width: 680px) { .hero-slider { aspect-ratio: 16/9; max-height: 92vh; } }
 
+      .hero-slider picture { display: block; width: 100%; height: 100%; }
       .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
 
       .hero-bottom {
@@ -48,6 +50,7 @@ import Layout from '../layouts/Layout.astro';
       }
       @media (min-width: 680px) { .cat-tile { aspect-ratio: 16/9; } }
 
+      .cat-tile picture { display: block; width: 100%; height: 100%; }
       .cat-tile-img {
         width: 100%; height: 100%; object-fit: cover; object-position: center top;
         display: block; transition: transform 0.8s var(--ease);
@@ -184,10 +187,13 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- ── HERO ── -->
   <section class="hero-slider" id="hero">
-    <img class="hero-img"
-         src="/BRANDING/banners/v2/HERO%20PRINCIPAL.png"
-         alt="Blankstate"
-         fetchpriority="high" loading="eager" />
+    <picture>
+      <source media="(min-width: 680px)" srcset="/BRANDING/CREATIVOS%20PC/BANNER%20PRINCIPAL.webp" />
+      <img class="hero-img"
+           src="/BRANDING/banners/v2/HERO%20PRINCIPAL.png"
+           alt="Blankstate"
+           fetchpriority="high" loading="eager" />
+    </picture>
     <div class="hero-bottom">
       <span class="hero-label">Prendas básicas.</span>
       <a href="/catalogo" class="hero-arrow">→</a>
@@ -196,9 +202,12 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- ── CATEGORY TILES ── -->
   <a class="cat-tile" href="/catalogo?cat=camisetas">
-    <img class="cat-tile-img"
-         src="/BRANDING/banners/v2/PORTADA%20CAMISETAS.png"
-         alt="Camisetas" loading="lazy" />
+    <picture>
+      <source media="(min-width: 680px)" srcset="/BRANDING/CREATIVOS%20PC/BANNER%20CAMISETAS.webp" />
+      <img class="cat-tile-img"
+           src="/BRANDING/banners/v2/PORTADA%20CAMISETAS.png"
+           alt="Camisetas" loading="lazy" />
+    </picture>
     <div class="cat-tile-overlay">
       <span class="cat-tile-label">camisetas.</span>
       <span class="cat-tile-arrow">→</span>
@@ -206,9 +215,12 @@ import Layout from '../layouts/Layout.astro';
   </a>
 
   <a class="cat-tile" href="/catalogo?cat=packs">
-    <img class="cat-tile-img"
-         src="/BRANDING/banners/v2/PORTADA%20PACKS.png"
-         alt="Packs" loading="lazy" />
+    <picture>
+      <source media="(min-width: 680px)" srcset="/BRANDING/CREATIVOS%20PC/BANNER%20PACKS.webp" />
+      <img class="cat-tile-img"
+           src="/BRANDING/banners/v2/PORTADA%20PACKS.png"
+           alt="Packs" loading="lazy" />
+    </picture>
     <div class="cat-tile-overlay">
       <span class="cat-tile-label">packs.</span>
       <span class="cat-tile-arrow">→</span>
