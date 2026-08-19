@@ -230,7 +230,7 @@ export const PACKS: Record<string, Pack> = {
 
   '07': {
     num: '07', slug: 'pima', badge: 'Premium',
-    name: 'Pack Pima',
+    name: 'Pack Pima Slim Fit',
     price: 'S/ 70', priceNum: 70, qty: '2 polos', unitCount: 2, unitType: 'Polo',
     desc: '100% algodón Pima peruano — la fibra larga que produce el mejor algodón del país. Suavidad real desde el primer uso, no encoge con el lavado, no pierde forma. Corte Slim Fit con caída limpia que funciona igual en trabajo o salida. Si usas polos todos los días y quieres sentir la diferencia, este es el punto de partida.',
     colorsNote: null,
@@ -246,7 +246,7 @@ export const PACKS: Record<string, Pack> = {
       }
     ],
     thumb: '/PRODUCTOS/PIMA%20SLIM%20FIT/AZUL/1.webp',
-    wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Pima+(2+polos+x+S%2F70)'
+    wsp: 'https://wa.me/51942418379?text=Hola%2C+quiero+el+Pack+Pima+Slim+Fit+(2+polos+x+S%2F70)'
   },
 
   '08': {
