@@ -103,6 +103,9 @@ import Layout from '../layouts/Layout.astro';
       .lifestyle-slide { flex-shrink: 0; width: 100%; aspect-ratio: 3/4; overflow: hidden; }
       @media (min-width: 680px) { .lifestyle-slide { aspect-ratio: 16/9; } }
       .lifestyle-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      @media (min-width: 680px) {
+        .lifestyle-slide.ls-mobile-only, .ls-dot.ls-mobile-only { display: none; }
+      }
 
       /* ── FINAL CTA ── */
       .cta-section {
@@ -249,17 +252,21 @@ import Layout from '../layouts/Layout.astro';
   <section class="lifestyle-section">
     <div class="lifestyle-viewport" id="ls-vp">
       <div class="lifestyle-track" id="ls-track">
+        <div class="lifestyle-slide ls-mobile-only"><img src="/BRANDING/banners/cel-1.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
         <div class="lifestyle-slide"><img src="/BRANDING/banners/cel-2.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
+        <div class="lifestyle-slide ls-mobile-only"><img src="/BRANDING/banners/cel-3.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
         <div class="lifestyle-slide"><img src="/BRANDING/banners/1.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
         <div class="lifestyle-slide"><img src="/BRANDING/banners/2.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
         <div class="lifestyle-slide"><img src="/BRANDING/banners/3.webp" alt="Blankstate lifestyle" loading="lazy" /></div>
       </div>
     </div>
     <div class="ls-dots" id="ls-dots">
-      <button class="ls-dot active" data-i="0" aria-label="Slide 1"></button>
+      <button class="ls-dot active ls-mobile-only" data-i="0" aria-label="Slide 1"></button>
       <button class="ls-dot" data-i="1" aria-label="Slide 2"></button>
-      <button class="ls-dot" data-i="2" aria-label="Slide 3"></button>
+      <button class="ls-dot ls-mobile-only" data-i="2" aria-label="Slide 3"></button>
       <button class="ls-dot" data-i="3" aria-label="Slide 4"></button>
+      <button class="ls-dot" data-i="4" aria-label="Slide 5"></button>
+      <button class="ls-dot" data-i="5" aria-label="Slide 6"></button>
     </div>
   </section>
 
@@ -350,10 +357,16 @@ import Layout from '../layouts/Layout.astro';
   })();
 
   // ── LIFESTYLE CAROUSEL ──
+  // cel-1.webp y cel-3.webp son fotos verticales pensadas para mobile — en
+  // desktop (16:9) quedan mal recortadas, así que se excluyen de la cuenta
+  // ahí (quedan display:none por CSS, .ls-mobile-only) sin tocar mobile.
   (function() {
     const track  = document.getElementById('ls-track');
-    const slides = document.querySelectorAll('.lifestyle-slide');
-    const dots   = document.querySelectorAll('.ls-dot');
+    const isDesktop = window.matchMedia('(min-width: 680px)').matches;
+    const slides = Array.from(document.querySelectorAll('.lifestyle-slide'))
+      .filter(s => !isDesktop || !s.classList.contains('ls-mobile-only'));
+    const dots = Array.from(document.querySelectorAll('.ls-dot'))
+      .filter(d => !isDesktop || !d.classList.contains('ls-mobile-only'));
     if (!track || !slides.length) return;
     const total = slides.length;
     let current = 0;
@@ -362,6 +375,7 @@ import Layout from '../layouts/Layout.astro';
       track.style.transform = 'translateX(-' + (current * 100) + '%)';
       dots.forEach((d, i) => d.classList.toggle('active', i === current));
     }
+    goTo(0);
     setInterval(() => goTo(current + 1), 3000);
     dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
   })();
