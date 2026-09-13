@@ -97,7 +97,6 @@ const packs = [
     <div class="cat-filter" id="cat-filter">
       <a href="/catalogo" data-cat="todos" class="active">Todos</a>
       <a href="/catalogo?cat=camisetas" data-cat="camisetas">Camisetas</a>
-      <a href="/catalogo?cat=packs" data-cat="packs">Packs</a>
     </div>
   </div>
 
@@ -126,7 +125,9 @@ const packs = [
 <script>
   (function() {
     const params = new URLSearchParams(window.location.search);
-    const cat = params.get('cat') || 'todos';
+    // Todo el catálogo son packs: ?cat=packs (tile de la portada) muestra todo.
+    const raw = params.get('cat') || 'todos';
+    const cat = raw === 'packs' ? 'todos' : raw;
     const cards = document.querySelectorAll('#pack-grid .pack-card');
     let visible = 0;
     cards.forEach(card => {
